@@ -24,5 +24,9 @@ Auth::routes();
 Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->group(function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
+    
+    Route::get('/info/{id}', 'UserInfoController@show')->name('info/show');
+    Route::get('/register', 'UserInfoController@create')->name('info/create');
+    Route::post('/info', 'UserInfoController@store')->name('info/store');
+    
 });
-
