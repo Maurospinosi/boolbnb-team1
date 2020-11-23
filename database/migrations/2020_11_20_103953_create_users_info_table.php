@@ -14,7 +14,7 @@ class CreateUsersInfoTable extends Migration
     public function up()
     {
         Schema::create('users_info', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->unique()->onDelete('cascade');
             $table->string('lastname', 70)->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('gender', 1)->nullable();
