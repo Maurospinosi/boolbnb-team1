@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\House;
 use App\Sponsor;
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 class SponsorHouseTableSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class SponsorHouseTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
         $houses = House::all();
 
@@ -30,7 +31,13 @@ class SponsorHouseTableSeeder extends Seeder
                 // dd($randomSponsor);
                 // dd($house->sponsors()->sync($randomSponsor));
 
-                $house->sponsors()->attach($randomSponsor, ['start_date' => "1990-02-02", 'end_date' => $faker->date()]);
+                // $house->sponsors()->attach($randomSponsor, ['start_date' => "1990-02-02", 'end_date' => $faker->date()]);
+
+                $now = Carbon::now();
+                $end = Carbon::now()->addDays($randomSponsor->duration);
+
+                $house->sponsors()->attach($randomSponsor, ['start_date' =>$now, 'end_date' => $end]);
+
             }
         }
     }
