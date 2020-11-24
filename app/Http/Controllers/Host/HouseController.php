@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Host;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
 use App\House;
-use App\HouseInfo;
 
 class HouseController extends Controller
 {
@@ -18,7 +20,7 @@ class HouseController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $houses = House::find($user_id);
+        $houses = House::where('user_id', $user_id)->get();
 
         return view ('host.house.index', compact('houses'));
     }
@@ -30,7 +32,7 @@ class HouseController extends Controller
      */
     public function create()
     {
-        //
+        return view ("host/house/create ");
     }
 
     /**
@@ -41,7 +43,15 @@ class HouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $request->validate([
+
+        ]);
+
+
+
+        // Mail::to()
     }
 
     /**
