@@ -23,8 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MessagesTableSeeder::class);
         $this->call(SponsorsTableSeeder::class);
         $this->call(SponsorHouseTableSeeder::class);
-
-
-
+        $this->call(ViewsTableSeeder::class);
     }
 }
