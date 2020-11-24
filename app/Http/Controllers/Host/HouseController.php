@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\House;
 use App\HouseInfo;
 use App\Image;
+use Illuminate\Support\Facades\Validator;
 
 class HouseController extends Controller
 {
@@ -46,8 +47,8 @@ class HouseController extends Controller
      */
     public function store(Request $request)
     {
+        // Prendere i dati dal form e fare la validazione
         $data = $request->all();
-        
 
         $request->validate([
             "title"=> "required|max:100",
@@ -63,12 +64,24 @@ class HouseController extends Controller
             "lon"=> "required|max:20",
             "price"=> "required",
             "cover_image"=> "required|image",
-            "url" => "image"
         ]);
 
+        // Se sono presenti immagini aggiuntive, si fa la validazione a parte        
+        if(in_array("url", $data)) {
+            $validator = Validator::make($data, ["url" => 'array']);
+
+            if ($validator->fails()) {
+                return redirect()->route('host/house.create')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+        }
+
+        // Salvare l'immagine di copertina in public/storage
         $filename_original = $data['cover_image']->getClientOriginalName();
         $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
        
+        // Creare una nuova casa
         $newHouse = New House;
         $newHouse->user_id = Auth::id();
         $newHouse->slug= Str::of($data["title"])->slug("-");
@@ -77,7 +90,7 @@ class HouseController extends Controller
         }
         $newHouse->save();
 
-
+        // Creare le info per la casa
         $newHouseInfo = New HouseInfo;        
         $newHouseInfo->house_id = $newHouse->id;
         $newHouseInfo->title = $data["title"];
@@ -96,20 +109,25 @@ class HouseController extends Controller
         $newHouseInfo->cover_image = $pathCover;
         $newHouseInfo->save();
 
+        // Se sono presenti immagini aggiuntive, inserirle nella tabella images
+        if(in_array("url", $data)) {
+            foreach ($data["url"] as $urlImage) {
+                var_dump($urlImage);
 
-        foreach ($data["url"] as $urlImage) {
-
-            $filename_original = $urlImage->getClientOriginalName();
-            $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
-            
-            $newHouseImages = New Image;
-            $newHouseImages->houses_info_id = $newHouseInfo->id;
-            $newHouseImages->url = $pathUrl;
-            $newHouseImages->save();
+                // Salvare le immagini in public/storage
+                $filename_original = $urlImage->getClientOriginalName();
+                $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
+                
+                $newHouseImages = New Image;
+                $newHouseImages->houses_info_id = $newHouseInfo->id;
+                $newHouseImages->url = $pathUrl;
+                $newHouseImages->save();
+            }
         }
 
 
-        // Mail::to()
+        // Mail::to($newpost->user->email)->send(new PostedMail($newpost));
+
         return redirect()->route("host/house.show", $newHouse->id);
     }
 
