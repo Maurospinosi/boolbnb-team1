@@ -15,5 +15,7 @@
 
     @include('partials.footer')
     
+    <script src="{{asset("js/app.js")}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
 </body>
 </html>

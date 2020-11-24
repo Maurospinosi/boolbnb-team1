@@ -73,11 +73,36 @@ Aggiungi una nuova casa
                     <input type="file" class="form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*">
                 </div>
 
+
                 <div class="form-group">
-                    <label for="address-input">Immagine</label>
-                    <input type="search" class="form-control" id="address-input" name="address-input" placeholder="Dove vuoi andare?">
+                    <label for="form-address">Address*</label>
+                    <input type="search" class="form-control" id="form-address" placeholder="Where do you live?" />
                 </div>
-    
+                <div class="form-group">
+                    <label for="form-address2">Address 2</label>
+                    <input type="text" class="form-control" id="form-address2" placeholder="Street number and name" />
+                </div>
+                <div class="form-group">
+                    <label for="form-city">City*</label>
+                    <input type="text" class="form-control" id="form-city" placeholder="City">
+                </div>
+                <div class="form-group">
+                    <label for="form-zip">ZIP code*</label>
+                    <input type="text" class="form-control" id="form-zip" placeholder="ZIP code">
+                </div>
+
+                    <input hidden
+                        type="text"
+                        class="form-control"
+                        id="form-lat"
+                        name="lat"
+                      />
+                    <input hidden
+                        type="text"
+                        class="form-control"
+                        id="form-lng"
+                        name="lon"
+                      />
     
                 <button type="submit" class="btn btn-primary">Crea</button>
           </form>
