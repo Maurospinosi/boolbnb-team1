@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(HouseServiceTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
         $this->call(SponsorsTableSeeder::class);
+        $this->call(SponsorHouseTableSeeder::class);
+
 
 
     }
