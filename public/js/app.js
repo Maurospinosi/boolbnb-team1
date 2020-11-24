@@ -47786,6 +47786,7 @@ var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/inde
   placesAutocomplete.on('change', function resultSelected(e) {
     document.querySelector('#form-address2').value = e.suggestion.administrative || '';
     document.querySelector('#form-city').value = e.suggestion.city || '';
+    document.querySelector('#form-country').value = e.suggestion.country || '';
     document.querySelector('#form-zip').value = e.suggestion.postcode || '';
     document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
     document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
@@ -47857,8 +47858,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

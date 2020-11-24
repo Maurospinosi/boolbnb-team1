@@ -39,4 +39,6 @@ class House extends Model
 
         return $this->belongsToMany('App\Sponsor')->withPivot('start_date', 'end_date');
     }
+
+    protected $guarded = [];
 }
