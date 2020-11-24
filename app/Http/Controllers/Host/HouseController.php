@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Host;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\House;
+use App\HouseInfo;
 
 class HouseController extends Controller
 {
@@ -13,7 +17,10 @@ class HouseController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+        $houses = House::find($user_id);
+
+        return view ('host.house.index', compact('houses'));
     }
 
     /**
