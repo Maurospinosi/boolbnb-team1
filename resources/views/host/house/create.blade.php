@@ -126,7 +126,7 @@ Aggiungi una nuova casa
 
                 <div class="form-group" id="other-images">
                     <label for="url">Altre immagini</label>
-                    <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
+                    <input type="file" class="form-control" id="url" name="url[]" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}" multiple="multiple">
                     @error('url')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -145,6 +145,6 @@ Aggiungi una nuova casa
           </form>
     </div>
     <script id="image-template" type="text/x-handlebars-template">
-        <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
+        <input type="file" class="form-control" id="url" name="url[]" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
     </script>      
 @endsection

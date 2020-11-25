@@ -22,5 +22,12 @@
             <li>Paese: {{$house->houseinfo->country}}</li>
             <li>{{$house->houseinfo->description}}</li>
         </ul>
+
+        @foreach ($house->houseinfo->images as $image)
+        <div id="other-images">
+            <img src="{{asset('storage/'. $image->url)}}" alt="immagine non trovata">
+        </div>
+        @endforeach
+
     </div>
 @endsection

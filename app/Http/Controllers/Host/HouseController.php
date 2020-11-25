@@ -52,6 +52,7 @@ class HouseController extends Controller
     {
         // Prendere i dati dal form e fare la validazione
         $data = $request->all();
+        // dd($data);
 
         $request->validate([
             "title"=> "required|max:100",
@@ -67,8 +68,12 @@ class HouseController extends Controller
             "lon"=> "required|max:20",
             "price"=> "required",
             "cover_image"=> "required|image",
-            "url" => "image",
-        ]);
+        ]);        
+
+
+        // $validator = Validator::make($data['url'], [
+        //     'photos.profile' => 'required|image',
+        // ]);
 
         // Se sono presenti immagini aggiuntive, si fa la validazione a parte        
         // if(in_array("url", $data)) {
@@ -106,11 +111,14 @@ class HouseController extends Controller
         }
         $newHouse->save();
 
-        if(count($data['services']) > 0) {
+
+        if(isset($data['services'])) {
+            $services = [];
             foreach($data['services'] as $service) {
-                $newHouse->services()->attach([
-                    $newHouse->id => $service
-                ]);
+                if ($service != "null") {
+                    $services[] = $service;
+                }
+                $newHouse->services()->sync($services);
             }
         }
 
@@ -133,17 +141,19 @@ class HouseController extends Controller
         $newHouseInfo->cover_image = $pathCover;
         $newHouseInfo->save();
 
-        // Se sono presenti immagini aggiuntive, inserirle nella tabella images
-        if(in_array("url", $data)) {
 
-           foreach($data["url"] as $key => $urlImage) {
+        // Se sono presenti immagini aggiuntive, inserirle nella tabella images
+        if (isset($data['url'])) {
+
+           foreach($data["url"] as $urlImage) {
+            //    dd($urlImage);
 
             // Salvare le immagini in public/storage
             $filename_original = $urlImage->getClientOriginalName();
             $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
 
             $newHouseImages = New Image;
-            $newHouseImages->houses_info_id = $newHouseInfo->id;
+            $newHouseImages->house_info_id = $newHouseInfo->id;
             $newHouseImages->url = $pathUrl;
             $newHouseImages->save();
            }
@@ -151,8 +161,9 @@ class HouseController extends Controller
 
 
         // if(in_array("url", $data)) {
-        //     foreach ($data["url"] as $urlImage) {
+        //     foreach ($data["url"] as $key => $urlImage) {
 
+        //         dd($urlImage);
         //         // Salvare le immagini in public/storage
         //         $filename_original = $urlImage->getClientOriginalName();
         //         $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
