@@ -6,47 +6,62 @@ Aggiungi una nuova casa
 
 @section('page-content')
 
+
+
     <div class="container">
+
+        <div class="error_message">
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
+
         <form action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("POST")
         
                 <div style="margin-top: 50px" class="form-group">
-                    <label for="title">Titolo</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="Inserisci il titolo" value="{{old("title")}}">
+                    <label for="title">Titolo*</label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Inserisci il titolo" maxlength="100" required value="{{old("title")}}">
                     @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 
                 <div class="form-group">
-                    <label for="rooms">Numero di stanze</label>
-                    <input type="number" class="form-control" name="rooms" id="rooms" placeholder="Numero di stanze" value="{{old("rooms")}}">
+                    <label for="rooms">Numero di stanze*</label>
+                    <input type="number" class="form-control" name="rooms" id="rooms" placeholder="Numero di stanze" min="1" max="100" required value="{{old("rooms")}}">
                     @error('rooms')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="beds">Numero di letti</label>
-                    <input type="number" class="form-control" name="beds" id="beds" placeholder="Numero di letti"  value="{{old("beds")}}">
+                    <label for="beds">Numero di letti*</label>
+                    <input type="number" class="form-control" name="beds" id="beds" min="1" max="50" required placeholder="Numero di letti"  value="{{old("beds")}}">
                     @error('beds')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="bathrooms">Numero di bagni</label>
-                    <input type="number" class="form-control" name="bathrooms" id="bathrooms" placeholder="Numero di bagni"  value="{{old("bathrooms")}}">
+                    <label for="bathrooms">Numero di bagni*</label>
+                    <input type="number" class="form-control" name="bathrooms" id="bathrooms" placeholder="Numero di bagni" min="1" max="50" required value="{{old("bathrooms")}}">
                     @error('bathrooms')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="mq">Numero di mq</label>
-                    <input type="number" class="form-control" name="mq" id="mq" placeholder="Numero di mq"  value="{{old("mq")}}">
+                    <label for="mq">Numero di mq*</label>
+                    <input type="number" class="form-control" name="mq" id="mq" placeholder="Numero di mq" min="10" max="32700" required value="{{old("mq")}}">
                     @error('mq')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -54,52 +69,52 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <label for="description">Descrizione</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Inserisci la descrizione">{{old("description")}}</textarea>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Inserisci la descrizione" maxlength="1000">{{old("description")}}</textarea>
                     @error('description')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="form-address">Address*</label>
-                    <input type="search" class="form-control" id="form-address" placeholder="Enter an address?"  value="{{old("address")}}">
+                    <label for="form-address">Via*</label>
+                    <input type="search" class="form-control" name="address" id="form-address" placeholder="Enter an address?" required value="{{old("address")}}">
                 </div>
 
                 <div class="form-group">
-                    <label for="form-address2">Address 2</label>
-                    <input type="text" class="form-control" name="address" id="form-address2" placeholder="Street number and name"  value="{{old("address")}}">
+                    <label for="form-address2">Regione</label>
+                    <input type="text" class="form-control" id="form-address2" placeholder="Street number and name"  required value="{{old("address")}}">
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>
-
+                </div>     
+                
                 <div class="form-group">
-                    <label for="form-country">Country</label>
-                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Country"  value="{{old("country")}}">
-                    @error('country')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="form-city">City*</label>
-                    <input type="text" class="form-control" name="city" id="form-city" placeholder="City"  value="{{old("city")}}">
-                    @error('city')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="form-zip">ZIP code*</label>
-                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="ZIP code"  value="{{old("zipcode")}}">
+                    <label for="form-zip">CAP*</label>
+                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="ZIP code" required value="{{old("zipcode")}}">
                     @error('zipcode')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="price">Prezzo</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo"  value="{{old("price")}}">
+                    <label for="form-city">Città*</label>
+                    <input type="text" class="form-control" name="city" id="form-city" placeholder="City" required value="{{old("city")}}">
+                    @error('city')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>                
+
+                <div class="form-group">
+                    <label for="form-country">Nazione*</label>
+                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Country" required value="{{old("country")}}">
+                    @error('country')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Prezzo*</label>
+                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" min="5" max="9999" required value="{{old("price")}}">
                     @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -115,10 +130,21 @@ Aggiungi una nuova casa
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <h6>Tag</h6>
+                    @foreach($tags as $tag)
+                        <label for="{{$tag->id}}">{{$tag->name}}</label>
+                        <input type="checkbox" name="tags[]" id="{{$tag->id}}" value="{{$tag->id}}">
+                    @endforeach
+                    @error('services')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
     
                 <div class="form-group">
                     <label for="cover_image">Immagine di copertina</label>
-                    <input type="file" class="form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*"  value="{{old("cover_image")}}">
+                    <input type="file" class="form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*" required value="{{old("cover_image")}}">
                     @error('cover_image')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -130,7 +156,7 @@ Aggiungi una nuova casa
                     @error('url')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <h6 id="new-image">Aggiungi nuova immagine</h6>
+                    {{-- <h6 id="new-image">Aggiungi nuova immagine</h6> --}}
                 </div>
 
                 <div class="form-group">
@@ -144,7 +170,7 @@ Aggiungi una nuova casa
                 <button type="submit" class="btn btn-primary">Crea</button>
           </form>
     </div>
-    <script id="image-template" type="text/x-handlebars-template">
+    {{-- <script id="image-template" type="text/x-handlebars-template">
         <input type="file" class="form-control" id="url" name="url[]" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
-    </script>      
+    </script>       --}}
 @endsection

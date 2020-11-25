@@ -29,5 +29,12 @@
         </div>
         @endforeach
 
+    <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
+        @csrf
+        @method("DELETE")
+
+            <button class="btn btn-primary">Cancella</button>
+        </form>
+
     </div>
 @endsection

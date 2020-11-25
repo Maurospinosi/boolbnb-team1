@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers\Host;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
+use App\Mail\SendNewMail;
+
 use App\House;
 use App\HouseInfo;
 use App\Image;
-use Illuminate\Support\Facades\Validator;
 use App\Service;
+<<<<<<< HEAD
 use App\Http\Controllers\Host\DB;
+=======
+use App\Tag;
+>>>>>>> main
 
 class HouseController extends Controller
 {
@@ -39,8 +46,10 @@ class HouseController extends Controller
     public function create()
     {
         $services = Service::all();
+        $tags = Tag::all();
 
-        return view ("host/house/create", compact("services"));
+
+        return view ("host/house/create", compact("services", "tags"));
     }
 
     /**
@@ -54,6 +63,7 @@ class HouseController extends Controller
         // Prendere i dati dal form e fare la validazione
         $data = $request->all();
         // dd($data);
+        // dd($request->file('url'));
 
         $request->validate([
             "title"=> "required|max:100",
@@ -71,34 +81,22 @@ class HouseController extends Controller
             "cover_image"=> "required|image",
         ]);        
 
+        // validazione delle immagini custom
+        $allowedfileExtension=['jpeg','jpg','png','gif','svg'];
+        $images = $request->file('url');
 
-        // $validator = Validator::make($data['url'], [
-        //     'photos.profile' => 'required|image',
-        // ]);
+        foreach ($images as $image) {
+            $filename = $image->getClientOriginalName();
+            $extension = $image->getClientOriginalExtension();
+            $check=in_array($extension,$allowedfileExtension);
 
-        // Se sono presenti immagini aggiuntive, si fa la validazione a parte        
-        // if(in_array("url", $data)) {
-        //     foreach($data["url"] as $urlImage) {
-
-        //         $urlImage->validate([
-
-        //             'url' => 'image',
-        
-        
-        //         ]); 
-        
-        //         // $validator = Validator::make($urlImage, ["url" => 'image']);
-
-        //         // if ($validator->fails()) {
-
-        //         //     return redirect()->route('/');
-        //         //                 ->withErrors($validator)
-        //         //                 ->withInput();
-        //         // }
-        //     }
-        // }
-
-
+            if($check == false) {
+                return redirect()->route('host/house.create')
+                                ->withErrors('Formato immagine di ' . $filename . ' non consentito')
+                                ->withInput();                
+            } 
+        }
+   
         // Salvare l'immagine di copertina in public/storage
         $filename_original = $data['cover_image']->getClientOriginalName();
         $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
@@ -112,7 +110,7 @@ class HouseController extends Controller
         }
         $newHouse->save();
 
-
+        // Associazione servizi alla casa nella pivot
         if(isset($data['services'])) {
             $services = [];
             foreach($data['services'] as $service) {
@@ -120,6 +118,17 @@ class HouseController extends Controller
                     $services[] = $service;
                 }
                 $newHouse->services()->sync($services);
+            }
+        }
+
+        // Associazione tags alla casa nella pivot
+        if(isset($data['tags'])) {
+            $tags = [];
+            foreach($data['tags'] as $tag) {
+                if ($tag != "null") {
+                    $tags[] = $tag;
+                }
+                $newHouse->tags()->sync($tags);
             }
         }
 
@@ -159,25 +168,6 @@ class HouseController extends Controller
             $newHouseImages->save();
            }
         }       
-
-
-        // if(in_array("url", $data)) {
-        //     foreach ($data["url"] as $key => $urlImage) {
-
-        //         dd($urlImage);
-        //         // Salvare le immagini in public/storage
-        //         $filename_original = $urlImage->getClientOriginalName();
-        //         $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
-                
-        //         $newHouseImages = New Image;
-        //         $newHouseImages->houses_info_id = $newHouseInfo->id;
-        //         $newHouseImages->url = $pathUrl;
-        //         $newHouseImages->save();
-        //     }
-        // }
-
-
-
 
         // Mail::to($newpost->user->email)->send(new PostedMail($newpost));
 
@@ -279,6 +269,13 @@ class HouseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $house = House::find($id);
+
+        $house->services()->detach();
+        $house->tags()->detach();
+
+        $house->delete();
+
+        return redirect()->route('host/house.index');
     }
 }

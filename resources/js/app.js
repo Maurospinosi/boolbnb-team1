@@ -29,12 +29,12 @@ $(document).ready(function () {
     });
   })();
 
-  $("#new-image").click(function () {
-    var source = $("#image-template").html();
-    var template = Handlebars.compile(source);
+  // $("#new-image").click(function () {
+  //   var source = $("#image-template").html();
+  //   var template = Handlebars.compile(source);
 
-    $("#other-images").append(template);
-  });
+  //   $("#other-images").append(template);
+  // });
 
 });
 
