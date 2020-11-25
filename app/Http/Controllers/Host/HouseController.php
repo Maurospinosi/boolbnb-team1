@@ -14,6 +14,7 @@ use App\HouseInfo;
 use App\Image;
 use Illuminate\Support\Facades\Validator;
 use App\Service;
+use App\Http\Controllers\Host\DB;
 
 class HouseController extends Controller
 {
@@ -204,7 +205,11 @@ class HouseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $services = Service::all();
+
+        $house = House::where("id", $id)->first();
+        return view("host.house.edit", compact("house", "services"));
+
     }
 
     /**
@@ -216,7 +221,54 @@ class HouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+             $request->validate([
+            "title"=> "required|max:100",
+            "rooms"=> "required",
+            "beds"=> "required",
+            "bathrooms"=> "required",
+            "mq"=> "required",
+            "address"=> "required|max:100",
+            "country"=> "required|max:60",
+            "city"=> "required|max:60",
+            "zipcode"=> "required",
+            "lat"=> "required|max:20",
+            "lon"=> "required|max:20",
+            "price"=> "required",
+            "cover_image"=> "required|image",
+            "url" => "image",
+        ]);
+            $house = House::findOrFail($id);
+            $house -> title = $data['title'];
+            $house -> description = $data['description'];
+            $house -> rooms = $data['rooms'];
+            $house -> beds = $data['beds'];
+            $house -> bathrooms = $data['bathrooms'];
+            $house -> mq = $data['mq'];
+            $house -> address = $data['address'];
+            $house -> country = $data['country'];
+            $house -> city = $data['city'];
+            $house -> zipcode = $data['zipcode'];
+            $house -> lat = $data['lat'];
+            $house -> lon = $data['lon'];
+            $house -> visible = $data['visible'];
+            
+        $house = House::find($id); 
+        $house->user_id = Auth::id();
+        
+        if(empty($data["services"])) {
+            $house->services()->detach();
+        } else {
+            $house->services()->sync($data["services"]);
+        };
+       
+        $house -> save();
+        $house -> services() -> sync($data['services']);
+  
+        return redirect() -> route("host.house.show", $id)
+                          -> withSuccess("Appartamento ".$data["title"]
+                              ." aggiornato correttamente");
+    
     }
 
     /**
