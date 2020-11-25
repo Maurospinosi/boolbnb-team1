@@ -52873,13 +52873,12 @@ $(document).ready(function () {
       document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
-  })();
+  })(); // $("#new-image").click(function () {
+  //   var source = $("#image-template").html();
+  //   var template = Handlebars.compile(source);
+  //   $("#other-images").append(template);
+  // });
 
-  $("#new-image").click(function () {
-    var source = $("#image-template").html();
-    var template = Handlebars.compile(source);
-    $("#other-images").append(template);
-  });
 });
 
 /***/ }),
