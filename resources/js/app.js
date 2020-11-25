@@ -1,11 +1,15 @@
 require('./bootstrap');
 const $ = require( "jquery" );
-var places = require('places.js');
+const Handlebars = require("handlebars");
 
-(function() {
-  var placesAutocomplete = places({
-    appId: 'pl0CZDFYINVV',
-    apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+$(document).ready(function(){
+
+  var places = require('places.js');
+  
+  (function() {
+    var placesAutocomplete = places({
+      appId: 'pl0CZDFYINVV',
+        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
     container: document.querySelector('#form-address'),
     templates: {
       value: function(suggestion) {
@@ -24,3 +28,13 @@ var places = require('places.js');
     document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
 });
 })();
+
+$("#new-image").click(function(){
+  var source = $("#image-template").html();
+  var template = Handlebars.compile(source);
+
+  $("#other-images").append(template);
+});
+
+});
+

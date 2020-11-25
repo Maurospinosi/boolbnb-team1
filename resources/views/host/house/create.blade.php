@@ -104,6 +104,17 @@ Aggiungi una nuova casa
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <h6>Servizi</h6>
+                    @foreach($services as $service)
+                        <label for="{{$service->id}}">{{$service->name}}</label>
+                        <input type="checkbox" name="services[]" id="{{$service->id}}" value="{{$service->id}}">
+                    @endforeach
+                    @error('services')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
     
                 <div class="form-group">
                     <label for="cover_image">Immagine di copertina</label>
@@ -113,12 +124,13 @@ Aggiungi una nuova casa
                     @enderror
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="other-images">
                     <label for="url">Altre immagini</label>
-                    <input type="file" class="form-control" id="url" name="url[]" placeholder="Inserisci immagine" multiple="multiple" accept="image/*"  value="{{old("url")}}">
+                    <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
                     @error('url')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    <h6 id="new-image">Aggiungi nuova immagine</h6>
                 </div>
 
                 <div class="form-group">
@@ -132,4 +144,7 @@ Aggiungi una nuova casa
                 <button type="submit" class="btn btn-primary">Crea</button>
           </form>
     </div>
+    <script id="image-template" type="text/x-handlebars-template">
+        <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
+    </script>      
 @endsection

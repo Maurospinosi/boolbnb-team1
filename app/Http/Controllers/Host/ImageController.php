@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Host;
 
 use App\Image;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class ImageController extends Controller
 {
@@ -35,8 +37,39 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //     $input = $request->all();
+
+    //     request()->validate([
+    //         'image' => 'required',
+    //     ]); 
+
+
+    //      if($request->hasfile('image')){
+
+            
+
+    //         foreach($request->file('image') as $image) {
+
+    //             $imageName=$image->getClientOriginalName();
+
+    //             $image->move(public_path().'/images/', $imageName);  
+
+    //             $insert['image'] = "$imageName";
+
+    //         }
+
+    //      }       
+
+
+    //     Image::create($insert);
+
+
+    //     return back()
+
+    //             ->with('success','Multiple Image Upload Successfully');
+
     }
+
 
     /**
      * Display the specified resource.

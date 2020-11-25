@@ -29,6 +29,8 @@ Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->gro
     Route::get('/register', 'UserInfoController@create')->name('info/create');
     Route::post('/info', 'UserInfoController@store')->name('info/store');
     Route::resource('/house', 'HouseController');
+    Route::get('/image','ImageController@create')->name('image.create');
+    Route::post('/image','ImageController@store')->name('image.store');
     
 });
 

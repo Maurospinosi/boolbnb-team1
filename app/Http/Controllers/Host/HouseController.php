@@ -13,6 +13,7 @@ use App\House;
 use App\HouseInfo;
 use App\Image;
 use Illuminate\Support\Facades\Validator;
+use App\Service;
 
 class HouseController extends Controller
 {
@@ -36,7 +37,9 @@ class HouseController extends Controller
      */
     public function create()
     {
-        return view ("host/house/create ");
+        $services = Service::all();
+
+        return view ("host/house/create", compact("services"));
     }
 
     /**
@@ -64,18 +67,31 @@ class HouseController extends Controller
             "lon"=> "required|max:20",
             "price"=> "required",
             "cover_image"=> "required|image",
+            "url" => "image",
         ]);
 
         // Se sono presenti immagini aggiuntive, si fa la validazione a parte        
-        if(in_array("url", $data)) {
-            $validator = Validator::make($data, ["url" => 'array']);
+        // if(in_array("url", $data)) {
+        //     foreach($data["url"] as $urlImage) {
 
-            if ($validator->fails()) {
-                return redirect()->route('host/house.create')
-                            ->withErrors($validator)
-                            ->withInput();
-            }
-        }
+        //         $urlImage->validate([
+
+        //             'url' => 'image',
+        
+        
+        //         ]); 
+        
+        //         // $validator = Validator::make($urlImage, ["url" => 'image']);
+
+        //         // if ($validator->fails()) {
+
+        //         //     return redirect()->route('/');
+        //         //                 ->withErrors($validator)
+        //         //                 ->withInput();
+        //         // }
+        //     }
+        // }
+
 
         // Salvare l'immagine di copertina in public/storage
         $filename_original = $data['cover_image']->getClientOriginalName();
@@ -85,10 +101,18 @@ class HouseController extends Controller
         $newHouse = New House;
         $newHouse->user_id = Auth::id();
         $newHouse->slug= Str::of($data["title"])->slug("-");
-        if ($data["visible"]) {
+        if (in_array("visible", $data)) {
             $newHouse->visible = true;
         }
         $newHouse->save();
+
+        if(count($data['services']) > 0) {
+            foreach($data['services'] as $service) {
+                $newHouse->services()->attach([
+                    $newHouse->id => $service
+                ]);
+            }
+        }
 
         // Creare le info per la casa
         $newHouseInfo = New HouseInfo;        
@@ -111,19 +135,36 @@ class HouseController extends Controller
 
         // Se sono presenti immagini aggiuntive, inserirle nella tabella images
         if(in_array("url", $data)) {
-            foreach ($data["url"] as $urlImage) {
-                var_dump($urlImage);
 
-                // Salvare le immagini in public/storage
-                $filename_original = $urlImage->getClientOriginalName();
-                $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
+           foreach($data["url"] as $key => $urlImage) {
+
+            // Salvare le immagini in public/storage
+            $filename_original = $urlImage->getClientOriginalName();
+            $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
+
+            $newHouseImages = New Image;
+            $newHouseImages->houses_info_id = $newHouseInfo->id;
+            $newHouseImages->url = $pathUrl;
+            $newHouseImages->save();
+           }
+        }       
+
+
+        // if(in_array("url", $data)) {
+        //     foreach ($data["url"] as $urlImage) {
+
+        //         // Salvare le immagini in public/storage
+        //         $filename_original = $urlImage->getClientOriginalName();
+        //         $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
                 
-                $newHouseImages = New Image;
-                $newHouseImages->houses_info_id = $newHouseInfo->id;
-                $newHouseImages->url = $pathUrl;
-                $newHouseImages->save();
-            }
-        }
+        //         $newHouseImages = New Image;
+        //         $newHouseImages->houses_info_id = $newHouseInfo->id;
+        //         $newHouseImages->url = $pathUrl;
+        //         $newHouseImages->save();
+        //     }
+        // }
+
+
 
 
         // Mail::to($newpost->user->email)->send(new PostedMail($newpost));
@@ -139,7 +180,9 @@ class HouseController extends Controller
      */
     public function show($id)
     {
-        //
+        $house = House::where('id', $id)->first();
+
+        return view("host/house.show", compact("house"));
     }
 
     /**
