@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Host;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,11 +18,8 @@ use App\House;
 use App\HouseInfo;
 use App\Image;
 use App\Service;
-<<<<<<< HEAD
 use App\Http\Controllers\Host\DB;
-=======
 use App\Tag;
->>>>>>> main
 
 class HouseController extends Controller
 {
@@ -65,12 +63,13 @@ class HouseController extends Controller
         // dd($request->file('url'));
 
         $request->validate([
-            "title"=> "required|max:100",
+            "title"=> "required|unique:houses_info|max:100",
             "rooms"=> "required",
             "beds"=> "required",
             "bathrooms"=> "required",
             "mq"=> "required",
             "address"=> "required|max:100",
+            "region"=> "required|max:80",
             "country"=> "required|max:60",
             "city"=> "required|max:60",
             "zipcode"=> "required",
@@ -143,6 +142,7 @@ class HouseController extends Controller
         $newHouseInfo->mq = $data["mq"];
         $newHouseInfo->description = $data["description"];
         $newHouseInfo->address = $data["address"];
+        $newHouseInfo->region = $data["region"];
         $newHouseInfo->city = $data["city"];
         $newHouseInfo->country = $data["country"];
         $newHouseInfo->zipcode = $data["zipcode"];
@@ -197,19 +197,11 @@ class HouseController extends Controller
      */
     public function edit($id)
     {
-<<<<<<< HEAD
         $house = House::where("id", $id)->first();
         $services = Service::all();
         $tags = Tag::all();
 
         return view("host.house.edit", compact("house", "services", "tags"));
-=======
-        $services = Service::all();
-
-        $house = House::where("id", $id)->first();
-        return view("host.house.edit", compact("house", "services"));
-
->>>>>>> main
     }
 
     /**
@@ -222,8 +214,14 @@ class HouseController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-             $request->validate([
-            "title"=> "required|max:100",
+        dd($data);
+
+        $request->validate([
+            "title"=> [
+                'required',
+                "max:100",
+                Rule::unique('houses_info', 'title')->ignore($id)
+            ],
             "rooms"=> "required",
             "beds"=> "required",
             "bathrooms"=> "required",
@@ -235,47 +233,73 @@ class HouseController extends Controller
             "lat"=> "required|max:20",
             "lon"=> "required|max:20",
             "price"=> "required",
-            "cover_image"=> "required|image",
-            "url" => "image",
+            "cover_image"=> "image",
         ]);
-            $house = House::findOrFail($id);
-            $house -> title = $data['title'];
-            $house -> description = $data['description'];
-            $house -> rooms = $data['rooms'];
-            $house -> beds = $data['beds'];
-            $house -> bathrooms = $data['bathrooms'];
-            $house -> mq = $data['mq'];
-            $house -> address = $data['address'];
-            $house -> country = $data['country'];
-            $house -> city = $data['city'];
-            $house -> zipcode = $data['zipcode'];
-            $house -> lat = $data['lat'];
-            $house -> lon = $data['lon'];
-            $house -> visible = $data['visible'];
-            
-        $house = House::find($id); 
-        $house->user_id = Auth::id();
-        
-        if(empty($data["services"])) {
-            $house->services()->detach();
-        } else {
-            $house->services()->sync($data["services"]);
-        };
+
+        $house = House::findOrFail($id);
+
+        $house->slug= Str::of($data["title"])->slug("-");
+        if (in_array("visible", $data)) {
+            $house->visible = true;
+        }
+        $house->update();
+
+        $house->houseinfo->title = $data['title'];
+        $house->houseinfo->description = $data['description'];
+        $house->houseinfo->rooms = $data['rooms'];
+        $house->houseinfo->beds = $data['beds'];
+        $house->houseinfo->bathrooms = $data['bathrooms'];
+        $house->houseinfo->mq = $data['mq'];
+        $house->houseinfo->address = $data['address'];
+        $house->houseinfo->country = $data['country'];
+        $house->houseinfo->city = $data['city'];
+        $house->houseinfo->zipcode = $data['zipcode'];
+        $house->houseinfo->lat = $data['lat'];
+        $house->houseinfo->lon = $data['lon'];
+
+        $house->houseinfo->update();
+
+        dd($data);
+
+        if(isset($data['services'])) {
+            $services = [];
+            foreach($data['services'] as $service) {
+                if ($service != "null") {
+                    $services[] = $service;
+                }
+                $house->services()->sync($services);
+            }
+        }
+
+        if(isset($data['tags'])) {
+            $tags = [];
+            foreach($data['tags'] as $tag) {
+                if ($tag != "null") {
+                    $tags[] = $tag;
+                }
+                $house->tags()->sync($tags);
+            }
+        }
        
-<<<<<<< HEAD
-        $house->save();
-        $house->services()->sync($data['services']);
+        // if(empty($data["services"])) {
+        //     $house->services()->detach();
+        // } else {
+        //     $house->services->sync($data["services"]);
+        // };
+
+        // if(empty($data["tags"])) {
+        //     $house->services()->detach();
+        // } else {
+        //     $house->services->sync($data["services"]);
+        // };
+       
+        
+
+
+        // $house->services()->sync($data['services']);
   
-        return redirect() -> route("host.house.show", $id)
-                          -> withSuccess("Appartamento ".$data["title"]." aggiornato correttamente");
-=======
-        $house -> save();
-        $house -> services() -> sync($data['services']);
-  
-        return redirect() -> route("host.house.show", $id)
-                          -> withSuccess("Appartamento ".$data["title"]
-                              ." aggiornato correttamente");
->>>>>>> main
+        // return redirect() -> route("host/house.show", $id)
+        //                   -> withSuccess("Appartamento ".$data["title"]." aggiornato correttamente");
     
     }
 

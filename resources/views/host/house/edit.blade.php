@@ -61,38 +61,38 @@ Aggiungi una nuova casa
                 </div>
 
                 <div class="form-group">
-                    <label for="form-address">Address*</label>
-                    <input type="search" class="form-control" id="form-address" placeholder="Enter an address?"  value="{{$house->houseinfo->address}}">
+                    <label for="form-address">Via*</label>
+                    <input type="search" class="form-control" id="form-address" placeholder="Inserisci via e numero" name="address" value="{{$house->houseinfo->address}}">
                 </div>
 
                 <div class="form-group">
-                    <label for="form-address2">Address 2</label>
-                    <input type="text" class="form-control" name="address" id="form-address2" placeholder="Street number and name"  value="{{$house->houseinfo->address}}">
+                    <label for="form-address2">Regione</label>
+                    <input type="text" class="form-control" id="form-address2" placeholder="Regione" value="{{$house->houseinfo->address}}">
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>
-
+                </div>        
+                
                 <div class="form-group">
-                    <label for="form-country">Country</label>
-                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Country"  value="{{$house->houseinfo->country}}">
-                    @error('country')
+                    <label for="form-zip">CAP*</label>
+                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP" value="{{$house->houseinfo->zipcode}}">
+                    @error('zipcode')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="form-city">City*</label>
-                    <input type="text" class="form-control" name="city" id="form-city" placeholder="City"  value="{{$house->houseinfo->city}}">
+                    <label for="form-city">Città*</label>
+                    <input type="text" class="form-control" name="city" id="form-city" placeholder="Città"  value="{{$house->houseinfo->city}}">
                     @error('city')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="form-zip">ZIP code*</label>
-                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="ZIP code"  value="{{$house->houseinfo->zipcode}}">
-                    @error('zipcode')
+                    <label for="form-country">Nazione</label>
+                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Nazione"  value="{{$house->houseinfo->country}}">
+                    @error('country')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -113,6 +113,23 @@ Aggiungi una nuova casa
                         <input type="hidden" name="services[]" value="0">
                         <input type="checkbox" name="services[]" id="{{$service->name}}" value="1"
                         @if ($house->services->contains($service->id))
+                             checked
+                         @endif> 
+                        
+                    @endforeach
+                    @error('services')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <h6>Tags</h6>
+                    
+                    @foreach($tags as $tag)
+                        <label for="{{$tag->id}}">{{$tag->name}}</label>
+                        <input type="hidden" name="tags[]" value="0">
+                        <input type="checkbox" name="tags[]" id="{{$tag->name}}" value="1"
+                        @if ($house->tags->contains($tag->id))
                              checked
                          @endif> 
                         

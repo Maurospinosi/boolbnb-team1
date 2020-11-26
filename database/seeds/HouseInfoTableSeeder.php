@@ -27,9 +27,10 @@ class HouseInfoTableSeeder extends Seeder
             $newHouseInfo->mq = rand(30, 80);
             $newHouseInfo->description = $faker->paragraph(3,true);
             $newHouseInfo->address = $faker->streetAddress;
-            $newHouseInfo->country = $faker->country;
-            $newHouseInfo->city = $faker->city;
+            $newHouseInfo->region = "Piemonte";
             $newHouseInfo->zipcode = rand(10000,99999);
+            $newHouseInfo->city = $faker->city;
+            $newHouseInfo->country = $faker->country;
             $newHouseInfo->lat = $faker->latitude;
             $newHouseInfo->lon = $faker->longitude;
             $newHouseInfo->price = $faker->numberBetween(50, 300);

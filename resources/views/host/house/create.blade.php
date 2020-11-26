@@ -77,12 +77,12 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <label for="form-address">Via*</label>
-                    <input type="search" class="form-control" name="address" id="form-address" placeholder="Enter an address?" required value="{{old("address")}}">
+                    <input type="search" class="form-control" name="address" id="form-address" placeholder="Inserisci via e numero" required value="{{old("address")}}">
                 </div>
 
                 <div class="form-group">
                     <label for="form-address2">Regione</label>
-                    <input type="text" class="form-control" id="form-address2" placeholder="Street number and name"  required value="{{old("address")}}">
+                    <input type="text" class="form-control" id="form-address2" placeholder="Regione" name="region"  required value="{{old("address")}}">
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -90,7 +90,7 @@ Aggiungi una nuova casa
                 
                 <div class="form-group">
                     <label for="form-zip">CAP*</label>
-                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="ZIP code" required value="{{old("zipcode")}}">
+                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP" required value="{{old("zipcode")}}">
                     @error('zipcode')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -98,7 +98,7 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <label for="form-city">Città*</label>
-                    <input type="text" class="form-control" name="city" id="form-city" placeholder="City" required value="{{old("city")}}">
+                    <input type="text" class="form-control" name="city" id="form-city" placeholder="Città" required value="{{old("city")}}">
                     @error('city')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -106,7 +106,7 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <label for="form-country">Nazione*</label>
-                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Country" required value="{{old("country")}}">
+                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Nazione" required value="{{old("country")}}">
                     @error('country')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

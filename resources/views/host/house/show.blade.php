@@ -10,7 +10,11 @@
         <h1>{{$house->houseinfo->title}}</h1>
         <span>{{$house->houseinfo->price}}</span>
         <div id="cover-image">
-            <img src="{{asset('storage/'. $house->houseinfo->cover_image)}}" alt="immagine non trovata">
+            @if (strpos($house->houseinfo->cover_image, 'http') === 0)
+                <img src="{{$house->houseinfo->cover_image}}" alt="random picture">
+            @else
+                <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
+            @endif
         </div>
         <ul>
             <li>Stanze: {{$house->houseinfo->rooms}}</li>
@@ -26,11 +30,15 @@
         {{-- @dd($house->houseinfo) --}}
         {{-- @dd($info); --}}
 
-        @foreach ($house->houseinfo->images as $image)
-        <div id="other-images">
-            <img src="{{asset('storage/'. $image->url)}}" alt="immagine non trovata">
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
+        @foreach ($images as $image)
+            @if (strpos($image->url, 'http') === 0)
+                <img src="{{$image->url}}" alt="random picture">
+            @else
+                <img src="{{asset('storage/'.$image->url)}}" alt="">
+            @endif
+            @endforeach
         </div>
-        @endforeach
 
     <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
         @csrf

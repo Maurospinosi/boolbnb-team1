@@ -23,9 +23,10 @@ class CreateHousesInfoTable extends Migration
             $table->smallInteger('mq')->unsigned();
             $table->text('description')->nullable();
             $table->string('address', 100);
-            $table->string('country', 60);
-            $table->string('city', 60);
+            $table->string('region', 80);
             $table->mediumInteger('zipcode')->unsigned();
+            $table->string('city', 60);
+            $table->string('country', 60);
             $table->string('lat', 20);
             $table->string('lon', 20);
             $table->smallInteger('price')->unsigned();
