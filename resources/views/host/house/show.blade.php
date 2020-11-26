@@ -7,8 +7,23 @@
 @section('page-content')
 
     <div class="container"> 
+
+        @if (session()->has('success'))
+            <div class="alert alert-success">
+                @if(is_array(session('success')))
+                    <ul>
+                        @foreach (session('success') as $message)
+                            <li>{{ $message }}</li>
+                        @endforeach
+                    </ul>
+                @else
+                    {{ session('success') }}
+                @endif
+            </div>
+        @endif
+
         <h1>{{$house->houseinfo->title}}</h1>
-        <span>{{$house->houseinfo->price}}</span>
+        <span>{{$house->houseinfo->price}}€ a notte</span>
         <div id="cover-image">
             @if (strpos($house->houseinfo->cover_image, 'http') === 0)
                 <img src="{{$house->houseinfo->cover_image}}" alt="random picture">

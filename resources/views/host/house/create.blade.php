@@ -5,10 +5,25 @@ Aggiungi una nuova casa
 @endsection
 
 @section('page-content')
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+    input[type=number] {
+  -moz-appearance: textfield;
+}
 
+ul {
+    list-style: none
+}
+</style>
 
 
     <div class="container">
+
+        <h2>Aggiungi la tua casa</h2>
 
         <div class="error_message">
             @if (count($errors) > 0)
@@ -122,24 +137,26 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <h6>Servizi</h6>
-                    @foreach($services as $service)
-                        <label for="{{$service->id}}">{{$service->name}}</label>
-                        <input type="checkbox" name="services[]" id="{{$service->id}}" value="{{$service->id}}">
-                    @endforeach
-                    @error('services')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    <ul>
+                        @foreach($services as $service)
+                            <li>
+                                <label for="service{{$service->id}}">{{$service->name}}</label>
+                                <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}">
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
 
                 <div class="form-group">
                     <h6>Tag</h6>
-                    @foreach($tags as $tag)
-                        <label for="{{$tag->id}}">{{$tag->name}}</label>
-                        <input type="checkbox" name="tags[]" id="{{$tag->id}}" value="{{$tag->id}}">
-                    @endforeach
-                    @error('services')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    <ul>
+                        @foreach($tags as $tag)
+                        <li>
+                            <label for="tag{{$tag->id}}">{{$tag->name}}</label>
+                            <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}">
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
     
                 <div class="form-group">

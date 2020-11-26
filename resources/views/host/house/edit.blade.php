@@ -5,6 +5,20 @@ Modifica la casa
 @endsection
 
 @section('page-content')
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+    input[type=number] {
+  -moz-appearance: textfield;
+}
+
+ul {
+    list-style: none
+}
+</style>
 
     <div class="container">
 
@@ -110,6 +124,36 @@ Modifica la casa
 
                 <div class="form-group">
                     <h6>Servizi</h6>
+                    <ul>
+                        @foreach($services as $service)
+                            <li>
+                                <label for="service{{$service->id}}">{{$service->name}}</label>
+                                <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}"
+                                @if ($house->services->contains($service->id))
+                                    checked
+                                 @endif>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <h6>Tag</h6>
+                    <ul>
+                        @foreach($tags as $tag)
+                        <li>
+                            <label for="tag{{$tag->id}}">{{$tag->name}}</label>
+                            <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}"
+                            @if ($house->tags->contains($tag->id))
+                                checked
+                            @endif>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                {{-- <div class="form-group">
+                    <h6>Servizi</h6>
                     
                     @foreach($services as $service)
                         <label for="{{$service->id}}">{{$service->name}}</label>                      
@@ -138,7 +182,7 @@ Modifica la casa
                     @error('services')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
     
                 <div class="form-group">
                     <label for="cover_image">Immagine di copertina</label>
