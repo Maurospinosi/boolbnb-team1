@@ -40,11 +40,12 @@
             @endforeach
         </div>
 
+    <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Edit</a>
     <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
         @csrf
         @method("DELETE")
 
-            <button class="btn btn-primary">Cancella</button>
+            <button class="btn btn-danger">Cancella</button>
         </form>
 
     </div>

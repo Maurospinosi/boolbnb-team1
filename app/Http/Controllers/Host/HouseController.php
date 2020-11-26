@@ -214,7 +214,6 @@ class HouseController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        dd($data);
 
         $request->validate([
             "title"=> [
@@ -236,14 +235,17 @@ class HouseController extends Controller
             "cover_image"=> "image",
         ]);
 
+        // Recupero la casa
         $house = House::findOrFail($id);
 
+        // Aggiorna la casa
         $house->slug= Str::of($data["title"])->slug("-");
         if (in_array("visible", $data)) {
             $house->visible = true;
         }
         $house->update();
 
+        // Aggiorno le info della casa
         $house->houseinfo->title = $data['title'];
         $house->houseinfo->description = $data['description'];
         $house->houseinfo->rooms = $data['rooms'];
@@ -256,11 +258,9 @@ class HouseController extends Controller
         $house->houseinfo->zipcode = $data['zipcode'];
         $house->houseinfo->lat = $data['lat'];
         $house->houseinfo->lon = $data['lon'];
-
         $house->houseinfo->update();
 
-        dd($data);
-
+        // Aggiorno i servizi
         if(isset($data['services'])) {
             $services = [];
             foreach($data['services'] as $service) {
@@ -269,8 +269,11 @@ class HouseController extends Controller
                 }
                 $house->services()->sync($services);
             }
+        } else {
+            $house->services()->detach();
         }
 
+        // Aggiorno i tag
         if(isset($data['tags'])) {
             $tags = [];
             foreach($data['tags'] as $tag) {
@@ -279,28 +282,12 @@ class HouseController extends Controller
                 }
                 $house->tags()->sync($tags);
             }
+        } else {
+            $house->tags()->detach();
         }
-       
-        // if(empty($data["services"])) {
-        //     $house->services()->detach();
-        // } else {
-        //     $house->services->sync($data["services"]);
-        // };
-
-        // if(empty($data["tags"])) {
-        //     $house->services()->detach();
-        // } else {
-        //     $house->services->sync($data["services"]);
-        // };
-       
-        
-
-
-        // $house->services()->sync($data['services']);
-  
-        // return redirect() -> route("host/house.show", $id)
-        //                   -> withSuccess("Appartamento ".$data["title"]." aggiornato correttamente");
-    
+         
+        return redirect()->route("host/house.show", $id)
+                          ->withSuccess("Appartamento ".$data["title"]." aggiornato correttamente");
     }
 
     /**

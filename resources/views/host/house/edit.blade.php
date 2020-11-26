@@ -1,12 +1,15 @@
 @extends('layouts.main')
 
 @section('title')
-Aggiungi una nuova casa
+Modifica la casa
 @endsection
 
 @section('page-content')
 
     <div class="container">
+
+        <h2>Modifica Casa</h2>
+
         <form action="{{route('host/house.update', $house->id)}}" method="POST" enctype="multipart/form-data">
 
             @csrf
@@ -109,9 +112,8 @@ Aggiungi una nuova casa
                     <h6>Servizi</h6>
                     
                     @foreach($services as $service)
-                        <label for="{{$service->id}}">{{$service->name}}</label>
-                        <input type="hidden" name="services[]" value="0">
-                        <input type="checkbox" name="services[]" id="{{$service->name}}" value="1"
+                        <label for="{{$service->id}}">{{$service->name}}</label>                      
+                        <input type="checkbox" name="services[]" id="{{$service->id}}" value="{{$service->id}}"
                         @if ($house->services->contains($service->id))
                              checked
                          @endif> 
@@ -126,9 +128,8 @@ Aggiungi una nuova casa
                     <h6>Tags</h6>
                     
                     @foreach($tags as $tag)
-                        <label for="{{$tag->id}}">{{$tag->name}}</label>
-                        <input type="hidden" name="tags[]" value="0">
-                        <input type="checkbox" name="tags[]" id="{{$tag->name}}" value="1"
+                        <label for="{{$tag->id}}">{{$tag->name}}</label>                
+                        <input type="checkbox" name="tags[]" id="{{$tag->id}}" value="{{$tag->id}}"
                         @if ($house->tags->contains($tag->id))
                              checked
                          @endif> 
@@ -161,8 +162,8 @@ Aggiungi una nuova casa
                     <input type="checkbox" id="visible" name="visible" value="1">
                 </div>
 
-                <input hidden type="text" class="form-control" id="form-lat" name="lat"/>
-                <input hidden type="text" class="form-control" id="form-lng" name="lon"/>
+                <input hidden type="text" class="form-control" id="form-lat" name="lat" value="{{$house->houseinfo->lat}}"/>
+                <input hidden type="text" class="form-control" id="form-lng" name="lon" value="{{$house->houseinfo->lon}}"/>
     
                 <button type="submit" class="btn btn-primary">Salva</button>
           </form>
