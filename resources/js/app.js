@@ -29,12 +29,25 @@ $(document).ready(function () {
     });
   })();
 
-  // $("#new-image").click(function () {
-  //   var source = $("#image-template").html();
-  //   var template = Handlebars.compile(source);
 
-  //   $("#other-images").append(template);
-  // });
 
+// for the default version
+const algoliasearch = require('algoliasearch');
+
+// for the default version
+import algoliasearch from 'algoliasearch';
+
+// for the search only version
+import algoliasearch from 'algoliasearch/lite';
+
+// or just use algoliasearch if you are using a <script> tag
+// if you are using AMD module loader, algoliasearch will not be defined in window,
+// but in the AMD modules of the page
+
+const client = algoliasearch('pl0CZDFYINVV', 'eadbe4e7e17871155036ed85b3b8f8c5');
+const index = client.initIndex('your_index_name');
+
+
+ 
 });
 

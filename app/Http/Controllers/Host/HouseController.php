@@ -181,9 +181,7 @@ class HouseController extends Controller
     {
         $house = House::where('id', $id)->first();
         $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
-        // $services = DB::where('id', $house->services);
-        // $house->services->contains($service->id)
-        // dd($services);
+
         return view("host/house.show", compact("house", "images"));
     }
 

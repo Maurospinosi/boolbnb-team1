@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Guest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\House;
+use App\Sponsor;
+use App\Image;
+use App\Service;
+use App\Tag;
 
 class GuestHouseController extends Controller
 {
@@ -17,7 +21,19 @@ class GuestHouseController extends Controller
     {
         $houses = House::all();
 
-        return view('welcome', compact('houses'));
+        $sponsors = Sponsor::all();
+
+        $sponsoredHouses = [];
+
+        foreach($houses as $house) {
+            foreach($sponsors as $sponsor) {
+                if ($house->sponsors->contains($sponsor->id)) {
+                    $sponsoredHouses[] = $house->id;
+                }
+            }
+        }
+
+        return view('guest.welcome', compact('houses', 'sponsoredHouses'));
     }
 
     /**
@@ -49,7 +65,36 @@ class GuestHouseController extends Controller
      */
     public function show($slug)
     {
-        //
+        // Richiamiamo la casa
+        $house = House::where('slug', $slug)->first();
+
+        // Richiamiamo le immagini della casa
+        $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
+
+        // Prendiamo i servizi della casa
+        $services = Service::all();
+
+        $houseServices = [];
+
+        foreach($services as $service) {
+            if ($house->services->contains($service->id)) {
+                $houseServices[] = $service->name;
+            }
+        }
+
+        // Prendiamo i tag della casa
+        $tags = Tag::all();
+
+        $houseTags = [];
+
+        foreach($tags as $tag) {
+            if ($house->tags->contains($tag->id)) {
+                $houseTags[] = $tag->name;
+            }
+        }
+
+
+        return view('guest.show', compact('house', 'images', 'houseServices', 'houseTags'));
     }
 
     /**
