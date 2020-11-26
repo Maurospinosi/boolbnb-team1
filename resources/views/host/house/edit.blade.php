@@ -67,7 +67,7 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <label for="form-address2">Regione</label>
-                    <input type="text" class="form-control" id="form-address2" placeholder="Regione" value="{{$house->houseinfo->address}}">
+                    <input type="text" class="form-control" id="form-address2" placeholder="Regione" value="{{$house->houseinfo->region}}">
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
