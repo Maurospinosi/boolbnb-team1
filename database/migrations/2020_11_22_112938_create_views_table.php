@@ -15,7 +15,7 @@ class CreateViewsTable extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('house_id')->constrained()->onDelete('cascade');
+            $table->foreignId('house_id')->constrained('houses')->onDelete('cascade');
             $table->timestamps();
         });
     }

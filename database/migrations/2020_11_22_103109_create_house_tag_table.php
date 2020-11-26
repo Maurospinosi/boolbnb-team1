@@ -14,8 +14,8 @@ class CreateHouseTagTable extends Migration
     public function up()
     {
         Schema::create('house_tag', function (Blueprint $table) {
-            $table->foreignId('house_id')->constrained();
-            $table->foreignId('tag_id')->constrained();
+            $table->foreignId('house_id')->constrained('houses');
+            $table->foreignId('tag_id')->constrained('tags');
         });
     }
 

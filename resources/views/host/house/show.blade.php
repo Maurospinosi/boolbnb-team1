@@ -23,6 +23,9 @@
             <li>{{$house->houseinfo->description}}</li>
         </ul>
 
+        {{-- @dd($house->houseinfo) --}}
+        {{-- @dd($info); --}}
+
         @foreach ($house->houseinfo->images as $image)
         <div id="other-images">
             <img src="{{asset('storage/'. $image->url)}}" alt="immagine non trovata">

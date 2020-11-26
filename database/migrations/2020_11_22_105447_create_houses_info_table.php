@@ -15,7 +15,7 @@ class CreateHousesInfoTable extends Migration
     {
         Schema::create('houses_info', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('house_id')->constrained()->unique()->onDelete('cascade');
+            $table->foreignId('house_id')->constrained('houses')->unique()->onDelete('cascade');
             $table->string('title', 100)->unique();
             $table->tinyInteger('rooms')->unsigned();
             $table->tinyInteger('beds')->unsigned();

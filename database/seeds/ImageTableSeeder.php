@@ -19,7 +19,7 @@ class ImageTableSeeder extends Seeder
             $randomNr = rand(1,10);
             for($i = 0; $i < $randomNr; $i++) {
                 $newImage = new Image;
-                $newImage->house_info_id = $houseInfo->id;
+                $newImage->houses_info_id = $houseInfo->id;
                 $newImage->url = "https://www.placecage.com/250/250";
                 $newImage->save();
             }

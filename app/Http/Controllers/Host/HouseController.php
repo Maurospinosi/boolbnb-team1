@@ -44,7 +44,6 @@ class HouseController extends Controller
         $services = Service::all();
         $tags = Tag::all();
 
-
         return view ("host/house/create", compact("services", "tags"));
     }
 
@@ -78,19 +77,21 @@ class HouseController extends Controller
         ]);        
 
         // validazione delle immagini custom
-        $allowedfileExtension=['jpeg','jpg','png','gif','svg'];
-        $images = $request->file('url');
+        if (isset($data['url'])) {
+            $allowedfileExtension=['jpeg','jpg','png','gif','svg'];
+            $images = $request->file('url');
 
-        foreach ($images as $image) {
-            $filename = $image->getClientOriginalName();
-            $extension = $image->getClientOriginalExtension();
-            $check=in_array($extension,$allowedfileExtension);
+            foreach ($images as $image) {
+                $filename = $image->getClientOriginalName();
+                $extension = $image->getClientOriginalExtension();
+                $check=in_array($extension,$allowedfileExtension);
 
-            if($check == false) {
-                return redirect()->route('host/house.create')
-                                ->withErrors('Formato immagine di ' . $filename . ' non consentito')
-                                ->withInput();                
-            } 
+                if($check == false) {
+                    return redirect()->route('host/house.create')
+                                    ->withErrors('Formato immagine di ' . $filename . ' non consentito')
+                                    ->withInput();                
+                } 
+            }
         }
    
         // Salvare l'immagine di copertina in public/storage
@@ -159,7 +160,7 @@ class HouseController extends Controller
             $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
 
             $newHouseImages = New Image;
-            $newHouseImages->house_info_id = $newHouseInfo->id;
+            $newHouseImages->houses_info_id = $newHouseInfo->id;
             $newHouseImages->url = $pathUrl;
             $newHouseImages->save();
            }
@@ -179,8 +180,9 @@ class HouseController extends Controller
     public function show($id)
     {
         $house = House::where('id', $id)->first();
+        $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
 
-        return view("host/house.show", compact("house"));
+        return view("host/house.show", compact("house", "images"));
     }
 
     /**
@@ -191,7 +193,11 @@ class HouseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $house = House::where("id", $id)->first();
+        $services = Service::all();
+        $tags = Tag::all();
+
+        return view("host.house.edit", compact("house", "services", "tags"));
     }
 
     /**
@@ -203,7 +209,53 @@ class HouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+             $request->validate([
+            "title"=> "required|max:100",
+            "rooms"=> "required",
+            "beds"=> "required",
+            "bathrooms"=> "required",
+            "mq"=> "required",
+            "address"=> "required|max:100",
+            "country"=> "required|max:60",
+            "city"=> "required|max:60",
+            "zipcode"=> "required",
+            "lat"=> "required|max:20",
+            "lon"=> "required|max:20",
+            "price"=> "required",
+            "cover_image"=> "required|image",
+            "url" => "image",
+        ]);
+            $house = House::findOrFail($id);
+            $house -> title = $data['title'];
+            $house -> description = $data['description'];
+            $house -> rooms = $data['rooms'];
+            $house -> beds = $data['beds'];
+            $house -> bathrooms = $data['bathrooms'];
+            $house -> mq = $data['mq'];
+            $house -> address = $data['address'];
+            $house -> country = $data['country'];
+            $house -> city = $data['city'];
+            $house -> zipcode = $data['zipcode'];
+            $house -> lat = $data['lat'];
+            $house -> lon = $data['lon'];
+            $house -> visible = $data['visible'];
+            
+        $house = House::find($id); 
+        $house->user_id = Auth::id();
+        
+        if(empty($data["services"])) {
+            $house->services()->detach();
+        } else {
+            $house->services()->sync($data["services"]);
+        };
+       
+        $house->save();
+        $house->services()->sync($data['services']);
+  
+        return redirect() -> route("host.house.show", $id)
+                          -> withSuccess("Appartamento ".$data["title"]." aggiornato correttamente");
+    
     }
 
     /**
@@ -215,10 +267,10 @@ class HouseController extends Controller
     public function destroy($id)
     {
         $house = House::find($id);
-
+        
         $house->services()->detach();
         $house->tags()->detach();
-
+        
         $house->delete();
 
         return redirect()->route('host/house.index');

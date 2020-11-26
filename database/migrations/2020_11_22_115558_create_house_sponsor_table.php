@@ -14,8 +14,8 @@ class CreateHouseSponsorTable extends Migration
     public function up()
     {
         Schema::create('house_sponsor', function (Blueprint $table) {
-            $table->foreignId('house_id')->constrained();
-            $table->foreignId('sponsor_id')->constrained();
+            $table->foreignId('house_id')->constrained('houses');
+            $table->foreignId('sponsor_id')->constrained('sponsors');
             $table->date('start_date');
             $table->date('end_date');
         });

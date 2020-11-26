@@ -15,7 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('house_id')->constrained();
+            $table->foreignId('house_id')->constrained('houses');
             $table->string('guest_name', 100);
             $table->string('email');
             $table->string('message');
