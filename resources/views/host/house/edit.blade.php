@@ -131,7 +131,7 @@ ul {
                                 <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}"
                                 @if ($house->services->contains($service->id))
                                     checked
-                                 @endif>
+                                @endif>
                             </li>
                         @endforeach
                     </ul>

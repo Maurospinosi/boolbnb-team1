@@ -10,10 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
-
+// use Illuminate\Support\Facades\Validator;
 use App\Mail\SendNewMail;
-
 use App\House;
 use App\HouseInfo;
 use App\Image;
@@ -59,8 +57,6 @@ class HouseController extends Controller
     {
         // Prendere i dati dal form e fare la validazione
         $data = $request->all();
-        // dd($data);
-        // dd($request->file('url'));
 
         $request->validate([
             "title"=> "required|unique:houses_info|max:100",
@@ -185,7 +181,9 @@ class HouseController extends Controller
     {
         $house = House::where('id', $id)->first();
         $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
-
+        // $services = DB::where('id', $house->services);
+        // $house->services->contains($service->id)
+        // dd($services);
         return view("host/house.show", compact("house", "images"));
     }
 

@@ -8,9 +8,6 @@
 
     <div class="container">
         @foreach($houses as $house)
-{{-- @dd($house->houseinfo->cover_image) --}}
-{{-- {{$house->houseinfo->cover_image}} --}}
-
             <div class="card" style="width: 18rem;">
                
                 @if (strpos($house->houseinfo->cover_image, 'http') === 0)

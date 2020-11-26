@@ -18,7 +18,16 @@ class HouseTableSeeder extends Seeder
             "casa-vista-mare",
             "chalet-di-montagna",
             "mansarda-spaziosa",
-            "loft-open-space"
+            "loft-open-space",
+            "appartamento-in-centro",
+            "casa-tranquilla",
+            "isola-privata",
+            "buckingham-palace",
+            "mansarda-accogliente",
+            "posto-letto-in-centro",
+            "appartamento-per-studenti",
+            "casa-spaziosa",
+            "villetta"
         ];
 
         foreach($slugs as $slug) {

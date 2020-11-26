@@ -13,14 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// ?
 Auth::routes();
 
 
-
+// Rotte per l'host
 Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->group(function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
@@ -28,9 +25,12 @@ Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->gro
     Route::get('/info/{id}', 'UserInfoController@show')->name('info/show');
     Route::get('/register', 'UserInfoController@create')->name('info/create');
     Route::post('/info', 'UserInfoController@store')->name('info/store');
-    Route::resource('/house', 'HouseController');
-    Route::get('/image','ImageController@create')->name('image.create');
-    Route::post('/image','ImageController@store')->name('image.store');
-    
+    Route::resource('/house', 'HouseController');    
 });
 
+// Rotte per il guest
+Route::name('guest/')->namespace('Guest')->group(function()
+{
+    Route::get('/', 'GuestHouseController@index')->name('home');
+    Route::get('house/{slug}', 'GuestHouseController@show')->name('house');
+});

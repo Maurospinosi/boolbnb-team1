@@ -40,10 +40,15 @@
             <li>Città: {{$house->houseinfo->city}}</li>
             <li>Paese: {{$house->houseinfo->country}}</li>
             <li>{{$house->houseinfo->description}}</li>
+            {{-- <li>
+                <h6>Servizi</h6>
+                <ul>
+                    @foreach ($services as $service)
+                        
+                    @endforeach
+                </ul>
+            </li> --}}
         </ul>
-
-        {{-- @dd($house->houseinfo) --}}
-        {{-- @dd($info); --}}
 
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
         @foreach ($images as $image)
