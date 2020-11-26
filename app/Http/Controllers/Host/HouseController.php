@@ -17,7 +17,11 @@ use App\House;
 use App\HouseInfo;
 use App\Image;
 use App\Service;
+<<<<<<< HEAD
+use App\Http\Controllers\Host\DB;
+=======
 use App\Tag;
+>>>>>>> main
 
 class HouseController extends Controller
 {
@@ -193,11 +197,19 @@ class HouseController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
         $house = House::where("id", $id)->first();
         $services = Service::all();
         $tags = Tag::all();
 
         return view("host.house.edit", compact("house", "services", "tags"));
+=======
+        $services = Service::all();
+
+        $house = House::where("id", $id)->first();
+        return view("host.house.edit", compact("house", "services"));
+
+>>>>>>> main
     }
 
     /**
@@ -250,11 +262,20 @@ class HouseController extends Controller
             $house->services()->sync($data["services"]);
         };
        
+<<<<<<< HEAD
         $house->save();
         $house->services()->sync($data['services']);
   
         return redirect() -> route("host.house.show", $id)
                           -> withSuccess("Appartamento ".$data["title"]." aggiornato correttamente");
+=======
+        $house -> save();
+        $house -> services() -> sync($data['services']);
+  
+        return redirect() -> route("host.house.show", $id)
+                          -> withSuccess("Appartamento ".$data["title"]
+                              ." aggiornato correttamente");
+>>>>>>> main
     
     }
 
