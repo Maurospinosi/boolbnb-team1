@@ -26,6 +26,5 @@ class DatabaseSeeder extends Seeder
             SponsorHouseTableSeeder::class,
             ViewsTableSeeder::class
             ]);
-
     }
 }

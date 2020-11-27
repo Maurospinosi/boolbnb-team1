@@ -7,6 +7,7 @@
     <title>@yield('title') </title>
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     @yield('style')
 </head>
 <body>

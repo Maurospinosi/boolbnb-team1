@@ -10903,3 +10903,73 @@ a.text-dark:focus {
   }
 }
 
+.header-top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+.header-top li {
+  list-style: none;
+  display: inline;
+  padding: 0 10px;
+}
+
+.header-top li:last-child {
+  border: 1px solid #e9e9e9;
+  padding: 12px;
+  border-radius: 40%;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.header-top li:last-child i:first-child {
+  color: black;
+}
+
+.header-top li:last-child i:last-child {
+  font-size: 20px;
+  color: white;
+  background-color: #828282;
+  border-radius: 100%;
+  padding: 6px;
+  margin-left: 10px;
+}
+
+.header-top li:last-child:hover {
+  box-shadow: 2px 5px 5px #e9e9e9;
+}
+
+.header-top li:nth-last-child(2) {
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.header-top li:nth-last-child(2) i {
+  color: black;
+}
+
+.header-top li:nth-last-child(2):hover {
+  background-color: #f3f9f1;
+  border-radius: 100%;
+}
+
+.header-top li:first-child {
+  padding: 13px 18px;
+}
+
+.header-top li:first-child a {
+  color: black;
+  font-weight: 600;
+}
+
+.header-top li:first-child:hover {
+  background-color: #f9fcf8;
+  border-radius: 35%;
+}
+
+.header-top a {
+  text-decoration: none;
+}
+

@@ -87,28 +87,6 @@
     <input type="search" id="home-search">
 </div>
 
-<div class="houses-container">
-    @foreach($houses as $house)
-        <div class="card" style="width: 18rem;">
-            {{-- Badge per casa sponsorizzata --}}
-            @if (in_array($house->id, $sponsoredHouses))   
-                <span class="badge badge-secondary sponsorizzata">Sponsorizzata</span>
-            @endif
-            {{-- / badge --}}
-
-            @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                <img src="{{$house->houseinfo->cover_image}}" alt="random picture">
-            @else
-                <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
-            @endif    
-                
-            <div class="card-body">
-                <h5 class="card-title">{{$house->houseinfo->title}}</h5>
-                <a href="{{route("guest/house", $house->slug)}}" class="btn btn-warning">Show</a>
-            </div>
-    </div>
-    @endforeach
-</div>
 
 @endsection
 
