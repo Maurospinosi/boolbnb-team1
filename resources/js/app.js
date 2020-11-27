@@ -6,6 +6,7 @@ $(document).ready(function () {
 
   var places = require('places.js');
 
+  // Ricerca in create.blade.php
   (function () {
     var placesAutocomplete = places({
       appId: 'pl0CZDFYINVV',
@@ -29,7 +30,25 @@ $(document).ready(function () {
     });
   })();
 
-
+  // Ricerca in search.blade.php
+  // (function () {
+  //   var placesAutocomplete = places({
+  //     appId: 'pl0CZDFYINVV',
+  //     apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+  //     container: document.querySelector('#search-address'),
+  //     templates: {
+  //       value: function (suggestion) {
+  //         return suggestion.name;
+  //       }
+  //     }
+  //   }).configure({
+  //     type: 'address'
+  //   });
+  //   placesAutocomplete.on('change', function resultSelected(e) {
+  //     document.querySelector('#search-latitude').value = e.suggestion.latlng.lat || '';
+  //     document.querySelector('#search-longitude').value = e.suggestion.latlng.lng || '';
+  //   });
+  // })();
 
 // // for the default version
 // const algoliasearch = require('algoliasearch');

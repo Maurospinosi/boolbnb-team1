@@ -52850,7 +52850,8 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
-  var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js");
+  var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
+
 
   (function () {
     var placesAutocomplete = places({
@@ -52873,7 +52874,26 @@ $(document).ready(function () {
       document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
-  })(); // // for the default version
+  })(); // Ricerca in search.blade.php
+  // (function () {
+  //   var placesAutocomplete = places({
+  //     appId: 'pl0CZDFYINVV',
+  //     apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+  //     container: document.querySelector('#search-address'),
+  //     templates: {
+  //       value: function (suggestion) {
+  //         return suggestion.name;
+  //       }
+  //     }
+  //   }).configure({
+  //     type: 'address'
+  //   });
+  //   placesAutocomplete.on('change', function resultSelected(e) {
+  //     document.querySelector('#search-latitude').value = e.suggestion.latlng.lat || '';
+  //     document.querySelector('#search-longitude').value = e.suggestion.latlng.lng || '';
+  //   });
+  // })();
+  // // for the default version
   // const algoliasearch = require('algoliasearch');
   // // for the default version
   // import algoliasearch from 'algoliasearch';

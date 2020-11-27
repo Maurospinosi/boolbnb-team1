@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
-// use Illuminate\Support\Facades\Validator;
 use App\Mail\SendNewMail;
 use App\House;
 use App\HouseInfo;
