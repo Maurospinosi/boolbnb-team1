@@ -1,7 +1,12 @@
 {{-- Header: logo, navbar, menu/hamburger --}}
-<div class="header-top">
+<header>
     <img src="{{asset('../img/logo.png')}}" alt="Logo">
-    <span>inizia la ricerca</span>
+
+    <div class="search-container header-search">
+        <input type="text" placeholder="Search...">
+        <span><i class="fas fa-search" ></i></span>
+    </div>
+
     <ul>
         <li>
             <a href="http://localhost:8000/register">Diventa Un Host</a>
@@ -14,4 +19,11 @@
             <i class="fas fa-user"></i>
         </li>
     </ul>
+</header>
+
+<div class="search-bar-header">
+    <div class="search-container header-search">
+        <input type="text" placeholder="Search...">
+        <span><i class="fas fa-search" ></i></span>
+    </div>
 </div>

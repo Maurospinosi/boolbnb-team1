@@ -119,6 +119,7 @@
     </ul>
 </div>
 
+<<<<<<< Updated upstream
 
 {{-- Dashboard  --}}
     <div class="card-body" style="float: right">
@@ -136,6 +137,8 @@
     <input type="search" id="home-search">
 </div>
 
+=======
+>>>>>>> Stashed changes
 <div class="houses-container">
     @foreach($houses as $house)
         <div class="card" style="width: 18rem;">
