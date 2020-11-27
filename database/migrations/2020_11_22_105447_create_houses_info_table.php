@@ -27,8 +27,8 @@ class CreateHousesInfoTable extends Migration
             $table->mediumInteger('zipcode')->unsigned();
             $table->string('city', 60);
             $table->string('country', 60);
-            $table->string('lat', 20);
-            $table->string('lon', 20);
+            $table->double('lat');
+            $table->double('lon');
             $table->smallInteger('price')->unsigned();
             $table->string('cover_image');
             $table->timestamps();

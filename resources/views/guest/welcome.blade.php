@@ -57,6 +57,11 @@
         margin-bottom: 30px;
     }
 
+    .houses-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .sponsorizzata {
         position: absolute;
         top: 5px;
@@ -128,7 +133,13 @@
             </div>
         @endif
 
+        @guest 
+            
+        @else 
         Ciao, {{ Auth::user()->name }}!
+        @endguest
+     
+    
     </div>
 
 

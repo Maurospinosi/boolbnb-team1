@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\House;
 use App\HouseInfo;
+use App\Sponsor;
+
+
+use Malhal\Geographical\Geographical;
 
 class SearchController extends Controller
 {
@@ -16,6 +21,8 @@ class SearchController extends Controller
      */
     public function index()
     {
+        
+
         return view('guest.search');
     }
 
@@ -38,24 +45,32 @@ class SearchController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-        return view('guest.searchresults', compact('data'));
-
-        // $data['address'];
-        // $data['lat'];
-        // $data['lon'];
-
-        // $latitudes = [];
-        // $longitudes = [];
-
-        // $housesInfo = HouseInfo::all();
-
-        // foreach($housesInfo as $houseInfo) {
-        //     $latitudes[] = $houseInfo->lat;
-        //     $longitudes[] = $houseInfo->lon;
-        // }
+        // dd($data);
         
-        // dd($latitudes);
+        $lat = $data['lat'];
+        $lon = $data['lon'];
+        $distance = 20;
+        
+        $houses_info = HouseInfo::distance($lat, $lon)
+                                ->having('distance', '<=', $distance)
+                                ->orderBy('distance', 'ASC')->get();
+
+        // $houses = $houses->toArray();
+        
+        
+        $sponsors = Sponsor::all();
+
+        $sponsoredHouses = [];
+
+        foreach($houses_info as $house_info) {
+            foreach($sponsors as $sponsor) {
+                if ($house_info->house->sponsors->contains($sponsor->id)) {
+                    $sponsoredHouses[] = $house_info->house_id;
+                }
+            }
+        }
+
+        return view('guest.searchresults', compact('houses_info', 'sponsoredHouses'));
     }
 
     /**

@@ -84,7 +84,7 @@ ul {
 
                 <div class="form-group">
                     <label for="form-address2">Regione</label>
-                    <input type="text" class="form-control" id="form-address2" placeholder="Regione" value="{{$house->houseinfo->region}}">
+                    <input readonly type="text" class="form-control" id="form-address2" placeholder="Regione" value="{{$house->houseinfo->region}}">
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -92,7 +92,7 @@ ul {
                 
                 <div class="form-group">
                     <label for="form-zip">CAP*</label>
-                    <input type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP" value="{{$house->houseinfo->zipcode}}">
+                    <input readonly type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP" value="{{$house->houseinfo->zipcode}}">
                     @error('zipcode')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -100,7 +100,7 @@ ul {
 
                 <div class="form-group">
                     <label for="form-city">Città*</label>
-                    <input type="text" class="form-control" name="city" id="form-city" placeholder="Città"  value="{{$house->houseinfo->city}}">
+                    <input readonly type="text" class="form-control" name="city" id="form-city" placeholder="Città"  value="{{$house->houseinfo->city}}">
                     @error('city')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -108,7 +108,7 @@ ul {
 
                 <div class="form-group">
                     <label for="form-country">Nazione</label>
-                    <input type="text" class="form-control" name="country" id="form-country" placeholder="Nazione"  value="{{$house->houseinfo->country}}">
+                    <input readonly type="text" class="form-control" name="country" id="form-country" placeholder="Nazione"  value="{{$house->houseinfo->country}}">
                     @error('country')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

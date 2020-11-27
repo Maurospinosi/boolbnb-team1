@@ -19,8 +19,11 @@ $(document).ready(function () {
       }
     }).configure({
       type: 'address'
+      // type: 'city',
+      // aroundLatLngViaIP: false,
     });
     placesAutocomplete.on('change', function resultSelected(e) {
+
       document.querySelector('#form-address2').value = e.suggestion.administrative || '';
       document.querySelector('#form-city').value = e.suggestion.city || '';
       document.querySelector('#form-country').value = e.suggestion.country || '';
@@ -50,23 +53,23 @@ $(document).ready(function () {
   //   });
   // })();
 
-// // for the default version
-// const algoliasearch = require('algoliasearch');
+  // // for the default version
+  // const algoliasearch = require('algoliasearch');
 
-// // for the default version
-// import algoliasearch from 'algoliasearch';
+  // // for the default version
+  // import algoliasearch from 'algoliasearch';
 
-// // for the search only version
-// import algoliasearch from 'algoliasearch/lite';
+  // // for the search only version
+  // import algoliasearch from 'algoliasearch/lite';
 
-// // or just use algoliasearch if you are using a <script> tag
-// // if you are using AMD module loader, algoliasearch will not be defined in window,
-// // but in the AMD modules of the page
+  // // or just use algoliasearch if you are using a <script> tag
+  // // if you are using AMD module loader, algoliasearch will not be defined in window,
+  // // but in the AMD modules of the page
 
-// const client = algoliasearch('pl0CZDFYINVV', 'eadbe4e7e17871155036ed85b3b8f8c5');
-// const index = client.initIndex('your_index_name');
+  // const client = algoliasearch('pl0CZDFYINVV', 'eadbe4e7e17871155036ed85b3b8f8c5');
+  // const index = client.initIndex('your_index_name');
 
 
- 
+
 });
 

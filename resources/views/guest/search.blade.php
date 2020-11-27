@@ -12,6 +12,7 @@
             <label for="form-address">Via</label>
             <input type="search" class="form-control" placeholder="scrivi un indirizzo" id="form-address">
         </div>
+
             <input hidden type="text" class="form-control" id="form-address2" placeholder="Regione" name="region">
             <input hidden type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP">
             <input hidden type="text" class="form-control" name="city" id="form-city" placeholder="Città">
