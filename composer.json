@@ -15,7 +15,8 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "2.4"
+        "laravel/ui": "2.4",
+        "malhal/laravel-geographical": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
