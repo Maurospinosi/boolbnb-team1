@@ -37,3 +37,6 @@ Route::name('guest/')->namespace('Guest')->group(function()
     Route::get('search', 'SearchController@index')->name('search');
     Route::post('search/results', 'SearchController@store')->name('search/results');
 });
+
+
+Route::resource('api', 'ApiController');

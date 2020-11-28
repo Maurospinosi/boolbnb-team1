@@ -9,7 +9,49 @@
     
     <div class="container">
 
-        {{-- @dd($houses_info); --}}
+    <form action="{{route('api.create')}}" method="POST">
+        @csrf
+        @method("POST")
+            <div>
+                <ul>
+                    @foreach ($services as $service) 
+                        <li>
+                            <label for="{{$service->name}}">{{$service->name}}</label>
+                            <input name="{{$service->name}}" id="{{$service->name}}" type="checkbox">
+                        </li>
+                    @endforeach
+
+                    @foreach ($tags as $tag)
+                    <li>
+                        <label for="{{$tag->name}}">{{$tag->name}}</label>
+                        <input name="{{$tag->name}}" id="{{$tag->name}}" type="checkbox">
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>  
+                         <label for="rooms">Rooms</label>
+                         <input name="rooms" id="rooms" type="number">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                    </li>
+                    <li>
+                        <label for="beds">Beds</label>
+                        <input name="beds" id="beds" type="number">
+                    </li>
+                    <li>
+                        <label for="bathrooms">Bathrooms</label>
+                        <input name="bathrooms" id="bathrooms" type="number">
+                    </li>
+                    <li>
+                        <label for="mq">Mq</label>
+                        <input name="mq" id="mq" type="number">
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+            <button type="submit">Go</button>
+        </form>
 
         @foreach ($houses_info as $houseinfo)
         <div class="card" style="width: 18rem;">
@@ -31,9 +73,6 @@
             </div>
     </div>
         @endforeach
-
-
-
     </div>
 
 @endsection
