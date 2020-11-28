@@ -52859,9 +52859,9 @@ $(document).ready(function () {
       nav.removeClass("header-color");
     }
   });
-  var hamburger = $(".hamburger-menu");
+  var hamburger = $("li:last-child");
   hamburger.click(function () {
-    $(".hamburger-menu").tooggle("active");
+    $(".hamburger-menu").toggle("active");
   });
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php

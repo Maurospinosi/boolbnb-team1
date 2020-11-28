@@ -15,10 +15,10 @@ $(document).ready(function () {
       }
     }); 
 
-    var hamburger = $(".hamburger-menu");
+    var hamburger = $("li:last-child");
     
     hamburger.click(function () {
-       $(".hamburger-menu").tooggle("active");
+       $(".hamburger-menu").toggle("active");
       }
     );
     
