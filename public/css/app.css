@@ -10903,136 +10903,62 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (max-width: 768px) {
-  header {
-    display: none;
-  }
-
-  .search-bar-header {
-    margin: auto;
-    border: 1px solid lightgrey;
-    border-radius: 20%;
-    padding: 10px;
-    cursor: pointer;
-    max-width: 90%;
-  }
-
-  .search-bar-header input {
-    border: transparent;
-    width: 85%;
-  }
-
-  .search-bar-header i {
-    background-color: #ff385c;
-    border-radius: 100%;
-    padding: 9px;
-    color: white;
-    font-size: 13px;
-    cursor: pointer;
-    float: right;
-  }
-
-  .search-bar-header i:hover {
-    background-color: #dd1063;
-  }
-
-  .search-bar-header {
-    box-shadow: 2px 5px 5px #e9e9e9;
-  }
-
-  a:hover {
-    text-decoration: none;
-  }
-
-  input:focus {
-    outline: none;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media screen and (min-width: 768px) and (max-width: 992px) {
+.wrapper {
+  margin-top: 110px;
+}
+
+.no-wrap {
+  margin-top: -110px;
+}
+
+.active {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
   header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 100px;
+    width: 100%;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    /* Logo */
+    /* Barra di ricerca */
   }
 
   header img {
-    width: 150px;
-    height: 150px;
-    cursor: pointer;
+    display: none;
   }
 
   header li {
-    list-style: none;
-    display: inline;
-    padding: 0 8px;
-  }
-
-  header li:last-child {
-    border: 1px solid #e9e9e9;
-    padding: 12px;
-    border-radius: 40%;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-
-  header li:last-child i:first-child {
-    color: black;
-  }
-
-  header li:last-child i:last-child {
-    font-size: 20px;
-    color: white;
-    background-color: #828282;
-    border-radius: 100%;
-    padding: 6px;
-    margin-left: 10px;
-  }
-
-  header li:last-child:hover {
-    box-shadow: 2px 5px 5px #e9e9e9;
-  }
-
-  header li:nth-last-child(2) {
-    cursor: pointer;
-    padding: 10px 15px;
-  }
-
-  header li:nth-last-child(2) i {
-    color: black;
-  }
-
-  header li:nth-last-child(2):hover {
-    background-color: #f3f9f1;
-    border-radius: 100%;
-  }
-
-  header li:first-child {
-    padding: 13px 15px;
-  }
-
-  header li:first-child a {
-    color: black;
-    font-weight: 600;
-    font-size: 17px;
-  }
-
-  header li:first-child:hover {
-    background-color: #f9fcf8;
-    border-radius: 35%;
+    display: none;
   }
 
   header .header-search {
-    border: 1px solid lightgrey;
-    border-radius: 20%;
+    border: 1px solid black;
+    border-radius: 25px;
     padding: 10px;
     cursor: pointer;
+    width: 90%;
+    background-color: #f5f9fe;
+    opacity: 0.7;
   }
 
   header .header-search input {
     border: transparent;
-    max-width: 150px;
+    width: 89%;
+    background-color: #f5f9fe;
   }
 
   header .header-search i {
@@ -11042,6 +10968,7 @@ a.text-dark:focus {
     color: white;
     font-size: 13px;
     cursor: pointer;
+    float: right;
   }
 
   header .header-search i:hover {
@@ -11049,7 +10976,7 @@ a.text-dark:focus {
   }
 
   header .header-search:hover {
-    box-shadow: 2px 5px 5px #e9e9e9;
+    box-shadow: 2px 5px 5px #ff385c;
   }
 
   header a:hover {
@@ -11059,29 +10986,46 @@ a.text-dark:focus {
   header input:focus {
     outline: none;
   }
-
-  .search-bar-header {
-    display: none;
-  }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  /* Classe da aggiungere dopo lo scroll */
+
+  .header-color {
+    background-color: #f5f9fe;
+  }
+
   header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: transparent;
+    transition: background 2s;
+    /*Logo*/
+    /* Menu login, 'Diventa un host', hamburger */
+    /* Barra di ricerca centrale */
   }
 
   header img {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     cursor: pointer;
+  }
+
+  header ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   header li {
     list-style: none;
-    display: inline;
     padding: 0 10px;
   }
 
@@ -11107,7 +11051,8 @@ a.text-dark:focus {
   }
 
   header li:last-child:hover {
-    box-shadow: 2px 5px 5px #e9e9e9;
+    box-shadow: 2px 5px 5px #ff385c;
+    border: 0, 5px solid #ff385c;
   }
 
   header li:nth-last-child(2) {
@@ -11120,12 +11065,32 @@ a.text-dark:focus {
   }
 
   header li:nth-last-child(2):hover {
-    background-color: #f3f9f1;
+    background-color: #ff385c;
     border-radius: 100%;
   }
 
-  header li:first-child {
-    padding: 13px 18px;
+  header li:nth-last-child(2):hover i {
+    color: white;
+  }
+
+  header .header-login {
+    padding: 10px 15px;
+  }
+
+  header .header-host a {
+    color: black;
+    font-weight: 600;
+  }
+
+  header .header-host:hover {
+    background-color: #ff385c;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 15px;
+  }
+
+  header .header-host:hover a {
+    color: white;
   }
 
   header li:first-child a {
@@ -11134,21 +11099,29 @@ a.text-dark:focus {
   }
 
   header li:first-child:hover {
-    background-color: #f9fcf8;
-    border-radius: 35%;
+    background-color: #ff385c;
+    border-radius: 25px;
+  }
+
+  header li:first-child:hover a {
+    color: white;
+  }
+
+  header li:first-child:hover .logout-header {
+    color: black;
   }
 
   header .header-search {
     border: 1px solid lightgrey;
-    border-radius: 20%;
+    border-radius: 25px;
     padding: 10px;
     cursor: pointer;
-    max-width: 500px;
   }
 
   header .header-search input {
     border: transparent;
-    max-width: 300px;
+    max-width: 150px;
+    background-color: transparent;
   }
 
   header .header-search i {
@@ -11165,7 +11138,7 @@ a.text-dark:focus {
   }
 
   header .header-search:hover {
-    box-shadow: 2px 5px 5px #e9e9e9;
+    box-shadow: 2px 5px 5px #ff385c;
   }
 
   header a:hover {
@@ -11175,9 +11148,195 @@ a.text-dark:focus {
   header input:focus {
     outline: none;
   }
+}
 
-  .search-bar-header {
+@media screen and (min-width: 993px) {
+  /* Classe da aggiungere dopo lo scroll */
+
+  .header-color {
+    background-color: #f5f9fe;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: transparent;
+    transition: background 2s;
+    /* Logo */
+    /* Menu login, 'Diventa un Host', hamburger */
+    /* Barra di ricerca centrale */
+  }
+
+  header img {
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+  }
+
+  header .hamburger-menu {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    top: 100%;
+    right: 0;
     display: none;
   }
+
+  header .hamburger-menu ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header li {
+    list-style: none;
+    padding: 0 15px;
+  }
+
+  header li:last-child {
+    border: 1px solid #e9e9e9;
+    padding: 12px;
+    border-radius: 40%;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  header li:last-child i:first-child {
+    color: black;
+  }
+
+  header li:last-child i:last-child {
+    font-size: 20px;
+    color: white;
+    background-color: #828282;
+    border-radius: 100%;
+    padding: 6px;
+    margin-left: 10px;
+  }
+
+  header li:last-child:hover {
+    box-shadow: 2px 5px 5px #ff385c;
+    border: 0, 5px solid #ff385c;
+  }
+
+  header li:nth-last-child(2) {
+    cursor: pointer;
+    padding: 10px 15px;
+  }
+
+  header li:nth-last-child(2) i {
+    color: black;
+  }
+
+  header li:nth-last-child(2):hover {
+    background-color: #ff385c;
+    border-radius: 100%;
+  }
+
+  header li:nth-last-child(2):hover i {
+    color: white;
+  }
+
+  header .header-login {
+    padding: 10px 15px;
+  }
+
+  header .header-host a {
+    color: black;
+    font-weight: 600;
+  }
+
+  header .header-host:hover {
+    background-color: #ff385c;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 15px;
+  }
+
+  header .header-host:hover a {
+    color: white;
+  }
+
+  header li:first-child a {
+    color: black;
+    font-weight: 600;
+  }
+
+  header li:first-child:hover {
+    background-color: #ff385c;
+    border-radius: 25px;
+  }
+
+  header li:first-child:hover a {
+    color: white;
+  }
+
+  header li:first-child:hover .logout-header {
+    color: black;
+  }
+
+  header .header-search {
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+    padding: 10px;
+    cursor: pointer;
+    max-width: 500px;
+  }
+
+  header .header-search input {
+    border: transparent;
+    max-width: 300px;
+    background-color: transparent;
+  }
+
+  header .header-search i {
+    background-color: #ff385c;
+    border-radius: 100%;
+    padding: 9px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  header .header-search i:hover {
+    background-color: #dd1063;
+  }
+
+  header .header-search:hover {
+    box-shadow: 2px 5px 5px #ff385c;
+  }
+
+  header a:hover {
+    text-decoration: none;
+  }
+
+  header input:focus {
+    outline: none;
+  }
+}
+
+.jumbotron {
+  height: 100vh;
+  background-image: url(/images/jumbotron2.png?f95142bd956a3ad0802edefda9c4dfd3);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f4f4f4;
+  opacity: 0.7;
 }
 

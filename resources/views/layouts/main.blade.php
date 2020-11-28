@@ -14,7 +14,10 @@
     
     @include('partials.header')
 
-    @yield('page-content')
+    <div class="wrapper">
+
+        @yield('page-content')
+    </div>
 
     @include('partials.footer')
     

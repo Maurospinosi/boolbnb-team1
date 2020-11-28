@@ -1,0 +1,14 @@
+*{
+box-sizing: border-box;
+margin:0;
+padding:0;
+}
+.wrapper{
+    margin-top: 110px;
+}
+.no-wrap{
+    margin-top: -110px;
+}
+.active{
+    display: block;
+}
