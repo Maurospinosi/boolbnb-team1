@@ -52850,6 +52850,20 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
+  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
+  var nav = $('.header-style');
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 150) {
+      nav.addClass("header-color");
+    } else {
+      nav.removeClass("header-color");
+    }
+  });
+  var hamburger = $(".hamburger-menu");
+  hamburger.click(function () {
+    $(".hamburger-menu").tooggle("active");
+  });
+
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
 
 
@@ -52974,8 +52988,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> main
 
 
 /***/ }),

@@ -90,6 +90,7 @@
 
 {{-- Login --}}
 <!-- Right Side Of Navbar -->
+<<<<<<< HEAD
 <div class="flex-center position-ref full-height">
     <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
@@ -140,11 +141,11 @@
         @endguest
      
     
+=======
+<div class="no-wrap">
+    <div class="jumbotron">
+>>>>>>> main
     </div>
-
-
-<div class="search-container">
-    <input type="search" id="home-search">
 </div>
 
 <div class="houses-container">

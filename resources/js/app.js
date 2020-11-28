@@ -4,6 +4,25 @@ const Handlebars = require("handlebars");
 
 $(document).ready(function () {
 
+  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
+    var nav = $('.header-style');
+	
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 150) {
+        nav.addClass("header-color");
+      } else {
+        nav.removeClass("header-color");
+      }
+    }); 
+
+    var hamburger = $(".hamburger-menu");
+    
+    hamburger.click(function () {
+       $(".hamburger-menu").tooggle("active");
+      }
+    );
+    
+
   var places = require('places.js');
 
   // Ricerca in create.blade.php
@@ -69,7 +88,13 @@ $(document).ready(function () {
   // const client = algoliasearch('pl0CZDFYINVV', 'eadbe4e7e17871155036ed85b3b8f8c5');
   // const index = client.initIndex('your_index_name');
 
+<<<<<<< HEAD
 
 
+=======
+// const client = algoliasearch('pl0CZDFYINVV', 'eadbe4e7e17871155036ed85b3b8f8c5');
+// const index = client.initIndex('your_index_name');
+ 
+>>>>>>> main
 });
 
