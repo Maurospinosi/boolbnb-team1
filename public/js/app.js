@@ -52890,37 +52890,7 @@ $(document).ready(function () {
       document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
-  })(); // Ricerca in search.blade.php
-  // (function () {
-  //   var placesAutocomplete = places({
-  //     appId: 'pl0CZDFYINVV',
-  //     apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-  //     container: document.querySelector('#search-address'),
-  //     templates: {
-  //       value: function (suggestion) {
-  //         return suggestion.name;
-  //       }
-  //     }
-  //   }).configure({
-  //     type: 'address'
-  //   });
-  //   placesAutocomplete.on('change', function resultSelected(e) {
-  //     document.querySelector('#search-latitude').value = e.suggestion.latlng.lat || '';
-  //     document.querySelector('#search-longitude').value = e.suggestion.latlng.lng || '';
-  //   });
-  // })();
-  // // for the default version
-  // const algoliasearch = require('algoliasearch');
-  // // for the default version
-  // import algoliasearch from 'algoliasearch';
-  // // for the search only version
-  // import algoliasearch from 'algoliasearch/lite';
-  // // or just use algoliasearch if you are using a <script> tag
-  // // if you are using AMD module loader, algoliasearch will not be defined in window,
-  // // but in the AMD modules of the page
-  // const client = algoliasearch('pl0CZDFYINVV', 'eadbe4e7e17871155036ed85b3b8f8c5');
-  // const index = client.initIndex('your_index_name');
-
+  })();
 });
 
 /***/ }),
@@ -52988,8 +52958,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),
