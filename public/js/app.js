@@ -52850,20 +52850,6 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
-  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
-  var nav = $('.header-style');
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 150) {
-      nav.addClass("header-color");
-    } else {
-      nav.removeClass("header-color");
-    }
-  });
-  var hamburger = $("li:last-child");
-  hamburger.click(function () {
-    $(".hamburger-menu").toggle("active");
-  });
-
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
 
 
@@ -52891,6 +52877,22 @@ $(document).ready(function () {
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
   })();
+});
+/* Funzione per aggiungere una classe dopo lo scroll di 150px */
+
+var nav = $('.header-style');
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 150) {
+    nav.addClass("header-color");
+  } else {
+    nav.removeClass("header-color");
+  }
+});
+/*Funzione che al click sull'hamburger fa apparire il menù */
+
+var hamburger = $(".hamburger");
+hamburger.click(function () {
+  $(".hamburger-menu").toggle("active");
 });
 
 /***/ }),
