@@ -52862,7 +52862,7 @@ $(document).ready(function () {
   var hamburger = $("li:last-child");
   hamburger.click(function () {
     $(".hamburger-menu").toggle("active");
-  });
+  }); // ALGOLIA
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
 
@@ -52890,7 +52890,38 @@ $(document).ready(function () {
       document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
-  })();
+  })(); // RICERCA con filtri
+  // Endpoint in cui si trova il database
+
+
+  var endpoint = 'http://localhost:8000/getallhouses'; // Prendiamo i dati dai filtri
+
+  $("#provalaura").change(function () {
+    callDatabase($("#provalaura").val());
+  }); // Chiamata ajax che prende i dati dai filtri
+
+  function callDatabase(input) {
+    $.ajax({
+      "url": endpoint,
+      "data": {
+        "input": input
+      },
+      "method": "GET",
+      "success": function success(data) {
+        printResults(data);
+      },
+      "error": function error(err) {
+        alert("Error");
+      }
+    });
+  } // Funzione che stampa le case richieste da callDatabase
+
+
+  function printResults(dataArray) {
+    for (var i = 0; i < dataArray.length; i++) {
+      console.log(dataArray[i]['title']);
+    }
+  }
 });
 
 /***/ }),
@@ -52958,8 +52989,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

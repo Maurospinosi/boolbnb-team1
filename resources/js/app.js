@@ -4,6 +4,7 @@ const Handlebars = require("handlebars");
 
 $(document).ready(function () {
 
+
   /* Funzione per aggiungere una classe dopo lo scroll di 150px */
     var nav = $('.header-style');
 	
@@ -21,8 +22,10 @@ $(document).ready(function () {
        $(".hamburger-menu").toggle("active");
       }
     );
+  
     
 
+  // ALGOLIA
   var places = require('places.js');
 
   // Ricerca in create.blade.php
@@ -52,6 +55,41 @@ $(document).ready(function () {
     });
   })();
 
+
+
+  // RICERCA con filtri
+
+  // Endpoint in cui si trova il database
+  var endpoint = 'http://localhost:8000/getallhouses';
+
+  // Prendiamo i dati dai filtri
+  $("#provalaura").change(function(){
+    callDatabase($("#provalaura").val());
+  });
+
+  // Chiamata ajax che prende i dati dai filtri
+  function callDatabase(input) {
+    $.ajax({
+      "url": endpoint,
+      "data": {
+        "input": input
+      },
+      "method": "GET", 
+      "success": function(data) {
+        printResults(data);
+      },
+      "error": function(err) {
+        alert("Error");
+      }
+    });
+  }
+
+  // Funzione che stampa le case richieste da callDatabase
+  function printResults(dataArray) {
+    for(var i = 0; i < dataArray.length; i++) {
+      console.log(dataArray[i]['title']);
+    }
+  }
  
 });
 
