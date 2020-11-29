@@ -4,7 +4,7 @@
     <img src="{{asset('../img/logo.png')}}" alt="Logo">
 
     {{-- Barra di ricerca --}}
-    <form action="{{route('guest/search/results')}}" method="POST">
+    <form action="{{route('guest/search')}}" method="POST">
         @csrf
         @method('POST')
 

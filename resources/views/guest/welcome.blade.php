@@ -72,10 +72,12 @@
 
 @section('page-content')
     
+{{-- Jumbotron --}}
 <div class="no-wrap">
     <div class="jumbotron">
     </div>
 </div>
+{{-- fine Jumbotron --}}
 
 <div class="houses-container">
     @foreach($houses as $house)

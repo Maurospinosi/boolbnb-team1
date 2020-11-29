@@ -9,6 +9,8 @@
     
     <div class="container">
 
+        <input type="text" id="provalaura" placeholder="Prova per Laura">
+
     <form action="{{route('api.create')}}" method="POST">
         @csrf
         @method("POST")

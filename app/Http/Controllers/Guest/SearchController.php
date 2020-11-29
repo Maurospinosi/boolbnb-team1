@@ -10,10 +10,6 @@ use App\HouseInfo;
 use App\Sponsor;
 use App\Service;
 use App\Tag;
-
-
-
-
 use Malhal\Geographical\Geographical;
 
 class SearchController extends Controller
@@ -23,33 +19,9 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        
-
-        return view('guest.search');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function index(Request $request)
     {
         $data = $request->all();
-        // dd($data);
         
         $lat = $data['lat'];
         $lon = $data['lon'];
@@ -59,8 +31,7 @@ class SearchController extends Controller
                                 ->having('distance', '<=', $distance)
                                 ->orderBy('distance', 'ASC')->get();
 
-        // $houses = $houses->toArray();
-        
+       
         
         $sponsors = Sponsor::all();
 
@@ -81,15 +52,34 @@ class SearchController extends Controller
         
         return view('guest.searchresults', compact('houses_info', 'sponsoredHouses', 'services', 'tags'));
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
     }
 
     /**
@@ -124,5 +114,29 @@ class SearchController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAllHouses()
+    {
+        $allHousesInfos = HouseInfo::all();
+
+        $houses = [];
+
+        foreach ($allHousesInfos as $houseInfo) {
+            $houses[] = [
+                "house_id" => $houseInfo->house_id,
+                "title" => $houseInfo->title,
+                "rooms" => $houseInfo->rooms,
+                "beds" => $houseInfo->beds,
+                "bathrooms" => $houseInfo->bathrooms,
+                "mq" => $houseInfo->mq,
+                "lat" => $houseInfo->lat,
+                "lon" => $houseInfo->lon,
+                "price" => $houseInfo->price,
+                "cover_image" => $houseInfo->cover_image,
+            ];
+        }
+
+        return $houses;
     }
 }
