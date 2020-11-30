@@ -118,6 +118,26 @@ class SearchController extends Controller
 
     public function getAllHouses()
     {
+        $lat = $_GET["lat"];
+        $lon = $_GET["lon"];
+        $services = $_GET["services"];
+        $rooms = $_GET["rooms"];
+        $beds = $_GET["beds"];
+        $bathrooms = $_GET["bathrooms"];
+        $mq = $_GET["mq"];
+        $price = $_GET["price"];
+        
+        $distance = 20;
+        
+        $houses_info = HouseInfo::distance($lat, $lon)
+                                ->having('distance', '<=', $distance)
+                                ->orderBy('distance', 'ASC')
+                                ->where('bathrooms', '<', $bathrooms)
+                                ->get();
+
+
+        
+        return $houses_info;
         $allHousesInfos = HouseInfo::all();
 
         $houses = [];
