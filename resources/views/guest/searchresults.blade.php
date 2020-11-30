@@ -9,50 +9,41 @@
     
     <div class="container">
 
-        <input type="text" id="provalaura" placeholder="Prova per Laura">
-
-    <form action="{{route('api.create')}}" method="POST">
-        @csrf
-        @method("POST")
+        <form id="search-results-form">
             <div>
                 <ul>
                     @foreach ($services as $service) 
                         <li>
                             <label for="{{$service->name}}">{{$service->name}}</label>
-                            <input name="{{$service->name}}" id="{{$service->name}}" type="checkbox">
+                            <input value="{{$service->id}}" name="{{$service->name}}" id="{{$service->id}}" type="checkbox">
                         </li>
-                    @endforeach
-
-                    @foreach ($tags as $tag)
-                    <li>
-                        <label for="{{$tag->name}}">{{$tag->name}}</label>
-                        <input name="{{$tag->name}}" id="{{$tag->name}}" type="checkbox">
-                    </li>
                     @endforeach
                 </ul>
             </div>
             <div>
                 <ul>
                     <li>  
-                         <label for="rooms">Rooms</label>
+                         <label for="rooms">Stanze</label>
                          <input name="rooms" id="rooms" type="number">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     </li>
                     <li>
-                        <label for="beds">Beds</label>
+                        <label for="beds">Letti</label>
                         <input name="beds" id="beds" type="number">
                     </li>
                     <li>
-                        <label for="bathrooms">Bathrooms</label>
+                        <label for="bathrooms">Bagni</label>
                         <input name="bathrooms" id="bathrooms" type="number">
                     </li>
                     <li>
-                        <label for="mq">Mq</label>
+                        <label for="mq">Metri quadri</label>
                         <input name="mq" id="mq" type="number">
                     </li>
-                    <li></li>
+                    <li>
+                        <label for="price">Prezzo</label>
+                        <input name="price" id="price" type="number">
+                    </li>
                 </ul>
             </div>
-            <button type="submit">Go</button>
         </form>
 
         @foreach ($houses_info as $houseinfo)

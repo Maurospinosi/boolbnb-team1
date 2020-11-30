@@ -59,24 +59,105 @@ $(document).ready(function () {
 
   // RICERCA con filtri
 
+  // const queryString = window.location.href;
+
+  // const urlParams = new URLSearchParams(queryString);
+
+  // const lat = urlParams.get('lat')
+  // console.log(lat);
+
+  // const lon = urlParams.get('lon')
+  // console.log(lon);
+
   // Endpoint in cui si trova il database
   var endpoint = 'http://localhost:8000/getallhouses';
 
   // Prendiamo i dati dai filtri
-  $("#provalaura").change(function(){
-    callDatabase($("#provalaura").val());
+  $("#search-results-form").change(function(){
+
+    // Prendiamo latitudine e longitudine
+    const queryString = window.location.href;
+
+    const urlParams = new URLSearchParams(queryString);
+  
+    const lat = urlParams.get('lat')
+    const lon = urlParams.get('lon')
+
+    // Servizi
+    var services = [];
+
+    // Prendiamo il valore di wi-fi
+    if ($('input#1').is(':checked')) {
+      services.push($('input#1').val());
+    }
+
+    // Prendiamo il valore di parking
+    if ($('input#2').is(':checked')) {
+      services.push($('input#2').val());
+    }
+
+    // Prendiamo il valore di swimming pool
+    if ($('input#3').is(':checked')) {
+      services.push($('input#3').val());
+    }
+
+    // Prendiamo il valore di reception
+    if ($('input#4').is(':checked')) {
+      services.push($('input#4').val());
+    }
+
+    // Prendiamo il valore di sauna
+    if ($('input#5').is(':checked')) {
+      services.push($('input#5').val());
+    }
+
+    // Prendiamo il valore di see view
+    if ($('input#6').is(':checked')) {
+      services.push($('input#6').val());
+    }
+   
+
+    // Prendiamo il valore di rooms
+    var rooms = $(this).find('input[name="rooms"]').val();
+
+    // Prendiamo il valore di beds
+    var beds = $(this).find('input[name="beds"]').val();
+
+    // Prendiamo il valore di bathrooms
+    var bathrooms = $(this).find('input[name="bathrooms"]').val();
+
+    // Prendiamo il valore di mq
+    var mq = $(this).find('input[name="mq"]').val();
+
+    // Prendiamo il valore di price
+    var price = $(this).find('input[name="price"]').val();
+
+
+    if(services.length == 0) {
+      services = "";
+    }
+  
+    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
   });
 
   // Chiamata ajax che prende i dati dai filtri
-  function callDatabase(input) {
+  function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price) {
     $.ajax({
       "url": endpoint,
       "data": {
-        "input": input
+        "lat": lat,
+        "lon": lon,
+        "services": services,
+        "rooms": rooms,
+        "beds": beds,
+        "bathrooms": bathrooms,
+        "mq": mq,
+        "price": price
       },
       "method": "GET", 
       "success": function(data) {
-        printResults(data);
+        console.log(data);
+        // printResults(data);
       },
       "error": function(err) {
         alert("Error");
@@ -90,6 +171,8 @@ $(document).ready(function () {
       console.log(dataArray[i]['title']);
     }
   }
+
+  
  
 });
 
