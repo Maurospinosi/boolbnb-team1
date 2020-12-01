@@ -50,6 +50,7 @@
             </li> --}}
         </ul>
 
+<<<<<<< Updated upstream
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
             @foreach ($images as $image)
                 @if (strpos($image->url, 'http') === 0)
@@ -73,4 +74,7 @@
         </form>
 
         </div>
+=======
+    </div>
+>>>>>>> Stashed changes
 @endsection
