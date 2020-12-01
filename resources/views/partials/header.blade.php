@@ -5,7 +5,7 @@
 
     {{-- Barra di ricerca --}}
     <form action="{{route('guest/search')}}" method="GET">
-
+        
         @method('GET')
 
         <div class="search-container header-search">

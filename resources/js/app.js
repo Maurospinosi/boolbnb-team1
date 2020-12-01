@@ -59,8 +59,6 @@ $(document).ready(function () {
         }
       }).configure({
         type: 'address'
-        // type: 'city',
-        // aroundLatLngViaIP: true,
       });
       placesAutocomplete.on('change', function resultSelected(e) {
 
@@ -91,7 +89,7 @@ $(document).ready(function () {
   // console.log(lon);
 
   // Endpoint in cui si trova il database
-  var endpoint = 'http://localhost:8000/getallhouses';
+  var endpoint = 'http://localhost:8000/api/getallhouses';
 
   // Prendiamo i dati dai filtri
   $("#search-results-form").change(function () {
@@ -153,17 +151,20 @@ $(document).ready(function () {
     // Prendiamo il valore di price
     var price = $(this).find('input[name="price"]').val();
 
+    var distance = $(this).find('input[name="distance"]').val();
+
+    console.log(distance);
 
     if (services.length == 0) {
       services = "";
     }
 
-    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
+    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance);
   });
 
 
   // Chiamata ajax che prende i dati dai filtri
-  function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price) {
+  function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance) {
     $.ajax({
       "url": endpoint,
       "data": {
@@ -174,11 +175,12 @@ $(document).ready(function () {
         "beds": beds,
         "bathrooms": bathrooms,
         "mq": mq,
-        "price": price
+        "price": price,
+        "distance": distance
       },
       "method": "GET",
       "success": function (data) {
-        // console.log(data);
+        console.log(data);
         printResults(data);
       },
       "error": function (err) {
@@ -191,8 +193,6 @@ $(document).ready(function () {
   function printResults(dataArray) {
 
     $('#house-container').html("");
-
-    console.log(dataArray.length);
 
     if (dataArray.length > 0) {
       for (var i = 0; i < dataArray.length; i++) {

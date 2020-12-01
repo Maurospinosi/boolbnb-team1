@@ -91,6 +91,11 @@
                         <label for="price">Prezzo</label>
                         <input name="price" id="price" type="number">
                     </li>
+                    <li>
+                        <label for="distance">Distanza</label>                    
+                        <input type="range" name="distance" id="distance" value="20" min="2" max="40" step="2" oninput="this.nextElementSibling.value = this.value" style="vertical-align: middle">
+                        <output>20</output>
+                    </li>
                 </ul>
             </div>
         </form>
