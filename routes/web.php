@@ -25,7 +25,9 @@ Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->gro
     Route::get('/info/{id}', 'UserInfoController@show')->name('info/show');
     Route::get('/register', 'UserInfoController@create')->name('info/create');
     Route::post('/info', 'UserInfoController@store')->name('info/store');
-    Route::resource('/house', 'HouseController');    
+    Route::resource('/house', 'HouseController'); 
+    Route::resource('/message', 'MessageController');    
+   
 });
 
 // Rotte per il guest
@@ -37,6 +39,7 @@ Route::name('guest/')->namespace('Guest')->group(function()
     Route::post('search', 'SearchController@index')->name('search');
     // Route::post('search/results', 'SearchController@store')->name('search/results');
     Route::get('getallhouses', 'SearchController@getAllHouses')->name('getallhouses');
+
 });
 
 Route::resource('api', 'ApiController');

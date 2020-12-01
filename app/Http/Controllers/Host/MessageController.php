@@ -1,10 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\host;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
+use App\Message;
+use App\House;
+use App\User;
 
 use Illuminate\Http\Request;
 
-class ApiController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +19,14 @@ class ApiController extends Controller
      */
     public function index()
     {
-        
+        $house = House::where('user_id' , Auth::id())->get();
+        $houseUser = [];
+        foreach ($house as $home) {
+            array_push($houseUser, $home['id']);
+        }
+        $messages = Message::whereIn('house_id', $houseUser)->get();
+        // $messages = Message::where('house', $house)->get();
+        return view ('host.message.index', compact('house', 'houseUser', 'messages'));
     }
 
     /**
@@ -32,20 +45,18 @@ class ApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function prova(Request $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-
-        dd("ciao");
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Message $message)
     {
         //
     }
@@ -53,10 +64,10 @@ class ApiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Message $message)
     {
         //
     }
@@ -65,10 +76,10 @@ class ApiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Message $message)
     {
         //
     }
@@ -76,11 +87,13 @@ class ApiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $message = Message::find($id)->delete();
+
+        return redirect()->route('host/message.index');
     }
 }
