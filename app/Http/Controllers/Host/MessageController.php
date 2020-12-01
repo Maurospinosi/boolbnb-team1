@@ -90,8 +90,10 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
-        //
+        $message = Message::find($id)->delete();
+
+        return redirect()->route('host/message.index');
     }
 }
