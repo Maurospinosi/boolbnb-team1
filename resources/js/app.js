@@ -6,54 +6,75 @@ $(document).ready(function () {
 
 
   /* Funzione per aggiungere una classe dopo lo scroll di 150px */
-    var nav = $('.header-style');
-	
-    $(window).scroll(function () {
-      if ($(this).scrollTop() > 150) {
-        nav.addClass("header-color");
-      } else {
-        nav.removeClass("header-color");
-      }
-    }); 
+  var nav = $('.header-style');
 
-    var hamburger = $("li:last-child");
-    
-    hamburger.click(function () {
-       $(".hamburger-menu").toggle("active");
-      }
-    );
-  
-    
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 150) {
+      nav.addClass("header-color");
+    } else {
+      nav.removeClass("header-color");
+    }
+  });
+
 
   // ALGOLIA
   var places = require('places.js');
 
   // Ricerca in create.blade.php
-  (function () {
-    var placesAutocomplete = places({
-      appId: 'pl0CZDFYINVV',
-      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-      container: document.querySelector('#form-address'),
-      templates: {
-        value: function (suggestion) {
-          return suggestion.name;
-        }
-      }
-    }).configure({
-      type: 'address'
-      // type: 'city',
-      // aroundLatLngViaIP: false,
-    });
-    placesAutocomplete.on('change', function resultSelected(e) {
 
-      document.querySelector('#form-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city').value = e.suggestion.city || '';
-      document.querySelector('#form-country').value = e.suggestion.country || '';
-      document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-      document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
-      document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
-    });
-  })();
+  if (window.location.pathname != "/host/house/create" && window.location.pathname != "/host/house/update") {
+    console.log("guest");
+    (function () {
+      var placesAutocomplete = places({
+        appId: 'pl0CZDFYINVV',
+        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+        container: document.querySelector('#form-address'),
+        templates: {
+          value: function (suggestion) {
+            return suggestion.name;
+          }
+        }
+      }).configure({
+        // type: 'address'
+        type: 'city',
+        aroundLatLngViaIP: true,
+      });
+      placesAutocomplete.on('change', function resultSelected(e) {
+        document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
+        document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
+      });
+    })();
+
+  } else {
+    console.log("loggato");
+    (function () {
+      var placesAutocomplete = places({
+        appId: 'pl0CZDFYINVV',
+        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+        container: document.querySelector('#form-address'),
+        templates: {
+          value: function (suggestion) {
+            return suggestion.name;
+          }
+        }
+      }).configure({
+        type: 'address'
+        // type: 'city',
+        // aroundLatLngViaIP: true,
+      });
+      placesAutocomplete.on('change', function resultSelected(e) {
+
+        document.querySelector('#form-address2').value = e.suggestion.administrative || '';
+        document.querySelector('#form-city').value = e.suggestion.city || '';
+        document.querySelector('#form-country').value = e.suggestion.country || '';
+        document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+        document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
+        document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
+      });
+    })();
+  }
+
+
 
 
 
@@ -73,13 +94,13 @@ $(document).ready(function () {
   var endpoint = 'http://localhost:8000/getallhouses';
 
   // Prendiamo i dati dai filtri
-  $("#search-results-form").change(function(){
+  $("#search-results-form").change(function () {
 
     // Prendiamo latitudine e longitudine
     const queryString = window.location.href;
 
     const urlParams = new URLSearchParams(queryString);
-  
+
     const lat = urlParams.get('lat')
     const lon = urlParams.get('lon')
 
@@ -115,7 +136,7 @@ $(document).ready(function () {
     if ($('input#6').is(':checked')) {
       services.push($('input#6').val());
     }
-   
+
 
     // Prendiamo il valore di rooms
     var rooms = $(this).find('input[name="rooms"]').val();
@@ -133,12 +154,13 @@ $(document).ready(function () {
     var price = $(this).find('input[name="price"]').val();
 
 
-    if(services.length == 0) {
+    if (services.length == 0) {
       services = "";
     }
-  
+
     callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
   });
+
 
   // Chiamata ajax che prende i dati dai filtri
   function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price) {
@@ -154,12 +176,12 @@ $(document).ready(function () {
         "mq": mq,
         "price": price
       },
-      "method": "GET", 
-      "success": function(data) {
-        console.log(data);
-        // printResults(data);
+      "method": "GET",
+      "success": function (data) {
+        // console.log(data);
+        printResults(data);
       },
-      "error": function(err) {
+      "error": function (err) {
         alert("Error");
       }
     });
@@ -167,31 +189,54 @@ $(document).ready(function () {
 
   // Funzione che stampa le case richieste da callDatabase
   function printResults(dataArray) {
-    for(var i = 0; i < dataArray.length; i++) {
-      console.log(dataArray[i]['title']);
+
+    $('#house-container').html("");
+
+    console.log(dataArray.length);
+
+    if (dataArray.length > 0) {
+      for (var i = 0; i < dataArray.length; i++) {
+
+        // console.log(dataArray[i]['title']);
+        console.log(dataArray[i]);
+
+        var source = $("#house-template").html();
+        var template = Handlebars.compile(source);
+        var context = {
+          'title': dataArray[i]['title'],
+          'slug': dataArray[i]['house']['slug'],
+          'cover_image': dataArray[i]['cover_image'],
+        };
+        var html = template(context);
+
+        $('#house-container').append(html);
+      }
+    } else {
+      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
+
     }
   }
 
-  
- 
+
+
 });
 
-  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
-  var nav = $('.header-style');
-	
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 150) {
-      nav.addClass("header-color");
-    } else {
-      nav.removeClass("header-color");
-    }
-  });
+/* Funzione per aggiungere una classe dopo lo scroll di 150px */
+var nav = $('.header-style');
+
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 150) {
+    nav.addClass("header-color");
+  } else {
+    nav.removeClass("header-color");
+  }
+});
 
 /*Funzione che al click sull'hamburger fa apparire il menù */
-  var hamburger = $(".hamburger");
-  
-  hamburger.click(function () {
-     $(".hamburger-menu").toggle("active");
-    });
-  
+var hamburger = $(".hamburger");
+
+hamburger.click(function () {
+  $(".hamburger-menu").toggle("active");
+});
+
 

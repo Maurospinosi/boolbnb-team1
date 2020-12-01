@@ -52858,56 +52858,145 @@ $(document).ready(function () {
     } else {
       nav.removeClass("header-color");
     }
-  });
-  var hamburger = $("li:last-child");
-  hamburger.click(function () {
-    $(".hamburger-menu").toggle("active");
   }); // ALGOLIA
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
 
 
-  (function () {
-    var placesAutocomplete = places({
-      appId: 'pl0CZDFYINVV',
-      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-      container: document.querySelector('#form-address'),
-      templates: {
-        value: function value(suggestion) {
-          return suggestion.name;
-        }
-      }
-    }).configure({
-      type: 'address' // type: 'city',
-      // aroundLatLngViaIP: false,
+  if (window.location.pathname != "/host/house/create" && window.location.pathname != "/host/house/update") {
+    console.log("guest");
 
-    });
-    placesAutocomplete.on('change', function resultSelected(e) {
-      document.querySelector('#form-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city').value = e.suggestion.city || '';
-      document.querySelector('#form-country').value = e.suggestion.country || '';
-      document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-      document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
-      document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
-    });
-  })(); // RICERCA con filtri
+    (function () {
+      var placesAutocomplete = places({
+        appId: 'pl0CZDFYINVV',
+        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+        container: document.querySelector('#form-address'),
+        templates: {
+          value: function value(suggestion) {
+            return suggestion.name;
+          }
+        }
+      }).configure({
+        // type: 'address'
+        type: 'city',
+        aroundLatLngViaIP: true
+      });
+      placesAutocomplete.on('change', function resultSelected(e) {
+        document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
+        document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
+      });
+    })();
+  } else {
+    console.log("loggato");
+
+    (function () {
+      var placesAutocomplete = places({
+        appId: 'pl0CZDFYINVV',
+        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+        container: document.querySelector('#form-address'),
+        templates: {
+          value: function value(suggestion) {
+            return suggestion.name;
+          }
+        }
+      }).configure({
+        type: 'address' // type: 'city',
+        // aroundLatLngViaIP: true,
+
+      });
+      placesAutocomplete.on('change', function resultSelected(e) {
+        document.querySelector('#form-address2').value = e.suggestion.administrative || '';
+        document.querySelector('#form-city').value = e.suggestion.city || '';
+        document.querySelector('#form-country').value = e.suggestion.country || '';
+        document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+        document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
+        document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
+      });
+    })();
+  } // RICERCA con filtri
+  // const queryString = window.location.href;
+  // const urlParams = new URLSearchParams(queryString);
+  // const lat = urlParams.get('lat')
+  // console.log(lat);
+  // const lon = urlParams.get('lon')
+  // console.log(lon);
   // Endpoint in cui si trova il database
 
 
   var endpoint = 'http://localhost:8000/getallhouses'; // Prendiamo i dati dai filtri
 
-  $("#provalaura").change(function () {
-    callDatabase($("#provalaura").val());
+  $("#search-results-form").change(function () {
+    // Prendiamo latitudine e longitudine
+    var queryString = window.location.href;
+    var urlParams = new URLSearchParams(queryString);
+    var lat = urlParams.get('lat');
+    var lon = urlParams.get('lon'); // Servizi
+
+    var services = []; // Prendiamo il valore di wi-fi
+
+    if ($('input#1').is(':checked')) {
+      services.push($('input#1').val());
+    } // Prendiamo il valore di parking
+
+
+    if ($('input#2').is(':checked')) {
+      services.push($('input#2').val());
+    } // Prendiamo il valore di swimming pool
+
+
+    if ($('input#3').is(':checked')) {
+      services.push($('input#3').val());
+    } // Prendiamo il valore di reception
+
+
+    if ($('input#4').is(':checked')) {
+      services.push($('input#4').val());
+    } // Prendiamo il valore di sauna
+
+
+    if ($('input#5').is(':checked')) {
+      services.push($('input#5').val());
+    } // Prendiamo il valore di see view
+
+
+    if ($('input#6').is(':checked')) {
+      services.push($('input#6').val());
+    } // Prendiamo il valore di rooms
+
+
+    var rooms = $(this).find('input[name="rooms"]').val(); // Prendiamo il valore di beds
+
+    var beds = $(this).find('input[name="beds"]').val(); // Prendiamo il valore di bathrooms
+
+    var bathrooms = $(this).find('input[name="bathrooms"]').val(); // Prendiamo il valore di mq
+
+    var mq = $(this).find('input[name="mq"]').val(); // Prendiamo il valore di price
+
+    var price = $(this).find('input[name="price"]').val();
+
+    if (services.length == 0) {
+      services = "";
+    }
+
+    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
   }); // Chiamata ajax che prende i dati dai filtri
 
-  function callDatabase(input) {
+  function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price) {
     $.ajax({
       "url": endpoint,
       "data": {
-        "input": input
+        "lat": lat,
+        "lon": lon,
+        "services": services,
+        "rooms": rooms,
+        "beds": beds,
+        "bathrooms": bathrooms,
+        "mq": mq,
+        "price": price
       },
       "method": "GET",
       "success": function success(data) {
+        // console.log(data);
         printResults(data);
       },
       "error": function error(err) {
@@ -52918,8 +53007,25 @@ $(document).ready(function () {
 
 
   function printResults(dataArray) {
-    for (var i = 0; i < dataArray.length; i++) {
-      console.log(dataArray[i]['title']);
+    $('#house-container').html("");
+    console.log(dataArray.length);
+
+    if (dataArray.length > 0) {
+      for (var i = 0; i < dataArray.length; i++) {
+        // console.log(dataArray[i]['title']);
+        console.log(dataArray[i]);
+        var source = $("#house-template").html();
+        var template = Handlebars.compile(source);
+        var context = {
+          'title': dataArray[i]['title'],
+          'slug': dataArray[i]['house']['slug'],
+          'cover_image': dataArray[i]['cover_image']
+        };
+        var html = template(context);
+        $('#house-container').append(html);
+      }
+    } else {
+      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
     }
   }
 });
@@ -53005,8 +53111,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

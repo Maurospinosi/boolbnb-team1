@@ -4,9 +4,9 @@
     <img src="{{asset('../img/logo.png')}}" alt="Logo">
 
     {{-- Barra di ricerca --}}
-    <form action="{{route('guest/search')}}" method="POST">
-        @csrf
-        @method('POST')
+    <form action="{{route('guest/search')}}" method="GET">
+
+        @method('GET')
 
         <div class="search-container header-search">
             <input type="text" id="form-address" placeholder="Search...">

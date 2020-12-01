@@ -27,7 +27,9 @@ class HouseTableSeeder extends Seeder
             "posto-letto-in-centro",
             "appartamento-per-studenti",
             "casa-spaziosa",
-            "villetta"
+            "villetta",
+            "letto in mansarda",
+            "enorme loft in centro"
         ];
 
         foreach($slugs as $slug) {

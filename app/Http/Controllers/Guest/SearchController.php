@@ -50,7 +50,7 @@ class SearchController extends Controller
         $tags = Tag::all();
         
         
-        return view('guest.searchresults', compact('houses_info', 'sponsoredHouses', 'services', 'tags'));
+        return view('guest.searchresults', compact('houses_info', 'sponsoredHouses', 'services', 'tags', 'lat', 'lon'));
     }
 
     /**
@@ -132,31 +132,43 @@ class SearchController extends Controller
         $houses_info = HouseInfo::distance($lat, $lon)
                                 ->having('distance', '<=', $distance)
                                 ->orderBy('distance', 'ASC')
-                                ->where('bathrooms', '<', $bathrooms)
+                                ->where([
+                                    ['rooms', '>=', $rooms],
+                                    ['beds', '>=', $beds],
+                                    ['bathrooms', '>=', $bathrooms],
+                                    ['mq', '>=', $mq],
+                                    ['price', '>=', $price]
+                                ])
                                 ->get();
+       
 
+        $housesToPrint = [];                            
 
-        
-        return $houses_info;
-        $allHousesInfos = HouseInfo::all();
+        foreach ($houses_info as $house_info) {
 
-        $houses = [];
+            // Se $services non è vuoto, ciclo sui services per ogni house_info
+            if ($services != "") {
 
-        foreach ($allHousesInfos as $houseInfo) {
-            $houses[] = [
-                "house_id" => $houseInfo->house_id,
-                "title" => $houseInfo->title,
-                "rooms" => $houseInfo->rooms,
-                "beds" => $houseInfo->beds,
-                "bathrooms" => $houseInfo->bathrooms,
-                "mq" => $houseInfo->mq,
-                "lat" => $houseInfo->lat,
-                "lon" => $houseInfo->lon,
-                "price" => $houseInfo->price,
-                "cover_image" => $houseInfo->cover_image,
-            ];
+                $tempArray = [];
+
+                foreach ($services as $service) {
+                    if ($house_info->house->services->contains($service)) {
+                        $tempArray[] = $service;
+                    }
+                }
+
+                if ($tempArray == $services) { 
+                    $housesToPrint[] = $house_info; 
+                }
+                
+            } 
+            // Se $services è vuoto, passo tutte le houses_info
+            else {       
+                $house_info->house;
+                $housesToPrint[] = $house_info; 
+            }
         }
 
-        return $houses;
+        return $housesToPrint;
     }
 }
