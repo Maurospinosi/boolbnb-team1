@@ -171,12 +171,6 @@ $(document).ready(function () {
       console.log(dataArray[i]['title']);
     }
   }
-
-});
-
-//bootstrap
-// MDB Lightbox Init
-$(function () {
-$("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+ 
 });
 
