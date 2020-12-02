@@ -73,7 +73,7 @@
                 <ul class="info">
                     <li>  
                          <label for="rooms">Stanze</label>
-                         <input name="rooms" id="rooms" type="number">                
+                         <input name="rooms" id="rooms" type="number">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     </li>
                     <li>
                         <label for="beds">Letti</label>

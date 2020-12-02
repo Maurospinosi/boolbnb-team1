@@ -52850,68 +52850,38 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
-  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
-  var nav = $('.header-style');
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 150) {
-      nav.addClass("header-color");
-    } else {
-      nav.removeClass("header-color");
-    }
+  /*Funzione che al click sull'hamburger fa apparire il menù */
+  $('.hamburger').click(function () {
+    $(".hamburger-menu").toggle();
   }); // ALGOLIA
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
 
 
-  if (window.location.pathname != "/host/house/create" && window.location.pathname != "/host/house/update") {
-    console.log("guest");
-
-    (function () {
-      var placesAutocomplete = places({
-        appId: 'pl0CZDFYINVV',
-        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-        container: document.querySelector('#form-address'),
-        templates: {
-          value: function value(suggestion) {
-            return suggestion.name;
-          }
+  (function () {
+    var placesAutocomplete = places({
+      appId: 'pl0CZDFYINVV',
+      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+      container: document.querySelector('#form-address'),
+      templates: {
+        value: function value(suggestion) {
+          return suggestion.name;
         }
-      }).configure({
-        // type: 'address'
-        type: 'city',
-        aroundLatLngViaIP: true
-      });
-      placesAutocomplete.on('change', function resultSelected(e) {
-        document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
-        document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
-      });
-    })();
-  } else {
-    console.log("loggato");
+      }
+    }).configure({
+      type: 'address' // type: 'city',
+      // aroundLatLngViaIP: false,
 
-    (function () {
-      var placesAutocomplete = places({
-        appId: 'pl0CZDFYINVV',
-        apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-        container: document.querySelector('#form-address'),
-        templates: {
-          value: function value(suggestion) {
-            return suggestion.name;
-          }
-        }
-      }).configure({
-        type: 'address'
-      });
-      placesAutocomplete.on('change', function resultSelected(e) {
-        document.querySelector('#form-address2').value = e.suggestion.administrative || '';
-        document.querySelector('#form-city').value = e.suggestion.city || '';
-        document.querySelector('#form-country').value = e.suggestion.country || '';
-        document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-        document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
-        document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
-      });
-    })();
-  } // RICERCA con filtri
+    });
+    placesAutocomplete.on('change', function resultSelected(e) {
+      document.querySelector('#form-address2').value = e.suggestion.administrative || '';
+      document.querySelector('#form-city').value = e.suggestion.city || '';
+      document.querySelector('#form-country').value = e.suggestion.country || '';
+      document.querySelector('#form-zip').value = e.suggestion.postcode || '';
+      document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
+      document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
+    });
+  })(); // RICERCA con filtri
   // const queryString = window.location.href;
   // const urlParams = new URLSearchParams(queryString);
   // const lat = urlParams.get('lat')
@@ -52978,7 +52948,7 @@ $(document).ready(function () {
       services = "";
     }
 
-    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance);
+    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
   }); // Chiamata ajax che prende i dati dai filtri
 
   function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance) {
@@ -52997,8 +52967,7 @@ $(document).ready(function () {
       },
       "method": "GET",
       "success": function success(data) {
-        console.log(data);
-        printResults(data);
+        console.log(data); // printResults(data);
       },
       "error": function error(err) {
         alert("Error");
@@ -53008,24 +52977,8 @@ $(document).ready(function () {
 
 
   function printResults(dataArray) {
-    $('#house-container').html("");
-
-    if (dataArray.length > 0) {
-      for (var i = 0; i < dataArray.length; i++) {
-        // console.log(dataArray[i]['title']);
-        console.log(dataArray[i]);
-        var source = $("#house-template").html();
-        var template = Handlebars.compile(source);
-        var context = {
-          'title': dataArray[i]['title'],
-          'slug': dataArray[i]['house']['slug'],
-          'cover_image': dataArray[i]['cover_image']
-        };
-        var html = template(context);
-        $('#house-container').append(html);
-      }
-    } else {
-      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
+    for (var i = 0; i < dataArray.length; i++) {
+      console.log(dataArray[i]['title']);
     }
   } // PAGAMENTI SPONSORIZZAZIONE
   // Step two: create a dropin instance using that container (or a string
@@ -53038,22 +52991,6 @@ $(document).ready(function () {
   }, function (error, dropinInstance) {// Use `dropinInstance` here
     // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
   });
-});
-/* Funzione per aggiungere una classe dopo lo scroll di 150px */
-
-var nav = $('.header-style');
-$(window).scroll(function () {
-  if ($(this).scrollTop() > 150) {
-    nav.addClass("header-color");
-  } else {
-    nav.removeClass("header-color");
-  }
-});
-/*Funzione che al click sull'hamburger fa apparire il menù */
-
-var hamburger = $(".hamburger");
-hamburger.click(function () {
-  $(".hamburger-menu").toggle("active");
 });
 
 /***/ }),
@@ -53121,8 +53058,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

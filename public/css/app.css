@@ -10910,11 +10910,11 @@ a.text-dark:focus {
 }
 
 .wrapper {
-  margin-top: 110px;
+  margin-top: 100px;
 }
 
 .no-wrap {
-  margin-top: -110px;
+  margin-top: -100px;
 }
 
 .active {
@@ -10922,23 +10922,7 @@ a.text-dark:focus {
 }
 
 @media screen and (max-width: 768px) {
-  /* Classe da aggiungere dopo lo scroll */
-
-  .header-color {
-    background-color: #f5f9fe;
-  }
-
   header {
-    display: flex;
-    align-items: center;
-    height: 100px;
-    width: 100%;
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: background 1.7s;
     justify-content: center;
     /* Logo */
     /* Barra di ricerca */
@@ -10952,169 +10936,39 @@ a.text-dark:focus {
     display: none;
   }
 
-  header .header-search {
-    border: 1px solid black;
-    border-radius: 25px;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #f5f9fe;
-    display: flex;
-    align-items: center;
-  }
-
-  header .header-search input {
-    border: transparent;
-    max-width: 300px;
-    background-color: #f5f9fe;
+  header ul li {
+    display: none;
   }
 
   header .header-search i {
-    background-color: #ff385c;
-    border-radius: 100%;
-    padding: 9px;
-    color: white;
-    font-size: 13px;
-    cursor: pointer;
     float: right;
-  }
-
-  header .header-search i:hover {
-    background-color: #dd1063;
-  }
-
-  header .header-search:hover {
-    box-shadow: 2px 5px 5px #ff385c;
-  }
-
-  header a:hover {
-    text-decoration: none;
-  }
-
-  header input:focus {
-    outline: none;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 992px) {
-  /* Classe da aggiungere dopo lo scroll */
-
-  .header-color {
-    background-color: #f5f9fe;
-  }
-
   header {
-    display: flex;
     justify-content: space-around;
-    align-items: center;
-    height: 100px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background-color: transparent;
-    transition: background 1.7s;
-    /*Logo*/
     /* Menu login, 'Diventa un host', hamburger */
     /* Barra di ricerca centrale */
-  }
-
-  header img {
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
   }
 
   header .hamburger-menu {
     width: 200px;
     height: 250px;
-    background-color: #f5f9fe;
-    border: 1px solid lightgrey;
-    position: absolute;
-    top: 100%;
-    right: 6%;
-    display: none;
-    box-shadow: 2px 5px 5px #ff385c;
-    border-radius: 15px;
     font-size: 15px;
-  }
-
-  header .hamburger-menu .hamburger-list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  header .hamburger-menu .hamburger-list li {
-    color: black;
-    margin-top: 20px;
-    padding: 0 0;
-    border: none;
-  }
-
-  header .hamburger-menu .hamburger-list li a {
-    color: black;
-    font-weight: 600;
-    padding: 10px;
-  }
-
-  header .hamburger-menu .hamburger-list li:hover a {
-    color: white;
-    background-color: #ff385c;
-    border-radius: 40px;
-    border: none;
-    box-shadow: 2px 5px 5px #ff385c;
-  }
-
-  header ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    right: 6%;
   }
 
   header li {
-    list-style: none;
     font-size: 18px;
   }
 
   header li:last-child {
-    border: 1px solid #e9e9e9;
     padding: 10px;
-    border-radius: 40%;
-    cursor: pointer;
-  }
-
-  header li:last-child i:first-child {
-    color: black;
-  }
-
-  header li:last-child i:last-child {
-    color: white;
-    background-color: #828282;
-    border-radius: 100%;
-    padding: 5px;
-  }
-
-  header li:last-child:hover {
-    box-shadow: 2px 5px 5px #ff385c;
-    border: 0, 5px solid #ff385c;
   }
 
   header li:nth-last-child(2) {
-    cursor: pointer;
     padding: 6px 10px;
-  }
-
-  header li:nth-last-child(2) i {
-    color: black;
-  }
-
-  header li:nth-last-child(2):hover {
-    background-color: #ff385c;
-    border-radius: 100%;
-  }
-
-  header li:nth-last-child(2):hover i {
-    color: white;
   }
 
   header .header-login {
@@ -11125,288 +10979,235 @@ a.text-dark:focus {
     padding: 6px 10px;
   }
 
-  header .header-host a {
-    color: black;
-    font-weight: 600;
-  }
-
-  header .header-host:hover {
-    background-color: #ff385c;
-    border-radius: 25px;
-    color: white;
-    padding: 6px 8px;
-    margin-left: 5px;
-  }
-
-  header .header-host:hover a {
-    color: white;
-  }
-
-  header li:first-child a {
-    color: black;
-    font-weight: 600;
-  }
-
-  header li:first-child:hover {
-    background-color: #ff385c;
-    border-radius: 25px;
-  }
-
-  header li:first-child:hover a {
-    color: white;
-  }
-
-  header li:first-child:hover .logout-header {
-    color: black;
-  }
-
   header .header-search {
-    border: 1px solid lightgrey;
-    border-radius: 25px;
-    padding: 10px;
-    cursor: pointer;
-    background-color: #f5f9fe;
-    display: flex;
-    align-items: center;
     max-width: 500px;
-  }
-
-  header .header-search input {
-    border: transparent;
-    max-width: 300px;
-    background-color: #f5f9fe;
-  }
-
-  header .header-search i {
-    background-color: #ff385c;
-    border-radius: 100%;
-    padding: 9px;
-    color: white;
-    font-size: 13px;
-    cursor: pointer;
-  }
-
-  header .header-search i:hover {
-    background-color: #dd1063;
-  }
-
-  header .header-search:hover {
-    box-shadow: 2px 5px 5px #ff385c;
-  }
-
-  header a:hover {
-    text-decoration: none;
-  }
-
-  header input:focus {
-    outline: none;
   }
 }
 
 @media screen and (min-width: 993px) {
-  /* Classe da aggiungere dopo lo scroll */
-
-  .header-color {
-    background-color: #f5f9fe;
-  }
-
   header {
-    display: flex;
     justify-content: space-around;
-    align-items: center;
-    height: 100px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background-color: transparent;
-    transition: background 1.7s;
-    /* Logo */
     /* Menu login, 'Diventa un Host', hamburger */
     /* Barra di ricerca centrale */
-  }
-
-  header img {
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
   }
 
   header .hamburger-menu {
     width: 230px;
     height: 280px;
-    background-color: #f5f9fe;
-    border: 1px solid lightgrey;
-    position: absolute;
-    top: 100%;
-    right: 6%;
-    display: none;
-    box-shadow: 2px 5px 5px #ff385c;
-    border-radius: 15px;
-  }
-
-  header .hamburger-menu .hamburger-list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  header .hamburger-menu .hamburger-list li {
-    color: black;
-    margin-top: 20px;
-    padding: 0 0;
-    border: none;
-  }
-
-  header .hamburger-menu .hamburger-list li a {
-    color: black;
-    font-weight: 600;
-    padding: 10px;
-  }
-
-  header .hamburger-menu .hamburger-list li:hover a {
-    color: white;
-    background-color: #ff385c;
-    border-radius: 40px;
-    border: none;
-    box-shadow: 2px 5px 5px #ff385c;
-  }
-
-  header ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    right: 8%;
   }
 
   header li {
-    list-style: none;
     padding: 0 15px;
   }
 
   header li:last-child {
-    border: 1px solid #e9e9e9;
     padding: 12px;
-    border-radius: 40%;
     margin-left: 5px;
-    cursor: pointer;
-    position: relative;
-  }
-
-  header li:last-child i:first-child {
-    color: black;
-  }
-
-  header li:last-child i:last-child {
-    font-size: 20px;
-    color: white;
-    background-color: #828282;
-    border-radius: 100%;
-    padding: 6px;
-    margin-left: 10px;
-  }
-
-  header li:last-child:hover {
-    box-shadow: 2px 5px 5px #ff385c;
-    border: 0, 5px solid #ff385c;
   }
 
   header li:nth-last-child(2) {
-    cursor: pointer;
     padding: 10px 15px;
-  }
-
-  header li:nth-last-child(2) i {
-    color: black;
-  }
-
-  header li:nth-last-child(2):hover {
-    background-color: #ff385c;
-    border-radius: 100%;
-  }
-
-  header li:nth-last-child(2):hover i {
-    color: white;
   }
 
   header .header-login {
     padding: 10px 15px;
   }
 
-  header .header-host a {
-    color: black;
-    font-weight: 600;
-  }
-
   header .header-host:hover {
-    background-color: #ff385c;
-    border-radius: 25px;
-    color: white;
     padding: 10px 15px;
   }
 
-  header .header-host:hover a {
-    color: white;
-  }
-
-  header li:first-child a {
-    color: black;
-    font-weight: 600;
-  }
-
-  header li:first-child:hover {
-    background-color: #ff385c;
-    border-radius: 25px;
-  }
-
-  header li:first-child:hover a {
-    color: white;
-  }
-
-  header li:first-child:hover .logout-header {
-    color: black;
-  }
-
   header .header-search {
-    border: 1px solid lightgrey;
-    border-radius: 25px;
-    padding: 10px;
-    cursor: pointer;
     max-width: 500px;
-    background-color: #f5f9fe;
-    display: flex;
-    align-items: center;
   }
+}
 
-  header .header-search input {
-    border: transparent;
-    max-width: 300px;
-    background-color: #f5f9fe;
-  }
+header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: #f5f9fe;
+  transition: box-shadow 1.5s;
+  /* Logo */
+  /* Menu login, 'Diventa un Host', hamburger */
+  /* Barra di ricerca centrale */
+}
 
-  header .header-search i {
-    background-color: #ff385c;
-    border-radius: 100%;
-    padding: 9px;
-    color: white;
-    font-size: 13px;
-    cursor: pointer;
-  }
+header img {
+  width: 100px;
+  height: 100px;
+}
 
-  header .header-search i:hover {
-    background-color: #dd1063;
-  }
+header .hamburger-menu {
+  background-color: #f5f9fe;
+  border: 1px solid lightgrey;
+  position: absolute;
+  top: 100%;
+  display: none;
+  box-shadow: 2px 5px 5px #ff385c;
+  border-radius: 15px;
+}
 
-  header .header-search:hover {
-    box-shadow: 2px 5px 5px #ff385c;
-  }
+header .hamburger-menu .hamburger-list {
+  display: flex;
+  flex-direction: column;
+}
 
-  header a:hover {
-    text-decoration: none;
-  }
+header .hamburger-menu .hamburger-list li {
+  color: black;
+  margin-top: 20px;
+  padding: 0 0;
+  border: none;
+}
 
-  header input:focus {
-    outline: none;
-  }
+header .hamburger-menu .hamburger-list li a {
+  color: black;
+  font-weight: 600;
+  padding: 10px;
+}
+
+header .hamburger-menu .hamburger-list li:hover a {
+  color: white;
+  background-color: #ff385c;
+  border-radius: 40px;
+  border: none;
+  box-shadow: 2px 5px 5px #ff385c;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header li {
+  list-style: none;
+}
+
+header li:last-child {
+  border: 1px solid #e9e9e9;
+  border-radius: 40%;
+  cursor: pointer;
+  position: relative;
+}
+
+header li:last-child i:first-child {
+  color: black;
+}
+
+header li:last-child i:last-child {
+  font-size: 20px;
+  color: white;
+  background-color: #828282;
+  border-radius: 100%;
+  padding: 6px;
+  margin-left: 10px;
+}
+
+header li:last-child:hover {
+  box-shadow: 2px 5px 5px #ff385c;
+  border: 0, 5px solid #ff385c;
+}
+
+header li:nth-last-child(2) {
+  cursor: pointer;
+}
+
+header li:nth-last-child(2) i {
+  color: black;
+}
+
+header li:nth-last-child(2):hover {
+  background-color: #ff385c;
+  border-radius: 100%;
+}
+
+header li:nth-last-child(2):hover i {
+  color: white;
+}
+
+header .header-host a {
+  color: black;
+  font-weight: 600;
+}
+
+header .header-host:hover {
+  background-color: #ff385c;
+  border-radius: 25px;
+  color: white;
+}
+
+header .header-host:hover a {
+  color: white;
+}
+
+header li:first-child a {
+  color: black;
+  font-weight: 600;
+}
+
+header li:first-child:hover {
+  background-color: #ff385c;
+  border-radius: 25px;
+}
+
+header li:first-child:hover a {
+  color: white;
+}
+
+header li:first-child:hover .logout-header {
+  color: black;
+}
+
+header .header-search {
+  border-radius: 25px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #f5f9fe;
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgrey;
+}
+
+header .header-search input {
+  border: transparent;
+  max-width: 300px;
+  background-color: #f5f9fe;
+}
+
+header .header-search i {
+  background-color: #ff385c;
+  border-radius: 100%;
+  padding: 9px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+header .header-search i:hover {
+  background-color: #dd1063;
+}
+
+header .header-search:hover {
+  box-shadow: 2px 5px 5px #ff385c;
+}
+
+header a:hover {
+  text-decoration: none;
+}
+
+header input:focus {
+  outline: none;
+}
+
+header:hover {
+  box-shadow: 2px 5px 5px #ff385c;
 }
 
 .jumbotron {
@@ -11437,5 +11238,139 @@ a.text-dark:focus {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  footer img {
+    width: 100px;
+    height: 100px;
+    margin: 20px 20px;
+  }
+
+  footer .copyright {
+    justify-content: flex-start;
+  }
+
+  footer .copyright ul {
+    margin: 0 40px;
+    font-size: 25px;
+  }
+
+  footer .copyright ul i {
+    padding-left: 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  footer .copyright {
+    justify-content: flex-start;
+  }
+
+  footer img {
+    width: 130px;
+    height: 130px;
+    margin: 20px 20px;
+  }
+
+  footer .copyright ul {
+    margin: 0 35px;
+    font-size: 25px;
+  }
+
+  footer .copyright ul i {
+    padding-left: 13px;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  footer .copyright {
+    justify-content: center;
+  }
+
+  footer img {
+    width: 150px;
+    height: 150px;
+    margin: 20px 20px;
+  }
+
+  footer .copyright ul {
+    margin: 0 40px;
+    font-size: 25px;
+  }
+
+  footer .copyright ul i {
+    padding-left: 15px;
+  }
+}
+
+footer {
+  max-height: content;
+  margin-top: 50px;
+  background-image: linear-gradient(to right, #f5f9fe 35%, #C7DDF8);
+  transition: box-shadow 1.5s;
+  padding-bottom: 20px;
+}
+
+footer .copyright {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .copyright ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+footer .copyright ul li {
+  list-style: none;
+  font-weight: 500;
+  color: black;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+footer .copyright ul li:first-child {
+  font-weight: 600;
+}
+
+footer .copyright ul li:nth-child(2):hover {
+  background-color: #ff385c;
+  border-radius: 25px;
+}
+
+footer .copyright ul li:nth-child(2):hover i {
+  color: white;
+}
+
+footer .copyright ul li:nth-child(2):hover a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer .copyright ul li:last-child:hover {
+  background-color: #ff385c;
+  border-radius: 25px;
+}
+
+footer .copyright ul li:last-child:hover i {
+  color: white;
+}
+
+footer .copyright ul li:last-child:hover a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer .copyright ul i {
+  color: black;
+  text-align: center;
+}
+
+footer:hover {
+  box-shadow: 0 1px 20px #ff385c;
 }
 
