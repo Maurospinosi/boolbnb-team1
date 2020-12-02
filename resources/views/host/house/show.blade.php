@@ -6,7 +6,20 @@
 
 @section('page-content')
 
-    <div class="container"> 
+
+    <div class="container host-show-container"> 
+        {{-- <div id="dropin-container"></div> --}}
+        @if(Auth::id() == $house->user_id)
+            <div class="auth-buttons">
+                <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
+                <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
+                    @csrf
+                    @method("DELETE")
+                        <button class="btn btn-danger">Cancella</button>
+                </form>
+            </div>
+        @endif
+
 
         @if (session()->has('success'))
             <div class="alert alert-success">
@@ -58,23 +71,16 @@
                 @else
                     <img src="{{asset('storage/'.$image->url)}}" alt="">
                 @endif
-            @endforeach
+            @endforeach     
+        </div>
 
-{{--             @foreach ($house->houseinfo->images as $image)
-            <div id="other-images">
-                <img src="{{asset('storage/'. $image->url)}}" alt="immagine non trovata">
-            </div>
-            @endforeach --}}
+    </div>
 
-        <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Edit</a>
-        <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
-            @csrf
-            @method("DELETE")
-                <button class="btn btn-danger">Cancella</button>
-        </form>
-
+<<<<<<< HEAD
         </div>
 =======
     </div>
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
 @endsection

@@ -11419,3 +11419,23 @@ a.text-dark:focus {
   opacity: 0.7;
 }
 
+.guest-show-container {
+  position: relative;
+}
+
+.guest-show-container .auth-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.host-show-container {
+  position: relative;
+}
+
+.host-show-container .auth-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
