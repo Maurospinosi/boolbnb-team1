@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "braintree": "^3.1.0",
         "handlebars": "^4.7.6",
         "places.js": "^1.19.0"
     }

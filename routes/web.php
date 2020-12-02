@@ -30,13 +30,19 @@ Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->gro
    
     Route::resource('/house', 'HouseController');
     
-    // Route::get('sponsorship/{id}', function($clientToken){
-    //     // pass $clientToken to your front-end
-    //     $clientToken = $gateway->clientToken()->generate([
-    //         "customerId" => $aCustomerId
-    //     ]);
-    //     echo($clientToken = $gateway->clientToken()->generate());
-    // });
+    Route::get('/sponsorship/{id}', function($clientToken){
+        $gateway = new Braintree\Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => 'use_your_merchant_id',
+            'publicKey' => 'use_your_public_key',
+            'privateKey' => 'use_your_private_key'
+        ]);
+        // pass $clientToken to your front-end
+        $clientToken = $gateway->clientToken()->generate([
+            "customerId" => $aCustomerId
+        ]);
+        echo($clientToken = $gateway->clientToken()->generate());
+    })->name("sponsorship");
 });
 
 // Rotte per il guest
