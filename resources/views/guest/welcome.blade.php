@@ -73,20 +73,13 @@
 @section('page-content')
     
 {{-- Jumbotron --}}
-<div class="no-wrap">
-    <div class="jumbotron">
-    </div>
-</div>
+<div class="jumbotron"></div>
 {{-- fine Jumbotron --}}
 
 <div class="houses-container">
-    @foreach($houses as $house)
+    @foreach($sponsoredHouses as $house)
         <div class="card" style="width: 18rem;">
-            {{-- Badge per casa sponsorizzata --}}
-            @if (in_array($house->id, $sponsoredHouses))   
-                <span class="badge badge-secondary sponsorizzata">Sponsorizzata</span>
-            @endif
-            {{-- / badge --}}
+            <span class="badge badge-secondary sponsorizzata">In evidenza</span>
 
             @if (strpos($house->houseinfo->cover_image, 'http') === 0)
                 <img src="{{$house->houseinfo->cover_image}}" alt="random picture">
@@ -96,7 +89,13 @@
                 
             <div class="card-body">
                 <h5 class="card-title">{{$house->houseinfo->title}}</h5>
-                <a href="{{route("guest/house", $house->slug)}}" class="btn btn-warning">Show</a>
+                <a href="
+                @if (Auth::id() == $house->user_id)
+                {{route("host/house.show", $house->id)}}
+                @else
+                {{route("guest/house", $house->slug)}}
+                @endif
+                " class="btn btn-warning">Show</a>
             </div>
     </div>
     @endforeach

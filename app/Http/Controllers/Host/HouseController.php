@@ -153,7 +153,14 @@ class HouseController extends Controller
     public function show($id)
     {
         $house = House::where('id', $id)->first();
-        return view("host/house.show", compact("house"));
+
+        $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
+
+        if(Auth::id() != $house->user_id) {
+            return redirect()->route('guest/house', $house->slug);
+        } else {
+            return view("host/house.show", compact("house", "images"));
+        }
     }
 
     /**

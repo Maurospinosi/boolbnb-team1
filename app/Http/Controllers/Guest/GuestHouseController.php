@@ -29,12 +29,12 @@ class GuestHouseController extends Controller
         foreach($houses as $house) {
             foreach($sponsors as $sponsor) {
                 if ($house->sponsors->contains($sponsor->id)) {
-                    $sponsoredHouses[] = $house->id;
+                    $sponsoredHouses[] = $house;
                 }
             }
         }
 
-        return view('guest.welcome', compact('houses', 'sponsoredHouses'));
+        return view('guest.welcome', compact('sponsoredHouses'));
     }
 
     /**

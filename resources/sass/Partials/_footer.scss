@@ -1,0 +1,124 @@
+@media screen and (max-width: 768px){
+    footer{
+        img{
+            width:100px;
+            height: 100px;
+            margin: 20px 20px;
+        }
+        .copyright{
+            justify-content: flex-start;
+            ul{
+                margin:0 40px;
+                font-size: 25px;
+                i{
+                    padding-left: 15px;
+                }
+            }
+    
+        }
+    }
+
+}
+@media screen and (min-width: 769px) and (max-width:992px) {
+    footer{
+        .copyright{
+            justify-content:flex-start
+        }
+        img{
+            width:130px;
+            height: 130px;
+            margin: 20px 20px;
+        }
+        .copyright{
+            ul{
+                margin:0 35px;
+                font-size: 25px;
+                i{
+                    padding-left: 13px;
+                }
+            }
+    
+        }
+    }
+}
+@media screen and (min-width: 993px){
+    footer{
+        .copyright{
+            justify-content: center;
+        }
+        img{
+            width:150px;
+            height: 150px;
+            margin: 20px 20px;
+        }
+        .copyright{
+            ul{
+                margin:0 40px;
+                font-size: 25px;
+                i{
+                    padding-left: 15px;
+                }
+            }
+    
+        }
+    }
+
+}
+footer{
+    max-height: content;
+    margin-top:50px;
+    background-image: linear-gradient(to right, #f5f9fe 35%, #C7DDF8);
+    transition: box-shadow 1.5s;
+    padding-bottom: 20px;
+    .copyright{
+        display: flex;
+        flex-wrap: wrap;
+        ul{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            li{
+                list-style: none;
+                font-weight: 500;
+                color: black;
+                padding:10px;
+                margin-top: 5px;
+            }
+            li:first-child{
+                font-weight: 600;
+            }
+            li:nth-child(2):hover{
+                background-color:rgb(255, 56, 92);
+                border-radius: 25px;
+                i{
+                    color:white;
+                }
+                a{
+                    color:white;
+                    text-decoration: none;
+                    font-weight: 600;
+                }
+            }
+            li:last-child:hover{
+                background-color:rgb(255, 56, 92);
+                border-radius: 25px;
+                i{
+                    color:white;
+                }
+                a{
+                    color:white;
+                    text-decoration: none;
+                    font-weight: 600;
+                }
+            }
+            i{
+                color: black;
+                text-align: center;
+            }
+        }
+    }
+}
+footer:hover{
+    box-shadow:0 1px 20px rgb(255, 56, 92);
+}

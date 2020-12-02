@@ -7,8 +7,15 @@
 @section('page-content')
 
 
-    <div class="container host-show-container"> 
-        {{-- <div id="dropin-container"></div> --}}
+    <div class="container host-show-container">
+        {{-- Sponsorizzazione --}}
+        @if (Auth::id() == $house->user_id) 
+            <div id="dropin-container">
+                <a href="{{route('host/sponsorship', Auth::id())}}">Paga</a>
+            </div>
+        @endif
+
+        {{-- Tasti di Modifica e Cancella --}}
         @if(Auth::id() == $house->user_id)
             <div class="auth-buttons">
                 <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
@@ -20,7 +27,7 @@
             </div>
         @endif
 
-
+        {{-- Messaggio di successo alla modifica della casa --}}
         @if (session()->has('success'))
             <div class="alert alert-success">
                 @if(is_array(session('success')))
@@ -35,6 +42,7 @@
             </div>
         @endif
 
+        {{-- Print della casa --}}
         <h1>{{$house->houseinfo->title}}</h1>
         {{-- <span>{{$house->houseinfo->price}}€ a notte</span> --}}
         <div class="d-flex">
