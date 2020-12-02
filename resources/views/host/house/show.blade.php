@@ -6,7 +6,20 @@
 
 @section('page-content')
 
-    <div class="container"> 
+
+    <div class="container host-show-container"> 
+        {{-- <div id="dropin-container"></div> --}}
+        @if(Auth::id() == $house->user_id)
+            <div class="auth-buttons">
+                <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
+                <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
+                    @csrf
+                    @method("DELETE")
+                        <button class="btn btn-danger">Cancella</button>
+                </form>
+            </div>
+        @endif
+
 
         @if (session()->has('success'))
             <div class="alert alert-success">
@@ -92,21 +105,18 @@
         </ul>
     </div>
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
-            
+            @foreach ($images as $image)
+                @if (strpos($image->url, 'http') === 0)
+                    <img src="{{$image->url}}" alt="random picture">
+                @else
+                    <img src="{{asset('storage/'.$image->url)}}" alt="">
+                @endif
+            @endforeach     
+        </div>
 
-{{--             @foreach ($house->houseinfo->images as $image)
-            <div id="other-images">
-                <img src="{{asset('storage/'. $image->url)}}" alt="immagine non trovata">
-            </div>
-            @endforeach --}}
+    </div>
 
-        <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Edit</a>
-        <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
-            @csrf
-            @method("DELETE")
-                <button class="btn btn-danger">Cancella</button>
-        </form>
-
+<<<<<<< HEAD
         </div>
 
         -------------------------------------------------
@@ -115,4 +125,6 @@
     <div id="map-example-container"></div>
     <input type="search" id="input-map" class="form-control" placeholder="Where are we going?" />
     <script src="{{asset("js/map.js")}}"></script>
+=======
+>>>>>>> main
 @endsection

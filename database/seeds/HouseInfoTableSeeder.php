@@ -46,6 +46,12 @@ class HouseInfoTableSeeder extends Seeder
         $house2 = new HouseObj("Via dell'Indipendenza", 'Emilia Romagna', 400126, 'Bologna', 'Italia', 44.5006, 11.3442);
         $houseArr[] = $house2;
 
+        $house2a = new HouseObj("Via Properzia De' Rossi", 'Emilia Romagna', 40138, 'Bologna', 'Italia', 44.4919, 11.4179);
+        $houseArr[] = $house2a;
+
+        $house2b = new HouseObj("Via delle Fonti 29", 'Emilia Romagna', 40128, 'Bologna', 'Italia', 44.5462, 11.3540);
+        $houseArr[] = $house2b;
+
         // Firenze
         $house3 = new HouseObj("Piazza del Duomo", 'Toscana', 50122, 'Firenze', 'Italia', 43.773, 11.2565);
         $houseArr[] = $house3;

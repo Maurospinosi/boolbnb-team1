@@ -4,12 +4,12 @@
     <img src="{{asset('../img/logo.png')}}" alt="Logo">
 
     {{-- Barra di ricerca --}}
-    <form action="{{route('guest/search')}}" method="POST">
-        @csrf
-        @method('POST')
+    <form action="{{route('guest/search')}}" method="GET">
+        
+        @method('GET')
 
         <div class="search-container header-search">
-            <input type="search" id="form-address" placeholder="Search...">
+            <input type="text" id="form-address" placeholder="Search...">
             <input hidden type="text" class="form-control" id="form-address2" placeholder="Regione" name="region">
             <input hidden type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP">
             <input hidden type="text" class="form-control" name="city" id="form-city" placeholder="Città">
@@ -29,7 +29,7 @@
             </li>
             @if (Route::has('register'))
                 <li class="header-host">
-                    <a  href="{{ route('register') }}">Diventa un Host</a>
+                    <a  href="{{ route('register') }}">Registrati</a>
                 </li>
             @endif
 
@@ -56,16 +56,16 @@
         <li>
             <i class="fas fa-globe"></i> 
         </li>
-        <li>
+        <li class="hamburger">
             <i class="fas fa-bars"></i>
             <i class="fas fa-user"></i>
         </li>
     </ul>
     <div class="hamburger-menu">
         <ul class="hamburger-list">
-            <li><a href="#">Prova</a></li>
-            <li><a href="#">Prova</a></li>
-            <li><a href="#">Prova</a></li>
+            <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
+            <li><a href="{{route('host/house.create')}}">Inserisci una casa</a></li>
+            <li><a href="{{route('guest/home')}}">Torna alla Home</a></li>
             <li><a href="#">Prova</a></li>
             <li><a href="#">Prova</a></li>
         </ul>         

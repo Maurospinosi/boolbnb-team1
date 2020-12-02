@@ -6,9 +6,20 @@
 
 @section('page-content')
 
-    <div class="container"> 
+    <div class="container guest-show-container"> 
         <a href="{{route('guest/home')}}" class="btn btn-info">Torna alla Home</a>
         <a href="{{route('guest/search')}}" class="btn btn-info">Torna alla ricerca</a>
+
+        @if(Auth::id() == $house->user_id)
+            <div class="auth-buttons">
+                <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
+                <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
+                    @csrf
+                    @method("DELETE")
+                        <button class="btn btn-danger">Cancella</button>
+                </form>
+            </div>
+        @endif
 
         <h1>{{$house->houseinfo->title}}</h1>
         <span>{{$house->houseinfo->price}}€ a notte</span>
