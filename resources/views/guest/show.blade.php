@@ -20,49 +20,96 @@
                 </form>
             </div>
         @endif
-
-        <h1>{{$house->houseinfo->title}}</h1>
-        <span>{{$house->houseinfo->price}}€ a notte</span>
-        <h6>Tag: </h6>
-        <ul>
-            @foreach ($houseTags as $houseTag)
-                <li>{{$houseTag}}</li>
-            @endforeach
-        </ul>
-        <div id="cover-image">
+        
+        <div class="mt-10"> 
+            <h1 >{{$house->houseinfo->title}}</h1>
+        </div>
+        
+        
+        <div class="d-inline-flex p-2 bd-highlight">
+                <span>{{$house->houseinfo->price}}€ a notte</span>
+        </div>
+        <div class="d-inline-flex p-2 bd-highlight">
+            <h6>Tag: </h6>
+        </div>
+        <div class="d-inline-flex p-2 bd-highlight">
+            <ul class="list-inline">
+                @foreach ($houseTags as $houseTag)
+                    <li class="list-inline-item">{{$houseTag}}</li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="d-inline-flex p-2 bd-highlight">
+            <ul class="list-inline list-unstyled">
+                <li class="list-inline-item">Città: {{$house->houseinfo->city}}</li>
+                <li class="list-inline-item">Paese: {{$house->houseinfo->country}}</li>
+            </ul>
+        </div>
+      
+        <div class="d-flex p-2 bd-highlight" id="cover-image">
             @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                <img src="{{$house->houseinfo->cover_image}}" alt="random picture">
+                <img class="img-fluid" src="{{$house->houseinfo->cover_image}}" alt="random picture">
             @else
                 <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
             @endif
         </div>
-        <ul>
-            <li>Stanze: {{$house->houseinfo->rooms}}</li>
-            <li>Letti: {{$house->houseinfo->beds}}</li>
-            <li>Bagni: {{$house->houseinfo->bathrooms}}</li>
-            <li>Metri quadri: {{$house->houseinfo->mq}}</li>
-            <li>Stanze: {{$house->houseinfo->rooms}}</li>
-            <li>Città: {{$house->houseinfo->city}}</li>
-            <li>Paese: {{$house->houseinfo->country}}</li>
-            <li>{{$house->houseinfo->description}}</li>
-            <li>
-                <h6>Servizi</h6>
-                <ul>
-                    @foreach ($houseServices as $houseService)
-                        <li>{{$houseService}}</li>
-                    @endforeach
-                </ul>
-            </li>
-        </ul>
+       
 
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
         @foreach ($images as $image)
             @if (strpos($image->url, 'http') === 0)
-                <img src="{{$image->url}}" alt="random picture">
+                <img class="img-thumbnail" src="{{$image->url}}" alt="random picture">
             @else
                 <img src="{{asset('storage/'.$image->url)}}" alt="">
             @endif
             @endforeach
+        </div>
+
+        <div class="d-flex flex-column  bd-highlight mb-3">
+            <div class="d-flex justify-content-center p-2 bd-highlight">
+    
+                <ul class="list-inline list-unstyled">
+                    <li class="list-inline-item"><i class="fas fa-bed"></i></li>
+                    <li class="list-inline-item">Stanze: {{$house->houseinfo->rooms}}</li>
+                    <li class="list-inline-item"><i class="fas fa-user"></i></li>
+                    <li class="list-inline-item">Letti: {{$house->houseinfo->beds}}</li>
+                    <li class="list-inline-item"><i class="fas fa-bath"></i></li>
+                    <li class="list-inline-item">Bagni: {{$house->houseinfo->bathrooms}}</li>
+                    <li class="list-inline-item"><i class="fas fa-ruler-combined"></i></li>
+                    <li class="list-inline-item">Metri quadri: {{$house->houseinfo->mq}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex flex-column bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <h6>Servizi</h6>
+                <ul class="list-inline list-unstyled">
+            
+                     @foreach ($houseServices as $houseService)
+                        <li>{{$houseService}}</li>
+                    @endforeach      
+                </ul>
+            </div>
+        </div>
+
+        <div class="form w-100">
+            <h2 class="text-center">Invia un messaggio</h2>
+            <form class="ml-1 p-3 w-100">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email</label>
+                  <input type="email" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input type="name" class="form-control w-100" id="name" placeholder="inserisci il tuo nome">
+                  </div>
+               
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Example textarea</label>
+                  <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary">Invia</button>
+            </form>
         </div>
 
     </div>
