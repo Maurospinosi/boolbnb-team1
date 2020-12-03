@@ -10921,6 +10921,10 @@ a.text-dark:focus {
   display: block;
 }
 
+.d-none {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   /* Classe da aggiungere dopo lo scroll */
 
@@ -11437,5 +11441,16 @@ a.text-dark:focus {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.host-show-container .auth-buttons ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.host-show-container .auth-buttons #host-sponsorship input[type=submit] {
+  background-color: lightgrey;
 }
 
