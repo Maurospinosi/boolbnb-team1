@@ -1,9 +1,24 @@
 .host-show-container {
     position: relative;
-
+    
     .auth-buttons {
         position: absolute;
         top: 0;
         right: 0;
+
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        #host-sponsorship {
+            
+
+            input[type="submit"] {
+                background-color: lightgrey;
+            }
+        }
     }
 }

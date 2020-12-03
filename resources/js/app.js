@@ -4,6 +4,37 @@ const Handlebars = require("handlebars");
 
 $(document).ready(function () {
 
+  //// SPONSORIZZAZIONE ////
+    $("#host-sponsorship h5").on("click", function(){
+      $(this).siblings("select").toggleClass("d-none");
+      $(this).siblings("input[type='submit']").toggleClass("d-none");
+    });
+  //// FINE SPONSORIZZAZIONE ////
+
+
+  //// BRAINTREE ////
+  const form = document.getElementById('payment-form');
+
+  braintree.dropin.create({
+    authorization: 'sandbox_csp9zxcv_7fvbtn5hs7yp3kb2',
+    container: '#dropin-container'
+  }, (error, dropinInstance) => {
+    if (error) console.error(error);
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      dropinInstance.requestPaymentMethod((error, payload) => {
+        if (error) console.error(error);
+
+        document.getElementById('nonce').value = payload.nonce;
+
+        form.submit();
+      });
+    });
+  });
+/// FINE BRAINTREE ////
+
 
   /* Funzione per aggiungere una classe dopo lo scroll di 150px */
   var nav = $('.header-style');
@@ -217,25 +248,10 @@ $(document).ready(function () {
     }
   }
 
-
-
-  // PAGAMENTI SPONSORIZZAZIONE
-  // Step two: create a dropin instance using that container (or a string
-  //   that functions as a query selector such as `#dropin-container`)
-    braintree.dropin.create({
-      container: document.getElementById('dropin-container'),
-      // ...plus remaining configuration
-    }, (error, dropinInstance) => {
-      // Use `dropinInstance` here
-      // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-    });
-
-
-
 });
 
 
-
+///// FUNZIONI
 
 /* Funzione per aggiungere una classe dopo lo scroll di 150px */
 var nav = $('.header-style');

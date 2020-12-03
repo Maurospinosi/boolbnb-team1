@@ -52850,7 +52850,36 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
+  //// SPONSORIZZAZIONE ////
+  $("#host-sponsorship h5").on("click", function () {
+    $(this).siblings("select").toggleClass("d-none");
+    $(this).siblings("input[type='submit']").toggleClass("d-none");
+  }); //// FINE SPONSORIZZAZIONE ////
+  //// BRAINTREE ////
+
+  var form = document.getElementById('payment-form');
+  braintree.dropin.create({
+    authorization: 'sandbox_csp9zxcv_7fvbtn5hs7yp3kb2',
+    container: '#dropin-container'
+  }, function (error, dropinInstance) {
+    if (error) console.error(error);
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      dropinInstance.requestPaymentMethod(function (error, payload) {
+        if (error) console.error(error); // Step four: when the user is ready to complete their
+        //   transaction, use the dropinInstance to get a payment
+        //   method nonce for the user's selected payment method, then add
+        //   it a the hidden field before submitting the complete form to
+        //   a server-side integration
+
+        document.getElementById('nonce').value = payload.nonce;
+        form.submit();
+      });
+    });
+  }); /// FINE BRAINTREE ////
+
   /* Funzione per aggiungere una classe dopo lo scroll di 150px */
+
   var nav = $('.header-style');
   $(window).scroll(function () {
     if ($(this).scrollTop() > 150) {
@@ -53027,17 +53056,18 @@ $(document).ready(function () {
     } else {
       $('#house-container').append("<h2>Nessun risultato trovato</h2>");
     }
-  } // PAGAMENTI SPONSORIZZAZIONE
-  // Step two: create a dropin instance using that container (or a string
-  //   that functions as a query selector such as `#dropin-container`)
+  } // //// BRAINTREE /////
+  // // Step two: create a dropin instance using that container (or a string
+  // //   that functions as a query selector such as `#dropin-container`)
+  // braintree.dropin.create({
+  //   authorization: CLIENT_TOKEN_FROM_SERVER,
+  //   container: document.getElementById('dropin-container'),
+  //   // ...plus remaining configuration
+  // }, (error, dropinInstance) => {
+  //   // Use `dropinInstance` here
+  //   // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
+  // });
 
-
-  braintree.dropin.create({
-    container: document.getElementById('dropin-container') // ...plus remaining configuration
-
-  }, function (error, dropinInstance) {// Use `dropinInstance` here
-    // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-  });
 });
 /* Funzione per aggiungere una classe dopo lo scroll di 150px */
 
