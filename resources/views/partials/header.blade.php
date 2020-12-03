@@ -1,7 +1,9 @@
 {{-- Header: logo, navbar, menu/hamburger --}}
 <header class="header-style">
     {{-- Logo --}}
-    <img src="{{asset('../img/logo.png')}}" alt="Logo">
+    <a href="{{route('guest/home')}}">
+        <img src="{{asset('../img/logo.png')}}" alt="Logo">
+    </a>
 
     {{-- Barra di ricerca --}}
     <form action="{{route('guest/search')}}" method="GET">
