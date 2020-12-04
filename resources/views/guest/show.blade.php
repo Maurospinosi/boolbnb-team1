@@ -125,5 +125,12 @@
             </div>
         </div>
     </div>
+    <div id="map-example-container"></div>
+    <input type="search" id="input-map" class="form-control"/>
+    <input id="latitudine" type="hidden"  value=" {{$house->houseinfo->lat}}">
+    <input id="longitudine" type="hidden"   value=" {{$house->houseinfo->lon}}">
+    <input id="indirizzo" type="hidden"   value=" {{$house->houseinfo->address}}">
+
+
     <script src="{{ asset('js/map.js') }}"></script>
 @endsection

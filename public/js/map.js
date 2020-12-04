@@ -37322,7 +37322,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 $(document).ready(function () {
-  var prova = {
+  var latlng = {
     lat: $("#latitudine").val(),
     lng: $("#longitudine").val()
   };
@@ -37340,7 +37340,7 @@ $(document).ready(function () {
     maxZoom: 17
   });
   var markers = [];
-  map.setView(new L.LatLng(prova.lat, prova.lng), 12);
+  map.setView(new L.LatLng(latlng.lat, latlng.lng), 12);
   map.addLayer(osmLayer);
   placesAutocomplete.on('suggestions', handleOnSuggestions);
   placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
@@ -37352,8 +37352,8 @@ $(document).ready(function () {
     markers = [];
 
     if (e.suggestions.length === 0) {
-      map.setView(new L.LatLng(prova.lat, prova.lng), 12);
-      return;
+      map.setView(new L.LatLng(latlng.lat, latlng.lng), 12);
+      return addMarker(latlng);
     }
 
     e.suggestions.forEach(addMarker);
@@ -37373,7 +37373,7 @@ $(document).ready(function () {
   }
 
   function handleOnClear() {
-    map.setView(new L.LatLng(prova.lat, prova.lng), 12);
+    map.setView(new L.LatLng(latlng.lat, latlng.lng), 12);
     markers.forEach(removeMarker);
   }
 
@@ -37389,15 +37389,14 @@ $(document).ready(function () {
     });
   }
 
-  function addMarker(prova) {
-    var marker = L.marker(prova, {
+  function addMarker(suggestions) {
+    var marker = L.marker(suggestions.latlng, {
       opacity: .4
     });
     marker.addTo(map);
     markers.push(marker);
+    console.log(suggestions.latlng);
   }
-
-  console.log(prova);
 
   function removeMarker(marker) {
     map.removeLayer(marker);
@@ -37406,7 +37405,7 @@ $(document).ready(function () {
   function findBestZoom() {
     var featureGroup = L.featureGroup(markers);
     map.fitBounds(featureGroup.getBounds().pad(0.5), {
-      animate: false
+      animate: true
     });
   }
 })();
