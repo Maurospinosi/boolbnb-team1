@@ -25,23 +25,24 @@ $(document).ready(function () {
     });
   });
 /// FINE BRAINTREE ////
-  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
-  var nav = $('.header-style');
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 150) {
-      nav.addClass("header-color");
-    } else {
-      nav.removeClass("header-color");
-    }
+/*Funzione che al click sull'hamburger fa apparire il menù */
+  $('.hamburger').click(function () {
+    $(".hamburger-menu").toggle();
   });
-  /*Funzione che al click sull'hamburger fa apparire il menù */
-    $('.hamburger').click(function () {
-      $(".hamburger-menu").toggle();
-    }); 
+
+  /* Funzione che controlla l'hamburger-menu al passaggio del mouse */
+  $(".hamburger-menu").mouseenter(function() {
+    $(".hamburger-menu").fadeIn('active');
+  });
+  $("header").mouseleave(function() {
+    $(".hamburger-menu").fadeOut('active');
+  });
+
   /*Funzione che al doppio click sul body fa sparire il menù */
-    $("body").dblclick(function(){
+  /*$("body").dblclick(function(){
       $(".hamburger-menu").fadeOut('active');
-    });
+    }); */
+
   // ALGOLIA
   var places = require('places.js');
   // Ricerca in create.blade.php

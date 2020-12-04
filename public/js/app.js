@@ -52873,26 +52873,25 @@ $(document).ready(function () {
     });
   }); /// FINE BRAINTREE ////
 
-  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
-
-  var nav = $('.header-style');
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 150) {
-      nav.addClass("header-color");
-    } else {
-      nav.removeClass("header-color");
-    }
-  });
   /*Funzione che al click sull'hamburger fa apparire il menù */
 
   $('.hamburger').click(function () {
     $(".hamburger-menu").toggle();
   });
+  /* Funzione che controlla l'hamburger-menu al passaggio del mouse */
+
+  $(".hamburger-menu").mouseenter(function () {
+    $(".hamburger-menu").fadeIn('active');
+  });
+  $("header").mouseleave(function () {
+    $(".hamburger-menu").fadeOut('active');
+  });
   /*Funzione che al doppio click sul body fa sparire il menù */
 
-  $("body").dblclick(function () {
-    $(".hamburger-menu").fadeOut('active');
-  }); // ALGOLIA
+  /*$("body").dblclick(function(){
+      $(".hamburger-menu").fadeOut('active');
+    }); */
+  // ALGOLIA
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
 
@@ -53094,8 +53093,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

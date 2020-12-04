@@ -66,10 +66,9 @@
     <div class="hamburger-menu">
         <ul class="hamburger-list">
             <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
+            <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
             <li><a href="{{route('host/house.create')}}">Inserisci una casa</a></li>
             <li><a href="{{route('guest/home')}}">Torna alla Home</a></li>
-            <li><a href="#">Prova</a></li>
-            <li><a href="#">Prova</a></li>
         </ul>         
     </div>
 </header>

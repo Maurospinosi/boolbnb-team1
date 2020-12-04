@@ -10958,7 +10958,7 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 200px;
-    height: 250px;
+    height: 230px;
     font-size: 15px;
     right: 6%;
   }
@@ -10997,7 +10997,7 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 230px;
-    height: 280px;
+    height: 250px;
     right: 8%;
   }
 
@@ -11065,7 +11065,7 @@ header .hamburger-menu .hamburger-list {
 
 header .hamburger-menu .hamburger-list li {
   color: black;
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 0 0;
   border: none;
 }
