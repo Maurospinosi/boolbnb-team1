@@ -34,4 +34,6 @@ Route::name('guest/')->namespace('Guest')->group(function()
     Route::get('/', 'GuestHouseController@index')->name('home');
     Route::get('house/{slug}', 'GuestHouseController@show')->name('house');
     Route::get('search', 'SearchController@index')->name('search');
+    Route::get('/message', 'MessageController@store')->name('message.store');
+
 });
