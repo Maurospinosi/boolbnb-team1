@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\host;
+namespace App\Http\Controllers\Host;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 use App\Message;
 use App\House;
 use App\User;
 
-use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
@@ -19,6 +21,8 @@ class MessageController extends Controller
      */
     public function index()
     {
+
+        
         $house = House::where('user_id' , Auth::id())->get();
         $houseUser = [];
         foreach ($house as $home) {
@@ -28,6 +32,8 @@ class MessageController extends Controller
         // $messages = Message::where('house', $house)->get();
         return view ('host.message.index', compact('house', 'houseUser', 'messages'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +53,8 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     //
+
     }
 
     /**
@@ -92,8 +99,18 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::find($id)->delete();
+        $message = Message::findORFail($id)->delete();
+        //controllo per cancellare i messaggi
+        $user = Auth::id();
+        $entryMessage = $message->house->user_id;
+        if ($user != $entryMessage) {
+            // abort('404');
+            return back()->with('status', 'Non puoi cancellare questo messaggio');
+        }
+        $message->delete();
 
-        return redirect()->route('host/message.index');
+    
+        return redirect()->route('host/message.index')->with('success', 'Messaggio eliminato con successo!');
     }
 }
+

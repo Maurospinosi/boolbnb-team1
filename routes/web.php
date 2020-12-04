@@ -1,7 +1,5 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,48 +10,42 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 // ?
 Auth::routes();
-
-
 // Rotte per l'host
 Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->group(function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
-    
     Route::get('/info/{id}', 'UserInfoController@show')->name('info/show');
     Route::get('/register', 'UserInfoController@create')->name('info/create');
     Route::post('/info', 'UserInfoController@store')->name('info/store');
     Route::resource('/house', 'HouseController'); 
     Route::resource('/message', 'MessageController');    
    
-    Route::resource('/house', 'HouseController');
-    
-    Route::get('/sponsorship/{id}', function($clientToken){
-        $gateway = new Braintree\Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => 'use_your_merchant_id',
-            'publicKey' => 'use_your_public_key',
-            'privateKey' => 'use_your_private_key'
-        ]);
-        // pass $clientToken to your front-end
-        $clientToken = $gateway->clientToken()->generate([
-            "customerId" => $aCustomerId
-        ]);
-        echo($clientToken = $gateway->clientToken()->generate());
-    })->name("sponsorship");
+    // Route::get('/sponsorship/{id}', function($clientToken){
+    //     $gateway = new Braintree\Gateway([
+    //         'environment' => 'sandbox',
+    //         'merchantId' => 'use_your_merchant_id',
+    //         'publicKey' => 'use_your_public_key',
+    //         'privateKey' => 'use_your_private_key'
+    //     ]);
+    //     // pass $clientToken to your front-end
+    //     $clientToken = $gateway->clientToken()->generate([
+    //         "customerId" => $customerId
+    //     ]);
+    //     echo($clientToken = $gateway->clientToken()->generate());
+    // })->name("sponsorship");
 });
-
 // Rotte per il guest
 Route::name('guest/')->namespace('Guest')->group(function()
 {
     Route::get('/', 'GuestHouseController@index')->name('home');
     Route::get('house/{slug}', 'GuestHouseController@show')->name('house');
-
     Route::get('search', 'SearchController@index')->name('search');
     // Route::post('search/results', 'SearchController@store')->name('search/results');
     Route::get('getallhouses', 'SearchController@getAllHouses')->name('getallhouses');
+    Route::post('/message', 'MessageController@store')->name('message.store');
 });
-
 Route::resource('api', 'ApiController');
+
+

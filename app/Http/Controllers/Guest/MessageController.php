@@ -1,8 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Guest;
+
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Message;
+use App\House;
+use App\User;
+
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -14,8 +22,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +33,8 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        
+        
     }
 
     /**
@@ -35,7 +45,28 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        
+        $request->validate ([
+            'email' => 'string|required',
+            'name' => 'string|required|max:100',
+            'message' => 'required'
+        ]);
+        
+        $newMessage =  new Message;
+        $newMessage->email=$data['email'];
+        $newMessage->guest_name=$data['name'];
+        $newMessage->message=$data['message'];
+        $newMessage->house_id=$data['house_id'];
+
+        $send = $newMessage->save();
+
+        if (!$send) {
+            return redirect()->back()->with('status', 'Messaggio non inviato');
+        }
+
+        return redirect()->back()->with('status', 'Messaggio inviato');
+
     }
 
     /**
@@ -78,8 +109,8 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
-        //
+        
     }
 }

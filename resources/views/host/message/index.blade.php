@@ -11,7 +11,7 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Numero messaggio</th>
+            <th scope="col">Id Casa</th>
             <th scope="col">Nome utente</th>
             <th scope="col">Email</th>
             <th scope="col">Azioni</th>

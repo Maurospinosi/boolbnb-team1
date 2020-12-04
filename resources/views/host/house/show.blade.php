@@ -113,15 +113,5 @@
 
     </div>
 
-        </div>
-
-    </div>
-
-        -------------------------------------------------
-
-    <h1>mappa</h1>
-    <div id="map-example-container"></div>
-    <input type="search" id="input-map" class="form-control" placeholder="Where are we going?" />
-    <script src="{{asset("js/map.js")}}"></script>
 
 @endsection

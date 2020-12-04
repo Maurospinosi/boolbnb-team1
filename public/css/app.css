@@ -11230,6 +11230,16 @@ header:hover {
   right: 0;
 }
 
+.guest-show-container .titolo {
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.guest-show-container .sottotitolo {
+  padding: 5px;
+}
+
 .host-show-container {
   position: relative;
 }

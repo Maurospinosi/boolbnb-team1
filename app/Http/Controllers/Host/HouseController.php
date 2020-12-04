@@ -9,14 +9,12 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendNewMail;
+
 use App\House;
 use App\HouseInfo;
 use App\Image;
 use App\Service;
 use App\Tag;
-use App\Http\Controllers\Host\DB;
 
 
 class HouseController extends Controller
