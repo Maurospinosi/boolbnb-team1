@@ -74,8 +74,8 @@ $(document).ready(function () {
         }
       }
     }).configure({
-      type: 'address'
-      // type: 'city',
+      // type: 'address'
+      type: 'city',
       // aroundLatLngViaIP: false,
     });
     placesAutocomplete.on('change', function resultSelected(e) {
@@ -92,16 +92,6 @@ $(document).ready(function () {
 
 
   // RICERCA con filtri
-
-  // const queryString = window.location.href;
-
-  // const urlParams = new URLSearchParams(queryString);
-
-  // const lat = urlParams.get('lat')
-  // console.log(lat);
-
-  // const lon = urlParams.get('lon')
-  // console.log(lon);
 
   // Endpoint in cui si trova il database
   var endpoint = 'http://localhost:8000/api/getallhouses';
@@ -168,13 +158,12 @@ $(document).ready(function () {
 
     var distance = $(this).find('input[name="distance"]').val();
 
-    console.log(distance);
 
     if(services.length == 0) {
       services = "";
     }
 
-    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
+    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance);
   });
 
   // Chiamata ajax che prende i dati dai filtri
@@ -224,16 +213,4 @@ $(document).ready(function () {
       $('#house-container').append("<h2>Nessun risultato trovato</h2>");
     }
   }
-
-  // PAGAMENTI SPONSORIZZAZIONE
-  // Step two: create a dropin instance using that container (or a string
-  //   that functions as a query selector such as `#dropin-container`)
-    braintree.dropin.create({
-      container: document.getElementById('dropin-container'),
-      // ...plus remaining configuration
-    }, (error, dropinInstance) => {
-      // Use `dropinInstance` here
-      // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-    });
-    
 });
