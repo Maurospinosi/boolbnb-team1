@@ -64,6 +64,30 @@
             @endif
             @endforeach
         </div>
-
+        <div class="form w-100">
+            <h2 class="text-center">Invia un messaggio</h2>
+            <form class="ml-1 p-3 w-100">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email</label>
+                  <input type="email" class="form-control w-100" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Name</label>
+                    <input type="name" class="form-control w-100" id="name" placeholder="inserisci il tuo nome">
+                  </div>
+               
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Example textarea</label>
+                  <textarea class="form-control w-100" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary">Invia</button>
+              </form>
+        </div>
     </div>
+    <div id="map-example-container"></div>
+    <input type="search" id="input-map" class="form-control"/>
+    <input id="latitudine"  value=" {{$house->houseinfo->lat}}">
+    <input id="longitudine"   value=" {{$house->houseinfo->lon}}">
+
+    <script src="{{ asset('js/map.js') }}"></script>
 @endsection

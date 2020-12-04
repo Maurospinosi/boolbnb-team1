@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\host;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
 use App\Message;
 use App\House;
 use App\User;
@@ -47,7 +48,26 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $request->validate([
+          'email' => 'string|max:90|required|email',
+          'guest_name' => 'string|max:100',
+          'message' => 'string|required|min:10|max:700'
+
+        ]);
+
+        $newMessage = new Message;
+        $newMessage->email = $data["email"];
+        $newMessage->guest_name = $data["guest_name"];
+        $newMessage->message = $data["message"];
+
+        $saved = $newMessage->save();
+        if (!$saved) {
+            return redirect()->back()->with('status', "Il messaggio non è stato inviato");
+        }
+        Mail::to( $newMessage->user->email)->send(new SendNewMail($newMessage));
+        return redirect()->back()->with('status', 'Messaggio inviato');
     }
 
     /**
