@@ -42,11 +42,4 @@ Route::name('guest/')->namespace('Guest')->group(function()
     Route::get('house/{slug}', 'GuestHouseController@show')->name('house');
 
     Route::get('search', 'SearchController@index')->name('search');
-<<<<<<< HEAD
-=======
-    // Route::post('search/results', 'SearchController@store')->name('search/results');
-    Route::get('getallhouses', 'SearchController@getAllHouses')->name('getallhouses');
->>>>>>> main
 });
-
-Route::resource('api', 'ApiController');

@@ -52850,7 +52850,6 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
-<<<<<<< HEAD
   //// SPONSORIZZAZIONE ////
   $("#host-sponsorship h5").on("click", function () {
     $(this).siblings("select").toggleClass("d-none");
@@ -52867,12 +52866,7 @@ $(document).ready(function () {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
       dropinInstance.requestPaymentMethod(function (error, payload) {
-        if (error) console.error(error); // Step four: when the user is ready to complete their
-        //   transaction, use the dropinInstance to get a payment
-        //   method nonce for the user's selected payment method, then add
-        //   it a the hidden field before submitting the complete form to
-        //   a server-side integration
-
+        if (error) console.error(error);
         document.getElementById('nonce').value = payload.nonce;
         form.submit();
       });
@@ -52888,11 +52882,11 @@ $(document).ready(function () {
     } else {
       nav.removeClass("header-color");
     }
-=======
+  });
   /*Funzione che al click sull'hamburger fa apparire il menù */
+
   $('.hamburger').click(function () {
     $(".hamburger-menu").toggle();
->>>>>>> main
   }); // ALGOLIA
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
@@ -53007,7 +53001,7 @@ $(document).ready(function () {
       },
       "method": "GET",
       "success": function success(data) {
-        console.log(data); // printResults(data);
+        printResults(data);
       },
       "error": function error(err) {
         alert("Error");
@@ -53017,21 +53011,35 @@ $(document).ready(function () {
 
 
   function printResults(dataArray) {
-    for (var i = 0; i < dataArray.length; i++) {
-      console.log(dataArray[i]['title']);
-    }
-  } // //// BRAINTREE /////
-  // // Step two: create a dropin instance using that container (or a string
-  // //   that functions as a query selector such as `#dropin-container`)
-  // braintree.dropin.create({
-  //   authorization: CLIENT_TOKEN_FROM_SERVER,
-  //   container: document.getElementById('dropin-container'),
-  //   // ...plus remaining configuration
-  // }, (error, dropinInstance) => {
-  //   // Use `dropinInstance` here
-  //   // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-  // });
+    $('#house-container').html("");
 
+    if (dataArray.length > 0) {
+      for (var i = 0; i < dataArray.length; i++) {
+        var source = $("#house-template").html();
+        var template = Handlebars.compile(source);
+        var context = {
+          'title': dataArray[i]['title'],
+          'slug': dataArray[i]['house']['slug'],
+          'cover_image': dataArray[i]['cover_image']
+        };
+        var html = template(context);
+        $('#house-container').append(html);
+      }
+    } else {
+      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
+    }
+  }
+}); ///// FUNZIONI
+
+/* Funzione per aggiungere una classe dopo lo scroll di 150px */
+
+var nav = $('.header-style');
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 150) {
+    nav.addClass("header-color");
+  } else {
+    nav.removeClass("header-color");
+  }
 });
 
 /***/ }),
@@ -53099,8 +53107,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

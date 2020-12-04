@@ -3,7 +3,6 @@ const $ = require("jquery");
 const Handlebars = require("handlebars");
 
 $(document).ready(function () {
-<<<<<<< HEAD
 
   //// SPONSORIZZAZIONE ////
     $("#host-sponsorship h5").on("click", function(){
@@ -48,13 +47,11 @@ $(document).ready(function () {
     }
   });
 
-=======
     
   /*Funzione che al click sull'hamburger fa apparire il menù */
     $('.hamburger').click(function () {
       $(".hamburger-menu").toggle();
     }); 
->>>>>>> main
 
   // ALGOLIA
   var places = require('places.js');
@@ -171,7 +168,7 @@ $(document).ready(function () {
     if(services.length == 0) {
       services = "";
     }
-  
+
     callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
   });
 
@@ -192,8 +189,7 @@ $(document).ready(function () {
       },
       "method": "GET", 
       "success": function(data) {
-        console.log(data);
-        // printResults(data);
+        printResults(data);
       },
       "error": function(err) {
         alert("Error");
@@ -203,12 +199,27 @@ $(document).ready(function () {
 
   // Funzione che stampa le case richieste da callDatabase
   function printResults(dataArray) {
-    for(var i = 0; i < dataArray.length; i++) {
-      console.log(dataArray[i]['title']);
+    $('#house-container').html("");
+
+    if (dataArray.length > 0) {
+      for (var i = 0; i < dataArray.length; i++) {
+
+        var source = $("#house-template").html();
+        var template = Handlebars.compile(source);
+        var context = {
+          'title': dataArray[i]['title'],
+          'slug': dataArray[i]['house']['slug'],
+          'cover_image': dataArray[i]['cover_image'],
+        };
+        var html = template(context);
+
+        $('#house-container').append(html);
+      }
+    } else {
+      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
     }
   }
 
-<<<<<<< HEAD
 });
 
 
@@ -223,18 +234,4 @@ $(window).scroll(function () {
   } else {
     nav.removeClass("header-color");
   }
-=======
-
-
-  // PAGAMENTI SPONSORIZZAZIONE
-  // Step two: create a dropin instance using that container (or a string
-  //   that functions as a query selector such as `#dropin-container`)
-    braintree.dropin.create({
-      container: document.getElementById('dropin-container'),
-      // ...plus remaining configuration
-    }, (error, dropinInstance) => {
-      // Use `dropinInstance` here
-      // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-    });
->>>>>>> main
 });

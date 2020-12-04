@@ -11244,7 +11244,6 @@ header:hover {
   right: 0;
 }
 
-<<<<<<< HEAD
 .host-show-container .auth-buttons ul {
   list-style: none;
   display: flex;
@@ -11254,7 +11253,8 @@ header:hover {
 
 .host-show-container .auth-buttons #host-sponsorship input[type=submit] {
   background-color: lightgrey;
-=======
+}
+
 @media screen and (max-width: 768px) {
   footer img {
     width: 100px;
@@ -11387,6 +11387,5 @@ footer .copyright ul i {
 
 footer:hover {
   box-shadow: 0 1px 20px #ff385c;
->>>>>>> main
 }
 

@@ -63,7 +63,7 @@ class ApiController extends Controller
                 $housesToPrint[] = $house_info; 
             }
         }
-
+        dd($housesToPrint);
         return $housesToPrint;
     }
 
