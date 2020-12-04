@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "braintree/braintree_php": "^5.4.0",
         "fakerphp/faker": "^1.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
@@ -16,8 +17,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4",
-        "malhal/laravel-geographical": "^1.0",
-        "braintree/braintree_php" : "5.4.0"
+        "malhal/laravel-geographical": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -64,4 +64,3 @@
         ]
     }
 }
-

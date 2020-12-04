@@ -6,24 +6,44 @@
 
 @section('page-content')
 
+    {{-- Messsaggio di errore per sponsorizzazione senza € --}}
+    @error('amount')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror        
 
     <div class="container host-show-container">
-        {{-- Sponsorizzazione --}}
-        @if (Auth::id() == $house->user_id) 
-            <div id="dropin-container">
-                <a href="{{route('host/sponsorship', Auth::id())}}">Paga</a>
-            </div>
-        @endif
 
-        {{-- Tasti di Modifica e Cancella --}}
+        {{-- Tasti di Modifica, Cancella e Sponsorizza --}}
         @if(Auth::id() == $house->user_id)
-            <div class="auth-buttons">
-                <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
-                <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
-                    @csrf
-                    @method("DELETE")
-                        <button class="btn btn-danger">Cancella</button>
-                </form>
+        
+        <div class="auth-buttons">
+                <ul>
+                    <li>
+                        <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
+                    </li>
+                    <li>
+                        <form id="host-sponsorship" action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
+                            @csrf
+                            @method("GET")
+                            <h5 class="btn btn-warning">Sponsorizza</h5>
+                            <select class="form-control d-none" name="amount">
+                                <option value="" selected>Seleziona</option>
+                                <option value="2.99">2.99€ / 24h</option>
+                                <option value="5.99">5.99€ / 72h</option>
+                                <option value="9.99">9.99€ / 144h</option>
+                            </select>
+                            <input type="hidden" name="url" value="{{Request::url()}}">
+                            <input class="form-control d-none" type="submit" value="Vai">
+                        </form>
+                    </li>
+                    <li>
+                        <form action="{{route("host/house.destroy", $house->id)}}" method="post">
+                            @csrf
+                            @method("DELETE")
+                                <button class="btn btn-danger">Cancella</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
         @endif
 
@@ -107,9 +127,11 @@
     </div>
 
         </div>
+        <div id="map-example-container"></div>
+        <input type="search" id="input-map" class="form-control"/>
+        <input id="latitudine"  value=" {{$house->houseinfo->lat}}">
+        <input id="longitudine"   value=" {{$house->houseinfo->lon}}">
+    
+        <script src="{{ asset('js/map.js') }}"></script>
 
-        <h1>mappa</h1>
-    <div id="map-example-container"></div>
-    <input type="search" id="input-map" class="form-control" placeholder="Where are we going?" />
-    <script src="{{asset("js/map.js")}}"></script>
 @endsection

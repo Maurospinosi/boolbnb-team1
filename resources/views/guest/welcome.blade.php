@@ -73,7 +73,9 @@
 @section('page-content')
     
 {{-- Jumbotron --}}
-<div class="jumbotron"></div>
+<div class="no-wrap">
+    <div class="jumbotron"></div>
+</div>
 {{-- fine Jumbotron --}}
 
 <div class="houses-container">
