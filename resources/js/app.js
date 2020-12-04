@@ -47,11 +47,16 @@ $(document).ready(function () {
     }
   });
 
-    
   /*Funzione che al click sull'hamburger fa apparire il menù */
     $('.hamburger').click(function () {
       $(".hamburger-menu").toggle();
     }); 
+   
+  /*Funzione che al doppio click sul body fa sparire il menù */
+    $("body").dblclick(function(){
+      $(".hamburger-menu").fadeOut('active');
+    });
+
 
   // ALGOLIA
   var places = require('places.js');
@@ -220,18 +225,14 @@ $(document).ready(function () {
     }
   }
 
-});
-
-
-///// FUNZIONI
-
-/* Funzione per aggiungere una classe dopo lo scroll di 150px */
-var nav = $('.header-style');
-
-$(window).scroll(function () {
-  if ($(this).scrollTop() > 150) {
-    nav.addClass("header-color");
-  } else {
-    nav.removeClass("header-color");
-  }
+  // PAGAMENTI SPONSORIZZAZIONE
+  // Step two: create a dropin instance using that container (or a string
+  //   that functions as a query selector such as `#dropin-container`)
+    braintree.dropin.create({
+      container: document.getElementById('dropin-container'),
+      // ...plus remaining configuration
+    }, (error, dropinInstance) => {
+      // Use `dropinInstance` here
+      // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
+    });
 });
