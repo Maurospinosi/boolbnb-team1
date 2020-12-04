@@ -52850,9 +52850,48 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
 $(document).ready(function () {
+  //// SPONSORIZZAZIONE ////
+  $("#host-sponsorship h5").on("click", function () {
+    $(this).siblings("select").toggleClass("d-none");
+    $(this).siblings("input[type='submit']").toggleClass("d-none");
+  }); //// FINE SPONSORIZZAZIONE ////
+  //// BRAINTREE ////
+
+  var form = document.getElementById('payment-form');
+  braintree.dropin.create({
+    authorization: 'sandbox_csp9zxcv_7fvbtn5hs7yp3kb2',
+    container: '#dropin-container'
+  }, function (error, dropinInstance) {
+    if (error) console.error(error);
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      dropinInstance.requestPaymentMethod(function (error, payload) {
+        if (error) console.error(error);
+        document.getElementById('nonce').value = payload.nonce;
+        form.submit();
+      });
+    });
+  }); /// FINE BRAINTREE ////
+
+  /* Funzione per aggiungere una classe dopo lo scroll di 150px */
+
+  var nav = $('.header-style');
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 150) {
+      nav.addClass("header-color");
+    } else {
+      nav.removeClass("header-color");
+    }
+  });
   /*Funzione che al click sull'hamburger fa apparire il menù */
+
   $('.hamburger').click(function () {
     $(".hamburger-menu").toggle();
+  });
+  /*Funzione che al doppio click sul body fa sparire il menù */
+
+  $("body").dblclick(function () {
+    $(".hamburger-menu").fadeOut('active');
   }); // ALGOLIA
 
   var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
@@ -52869,8 +52908,8 @@ $(document).ready(function () {
         }
       }
     }).configure({
-      type: 'address' // type: 'city',
-      // aroundLatLngViaIP: false,
+      // type: 'address'
+      type: 'city' // aroundLatLngViaIP: false,
 
     });
     placesAutocomplete.on('change', function resultSelected(e) {
@@ -52882,12 +52921,6 @@ $(document).ready(function () {
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
   })(); // RICERCA con filtri
-  // const queryString = window.location.href;
-  // const urlParams = new URLSearchParams(queryString);
-  // const lat = urlParams.get('lat')
-  // console.log(lat);
-  // const lon = urlParams.get('lon')
-  // console.log(lon);
   // Endpoint in cui si trova il database
 
 
@@ -52942,13 +52975,12 @@ $(document).ready(function () {
 
     var price = $(this).find('input[name="price"]').val();
     var distance = $(this).find('input[name="distance"]').val();
-    console.log(distance);
 
     if (services.length == 0) {
       services = "";
     }
 
-    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price);
+    callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance);
   }); // Chiamata ajax che prende i dati dai filtri
 
   function callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance) {
@@ -52967,7 +52999,7 @@ $(document).ready(function () {
       },
       "method": "GET",
       "success": function success(data) {
-        console.log(data); // printResults(data);
+        printResults(data);
       },
       "error": function error(err) {
         alert("Error");
@@ -52977,20 +53009,24 @@ $(document).ready(function () {
 
 
   function printResults(dataArray) {
-    for (var i = 0; i < dataArray.length; i++) {
-      console.log(dataArray[i]['title']);
+    $('#house-container').html("");
+
+    if (dataArray.length > 0) {
+      for (var i = 0; i < dataArray.length; i++) {
+        var source = $("#house-template").html();
+        var template = Handlebars.compile(source);
+        var context = {
+          'title': dataArray[i]['title'],
+          'slug': dataArray[i]['house']['slug'],
+          'cover_image': dataArray[i]['cover_image']
+        };
+        var html = template(context);
+        $('#house-container').append(html);
+      }
+    } else {
+      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
     }
-  } // PAGAMENTI SPONSORIZZAZIONE
-  // Step two: create a dropin instance using that container (or a string
-  //   that functions as a query selector such as `#dropin-container`)
-
-
-  braintree.dropin.create({
-    container: document.getElementById('dropin-container') // ...plus remaining configuration
-
-  }, function (error, dropinInstance) {// Use `dropinInstance` here
-    // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-  });
+  }
 });
 
 /***/ }),

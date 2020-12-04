@@ -3,8 +3,6 @@
 @section('title')
     Risultati
 @endsection
-
-
 @section('page-content')
 <style>
     ul {
@@ -126,8 +124,6 @@
 
         </div>
     </div>
-
-
     <script id="house-template" type="text/x-handlebars-template">
         <div class="card" style="width: 18rem;"> 
             
@@ -139,5 +135,4 @@
             </div>
         </div>
       </script>
-
 @endsection

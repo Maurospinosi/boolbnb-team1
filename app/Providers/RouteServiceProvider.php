@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+// use Braintree\Configuration;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -32,9 +33,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        // Configuration::environment(env('BRAINTREE_ENV'));
+        // Configuration::merchantId(env('BRAINTREE_MERCHANT_ID'));
+        // Configuration::publicKey(env('BRAINTREE_PUBLIC_KEY'));
+        // Configuration::privateKey(env('BRAINTREE_PRIVATE_KEY'));
+
     }
 
     /**

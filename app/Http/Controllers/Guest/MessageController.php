@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Guest;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Http\Request;
 use App\Message;
 use App\House;
 use App\User;
 
-use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {

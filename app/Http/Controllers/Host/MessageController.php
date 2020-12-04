@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Host;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
-
 use App\Message;
 use App\House;
 use App\User;

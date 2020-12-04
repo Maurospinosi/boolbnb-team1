@@ -4,11 +4,14 @@ margin:0;
 padding:0;
 }
 .wrapper{
-    margin-top: 100px;
+    margin-top: 120px;
 }
 .no-wrap{
-    margin-top: -100px;
+    margin-top: -30px;
 }
 .active{
     display: block;
+}
+.d-none {
+    display: none;
 }

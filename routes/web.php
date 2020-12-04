@@ -22,19 +22,11 @@ Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->gro
     Route::resource('/house', 'HouseController'); 
     Route::resource('/message', 'MessageController');    
    
-    // Route::get('/sponsorship/{id}', function($clientToken){
-    //     $gateway = new Braintree\Gateway([
-    //         'environment' => 'sandbox',
-    //         'merchantId' => 'use_your_merchant_id',
-    //         'publicKey' => 'use_your_public_key',
-    //         'privateKey' => 'use_your_private_key'
-    //     ]);
-    //     // pass $clientToken to your front-end
-    //     $clientToken = $gateway->clientToken()->generate([
-    //         "customerId" => $customerId
-    //     ]);
-    //     echo($clientToken = $gateway->clientToken()->generate());
-    // })->name("sponsorship");
+    Route::resource('/house', 'HouseController');
+
+    Route::get('/sponsorship', 'PaymentsController@index')->name('sponsorship');
+    Route::get('/sponsorship/payment', "PaymentsController@pay")->name('payment');
+
 });
 // Rotte per il guest
 Route::name('guest/')->namespace('Guest')->group(function()
@@ -42,10 +34,4 @@ Route::name('guest/')->namespace('Guest')->group(function()
     Route::get('/', 'GuestHouseController@index')->name('home');
     Route::get('house/{slug}', 'GuestHouseController@show')->name('house');
     Route::get('search', 'SearchController@index')->name('search');
-    // Route::post('search/results', 'SearchController@store')->name('search/results');
-    Route::get('getallhouses', 'SearchController@getAllHouses')->name('getallhouses');
-    Route::post('/message', 'MessageController@store')->name('message.store');
 });
-Route::resource('api', 'ApiController');
-
-

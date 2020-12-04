@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('api/')->namespace('Api')->group(function()
 {
-    // Route::get('search', 'ApiController@index')->name('search');
-    // Route::post('search/results', 'SearchController@store')->name('search/results');
     Route::get('getallhouses', 'ApiController@getAllHouses')->name('getallhouses');
 });
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
