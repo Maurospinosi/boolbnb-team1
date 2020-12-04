@@ -91,12 +91,12 @@ header{
     top:0;
     left:0;
     z-index: 1;
-    background-color: #f5f9fe;
+    background-color: #fff;
     transition: box-shadow 1.5s;
     /* Logo */
     img{
-        width:100px;
-        height: 100px;
+        max-width: 200px;
+        align-items: center;
     }
     /* Menu login, 'Diventa un Host', hamburger */
     .hamburger-menu{
@@ -243,10 +243,9 @@ header:hover{
 }
 .jumbotron{
     height: 100vh;
-    background-image: url(../../../public/img/jumbotron2.png);
+    background-image: url('../../../public/img/jumbotron2.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #f4f4f4;
     opacity:0.7;
 }

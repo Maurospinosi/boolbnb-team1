@@ -42,6 +42,7 @@
                     @endforeach
                 </ul>
             </div>
+            
             <div class="d-inline-flex p-2 bd-highlight">
                 <ul class="list-inline list-unstyled">
                     <li class="list-inline-item">Città: {{$house->houseinfo->city}}</li>
@@ -49,52 +50,65 @@
                 </ul>
             </div>
         </div>
-      
-        <div class="d-flex p-2 bd-highlight" id="cover-image">
-            @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                <img class="img-fluid" src="{{$house->houseinfo->cover_image}}" alt="random picture">
-            @else
-                <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
-            @endif
-        </div>
-       
 
-        <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
+        <div id="carouselExampleSlidesOnly" class="carousel slide cover-image" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    @if (strpos($house->houseinfo->cover_image, 'http') === 0)
+                        <img class="d-block w-100" src="{{$house->houseinfo->cover_image}}" alt="random picture">
+                    @else
+                        <img class="d-block w-100" src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
+                     @endif
+                </div>
+            </div>
+        </div>    
+  
+        <div class="row">
             @foreach ($images as $image)
+            <div class="col-md-3">
                 @if (strpos($image->url, 'http') === 0)
-                    <img class="img-thumbnail" src="{{$image->url}}" alt="random picture">
+                     <img class="img-thumbnail gallery" src="{{$image->url}}" alt="random picture">
                 @else
-                    <img src="{{asset('storage/'.$image->url)}}" alt="">
+                    <img class="img-fluid gallery" src="{{asset('storage/'.$image->url)}}" alt="">
                 @endif
+            </div>
             @endforeach
-        </div>
+        </div> 
 
-        <div class="d-flex flex-column  bd-highlight mb-3">
-            <div class="d-flex justify-content-center p-2 bd-highlight">
-                <ul class="list-inline list-unstyled">
-                    <li class="list-inline-item"><i class="fas fa-bed"></i></li>
-                    <li class="list-inline-item">Stanze: {{$house->houseinfo->rooms}}</li>
-                    <li class="list-inline-item"><i class="fas fa-user"></i></li>
-                    <li class="list-inline-item">Letti: {{$house->houseinfo->beds}}</li>
-                    <li class="list-inline-item"><i class="fas fa-bath"></i></li>
-                    <li class="list-inline-item">Bagni: {{$house->houseinfo->bathrooms}}</li>
-                    <li class="list-inline-item"><i class="fas fa-ruler-combined"></i></li>
-                    <li class="list-inline-item">Metri quadri: {{$house->houseinfo->mq}}</li>
-                </ul>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-column  bd-highlight mb-3">
+                    <div class="d-flex justify-content-center p-2 bd-highlight">
+                        <ul class="list-inline list-unstyled">
+                            <li class="list-inline-item"><i class="fas fa-bed"></i></li>
+                            <li class="list-inline-item">Stanze: {{$house->houseinfo->rooms}}</li>
+                            <li class="list-inline-item"><i class="fas fa-user"></i></li>
+                            <li class="list-inline-item">Letti: {{$house->houseinfo->beds}}</li>
+                            <li class="list-inline-item"><i class="fas fa-bath"></i></li>
+                            <li class="list-inline-item">Bagni: {{$house->houseinfo->bathrooms}}</li>
+                            <li class="list-inline-item"><i class="fas fa-ruler-combined"></i></li>
+                            <li class="list-inline-item">Metri quadri: {{$house->houseinfo->mq}}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="d-flex flex-column bd-highlight mb-3">
-            <div class="p-2 bd-highlight">
-                <h6>Servizi</h6>
-                <ul class="list-inline list-unstyled">
-            
-                     @foreach ($houseServices as $houseService)
-                        <li>{{$houseService}}</li>
-                    @endforeach      
-                </ul>
+        <div class="row">
+            <div class="col">
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="p-2 bd-highlight">
+                        <h6>Servizi</h6>
+                        <ul class="list-inline list-unstyled">
+                    
+                             @foreach ($houseServices as $houseService)
+                                <li>{{$houseService}}</li>
+                            @endforeach      
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+        
 
         <div class="right ">
             <div class="form-box show-sticky">

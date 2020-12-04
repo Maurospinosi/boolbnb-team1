@@ -1,0 +1,40 @@
+.titolo {
+    color: $grey-airbnb;
+    font-size: 18px;
+    margin: 5px;
+    text-transform: uppercase;
+}
+
+.sottotitolo {
+    color: $grey-airbnb;
+    font-size: 12px;
+    font-weight: light;
+    margin: 5px;
+}
+
+    
+.btn-group {
+
+    background: rgb(0,166,171);
+    background: linear-gradient(153deg, rgba(0,166,171,0.8799894957983193) 26%, rgba(255,56,92,0.8491771708683473) 57%);
+    border-radius: 5px;
+
+    .btn-edit, .btn-show, .btn-delete {
+    
+        padding: 6px 12px;
+        font-size: 14px;
+    
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        
+    }
+
+    .btn-delete {
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+

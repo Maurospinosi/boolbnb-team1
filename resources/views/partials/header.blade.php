@@ -2,7 +2,7 @@
 <header class="header-style">
     {{-- Logo --}}
     <a href="{{route('guest/home')}}">
-        <img src="{{asset('../img/logo.png')}}" alt="Logo">
+        <img src="{{asset('../img/logo-chiave.png')}}" alt="Logo">
     </a>
 
     {{-- Barra di ricerca --}}

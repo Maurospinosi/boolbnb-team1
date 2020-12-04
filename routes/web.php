@@ -37,3 +37,6 @@ Route::name('guest/')->namespace('Guest')->group(function()
     Route::get('/message', 'MessageController@store')->name('message.store');
 
 });
+
+
+

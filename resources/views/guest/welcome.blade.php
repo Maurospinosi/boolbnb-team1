@@ -9,7 +9,6 @@
     html, body {
     background-color: #fff;
     color: #636b6f;
-    font-family: 'Nunito', sans-serif;
     font-weight: 200;
     height: 100vh;
     margin: 0;
@@ -59,7 +58,7 @@
 
     .houses-container {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
 
     .sponsorizzata {
@@ -78,30 +77,36 @@
 </div>
 {{-- fine Jumbotron --}}
 
-<div class="houses-container">
-    @foreach($sponsoredHouses as $house)
-        <div class="card" style="width: 18rem;">
-            <span class="badge badge-secondary sponsorizzata">In evidenza</span>
 
-            @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                <img src="{{$house->houseinfo->cover_image}}" alt="random picture">
-            @else
-                <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
-            @endif    
-                
-            <div class="card-body">
-                <h5 class="card-title">{{$house->houseinfo->title}}</h5>
-                <a href="
-                @if (Auth::id() == $house->user_id)
-                {{route("host/house.show", $house->id)}}
-                @else
-                {{route("guest/house", $house->slug)}}
-                @endif
-                " class="btn btn-warning">Show</a>
+<div class="container">
+    <div class="row">
+        @foreach($sponsoredHouses as $house)
+            <div class="col-lg-4 col-md-6 mb-4">
+    
+                <div class="card h-100">
+                    <span class="badge badge-secondary sponsorizzata">In evidenza</span>
+                    @if (strpos($house->houseinfo->cover_image, 'http') === 0)
+                        <img class="card-img-top" src="{{$house->houseinfo->cover_image}}" alt="random picture">
+                     @else
+                        <img class="card-img-top" src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
+                    @endif    
+    
+                    <div class="card-body">
+                        <h4 class="card-title titolo">{{$house->houseinfo->title}}</h4>
+                    </div>
+                    <div class="card-footer d-flex justify-content-center ">
+                        <button type="button" class="btn btn-scopri">
+                            <a href="
+                                @if (Auth::id() == $house->user_id)
+                                {{route("host/house.show", $house->id)}}
+                                @else
+                                {{route("guest/house", $house->slug)}}
+                                @endif">Scopri</a></button>
+                    </div>
+                </div>
             </div>
+        @endforeach
     </div>
-    @endforeach
 </div>
-
 @endsection
 
