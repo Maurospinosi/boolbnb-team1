@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -48901,26 +48901,14 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*******************************************************************!*\
-  !*** multi ./resources/js/statistic.js ./resources/sass/app.scss ***!
-  \*******************************************************************/
+/***/ 3:
+/*!*****************************************!*\
+  !*** multi ./resources/js/statistic.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
 
 
 /***/ })
