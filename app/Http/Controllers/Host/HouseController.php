@@ -154,10 +154,20 @@ class HouseController extends Controller
 
         $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
 
+        $services = Service::all();
+
+        $houseServices = [];
+
+        foreach($services as $service) {
+            if ($house->services->contains($service->id)) {
+                $houseServices[] = $service->name;
+            }
+        }
+
         if(Auth::id() != $house->user_id) {
             return redirect()->route('guest/house', $house->slug);
         } else {
-            return view("host/house.show", compact("house", "images"));
+            return view("host/house.show", compact("house", "images", "services"));
         }
     }
 

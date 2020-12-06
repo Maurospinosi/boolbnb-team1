@@ -11257,25 +11257,62 @@ header:hover {
   color: #fff;
 }
 
-.host-show-container {
-  position: relative;
+#host-sponsorship input[type=submit] {
+  background-color: dark-grey;
 }
 
-.host-show-container .auth-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.host-show-container .auth-buttons ul {
-  list-style: none;
+.cards {
   display: flex;
-  justify-content: space-around;
-  text-align: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: row;
+  max-height: 100vh;
 }
 
-.host-show-container .auth-buttons #host-sponsorship input[type=submit] {
-  background-color: lightgrey;
+.cards img {
+  margin: 10px;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
+  max-width: 23vw;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: light;
+}
+
+.host-nav-col {
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.host-nav-col .host-nav {
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.host-nav-col .host-nav li {
+  padding: 5px;
+}
+
+.host-nav-col .host-nav a {
+  text-decoration: none;
+  color: #222222;
+  font-size: 14px;
+}
+
+.host-nav-col .host-nav i {
+  font-size: 20px;
+  padding: 5px;
 }
 
 h4 {
