@@ -1,7 +1,18 @@
 <?php
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+
+use App\House;
 use App\HouseInfo;
+use App\Message;
+use App\View;
+
+use Malhal\Geographical\Geographical;
+
 class ApiController extends Controller
 {
     public function getAllHouses()
