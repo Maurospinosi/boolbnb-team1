@@ -23,6 +23,8 @@ Route::prefix('host')->name('host/')->namespace('Host')->middleware('auth')->gro
     Route::resource('/message', 'MessageController');    
    
     Route::resource('/house', 'HouseController');
+    
+    Route::get('/house/{id}/statistic', 'StatisticController@index')->name('house/statistic');
 
     Route::get('/sponsorship', 'PaymentsController@index')->name('sponsorship');
     Route::get('/sponsorship/payment', "PaymentsController@pay")->name('payment');
