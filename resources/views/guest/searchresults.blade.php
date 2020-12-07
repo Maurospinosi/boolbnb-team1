@@ -55,7 +55,7 @@
 </style>
     
     <div class="container">
-
+        {{-- Form di ricerca avanzata --}}
         <form id="search-results-form">
             <div>
                 <ul class="services">
@@ -97,42 +97,106 @@
                 </ul>
             </div>
         </form>
+        <div class="row">
+        </div>
 
-
-        <div id="house-container">
-
-            @foreach ($houses_info as $houseinfo)
-                <div class="card">
-                    {{-- Badge per casa sponsorizzata --}}
-                    @if (in_array($houseinfo->house_id, $sponsoredHouses))   
-                        <span class="badge badge-secondary sponsorizzata">Sponsorizzata</span>
-                    @endif
-                    {{-- / badge --}}
-
-                    @if (strpos($houseinfo->cover_image, 'http') === 0)
-                        <img src="{{$houseinfo->cover_image}}" alt="random picture">
-                    @else
-                        <img src="{{asset('storage/'.$houseinfo->cover_image)}}" alt="">
-                    @endif    
-                        
-                    <div class="card-body">
-                        <h5 class="card-title">{{$houseinfo->title}}</h5>
-                        <a href="{{route("guest/house", $houseinfo->house->slug)}}" class="btn btn-warning">Show</a>
+        {{-- Case sponsorizzate --}}
+        @if(count($sponsoredHouses) > 0)
+            <div class="row" id="sponsored-houses-container">
+                @foreach ($sponsoredHouses as $sponsoredHouse)
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <span class="badge badge-secondary sponsorizzata">In evidenza</span>
+                            @if (strpos($sponsoredHouse->houseinfo->cover_image, 'http') === 0)
+                                <img class="card-img-top" src="{{$sponsoredHouse->houseinfo->cover_image}}" alt="cover picture">
+                            @else
+                                <img class="card-img-top" src="{{asset('storage/'.$sponsoredHouse->houseinfo->cover_image)}}" alt="cover picture">
+                            @endif    
+                            <div class="card-body">
+                                <h4 class="card-title titolo">{{$sponsoredHouse->houseinfo->title}}</h4>
+                            </div>
+                            <div class="card-footer d-flex justify-content-center ">
+                                <button type="button" class="btn btn-scopri">
+                                    <a href="
+                                        @if (Auth::id() == $sponsoredHouse->user_id)
+                                            {{route("host/house.show", $sponsoredHouse->id)}}
+                                        @else
+                                            {{route("guest/house", $sponsoredHouse->slug)}}
+                                        @endif">Scopri
+                                    </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+        {{-- Risultati della ricerca --}}
+        <div class="row" id="house-container">
+            @foreach ($houses_info as $house_info )
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        @if (strpos($house_info->cover_image, 'http') === 0)
+                            <img class="card-img-top" src="{{$house_info->cover_image}}" alt="cover picture">
+                        @else
+                            <img class="card-img-top" src="{{asset('storage/'.$house_info->cover_image)}}" alt="cover picture">
+                        @endif    
+                        <div class="card-body">
+                            <h4 class="card-title titolo">{{$house_info->title}}</h4>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center ">
+                            <button type="button" class="btn btn-scopri">
+                                <a href="
+                                    @if (Auth::id() == $house_info->house->user_id)
+                                        {{route("host/house.show", $house_info->house_id)}}
+                                    @else
+                                        {{route("guest/house", $house_info->house->slug)}}
+                                    @endif">Scopri
+                                </a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             @endforeach
-
         </div>
+
     </div>
+
+    {{-- Template per stampare le case --}}
     <script id="house-template" type="text/x-handlebars-template">
-        <div class="card" style="width: 18rem;"> 
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                @if (strpos($house_info->cover_image, 'http') === 0)
+                    <img class="card-img-top" src="{{$house_info->cover_image}}" alt="cover picture">
+                @else
+                    <img class="card-img-top" src="{{asset('storage/'.$house_info->cover_image)}}" alt="cover picture">
+                @endif    
+                <div class="card-body">
+                    <h4 class="card-title titolo">{{$house_info->title}}</h4>
+                </div>
+                <div class="card-footer d-flex justify-content-center ">
+                    <button type="button" class="btn btn-scopri">
+                        <a href="
+                            @if (Auth::id() == $house_info->house->user_id)
+                                {{route("host/house.show", $house_info->house_id)}}
+                            @else
+                                {{route("guest/house", $house_info->house->slug)}}
+                            @endif">Scopri
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+</script>
+    @endsection
+    <html>
+        
+        {{-- <div class="card" style="width: 18rem;"> 
             
             <img src="@{{cover_image}}" alt="">
             <div class="card-body">
                 <h5 class="card-title">@{{title}}</h5>
                 <a href="http://localhost:8000/house/@{{slug}}" class="btn btn-warning">Show</a>
-
             </div>
-        </div>
-      </script>
-@endsection
+        </div> --}}
+    </html>

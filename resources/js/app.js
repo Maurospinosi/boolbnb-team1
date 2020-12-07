@@ -1,7 +1,11 @@
 require('./bootstrap');
 const $ = require("jquery");
 const Handlebars = require("handlebars");
+var places = require('places.js');
+
+
 $(document).ready(function () {
+
   //// SPONSORIZZAZIONE ////
     $("#host-sponsorship h5").on("click", function(){
       $(this).siblings(".sponsorContent").toggleClass("d-none");
@@ -43,7 +47,6 @@ $(document).ready(function () {
     }); */
 
   // ALGOLIA
-  var places = require('places.js');
   // Ricerca per città
   var citySearch = function () {
     var placesAutocomplete = places({
@@ -71,43 +74,21 @@ $(document).ready(function () {
   };
   citySearch();
 
-  // Ricerca per indirizzi
-  var addressSearch = function () {
-    var placesAutocomplete = places({
-      appId: 'pl0CZDFYINVV',
-      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-      container: document.querySelector('#form-address'),
-      templates: {
-        value: function (suggestion) {
-          return suggestion.name;
-        }
-      }
-    }).configure({
-      type: 'address'
-      // type: 'city',
-      // aroundLatLngViaIP: false,
-    });
-    placesAutocomplete.on('change', function resultSelected(e) {
-      document.querySelector('#form-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city').value = e.suggestion.city || '';
-      document.querySelector('#form-country').value = e.suggestion.country || '';
-      document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-      document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
-      document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
-    });
-  };
-  addressSearch();
 
   // RICERCA con filtri
   // Endpoint in cui si trova il database
   var endpoint = 'http://localhost:8000/api/getallhouses';
+
   // Prendiamo i dati dai filtri
   $("#search-results-form").change(function(){
+
     // Prendiamo latitudine e longitudine
     const queryString = window.location.href;
     const urlParams = new URLSearchParams(queryString);
     const lat = urlParams.get('lat')
     const lon = urlParams.get('lon')
+    console.log(lat);
+    console.log(lon);
     // Servizi
     var services = [];
     // Prendiamo il valore di wi-fi
@@ -167,6 +148,7 @@ $(document).ready(function () {
       },
       "method": "GET", 
       "success": function(data) {
+        console.log(data);
         printResults(data);
       },
       "error": function(err) {
@@ -184,6 +166,8 @@ $(document).ready(function () {
         var context = {
           'title': dataArray[i]['title'],
           'slug': dataArray[i]['house']['slug'],
+          'house_id': dataArray[i]['house']['house_id'],
+          'user_id': dataArray[i]['house']['user_id'],
           'cover_image': dataArray[i]['cover_image'],
         };
         var html = template(context);
@@ -193,4 +177,5 @@ $(document).ready(function () {
       $('#house-container').append("<h2>Nessun risultato trovato</h2>");
     }
   }
+
 });

@@ -52849,6 +52849,8 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 
 var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js");
 
+var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js");
+
 $(document).ready(function () {
   //// SPONSORIZZAZIONE ////
   $("#host-sponsorship h5").on("click", function () {
@@ -52891,9 +52893,7 @@ $(document).ready(function () {
       $(".hamburger-menu").fadeOut('active');
     }); */
   // ALGOLIA
-
-  var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca per città
-
+  // Ricerca per città
 
   var citySearch = function citySearch() {
     var placesAutocomplete = places({
@@ -52920,34 +52920,7 @@ $(document).ready(function () {
     });
   };
 
-  citySearch(); // Ricerca per indirizzi
-
-  var addressSearch = function addressSearch() {
-    var placesAutocomplete = places({
-      appId: 'pl0CZDFYINVV',
-      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-      container: document.querySelector('#form-address'),
-      templates: {
-        value: function value(suggestion) {
-          return suggestion.name;
-        }
-      }
-    }).configure({
-      type: 'address' // type: 'city',
-      // aroundLatLngViaIP: false,
-
-    });
-    placesAutocomplete.on('change', function resultSelected(e) {
-      document.querySelector('#form-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city').value = e.suggestion.city || '';
-      document.querySelector('#form-country').value = e.suggestion.country || '';
-      document.querySelector('#form-zip').value = e.suggestion.postcode || '';
-      document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
-      document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
-    });
-  };
-
-  addressSearch(); // RICERCA con filtri
+  citySearch(); // RICERCA con filtri
   // Endpoint in cui si trova il database
 
   var endpoint = 'http://localhost:8000/api/getallhouses'; // Prendiamo i dati dai filtri
@@ -52957,7 +52930,9 @@ $(document).ready(function () {
     var queryString = window.location.href;
     var urlParams = new URLSearchParams(queryString);
     var lat = urlParams.get('lat');
-    var lon = urlParams.get('lon'); // Servizi
+    var lon = urlParams.get('lon');
+    console.log(lat);
+    console.log(lon); // Servizi
 
     var services = []; // Prendiamo il valore di wi-fi
 
@@ -53025,6 +53000,7 @@ $(document).ready(function () {
       },
       "method": "GET",
       "success": function success(data) {
+        console.log(data);
         printResults(data);
       },
       "error": function error(err) {
@@ -53044,6 +53020,8 @@ $(document).ready(function () {
         var context = {
           'title': dataArray[i]['title'],
           'slug': dataArray[i]['house']['slug'],
+          'house_id': dataArray[i]['house']['house_id'],
+          'user_id': dataArray[i]['house']['user_id'],
           'cover_image': dataArray[i]['cover_image']
         };
         var html = template(context);
@@ -53120,8 +53098,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

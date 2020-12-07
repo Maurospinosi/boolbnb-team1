@@ -11,14 +11,16 @@ class NewHouseAdded extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $dati;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($dati)
     {
-        //
+        $this->dati = $dati;
     }
 
     /**
@@ -28,6 +30,6 @@ class NewHouseAdded extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newhouseadded');
+        return $this->view('emails.newhouseadded')->subject("Nuova casa aggiunta");
     }
 }

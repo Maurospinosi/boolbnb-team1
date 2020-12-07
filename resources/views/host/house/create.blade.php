@@ -187,7 +187,5 @@ Aggiungi una nuova casa
                 <button type="submit" class="btn btn-primary">Crea</button>
           </form>
     </div>
-    {{-- <script id="image-template" type="text/x-handlebars-template">
-        <input type="file" class="form-control" id="url" name="url[]" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
-    </script>       --}}
+    <script src="{{asset('js/algoliaaddress.js')}}"></script>
 @endsection

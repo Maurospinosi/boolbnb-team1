@@ -59,22 +59,27 @@ class HouseController extends Controller
         $data = $request->all();
 
         $request->validate([
-            "title" => "required|max:100",
-            "rooms" => "required",
-            "beds" => "required",
-            "bathrooms" => "required",
-            "mq" => "required",
-            "address" => "required|max:100",
-            "country" => "required|max:60",
-            "city" => "required|max:60",
-            "zipcode" => "required",
-            "lat" => "required|max:20",
-            "lon" => "required|max:20",
-            "price" => "required",
-            "cover_image" => "required|image",
+            "title"=> [
+                'unique:houses_info',
+                'required',
+                "max:100",
+            ],
+            "rooms"=> "required",
+            "beds"=> "required",
+            "bathrooms"=> "required",
+            "mq"=> "required",
+            "address"=> "required|max:100",
+            "country"=> "required|max:60",
+            "region"=> "required|max:60",
+            "city"=> "required|max:60",
+            "zipcode"=> "required",
+            "lat"=> "required|max:20",
+            "lon"=> "required|max:20",
+            "price"=> "required",
+            "cover_image"=> "required|image",
         ]);
 
-        // validazione custom delle immagini 
+        // validazione delle immagini custom
         if (isset($data['url'])) {
             $allowedfileExtension = ['jpeg', 'jpg', 'png', 'gif', 'svg'];
             $images = $request->file('url');
@@ -92,46 +97,23 @@ class HouseController extends Controller
             }
         }
 
+        // Salvare l'immagine di copertina in public/storage
+        $filename_original = $data['cover_image']->getClientOriginalName();
+        $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
+        
         // if ($data["cover_image"] == null) {
         //     unset($data["cover_image"]);
         // }
 
-        $newHouse = new House;
-        // $newHouse->fill($data);
-
+        
         // Creare una nuova casa
+        $newHouse = new House;
         $newHouse->user_id = Auth::id();
-        $newHouse->slug = Str::of($data["title"])->slug("-");
+        $newHouse->slug= Str::of($data["title"])->slug("-");
         if (in_array("visible", $data)) {
             $newHouse->visible = true;
         }
         $newHouse->save();
-
-        // Salvo le info della casa
-        $newHouseInfo = new HouseInfo;
-        $newHouseInfo->house_id = $newHouse->id;
-        $newHouseInfo->title = $data['title'];
-        $newHouseInfo->description = $data['description'];
-        $newHouseInfo->rooms = $data['rooms'];
-        $newHouseInfo->beds = $data['beds'];
-        $newHouseInfo->bathrooms = $data['bathrooms'];
-        $newHouseInfo->mq = $data['mq'];
-        $newHouseInfo->address = $data['address'];
-        $newHouseInfo->region = $data['region'];
-        $newHouseInfo->country = $data['country'];
-        $newHouseInfo->city = $data['city'];
-        $newHouseInfo->zipcode = $data['zipcode'];
-        $newHouseInfo->lat = $data['lat'];
-        $newHouseInfo->lon = $data['lon'];
-        $newHouseInfo->price = $data['price'];
-
-        // Salvare l'immagine di copertina in public/storage
-        $filename_original = $data['cover_image']->getClientOriginalName();
-        $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
-        $newHouseInfo->cover_image = $data['cover_image'];
-
-
-        $newHouseInfo->save();
 
         // Associazione servizi alla casa nella pivot
         if (isset($data['services'])) {
@@ -154,27 +136,55 @@ class HouseController extends Controller
                 $newHouse->tags()->sync($tags);
             }
         }
+        
+
+        // Creare una nuova HouseInfo
+        $newHouseInfo = new HouseInfo;
+        $newHouseInfo->house_id = $newHouse->id;
+        $newHouseInfo->title = $data['title'];
+        $newHouseInfo->description = $data['description'];
+        $newHouseInfo->rooms = $data['rooms'];
+        $newHouseInfo->beds = $data['beds'];
+        $newHouseInfo->bathrooms = $data['bathrooms'];
+        $newHouseInfo->mq = $data['mq'];
+        $newHouseInfo->address = $data['address'];
+        $newHouseInfo->region = $data['region'];
+        $newHouseInfo->country = $data['country'];
+        $newHouseInfo->city = $data['city'];
+        $newHouseInfo->zipcode = $data['zipcode'];
+        $newHouseInfo->price = $data['price'];
+        $newHouseInfo->cover_image = $pathCover;
+        $newHouseInfo->lat = $data['lat'];
+        $newHouseInfo->lon = $data['lon'];
+        $newHouseInfo->save();
 
 
         // Se sono presenti immagini aggiuntive, inserirle nella tabella images
         if (isset($data['url'])) {
 
-            foreach ($data["url"] as $urlImage) {
-                //    dd($urlImage);
+           foreach($data["url"] as $urlImage) {
 
                 // Salvare le immagini in public/storage
                 $filename_original = $urlImage->getClientOriginalName();
                 $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
 
                 $newHouseImages = new Image;
-                $newHouseImages->houses_info_id = $newHouse->id;
+                $newHouseImages->houses_info_id = $newHouseInfo->id;
                 $newHouseImages->url = $pathUrl;
                 $newHouseImages->save();
             }
         }
 
-        Mail::to('mail@mail.it')->send(new NewHouseAdded());
+        // Inviamo la mail all'utente per l'avvenuto salvataggio della casa
+        $dati = [
+            "user_name" => $newHouse->user->name,
+            "user_email" => $newHouse->user->email,
+            "title" => $newHouseInfo->title,
+        ];
 
+        Mail::to($dati["user_email"])->send(new NewHouseAdded($dati));
+
+        // Reindirizziamo alla show della nuova casa
         return redirect()->route("host/house.show", $newHouse->id);
     }
 

@@ -32,7 +32,6 @@ class SearchController extends Controller
                                 ->orderBy('distance', 'ASC')->get();
 
        
-        
         $sponsors = Sponsor::all();
 
         $sponsoredHouses = [];
@@ -40,7 +39,7 @@ class SearchController extends Controller
         foreach($houses_info as $house_info) {
             foreach($sponsors as $sponsor) {
                 if ($house_info->house->sponsors->contains($sponsor->id)) {
-                    $sponsoredHouses[] = $house_info->house_id;
+                    $sponsoredHouses[] = $house_info->house;
                 }
             }
         }
