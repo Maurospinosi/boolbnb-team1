@@ -65,7 +65,9 @@
 footer{
     max-height: content;
     margin-top:50px;
-    background-image: linear-gradient(to right, #f5f9fe 35%, #C7DDF8);
+    //background-image: linear-gradient(to right, #f5f9fe 35%, #C7DDF8);
+    background: rgb(0,166,171);
+    background: linear-gradient(270deg, rgba(0,166,171,0.4766281512605042) 15%, rgba(255,255,255,1) 57%);
     transition: box-shadow 1.5s;
     width:100%;
     padding-bottom: 25px;
