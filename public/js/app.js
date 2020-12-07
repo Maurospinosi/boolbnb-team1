@@ -52852,8 +52852,7 @@ var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebar
 $(document).ready(function () {
   //// SPONSORIZZAZIONE ////
   $("#host-sponsorship h5").on("click", function () {
-    $(this).siblings("select").toggleClass("d-none");
-    $(this).siblings("input[type='submit']").toggleClass("d-none");
+    $(this).siblings(".sponsorContent").toggleClass("d-none");
   }); //// FINE SPONSORIZZAZIONE ////
   //// BRAINTREE ////
 
@@ -53094,8 +53093,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

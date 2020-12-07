@@ -22,18 +22,25 @@
                         <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
                     </li>
                     <li>
-                        <form id="host-sponsorship" action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
+                        <form id="host-sponsorship" action="{{route("host/sponsorship")}}" method="GET">
                             @csrf
                             @method("GET")
                             <h5 class="btn btn-warning">Sponsorizza</h5>
-                            <select class="form-control d-none" name="amount">
-                                <option value="" selected>Seleziona</option>
-                                <option value="2.99">2.99€ / 24h</option>
-                                <option value="5.99">5.99€ / 72h</option>
-                                <option value="9.99">9.99€ / 144h</option>
-                            </select>
-                            <input type="hidden" name="url" value="{{Request::url()}}">
-                            <input class="form-control d-none" type="submit" value="Vai">
+                            <div class="sponsorContent d-none">
+                                @if($house->sponsors())
+                                    <h6>Questa casa è già sponsorizzata</h6>
+                                @else
+                                <select class="form-control" name="amount">
+                                    <option value="" selected>Seleziona</option>
+                                    <option value="2.99">2.99€ / 24h</option>
+                                    <option value="5.99">5.99€ / 72h</option>
+                                    <option value="9.99">9.99€ / 144h</option>
+                                </select>
+                                <input type="hidden" name="url" value="{{Request::url()}}">
+                                <input type="hidden" name="house_id" value="{{$house->id}}">
+                                <input class="form-control" type="submit" value="Vai">
+                                @endif
+                            </div>
                         </form>
                     </li>
                     <li>
@@ -84,7 +91,8 @@
                     <figure class="col-md-4">
                         @if (strpos($image->url, 'http') === 0)
                             <a href="{{$image->url}}" data-size="1600x1067">
-                            <img src="{{$image->url}}" alt="random picture" class="img-fluid" >
+                                <img src="{{$image->url}}" alt="random picture" class="img-fluid" >
+                            </a>
                         @else
                             <img src="{{asset('storage/'.$image->url)}}" class="img-fluid"  alt="">
                         @endif
