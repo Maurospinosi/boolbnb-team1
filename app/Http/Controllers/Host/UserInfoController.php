@@ -64,11 +64,15 @@ class UserInfoController extends Controller
         }
 
         $newUserInfo->save();
+        $dati = [
+            "host_email" => $newUserInfo->user->email,
+            "host_name" => $newUserInfo->user->name,
+            "birth_date" => $data['date_of_birth'],
 
-        $host_email = $newUserInfo->user->email;
-        $host_name = $newUserInfo->user->name;
+        ];
+       
 
-        Mail::to('mail@mail.it')->send(new NewUser($newUserInfo));
+        Mail::to('mail@mail.it')->send(new NewUser($dati));
 
         return redirect('/');
 

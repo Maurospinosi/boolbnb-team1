@@ -68,11 +68,16 @@ class MessageController extends Controller
         $house = House::find($data['house_id']);
 
         $host_email = $house->user->email;
-        $host_name = $house->user->name;
 
-        // Mail::to($host_email)->send(new SendNewMail($host_name, $data['name'], $data['house_id']));
+        $dati = [
+            "host_name" => $house->user->name,
+            "guest_name" => $data['name'],
+            "guest_email" => $data['email'],
+            "text_message" => $data['message'],
 
-        Mail::to($host_email)->send(new NewMessage($host_name, $data['name'], $data['house_id']));
+        ];
+
+        Mail::to($host_email)->send(new NewMessage($dati));
 
         return redirect()->back()->with('status', 'Messaggio inviato');
     }

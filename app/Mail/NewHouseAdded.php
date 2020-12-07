@@ -30,6 +30,6 @@ class NewHouseAdded extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newhouseadded')->subject("Nuova casa aggiunta");
+        return $this->markdown('emails.newhouseadded')->subject("Nuova casa aggiunta");
     }
 }
