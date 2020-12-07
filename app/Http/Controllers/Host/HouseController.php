@@ -10,12 +10,14 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+
 use App\House;
 use App\HouseInfo;
 use App\Image;
 use App\Service;
 use App\Tag;
-
+use App\Mail\NewHouseAdded;
+use Illuminate\Support\Facades\Mail;
 
 class HouseController extends Controller
 {
@@ -153,6 +155,7 @@ class HouseController extends Controller
             }
         }
 
+
         // Se sono presenti immagini aggiuntive, inserirle nella tabella images
         if (isset($data['url'])) {
 
@@ -170,7 +173,7 @@ class HouseController extends Controller
             }
         }
 
-        // Mail::to($newpost->user->email)->send(new PostedMail($newpost));
+        Mail::to('mail@mail.it')->send(new NewHouseAdded());
 
         return redirect()->route("host/house.show", $newHouse->id);
     }

@@ -1,1 +1,1 @@
-<h1>nuovo messaggio</h1>
+@dd($message);

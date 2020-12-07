@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Message;
 use App\House;
 use App\User;
+use App\Mail\NewMessage;
 
 
 class MessageController extends Controller
@@ -67,11 +68,11 @@ class MessageController extends Controller
         $house = House::find($data['house_id']);
 
         $host_email = $house->user->email;
-        // dd($host_email);
         $host_name = $house->user->name;
-        // dd($host_name);
 
-        Mail::to($host_email)->send(new SendNewMail($host_name, $data['name'], $data['house_id']));
+        // Mail::to($host_email)->send(new SendNewMail($host_name, $data['name'], $data['house_id']));
+
+        Mail::to($host_email)->send(new NewMessage($host_name, $data['name'], $data['house_id']));
 
         return redirect()->back()->with('status', 'Messaggio inviato');
     }

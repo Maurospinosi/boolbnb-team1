@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Mail;
+use App\Message;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,15 +11,15 @@ use Illuminate\Queue\SerializesModels;
 class NewMessage extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $message;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Message $message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -28,6 +29,6 @@ class NewMessage extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newmessage');
+        return $this->view('emails.newmessage')->subject('New Message');
     }
 }

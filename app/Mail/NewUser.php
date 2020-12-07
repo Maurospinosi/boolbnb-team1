@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Mail;
-
+use App\UserInfo;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,7 +18,6 @@ class NewUser extends Mailable
      */
     public function __construct()
     {
-        //
     }
 
     /**

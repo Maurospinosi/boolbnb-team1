@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\UserInfo;
-
+use App\Mail\NewUser;
+use Illuminate\Support\Facades\Mail;
 
 class UserInfoController extends Controller
 {
@@ -63,6 +64,14 @@ class UserInfoController extends Controller
         }
 
         $newUserInfo->save();
+
+        $host_email = $newUserInfo->user->email;
+        $host_name = $newUserInfo->user->name;
+
+        Mail::to('mail@mail.it')->send(new NewUser($newUserInfo));
+
+        return redirect('/');
+
     }
 
     /**
