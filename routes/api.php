@@ -20,3 +20,4 @@ Route::name('api/')->namespace('Api')->group(function()
     Route::get('statistic', 'ApiController@statistic')->name('statistic');
 });
 
+

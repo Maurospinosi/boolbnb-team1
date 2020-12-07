@@ -187,10 +187,20 @@ class HouseController extends Controller
 
         $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
 
-        if (Auth::id() != $house->user_id) {
+        $services = Service::all();
+
+        $houseServices = [];
+
+        foreach($services as $service) {
+            if ($house->services->contains($service->id)) {
+                $houseServices[] = $service->name;
+            }
+        }
+
+        if(Auth::id() != $house->user_id) {
             return redirect()->route('guest/house', $house->slug);
         } else {
-            return view("host/house.show", compact("house", "images"));
+            return view("host/house.show", compact("house", "images", "services"));
         }
     }
 
@@ -230,19 +240,19 @@ class HouseController extends Controller
                 "max:100",
                 Rule::unique('houses_info', 'title')->ignore($id)
             ],
-            "rooms" => "required",
-            "beds" => "required",
-            "bathrooms" => "required",
-            "mq" => "required",
-            "address" => "required|max:100",
-            "country" => "required|max:60",
-            "city" => "required|max:60",
-            "zipcode" => "required",
-            "lat" => "required|max:20",
-            "lon" => "required|max:20",
-            "price" => "required",
-            "cover_image" => "image",
-        ]);
+            "rooms"=> "required",
+            "beds"=> "required",
+            "bathrooms"=> "required",
+            "mq"=> "required",
+            "address"=> "required|max:100",
+            "country"=> "required|max:60",
+            "city"=> "required|max:60",
+            "zipcode"=> "required",
+            "lat"=> "required|max:20",
+            "lon"=> "required|max:20",
+            "price"=> "required",
+            "cover_image"=> "image",
+            ]);
 
         // Recupero la casa
         $house = House::findOrFail($id);
