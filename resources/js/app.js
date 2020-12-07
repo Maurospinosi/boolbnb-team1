@@ -6,8 +6,7 @@ $(document).ready(function () {
 
   //// SPONSORIZZAZIONE ////
     $("#host-sponsorship h5").on("click", function(){
-      $(this).siblings("select").toggleClass("d-none");
-      $(this).siblings("input[type='submit']").toggleClass("d-none");
+      $(this).siblings(".sponsorContent").toggleClass("d-none");
     });
   //// FINE SPONSORIZZAZIONE ////
 
