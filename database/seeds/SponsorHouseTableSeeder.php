@@ -16,8 +16,6 @@ class SponsorHouseTableSeeder extends Seeder
     public function run()
     {
         $houses = House::all();
-        // $house = House::find(2);
-        // dd($houses);
 
         foreach($houses as $house) {
             $rand = rand(0,1);

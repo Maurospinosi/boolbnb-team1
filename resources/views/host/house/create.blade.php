@@ -8,16 +8,16 @@ Aggiungi una nuova casa
 <style>
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+        -webkit-appearance: none;
+        margin: 0;
+    }
     input[type=number] {
-  -moz-appearance: textfield;
-}
+        -moz-appearance: textfield;
+    }
 
-ul {
-    list-style: none
-}
+    ul {
+        list-style: none
+    }
 </style>
 
 

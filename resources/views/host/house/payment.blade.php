@@ -13,6 +13,7 @@
       <input type="hidden" id="nonce" name="payment_method_nonce"/>
       <input type="hidden" name="amount" value="{{$amount}}">
       <input type="hidden" name="url" value="{{$url}}">
+      <input type="hidden" name="house_id" value="{{$house_id}}">
   </form>
 
 @endsection

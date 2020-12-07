@@ -11,13 +11,13 @@
         @method('GET')
 
         <div class="search-container header-search">
-            <input type="text" id="form-address" placeholder="Search...">
-            <input hidden type="text" class="form-control" id="form-address2" placeholder="Regione" name="region">
-            <input hidden type="text" class="form-control" name="zipcode" id="form-zip" placeholder="CAP">
-            <input hidden type="text" class="form-control" name="city" id="form-city" placeholder="Città">
-            <input hidden type="text" class="form-control" name="country" id="form-country" placeholder="Nazione">
-            <input hidden type="text" class="form-control" name="lat" id="form-lat"/>
-            <input hidden type="text" class="form-control" name="lon" id="form-lng"/>
+            <input type="text" id="form-city-address" placeholder="Search...">
+            <input hidden type="text" class="form-control" id="form-city-address2" placeholder="Regione" name="region">
+            <input hidden type="text" class="form-control" name="zipcode" id="form-city-zip" placeholder="CAP">
+            <input hidden type="text" class="form-control" name="city" id="form-city-city" placeholder="Città">
+            <input hidden type="text" class="form-control" name="country" id="form-city-country" placeholder="Nazione">
+            <input hidden type="text" class="form-control" name="lat" id="form-city-lat"/>
+            <input hidden type="text" class="form-control" name="lon" id="form-city-lng"/>
             <input hidden type="submit">
             <span><i class="fas fa-search" ></i></span>
         </div>
