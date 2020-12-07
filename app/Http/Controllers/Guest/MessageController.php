@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+
+use App\Mail\SendNewMail;
+
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 use App\Message;
 use App\House;
 use App\User;
@@ -19,7 +24,6 @@ class MessageController extends Controller
      */
     public function index()
     {
-        
     }
 
 
@@ -30,8 +34,6 @@ class MessageController extends Controller
      */
     public function create()
     {
-        
-        
     }
 
     /**
@@ -43,18 +45,18 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
-        $request->validate ([
+
+        $request->validate([
             'email' => 'string|required',
             'name' => 'string|required|max:100',
             'message' => 'required'
         ]);
-        
-        $newMessage =  new Message;
-        $newMessage->email=$data['email'];
-        $newMessage->guest_name=$data['name'];
-        $newMessage->message=$data['message'];
-        $newMessage->house_id=$data['house_id'];
+
+        $newMessage = new Message;
+        $newMessage->email = $data['email'];
+        $newMessage->guest_name = $data['name'];
+        $newMessage->message = $data['message'];
+        $newMessage->house_id = $data['house_id'];
 
         $send = $newMessage->save();
 
@@ -62,8 +64,16 @@ class MessageController extends Controller
             return redirect()->back()->with('status', 'Messaggio non inviato');
         }
 
-        return redirect()->back()->with('status', 'Messaggio inviato');
+        $house = House::find($data['house_id']);
 
+        $host_email = $house->user->email;
+        // dd($host_email);
+        $host_name = $house->user->name;
+        // dd($host_name);
+
+        Mail::to($host_email)->send(new SendNewMail($host_name, $data['name'], $data['house_id']));
+
+        return redirect()->back()->with('status', 'Messaggio inviato');
     }
 
     /**
@@ -108,6 +118,5 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        
     }
 }

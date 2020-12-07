@@ -10,6 +10,8 @@ use App\Sponsor;
 use App\Image;
 use App\Service;
 use App\Tag;
+use App\View;
+use Carbon\Carbon;
 
 class GuestHouseController extends Controller
 {
@@ -20,12 +22,17 @@ class GuestHouseController extends Controller
      */
     public function index()
     {
+        // Prendiamo tutte le case e le sponsorizzazioni
         $houses = House::all();
-
         $sponsors = Sponsor::all();
 
-        $sponsoredHouses = [];
+        // Aggiorniamo quali case non sono più sponsorizzate
+        foreach($houses as $house) {
+            $house->sponsors()->wherePivot('end_date','<', Carbon::now())->detach();
+        }
 
+        // Mettiamo le case sponsorizzate in un array
+        $sponsoredHouses = [];
         foreach($houses as $house) {
             foreach($sponsors as $sponsor) {
                 if ($house->sponsors->contains($sponsor->id)) {
@@ -34,6 +41,7 @@ class GuestHouseController extends Controller
             }
         }
 
+        // Indirizziamo l'utente alla view con le case sponsorizzate
         return view('guest.welcome', compact('sponsoredHouses'));
     }
 
@@ -69,32 +77,38 @@ class GuestHouseController extends Controller
         // Richiamiamo la casa
         $house = House::where('slug', $slug)->first();
 
+        // Aggiungiamo una "view" perché la casa è stata visitata
+        $newView = new View;
+        $newView->house_id = $house->id;
+        $newView->created_at = Carbon::now();
+        $newView->save();
+
         // Richiamiamo le immagini della casa
         $images = Image::where('houses_info_id', $house->houseinfo->id)->get();
 
-        // Prendiamo i servizi della casa
+        // Richiamiamo tutti i servizi
         $services = Service::all();
 
+        // Mettiamo i servizi della casa in un array
         $houseServices = [];
-
         foreach($services as $service) {
             if ($house->services->contains($service->id)) {
                 $houseServices[] = $service->name;
             }
         }
 
-        // Prendiamo i tag della casa
+        // Richiamiamo tutti i tag
         $tags = Tag::all();
 
+        // Mettiamo i tag della casa in un array
         $houseTags = [];
-
         foreach($tags as $tag) {
             if ($house->tags->contains($tag->id)) {
                 $houseTags[] = $tag->name;
             }
         }
 
-
+        // Indirizziamo l'utente alla view della casa
         return view('guest.show', compact('house', 'images', 'houseServices', 'houseTags'));
     }
 

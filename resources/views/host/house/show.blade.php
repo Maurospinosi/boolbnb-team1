@@ -89,12 +89,28 @@
                     {{ session('success') }}
                 @endif
             </div>
+<<<<<<< HEAD
             @endif
         
             {{-- Print della casa --}}
             <div class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 bg-white">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">{{$house->houseinfo->title}}</h1>
+=======
+        @endif
+
+        {{-- Print della casa --}}
+        <h1>{{$house->houseinfo->title}}</h1>
+        {{-- <span>{{$house->houseinfo->price}}€ a notte</span> --}}
+        <div class="row">
+            <div class="d-flex">
+                <div id="cover-image">
+                    @if (strpos($house->houseinfo->cover_image, 'http') === 0)
+                        <img src="{{$house->houseinfo->cover_image}}" class="img-fluid" alt="Responsive image">
+                    @else
+                        <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
+                    @endif
+>>>>>>> main
                 </div>
                 <div class="row">
                     <div class="col-xl-3 col-md-6 mb-4">

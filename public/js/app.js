@@ -52852,8 +52852,7 @@ var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebar
 $(document).ready(function () {
   //// SPONSORIZZAZIONE ////
   $("#host-sponsorship h5").on("click", function () {
-    $(this).siblings("select").toggleClass("d-none");
-    $(this).siblings("input[type='submit']").toggleClass("d-none");
+    $(this).siblings(".sponsorContent").toggleClass("d-none");
   }); //// FINE SPONSORIZZAZIONE ////
   //// BRAINTREE ////
 
@@ -52893,10 +52892,37 @@ $(document).ready(function () {
     }); */
   // ALGOLIA
 
-  var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca in create.blade.php
+  var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js"); // Ricerca per città
 
 
-  (function () {
+  var citySearch = function citySearch() {
+    var placesAutocomplete = places({
+      appId: 'pl0CZDFYINVV',
+      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+      container: document.querySelector('#form-city-address'),
+      templates: {
+        value: function value(suggestion) {
+          return suggestion.name;
+        }
+      }
+    }).configure({
+      // type: 'address'
+      type: 'city',
+      aroundLatLngViaIP: false
+    });
+    placesAutocomplete.on('change', function resultSelected(e) {
+      document.querySelector('#form-city-address2').value = e.suggestion.administrative || '';
+      document.querySelector('#form-city-city').value = e.suggestion.city || '';
+      document.querySelector('#form-city-country').value = e.suggestion.country || '';
+      document.querySelector('#form-city-zip').value = e.suggestion.postcode || '';
+      document.querySelector('#form-city-lat').value = e.suggestion.latlng.lat || '';
+      document.querySelector('#form-city-lng').value = e.suggestion.latlng.lng || '';
+    });
+  };
+
+  citySearch(); // Ricerca per indirizzi
+
+  var addressSearch = function addressSearch() {
     var placesAutocomplete = places({
       appId: 'pl0CZDFYINVV',
       apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
@@ -52907,8 +52933,8 @@ $(document).ready(function () {
         }
       }
     }).configure({
-      // type: 'address'
-      type: 'city' // aroundLatLngViaIP: false,
+      type: 'address' // type: 'city',
+      // aroundLatLngViaIP: false,
 
     });
     placesAutocomplete.on('change', function resultSelected(e) {
@@ -52919,9 +52945,10 @@ $(document).ready(function () {
       document.querySelector('#form-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-lng').value = e.suggestion.latlng.lng || '';
     });
-  })(); // RICERCA con filtri
-  // Endpoint in cui si trova il database
+  };
 
+  addressSearch(); // RICERCA con filtri
+  // Endpoint in cui si trova il database
 
   var endpoint = 'http://localhost:8000/api/getallhouses'; // Prendiamo i dati dai filtri
 
