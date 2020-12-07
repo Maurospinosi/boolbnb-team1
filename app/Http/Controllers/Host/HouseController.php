@@ -220,7 +220,7 @@ class HouseController extends Controller
             "lon"=> "required|max:20",
             "price"=> "required",
             "cover_image"=> "image",
-        ]);
+            ]);
 
         // Recupero la casa
         $house = House::findOrFail($id);

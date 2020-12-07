@@ -42,20 +42,22 @@
                           <!-- Nav Item - Utilities Collapse Menu -->
                         <li class="nav-item d-inline-flex justify-content-start">
                             <a class="nav-link"> 
-                            <form id="host-sponsorship" action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
-                                @csrf
-                                @method("GET")
-                                <i class="far fa-credit-card"></i>
-                                <span>Sponsorizza</span>
-                                <select class="custom-select d-none" name="amount">
-                                    <option value="" selected>Seleziona</option>
-                                    <option value="2.99">2.99€ / 24h</option>
-                                    <option value="5.99">5.99€ / 72h</option>
-                                    <option value="9.99">9.99€ / 144h</option>
-                                </select>
-                                <input type="hidden" name="url" value="{{Request::url()}}">
-                                <input class="custom-select d-none" type="submit" value="Vai">
-                            </form>
+                                <form id="host-sponsorship" action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
+                                    @csrf
+                                    @method("GET")
+                                    <i class="far fa-credit-card"></i>
+                                    <h5 class="btn btn-light">Sponsorizza</h5>
+                                    <select class="form-control d-none" name="amount">
+                                        <option value="" selected>Seleziona</option>
+                                        <option value="2.99">2.99€ / 24h</option>
+                                        <option value="5.99">5.99€ / 72h</option>
+                                        <option value="9.99">9.99€ / 144h</option>
+                                    </select>
+                                    <input type="hidden" name="url" value="{{Request::url()}}">
+                                    <input class="form-control d-none" type="submit" value="Vai">
+                                </form>
+
+                            </a>
                         </li>
                         
                         <li class="nav-item d-inline-flex justify-content-start">
@@ -166,6 +168,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-3  col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                   
+                                    <div class=" d-flex justify-content-center" id="map-example-container"></div>
+                                    <input id="latitudine" type="hidden" value=" {{$house->houseinfo->lat}}">
+                                    <input id="longitudine" type="hidden"   value=" {{$house->houseinfo->lon}}">
+                                    <input id="indirizzo" type="hidden"   value=" {{$house->houseinfo->address}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,10 +216,7 @@
     
         
            
-        <div id="map-example-container"></div>
-            <input id="latitudine" type="hidden" value=" {{$house->houseinfo->lat}}">
-            <input id="longitudine" type="hidden"   value=" {{$house->houseinfo->lon}}">
-            <input id="indirizzo" type="hidden"   value=" {{$house->houseinfo->address}}">
+        
             <script src="{{ asset('js/map.js') }}"></script>
         
     </div>

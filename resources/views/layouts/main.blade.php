@@ -18,9 +18,9 @@
 
     <style>
         #map-example-container {
-            height: 500px;
-            width: 500px;
-            border: 3px solid fuchsia;
+            height: 280px;
+            width: 280px;
+            border: 3px solid  #FF385C;
             }
       </style>
     @yield('style')

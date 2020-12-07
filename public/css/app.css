@@ -11428,7 +11428,8 @@ h4 {
 footer {
   max-height: content;
   margin-top: 50px;
-  background-image: linear-gradient(to right, #f5f9fe 35%, #C7DDF8);
+  background: #00a6ab;
+  background: linear-gradient(270deg, rgba(0, 166, 171, 0.4766281513) 15%, white 57%);
   transition: box-shadow 1.5s;
   width: 100%;
   padding-bottom: 25px;
