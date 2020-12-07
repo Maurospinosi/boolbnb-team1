@@ -5,7 +5,8 @@ use App\House;
 use App\HouseInfo;
 use Faker\Generator as Faker;
 
-class HouseObj {
+class HouseObj
+{
     // Vie reali
     public $address;
     public $region;
@@ -16,7 +17,8 @@ class HouseObj {
     public $lon;
 
     // Costruttore
-    public function __construct($address, $region, $zipcode, $city, $country, $lat, $lon){
+    public function __construct($address, $region, $zipcode, $city, $country, $lat, $lon)
+    {
 
         $this->address = $address;
         $this->region = $region;
@@ -93,23 +95,23 @@ class HouseInfoTableSeeder extends Seeder
 
         $house14 = new HouseObj("Via Etnea 502", "Sicilia", 95128, "Catania", "Italia", 37.5144, 15.0845);
         $houseArr[] = $house14;
-        
-        
+
+
         $houses = House::all();
+
         $i = 0;
-        // dd($houseArr[$i]->address);
-        
-        foreach($houses as $house) {
+
+        foreach ($houses as $house) {
 
             $newHouseInfo = new HouseInfo;
 
             $newHouseInfo->house_id = $house->id;
             $newHouseInfo->title = str_replace("-", " ", $house->slug);
-            $newHouseInfo->rooms = rand(1,5);
-            $newHouseInfo->beds = rand(1,2);
-            $newHouseInfo->bathrooms = rand(1,3);
+            $newHouseInfo->rooms = rand(1, 5);
+            $newHouseInfo->beds = rand(1, 2);
+            $newHouseInfo->bathrooms = rand(1, 3);
             $newHouseInfo->mq = rand(30, 80);
-            $newHouseInfo->description = $faker->paragraph(3,true);
+            $newHouseInfo->description = $faker->paragraph(3, true);
             $newHouseInfo->address = $houseArr[$i]->address;
             $newHouseInfo->region = $houseArr[$i]->region;
             $newHouseInfo->zipcode = $houseArr[$i]->zipcode;
