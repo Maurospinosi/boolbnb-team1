@@ -1,189 +1,40 @@
-require('./bootstrap');
 const $ = require("jquery");
-$(document).ready(function() {
-    
-    var prova = {
-        lat: $("#latitudine").val(),
-        lng: $("#longitudine").val()
-      };
-
-      (function() {
-        var placesAutocomplete = places({
-          appId: '<YOUR_PLACES_APP_ID>',
-          apiKey: '<YOUR_PLACES_API_KEY>',
-          container: document.querySelector('#input-map')
-        });
-      
-        var map = L.map('map-example-container', {
-          scrollWheelZoom: true,
-          zoomControl: true
-        });
-      
-        var osmLayer = new L.TileLayer(
-          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            minZoom: 1,
-            maxZoom: 13,
-            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-          }
-        );
-      
-        var markers = [];
-      
-        map.setView(new L.LatLng(0, 0), 1);
-        map.addLayer(osmLayer);
-      
-        placesAutocomplete.on('suggestions', handleOnSuggestions);
-        placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
-        placesAutocomplete.on('change', handleOnChange);
-        placesAutocomplete.on('clear', handleOnClear);
-      
-        function handleOnSuggestions(e) {
-          markers.forEach(removeMarker);
-          markers = [];
-      
-          if (e.suggestions.length === 0) {
-            map.setView(new L.LatLng(0, 0), 1);
-            return;
-          }
-      
-          e.suggestions.forEach(addMarker);
-          findBestZoom();
-        }
-      
-        function handleOnChange(e) {
-          markers
-            .forEach(function(marker, markerIndex) {
-              if (markerIndex === e.suggestionIndex) {
-                markers = [marker];
-                marker.setOpacity(1);
-                findBestZoom();
-              } else {
-                removeMarker(marker);
-              }
-            });
-        }
-      
-        function handleOnClear() {
-          map.setView(new L.LatLng(0, 0), 1);
-          markers.forEach(removeMarker);
-        }
-      
-        function handleOnCursorchanged(e) {
-          markers
-            .forEach(function(marker, markerIndex) {
-              if (markerIndex === e.suggestionIndex) {
-                marker.setOpacity(1);
-                marker.setZIndexOffset(1000);
-              } else {
-                marker.setZIndexOffset(0);
-                marker.setOpacity(0.5);
-              }
-            });
-        }
-      
-        function addMarker(suggestion) {
-          var marker = L.marker(suggestion.latlng, {opacity: .4});
-          marker.addTo(map);
-          markers.push(marker);
-        }
-      
-        function removeMarker(marker) {
-          map.removeLayer(marker);
-        }
-      
-        function findBestZoom() {
-          var featureGroup = L.featureGroup(markers);
-          map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
-        }
-      })();
+$(function () {
+  var lat = $("#latitudine").val();
+  var latParse = parseFloat(lat);
+  var lng = $("#longitudine").val()
+  var lngParse = parseFloat(lng);
+  
+  var coordinate = {
+    lat: latParse,
+    lng: lngParse
+  };
+  var map = L.map('map-example-container', {
+    scrollWheelZoom: true,
+    zoomControl: true
+  });
+  var osmLayer = new L.TileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    minZoom: 1,
+    maxZoom: 22,
+  }
+  );
+  var markers = [];
+  map.setView(new L.LatLng(coordinate.lat, coordinate.lng), 13);
+  map.addLayer(osmLayer);
+  addMarker(coordinate);
+  handleOnCursorchanged();
+ 
+  function handleOnCursorchanged() {
+    markers.forEach(function (marker) {
+      marker.setZIndexOffset(0);
+      marker.setOpacity(0.9);
+    });
+  }
+  function addMarker(coordinate) {
+    var marker = L.marker(coordinate, { opacity: .4 });
+    marker.addTo(map);
+    markers.push(marker);
+  }
 
 });
-
-  //   var placesAutocomplete = places({
-  //     appId: 'pl0CZDFYINVV',
-  //     apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-  //     container: document.querySelector('#input-map')
-  //   });
-  
-  //   var map = L.map('map-example-container', {
-  //     scrollWheelZoom: true,
-  //     zoomControl: true
-  //   });
-  
-  //   var osmLayer = new L.TileLayer(
-  //     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //       minZoom:0,
-  //       maxZoom: 17,
-  //     }
-  //   );
-  
-  //   var markers = [];
-
-  //   map.setView(new L.LatLng(prova.lat, prova.lng), 12);
-  //   map.addLayer(osmLayer);
-  
-  //   placesAutocomplete.on('suggestions', handleOnSuggestions);
-  //   placesAutocomplete.on('cursorchanged', handleOnCursorchanged);
-  //   placesAutocomplete.on('change', handleOnChange);
-  //   placesAutocomplete.on('clear', handleOnClear);
-  
-  //   function handleOnSuggestions(e) {
-  //     markers.forEach(removeMarker);
-  //     markers = [];
-      
-  //     if (e.suggestions.length === 0) {
-  //       map.setView(new L.LatLng(prova.lat, prova.lng), 12);
-  //       return;
-  //     }
-  //     e.suggestions.forEach(addMarker);
-  //     findBestZoom();
-  //   }
-  
-  //   function handleOnChange(e) {
-  //     markers
-  //       .forEach(function(marker, markerIndex) {
-  //         if (markerIndex === e.suggestionIndex) {
-  //           markers = [marker];
-  //           marker.setOpacity(1);
-  //           findBestZoom();
-  //         } else {
-  //           removeMarker(marker);
-  //         }
-  //       });
-  //   }
-  
-  //   function handleOnClear() {
-  //       map.setView(new L.LatLng(prova.lat, prova.lng), 12);
-  //       markers.forEach(removeMarker);
-  //   }
-  
-  //   function handleOnCursorchanged(e) {
-  //     markers
-  //       .forEach(function(marker, markerIndex) {
-  //         if (markerIndex === e.suggestionIndex) {
-  //           marker.setOpacity(1);
-  //           marker.setZIndexOffset(1000);
-  //         } else {
-  //           marker.setZIndexOffset(0);
-  //           marker.setOpacity(0.5);
-  //         }
-  //       });
-  //   }
-  
-  //   function addMarker(prova) {
-  //     var marker = L.marker(prova, {opacity: .4});
-  //     marker.addTo(map);
-  //     markers.push(marker);
-  //   }
-  //   console.log(prova)
-  
-  //   function removeMarker(marker) {
-  //     map.removeLayer(marker);
-  //   }
-  
-  //   function findBestZoom() {
-  //     var featureGroup = L.featureGroup(markers);
-  //     map.fitBounds(featureGroup.getBounds().pad(0.5), {animate: false});
-  //   }
-    
-  // })();

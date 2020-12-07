@@ -9,14 +9,13 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendNewMail;
+
 use App\House;
 use App\HouseInfo;
 use App\Image;
 use App\Service;
 use App\Tag;
-use App\Http\Controllers\Host\DB;
+
 
 class HouseController extends Controller
 {
@@ -29,7 +28,7 @@ class HouseController extends Controller
     {
         $user_id = Auth::id();
         $houses = House::where('user_id', $user_id)->get();
-
+      
         return view ('host.house.index', compact('houses'));
     }
 
@@ -57,22 +56,20 @@ class HouseController extends Controller
         // Prendere i dati dal form e fare la validazione
         $data = $request->all();
 
-        $request->validate([
-            "title"=> "required|unique:houses_info|max:100",
-            "rooms"=> "required",
-            "beds"=> "required",
-            "bathrooms"=> "required",
-            "mq"=> "required",
-            "address"=> "required|max:100",
-            "region"=> "required|max:80",
-            "country"=> "required|max:60",
-            "city"=> "required|max:60",
-            "zipcode"=> "required",
-            "lat"=> "required|max:20",
-            "lon"=> "required|max:20",
-            "price"=> "required",
-            "cover_image"=> "required|image",
-        ]);        
+        if($data["cover_image"] == null) {
+            unset($data["cover_image"]);
+        }
+        
+        $newHouse = new House;
+        $newHouse->fill($data);
+       
+          // Creare una nuova casa
+          $newHouse->user_id = Auth::id();
+          $newHouse->slug= Str::of($data["title"])->slug("-");
+          if (in_array("visible", $data)) {
+              $newHouse->visible = true;
+          }
+          $newHouse->save();
 
         // validazione delle immagini custom
         if (isset($data['url'])) {
@@ -96,14 +93,7 @@ class HouseController extends Controller
         $filename_original = $data['cover_image']->getClientOriginalName();
         $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
        
-        // Creare una nuova casa
-        $newHouse = New House;
-        $newHouse->user_id = Auth::id();
-        $newHouse->slug= Str::of($data["title"])->slug("-");
-        if (in_array("visible", $data)) {
-            $newHouse->visible = true;
-        }
-        $newHouse->save();
+      
 
         // Associazione servizi alla casa nella pivot
         if(isset($data['services'])) {
@@ -127,25 +117,7 @@ class HouseController extends Controller
             }
         }
 
-        // Creare le info per la casa
-        $newHouseInfo = New HouseInfo;        
-        $newHouseInfo->house_id = $newHouse->id;
-        $newHouseInfo->title = $data["title"];
-        $newHouseInfo->rooms = $data["rooms"];
-        $newHouseInfo->beds = $data["beds"];
-        $newHouseInfo->bathrooms = $data["bathrooms"];
-        $newHouseInfo->mq = $data["mq"];
-        $newHouseInfo->description = $data["description"];
-        $newHouseInfo->address = $data["address"];
-        $newHouseInfo->region = $data["region"];
-        $newHouseInfo->city = $data["city"];
-        $newHouseInfo->country = $data["country"];
-        $newHouseInfo->zipcode = $data["zipcode"];
-        $newHouseInfo->lat = $data["lat"];
-        $newHouseInfo->lon = $data["lon"];
-        $newHouseInfo->price = $data["price"];
-        $newHouseInfo->cover_image = $pathCover;
-        $newHouseInfo->save();
+    
 
 
         // Se sono presenti immagini aggiuntive, inserirle nella tabella images
@@ -159,7 +131,7 @@ class HouseController extends Controller
             $pathUrl = Storage::disk('public')->putFileAs('images', $urlImage, $filename_original);
 
             $newHouseImages = New Image;
-            $newHouseImages->houses_info_id = $newHouseInfo->id;
+            $newHouseImages->houses_info_id = $newHouse->id;
             $newHouseImages->url = $pathUrl;
             $newHouseImages->save();
            }

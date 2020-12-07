@@ -15,7 +15,6 @@
 
         {{-- Tasti di Modifica, Cancella e Sponsorizza --}}
         @if(Auth::id() == $house->user_id)
-        
         <div class="auth-buttons">
                 <ul>
                     <li>
@@ -72,36 +71,38 @@
         {{-- Print della casa --}}
         <h1>{{$house->houseinfo->title}}</h1>
         {{-- <span>{{$house->houseinfo->price}}€ a notte</span> --}}
-        <div class="d-flex">
-        <div id="cover-image">
-            @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                <img src="{{$house->houseinfo->cover_image}}" alt="random picture">
-            @else
-                <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
-            @endif
+        <div class="row">
+            <div class="d-flex">
+                <div id="cover-image">
+                    @if (strpos($house->houseinfo->cover_image, 'http') === 0)
+                        <img src="{{$house->houseinfo->cover_image}}" class="img-fluid" alt="Responsive image">
+                    @else
+                        <img src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
+                    @endif
+                </div>
+            </div>    
         </div>
-      
-    </div>
-    <div class="othersImages">
+        
         <div class="row">
             <div class="col-md-12">
-              <div id="mdb-lightbox-ui"></div>
-                <div class="mdb-lightbox d-flex"> 
-                    @foreach ($images as $image)
-                    <figure class="col-md-4">
-                        @if (strpos($image->url, 'http') === 0)
-                            <a href="{{$image->url}}" data-size="1600x1067">
-                                <img src="{{$image->url}}" alt="random picture" class="img-fluid" >
-                            </a>
-                        @else
-                            <img src="{{asset('storage/'.$image->url)}}" class="img-fluid"  alt="">
-                        @endif
-                    </figure>
-                @endforeach
-              </div>
+                <div id="mdb-lightbox-ui"></div>
+                    <div class="mdb-lightbox no-margin">
+                        @foreach ($images as $image)
+                        <figure class="col-md-4">
+                            @if (strpos($image->url, 'http') === 0)
+                                <a href="{{$image->url}}" data-size="1600x1067">
+                                    <img src="{{$image->url}}" alt="random picture" class="img-fluid" >
+                                </a>
+                            @else
+                                <img src="{{asset('storage/'.$image->url)}}" class="img-fluid"  alt="">
+                            @endif
+                        </figure>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-          </div>
-    </div>
+        </div>
+
     <div class="services">
         <ul class="list-unstyled">
             <li>Stanze: {{$house->houseinfo->rooms}}</li>
@@ -121,7 +122,9 @@
                 </ul>
             </li> --}}
         </ul>
+
     </div>
+
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; " id="other-images">
             @foreach ($images as $image)
                 @if (strpos($image->url, 'http') === 0)
@@ -136,10 +139,11 @@
 
         </div>
         <div id="map-example-container"></div>
-        <input type="search" id="input-map" class="form-control"/>
         <input id="latitudine" type="hidden" value=" {{$house->houseinfo->lat}}">
         <input id="longitudine" type="hidden"   value=" {{$house->houseinfo->lon}}">
-    
+        <input id="indirizzo" type="hidden"   value=" {{$house->houseinfo->address}}">
         <script src="{{ asset('js/map.js') }}"></script>
+
+    
 
 @endsection

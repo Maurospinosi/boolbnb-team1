@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -8,6 +8,8 @@
 @import 'Partials/_variables.scss';
 @import 'Partials/_common.scss';
 @import 'Partials/_header.scss';
-@import 'Partials/_guest-show.scss';
+@import 'Partials/_host-index.scss';
 @import 'Partials/_host-show.scss';
+@import 'Partials/_guest-welcome.scss';
+@import 'Partials/_guest-show.scss';
 @import 'Partials/_footer.scss';

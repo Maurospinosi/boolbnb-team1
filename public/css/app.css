@@ -1,11 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;
 
-/*!
- * Bootstrap v4.5.3 (https://getbootstrap.com/)
- * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+400;500&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #007bff;
@@ -10958,7 +10953,7 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 200px;
-    height: 250px;
+    height: 230px;
     font-size: 15px;
     right: 6%;
   }
@@ -10997,7 +10992,7 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 230px;
-    height: 280px;
+    height: 250px;
     right: 8%;
   }
 
@@ -11036,7 +11031,7 @@ header {
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: #f5f9fe;
+  background-color: #fff;
   transition: box-shadow 1.5s;
   /* Logo */
   /* Menu login, 'Diventa un Host', hamburger */
@@ -11044,8 +11039,8 @@ header {
 }
 
 header img {
-  width: 100px;
-  height: 100px;
+  max-width: 200px;
+  align-items: center;
 }
 
 header .hamburger-menu {
@@ -11065,7 +11060,7 @@ header .hamburger-menu .hamburger-list {
 
 header .hamburger-menu .hamburger-list li {
   color: black;
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 0 0;
   border: none;
 }
@@ -11220,18 +11215,46 @@ header:hover {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #f4f4f4;
   opacity: 0.7;
 }
 
-.guest-show-container {
-  position: relative;
+.titolo {
+  color: #222222;
+  font-size: 18px;
+  margin: 5px;
+  text-transform: uppercase;
 }
 
-.guest-show-container .auth-buttons {
-  position: absolute;
-  top: 0;
-  right: 0;
+.sottotitolo {
+  color: #222222;
+  font-size: 12px;
+  font-weight: light;
+  margin: 5px;
+}
+
+.btn-group {
+  background: #00a6ab;
+  background: linear-gradient(153deg, rgba(0, 166, 171, 0.8799894958) 26%, rgba(255, 56, 92, 0.8491771709) 57%);
+  border-radius: 5px;
+}
+
+.btn-group .btn-edit,
+.btn-group .btn-show,
+.btn-group .btn-delete {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.btn-group .btn-edit a,
+.btn-group .btn-show a,
+.btn-group .btn-delete a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btn-group .btn-delete {
+  text-decoration: none;
+  color: #fff;
 }
 
 .host-show-container {
@@ -11253,6 +11276,55 @@ header:hover {
 
 .host-show-container .auth-buttons #host-sponsorship input[type=submit] {
   background-color: lightgrey;
+}
+
+h4 {
+  text-align: center;
+}
+
+.btn-scopri {
+  background-color: #FF385C;
+  border-radius: 5px;
+  padding: 6px 12px;
+}
+
+.btn-scopri a {
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.guest-show-container {
+  position: relative;
+}
+
+.guest-show-container .auth-buttons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+}
+
+.guest-show-container .btn-info {
+  margin-right: 10px;
+}
+
+.guest-show-container .titolo {
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.guest-show-container .sottotitolo {
+  padding: 5px;
+}
+
+.guest-show-container .cover-image {
+  margin-bottom: 10px;
+}
+
+.guest-show-container .gallery {
+  margin: 5px;
 }
 
 @media screen and (max-width: 768px) {

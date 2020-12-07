@@ -16,5 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('api/')->namespace('Api')->group(function()
 {
     Route::get('getallhouses', 'ApiController@getAllHouses')->name('getallhouses');
+    
+    Route::get('statistic', 'ApiController@statistic')->name('statistic');
 });
 

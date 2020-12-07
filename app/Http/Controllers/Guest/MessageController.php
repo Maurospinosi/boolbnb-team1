@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\House;
-use App\Message;
+namespace App\Http\Controllers\Guest;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Mail\SendNewMail;
-use Illuminate\Support\Facades\Mail;
+use App\Message;
+use App\House;
+use App\User;
+
 
 class MessageController extends Controller
 {
@@ -16,8 +19,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +30,8 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        
+        
     }
 
     /**
@@ -38,25 +43,27 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-        $request->validate([
-          'email' => 'string|max:90|required|email',
-          'guest_name' => 'string|max:100',
-          'message' => 'string|required|min:10|max:700'
-
+        
+        $request->validate ([
+            'email' => 'string|required',
+            'name' => 'string|required|max:100',
+            'message' => 'required'
         ]);
+        
+        $newMessage =  new Message;
+        $newMessage->email=$data['email'];
+        $newMessage->guest_name=$data['name'];
+        $newMessage->message=$data['message'];
+        $newMessage->house_id=$data['house_id'];
 
-        $newMessage = new Message;
-        $newMessage->email = $data["email"];
-        $newMessage->guest_name = $data["guest_name"];
-        $newMessage->message = $data["message"];
+        $send = $newMessage->save();
 
-        $saved = $newMessage->save();
-        if (!$saved) {
-            return redirect()->back()->with('status', "Il messaggio non è stato inviato");
+        if (!$send) {
+            return redirect()->back()->with('status', 'Messaggio non inviato');
         }
-        Mail::to( $newMessage->user->email)->send(new SendNewMail($newMessage));
+
         return redirect()->back()->with('status', 'Messaggio inviato');
+
     }
 
     /**
@@ -99,8 +106,8 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy($id)
     {
-        //
+        
     }
 }
