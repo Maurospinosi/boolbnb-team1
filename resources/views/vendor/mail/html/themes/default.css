@@ -108,7 +108,30 @@ img {
     font-weight: bold;
     text-decoration: none;
 }
+.cover-image {
+    width: 200px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
 
+.d-flex {
+    display: flex;
+}
+#title-house {
+    font-size: 20px;
+    text-transform: initial;
+}
+.body-message {
+    background-color: #E5F7F3;
+}
+#beautiful-house {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+.title {
+    text-align: center;
+}
 /* Logo */
 
 .logo {
@@ -230,11 +253,11 @@ img {
 
 .button-blue,
 .button-primary {
-    background-color: #2d3748;
-    border-bottom: 8px solid #2d3748;
-    border-left: 18px solid #2d3748;
-    border-right: 18px solid #2d3748;
-    border-top: 8px solid #2d3748;
+    background-color: #FF6984;
+    border-bottom: 8px solid#FF6984;
+    border-left: 18px solid#FF6984;
+    border-right: 18px solid#FF6984;
+    border-top: 8px solid#FF6984;
 }
 
 .button-green,

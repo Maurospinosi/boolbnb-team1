@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-Aggiungi una nuova casa
+Inserisci una nuova casa
 @endsection
 
 @section('page-content')
@@ -23,7 +23,7 @@ Aggiungi una nuova casa
 
     <div class="container">
 
-        <h2>Aggiungi la tua casa</h2>
+        <h2 class="font-weight-bold">Inserisci la tua casa</h2>
 
         <div class="error_message">
             @if (count($errors) > 0)
@@ -37,7 +37,7 @@ Aggiungi una nuova casa
             @endif
         </div>
 
-        <form action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
+        <form class="w-50" action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("POST")
@@ -135,29 +135,31 @@ Aggiungi una nuova casa
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <h6>Servizi</h6>
-                    <ul>
-                        @foreach($services as $service)
-                            <li>
-                                <label for="service{{$service->id}}">{{$service->name}}</label>
-                                <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}">
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+                <div class="tags_services d-flex justify-content-between">
+                    <div class="form-group">
+                        <h6>Servizi</h6>
+                        <ul>
+                            @foreach($services as $service)
+                                <li>
+                                    <label for="service{{$service->id}}">{{$service->name}}</label>
+                                    <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}">
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
-                <div class="form-group">
-                    <h6>Tag</h6>
-                    <ul>
-                        @foreach($tags as $tag)
-                        <li>
-                            <label for="tag{{$tag->id}}">{{$tag->name}}</label>
-                            <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}">
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="form-group">
+                        <h6>Tag</h6>
+                        <ul>
+                            @foreach($tags as $tag)
+                            <li>
+                                <label for="tag{{$tag->id}}">{{$tag->name}}</label>
+                                <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}">
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                 </div>
     
                 <div class="form-group">
                     <label for="cover_image">Immagine di copertina</label>

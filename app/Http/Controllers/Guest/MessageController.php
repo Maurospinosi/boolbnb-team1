@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 
-use App\Mail\SendNewMail;
 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -74,8 +73,11 @@ class MessageController extends Controller
             "guest_name" => $data['name'],
             "guest_email" => $data['email'],
             "text_message" => $data['message'],
-
+            "title" => $house->houseinfo->title,
+            "cover" => $house->houseinfo->cover_image,
+            "price" => $house->houseinfo->price,
         ];
+
 
         Mail::to($host_email)->send(new NewMessage($dati));
 

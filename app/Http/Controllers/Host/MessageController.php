@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Message;
 use App\House;
-use App\User;
+use App\HouseInfo;
 
 
 class MessageController extends Controller
@@ -20,7 +20,6 @@ class MessageController extends Controller
     public function index()
     {
 
-        
         $house = House::where('user_id' , Auth::id())->get();
         $houseUser = [];
         foreach ($house as $home) {
@@ -97,7 +96,7 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::findORFail($id)->delete();
+        $message = Message::findORFail($id);
         //controllo per cancellare i messaggi
         $user = Auth::id();
         $entryMessage = $message->house->user_id;

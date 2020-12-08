@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-Modifica la casa
+Modifica la tua casa
 @endsection
 
 @section('page-content')
@@ -22,9 +22,9 @@ ul {
 
     <div class="container">
 
-        <h2>Modifica Casa</h2>
+        <h2 class="font-weight-bold">Modifica la tua Casa</h2>
 
-        <form action="{{route('host/house.update', $house->id)}}" method="POST" enctype="multipart/form-data">
+        <form class="w-50" action="{{route('host/house.update', $house->id)}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("PUT")
@@ -121,35 +121,36 @@ ul {
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <h6>Servizi</h6>
+                        <ul>
+                            @foreach($services as $service)
+                                <li>
+                                    <label for="service{{$service->id}}">{{$service->name}}</label>
+                                    <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}"
+                                    @if ($house->services->contains($service->id))
+                                        checked
+                                    @endif>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
-                <div class="form-group">
-                    <h6>Servizi</h6>
-                    <ul>
-                        @foreach($services as $service)
+                    <div class="form-group">
+                        <h6>Tag</h6>
+                        <ul>
+                            @foreach($tags as $tag)
                             <li>
-                                <label for="service{{$service->id}}">{{$service->name}}</label>
-                                <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}"
-                                @if ($house->services->contains($service->id))
+                                <label for="tag{{$tag->id}}">{{$tag->name}}</label>
+                                <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}"
+                                @if ($house->tags->contains($tag->id))
                                     checked
                                 @endif>
                             </li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <div class="form-group">
-                    <h6>Tag</h6>
-                    <ul>
-                        @foreach($tags as $tag)
-                        <li>
-                            <label for="tag{{$tag->id}}">{{$tag->name}}</label>
-                            <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}"
-                            @if ($house->tags->contains($tag->id))
-                                checked
-                            @endif>
-                        </li>
-                        @endforeach
-                    </ul>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
 
                 {{-- <div class="form-group">
