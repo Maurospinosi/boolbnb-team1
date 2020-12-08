@@ -20,22 +20,22 @@ ul {
 }
 </style>
 
-    <div class="container">
+    <div class="container edit-house">
 
-        <h2 class="font-weight-bold">Modifica la tua Casa</h2>
+        <h2 class="text-secondary font-weight-bold">Modifica la tua Casa</h2>
 
-        <form class="w-50" action="{{route('host/house.update', $house->id)}}" method="POST" enctype="multipart/form-data">
+        <form class="w-100  form-edit shadow p-3 mb-5 mt-5 bg-white rounded" action="{{route('host/house.update', $house->id)}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("PUT")
-        
-                <div style="margin-top: 50px" class="form-group">
-                    <label for="title">Titolo</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="Inserisci il titolo" value="{{$house->houseinfo->title}}">
-                    @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                <div class="">
+                    <div class="form-group">
+                        <label for="title">Titolo</label>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Inserisci il titolo" value="{{$house->houseinfo->title}}">
+                        @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 
                 <div class="form-group">
                     <label for="rooms">Numero di stanze</label>
@@ -71,12 +71,20 @@ ul {
 
                 <div class="form-group">
                     <label for="description">Descrizione</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Inserisci la descrizione">{{$house->houseinfo->description}}</textarea>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="7" placeholder="Inserisci la descrizione">{{$house->houseinfo->description}}</textarea>
                     @error('description')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
+                <div class="form-group">
+                    <label for="price">Prezzo</label>
+                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" value="{{$house->houseinfo->price}}">
+                    @error('price')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="">
                 <div class="form-group">
                     <label for="form-address">Via*</label>
                     <input type="search" class="form-control" id="form-address" placeholder="Inserisci via e numero" name="address" value="{{$house->houseinfo->address}}">
@@ -114,20 +122,13 @@ ul {
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="price">Prezzo</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" value="{{$house->houseinfo->price}}">
-                    @error('price')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
                 <div class="d-flex justify-content-between">
                     <div class="form-group">
                         <h6>Servizi</h6>
                         <ul>
                             @foreach($services as $service)
                                 <li>
-                                    <label for="service{{$service->id}}">{{$service->name}}</label>
+                                    <label class="font-weight-normal text-secondary" for="service{{$service->id}}">{{$service->name}}</label>
                                     <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}"
                                     @if ($house->services->contains($service->id))
                                         checked
@@ -142,7 +143,7 @@ ul {
                         <ul>
                             @foreach($tags as $tag)
                             <li>
-                                <label for="tag{{$tag->id}}">{{$tag->name}}</label>
+                                <label class="font-weight-normal text-secondary" for="tag{{$tag->id}}">{{$tag->name}}</label>
                                 <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}"
                                 @if ($house->tags->contains($tag->id))
                                     checked
@@ -152,55 +153,14 @@ ul {
                         </ul>
                     </div>
                 </div>
-
-                {{-- <div class="form-group">
-                    <h6>Servizi</h6>
-                    
-                    @foreach($services as $service)
-                        <label for="{{$service->id}}">{{$service->name}}</label>                      
-                        <input type="checkbox" name="services[]" id="{{$service->id}}" value="{{$service->id}}"
-                        @if ($house->services->contains($service->id))
-                             checked
-                         @endif> 
-                        
-                    @endforeach
-                    @error('services')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <h6>Tags</h6>
-                    
-                    @foreach($tags as $tag)
-                        <label for="{{$tag->id}}">{{$tag->name}}</label>                
-                        <input type="checkbox" name="tags[]" id="{{$tag->id}}" value="{{$tag->id}}"
-                        @if ($house->tags->contains($tag->id))
-                             checked
-                         @endif> 
-                        
-                    @endforeach
-                    @error('services')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div> --}}
     
                 <div class="form-group">
                     <label for="cover_image">Immagine di copertina</label>
-                    <input type="file" class="form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*"  value="{{$house->houseinfo->cover_image}}">
+                    <input type="file" class="pt-1 form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*"  value="{{$house->houseinfo->cover_image}}">
                     @error('cover_image')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
-                {{-- <div class="form-group" id="other-images">
-                    <label for="url">Altre immagini</label>
-                    <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{$house->images->url}}">
-                    @error('url')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <h6 id="new-image">Aggiungi nuova immagine</h6>
-                </div> --}}
 
                 <div class="form-group">
                     <label for="visible">Rendi visibile</label>
@@ -210,8 +170,9 @@ ul {
                 <input hidden type="text" class="form-control" id="form-lat" name="lat" value="{{$house->houseinfo->lat}}"/>
                 <input hidden type="text" class="form-control" id="form-lng" name="lon" value="{{$house->houseinfo->lon}}"/>
     
-                <button type="submit" class="btn btn-primary">Salva</button>
-          </form>
+                <button type="submit" class="btn btn-primary salva">Salva</button>
+            </div>
+            </form>
     </div>
     <script id="image-template" type="text/x-handlebars-template">
         <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">

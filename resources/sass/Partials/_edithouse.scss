@@ -1,0 +1,29 @@
+.edit-house {
+    .form-edit {
+        display: flex;
+        justify-content: space-around;
+        .form-group{
+            label {
+                color: #ff5070;
+                font-weight: bold;
+            }
+            h6 {
+                color: #ff5070;
+               
+            }
+        }
+      
+        .salva {
+            background-color: #00A6AB;
+            border: none;
+        }
+      }
+    }
+
+@media screen and (max-width: 768px) {
+    .edit-house {
+        .form-edit {
+            display: block;
+        }
+    }
+}

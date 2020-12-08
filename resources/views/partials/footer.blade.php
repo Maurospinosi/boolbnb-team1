@@ -1,6 +1,6 @@
 <footer>
     <a href="{{route('guest/home')}}">
-        <img src="{{asset('../img/logo.png')}}" alt="Logo footer">
+        <img src="{{asset('../img/logo-chiave.png')}}" alt="Logo footer">
     </a>
         <div class="copyright">
             <ul>

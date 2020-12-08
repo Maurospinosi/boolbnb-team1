@@ -11418,8 +11418,8 @@ h4 {
 
   footer img {
     width: 150px;
-    height: 150px;
-    margin: 20px 20px;
+    height: auto;
+    margin: 20px 50px;
   }
 
   footer .copyright ul {
@@ -11503,5 +11503,55 @@ footer .copyright ul i {
 
 footer:hover {
   box-shadow: 0 1px 20px #ff385c;
+}
+
+.create-house .form-create {
+  display: flex;
+  justify-content: space-around;
+}
+
+.create-house .form-create .form-group label {
+  color: #00A6AB;
+  font-weight: bold;
+}
+
+.create-house .form-create .form-group h6 {
+  color: #00A6AB;
+}
+
+.create-house .form-create .crea {
+  background-color: #ff5070;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .create-house .form-create {
+    display: block;
+  }
+}
+
+.edit-house .form-edit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-house .form-edit .form-group label {
+  color: #ff5070;
+  font-weight: bold;
+}
+
+.edit-house .form-edit .form-group h6 {
+  color: #ff5070;
+}
+
+.edit-house .form-edit .salva {
+  background-color: #00A6AB;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .edit-house .form-edit {
+    display: block;
+  }
 }
 
