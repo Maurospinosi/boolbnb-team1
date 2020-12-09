@@ -1,19 +1,18 @@
 
 
 @component('mail::message')
-<h1>Grazie per  esserti registrato al sito</h1>
-<h2>I tuoi dati:</h2>
-<ul>
-    <li>{{$dati["host_email"]}}</li>
-    <li>{{$dati["host_name"]}}</li>
-    <li>{{$dati["birth_date"]}}</li>
-
-</ul>
+<img id="beautiful-house" src="{{asset('../img/beautiful-house.jpg')}}" class="logo" alt="house">
+<h2>Ciao {{$dati["host_name"]}},</h2>
+<h2>Benvenuto su Boolbnb.</h2>
+<p>Adesso che sei un host, dai un'occhiata a tutto quello che puoi fare!! Per cominciare, perchè non inserisci la tua prima casa? </p>
 
 @component('mail::button', ['url' => ''])
-Inserisci una casa
 @endcomponent
 
-Thanks,<br>
+<div class="action">
+    <a class="button button-primary " href="http://localhost:8000/host/house/create">Inserisci una casa</a>
+    </div>
+
+
 Boolbnb Team 1
 @endcomponent

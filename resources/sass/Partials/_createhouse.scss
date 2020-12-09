@@ -1,0 +1,28 @@
+.create-house {
+.form-create {
+    display: flex;
+    justify-content: space-around;
+    .form-group{
+        label {
+            color:#00A6AB;
+            font-weight: bold;
+        }
+        h6 {
+            color:#00A6AB;
+        }
+    }
+  
+    .crea {
+        background-color: #ff5070 ;
+        border: none;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .create-house {
+        .form-create {
+            display: block;
+        }
+    }
+}

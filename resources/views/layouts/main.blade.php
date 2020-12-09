@@ -17,11 +17,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBawL8VbstJDdU5397SUX7pEt9DslAwWgQ"></script>
 
     <style>
-        #map-example-container {
-            height: 280px;
-            width: 280px;
-            border: 3px solid  #FF385C;
-            }
+      
       </style>
     @yield('style')
     <script src="https://js.braintreegateway.com/web/dropin/1.25.0/js/dropin.min.js"></script>

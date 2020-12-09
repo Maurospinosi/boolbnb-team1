@@ -11,17 +11,19 @@
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Id Casa</th>
+            <th scope="col">Casa</th>
             <th scope="col">Nome utente</th>
             <th scope="col">Email</th>
             <th scope="col">Azioni</th>
         </tr>
         </thead>
-
+            
         @foreach ($messages as $message)
-            <tbody>
+        <tbody>
+
             <tr>
-                <th>{{$message->house_id}}</th>
+              
+                <td>{{$message->house->houseinfo->title}}</td>
                 <td>{{$message->guest_name}}</td>
                 <td>{{$message->email}}</td>
                 <td>
@@ -50,6 +52,5 @@
     </table>
 </div>
 </div>
---------------------------------
 
 @endsection

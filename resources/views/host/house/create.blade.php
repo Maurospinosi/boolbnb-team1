@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-Aggiungi una nuova casa
+Inserisci una nuova casa
 @endsection
 
 @section('page-content')
@@ -21,9 +21,9 @@ Aggiungi una nuova casa
 </style>
 
 
-    <div class="container">
+    <div class="container create-house">
 
-        <h2>Aggiungi la tua casa</h2>
+        <h2 class="text-secondary font-weight-bold">Inserisci la tua casa</h2>
 
         <div class="error_message">
             @if (count($errors) > 0)
@@ -36,13 +36,12 @@ Aggiungi una nuova casa
                 </div>
             @endif
         </div>
-
-        <form action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
+        <form class="w-100 col-12 col-md-12 form-create shadow p-3 mb-5 mt-5 bg-white rounded" action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("POST")
-        
-                <div style="margin-top: 50px" class="form-group">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
                     <label for="title">Titolo*</label>
                     <input type="text" class="form-control" name="title" id="title" placeholder="Inserisci il titolo" maxlength="100" required value="{{old("title")}}">
                     @error('title')
@@ -84,12 +83,20 @@ Aggiungi una nuova casa
 
                 <div class="form-group">
                     <label for="description">Descrizione</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10" placeholder="Inserisci la descrizione" maxlength="1000">{{old("description")}}</textarea>
+                    <textarea class="form-control" name="description" id="description" cols="30" rows="7" placeholder="Inserisci la descrizione" maxlength="1000">{{old("description")}}</textarea>
                     @error('description')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="price">Prezzo*</label>
+                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" min="5" max="9999" required value="{{old("price")}}">
+                    @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-
+            </div>
+            <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="form-address">Via*</label>
                     <input type="search" class="form-control" name="address" id="form-address" placeholder="Inserisci via e numero" required value="{{old("address")}}">
@@ -127,41 +134,36 @@ Aggiungi una nuova casa
                     @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="price">Prezzo*</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" min="5" max="9999" required value="{{old("price")}}">
-                    @error('price')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
 
-                <div class="form-group">
-                    <h6>Servizi</h6>
-                    <ul>
-                        @foreach($services as $service)
+                <div class="tags_services d-flex justify-content-between">
+                    <div class="form-group">
+                        <h6>Servizi</h6>
+                        <ul>
+                            @foreach($services as $service)
+                                <li>
+                                    <label class=" font-weight-normal text-secondary" for="service{{$service->id}}">{{$service->name}}</label>
+                                    <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}">
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <h6>Tag</h6>
+                        <ul>
+                            @foreach($tags as $tag)
                             <li>
-                                <label for="service{{$service->id}}">{{$service->name}}</label>
-                                <input type="checkbox" name="services[]" id="service{{$service->id}}" value="{{$service->id}}">
+                                <label class="font-weight-normal text-secondary" for="tag{{$tag->id}}">{{$tag->name}}</label>
+                                <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}">
                             </li>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <div class="form-group">
-                    <h6>Tag</h6>
-                    <ul>
-                        @foreach($tags as $tag)
-                        <li>
-                            <label for="tag{{$tag->id}}">{{$tag->name}}</label>
-                            <input type="checkbox" name="tags[]" id="tag{{$tag->id}}" value="{{$tag->id}}">
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
+                            @endforeach
+                        </ul>
+                    </div>
+                 </div>
     
                 <div class="form-group">
                     <label for="cover_image">Immagine di copertina</label>
-                    <input type="file" class="form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*" required value="{{old("cover_image")}}">
+                    <input type="file" class="pt-1 form-control" id="cover_image" name="cover_image" placeholder="Inserisci immagine" accept="image/*" required value="{{old("cover_image")}}">
                     @error('cover_image')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -169,7 +171,7 @@ Aggiungi una nuova casa
 
                 <div class="form-group" id="other-images">
                     <label for="url">Altre immagini</label>
-                    <input type="file" class="form-control" id="url" name="url[]" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}" multiple="multiple">
+                    <input type="file" class="pt-1 form-control" id="url" name="url[]" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}" multiple="multiple">
                     @error('url')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -180,12 +182,14 @@ Aggiungi una nuova casa
                     <label for="visible">Rendi visibile</label>
                     <input type="checkbox" id="visible" name="visible" value="1">
                 </div>
-
                 <input hidden type="text" class="form-control" id="form-lat" name="lat"/>
                 <input hidden type="text" class="form-control" id="form-lng" name="lon"/>
-    
-                <button type="submit" class="btn btn-primary">Crea</button>
+               
+                
+                <button type="submit" class="btn crea btn-primary">Crea</button>
+            </div>
           </form>
     </div>
+</div>    
     <script src="{{asset('js/algoliaaddress.js')}}"></script>
 @endsection

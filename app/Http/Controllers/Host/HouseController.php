@@ -180,6 +180,12 @@ class HouseController extends Controller
             "user_name" => $newHouse->user->name,
             "user_email" => $newHouse->user->email,
             "title" => $newHouseInfo->title,
+            "house_id" => $newHouse->id,
+            "price" => $newHouseInfo->price,
+            "address" => $newHouseInfo->address,
+            "city" => $newHouseInfo->city,
+            "cover_image" => $newHouseInfo->cover_image,
+            "mq" => $newHouseInfo->mq
         ];
 
         Mail::to($dati["user_email"])->send(new NewHouseAdded($dati));
@@ -270,7 +276,6 @@ class HouseController extends Controller
         // Recupero la casa
         $house = House::findOrFail($id);
 
-        // Aggiorna la casa
         $house->slug = Str::of($data["title"])->slug("-");
         if (in_array("visible", $data)) {
             $house->visible = true;
