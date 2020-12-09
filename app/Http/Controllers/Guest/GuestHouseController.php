@@ -23,7 +23,7 @@ class GuestHouseController extends Controller
     public function index()
     {
         // Prendiamo tutte le case e le sponsorizzazioni
-        $houses = House::all();
+        $houses = House::where("visible", 1)->inRandomOrder()->get();
         $sponsors = Sponsor::all();
 
         // Aggiorniamo quali case non sono più sponsorizzate
@@ -33,16 +33,29 @@ class GuestHouseController extends Controller
 
         // Mettiamo le case sponsorizzate in un array
         $sponsoredHouses = [];
+
+        if(count($houses) < 7) {
+            $max = count($houses);
+        } else {
+            $max = 6;
+        }
+
         foreach($houses as $house) {
             foreach($sponsors as $sponsor) {
-                if ($house->sponsors->contains($sponsor->id)) {
+                if ($house->sponsors->contains($sponsor->id) && count($sponsoredHouses) < $max) {
                     $sponsoredHouses[] = $house;
                 }
             }
         }
 
+        $housesToPrint = $sponsoredHouses;
+        
+        if (count($sponsoredHouses) == 0) {
+            $housesToPrint = House::inRandomOrder()->limit(6)->get();
+        }
+
         // Indirizziamo l'utente alla view con le case sponsorizzate
-        return view('guest.welcome', compact('sponsoredHouses'));
+        return view('guest.welcome', compact('housesToPrint'));
     }
 
     /**

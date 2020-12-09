@@ -80,7 +80,7 @@
                 <button type="submit" class="btn btn-pink">Completa registrazione</button>
         </form>
     </div>
-    
+    <script src="{{asset('js/citysearchregister.js')}}"></script>
 @endsection
     
 

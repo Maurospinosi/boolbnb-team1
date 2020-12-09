@@ -20,7 +20,9 @@ class SponsorHouseTableSeeder extends Seeder
         foreach($houses as $house) {
             $rand = rand(0,1);
 
-            if ($rand == 1) {                
+            if ($rand == 1) {
+                $house->visible = 1;
+                $house->update();                
                 $randomSponsor = Sponsor::inRandomOrder()->first()->toArray();
         
                 $now = Carbon::now();

@@ -11577,3 +11577,144 @@ footer:hover {
   color: #00A6AB;
 }
 
+#searchresults-wrapper .sponsor-bg-color {
+  background-color: #ebf5f9;
+}
+
+#searchresults-wrapper #houses-container {
+  margin-top: 30px;
+}
+
+#searchresults-wrapper #searchresults-form {
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 30px;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+
+#searchresults-wrapper #searchresults-form #searchresults-title {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+#searchresults-wrapper #searchresults-form label {
+  font-size: 14px;
+}
+
+#searchresults-wrapper #searchresults-form ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#searchresults-wrapper #searchresults-form li {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin: 0 10px;
+}
+
+#searchresults-wrapper #searchresults-form input::-webkit-outer-spin-button,
+#searchresults-wrapper #searchresults-form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#searchresults-wrapper #searchresults-form input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#searchresults-wrapper #searchresults-form #searchresults-tags input {
+  border-radius: 5px;
+  border: 1px solid grey;
+  max-width: 50px;
+  text-align: center;
+}
+
+#searchresults-wrapper .card {
+  width: 100%;
+}
+
+#searchresults-wrapper .card .card-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#searchresults-wrapper .card .card-body span.sponsorizzata {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#searchresults-wrapper .card .card-body .card_badges {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#searchresults-wrapper .card .card-body .card_badges .fa-tags {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+#searchresults-wrapper .card .card-body .card_img {
+  width: 30%;
+  display: inline-block;
+  padding-right: 1.25rem;
+}
+
+#searchresults-wrapper .card .card-body .card_img img {
+  width: 100%;
+  height: 100%;
+}
+
+#searchresults-wrapper .card .card-body .card_text {
+  width: 70%;
+}
+
+#searchresults-wrapper .card .card-body .card_text h5 {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  #searchresults-wrapper .card_badges {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #searchresults-wrapper .card_text h5 {
+    font-size: 13px;
+  }
+
+  #searchresults-wrapper .card .card-body .card_img {
+    width: 50%;
+  }
+
+  #searchresults-wrapper .card .card-body .card_text {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #searchresults-wrapper span.sponsorizzata {
+    font-size: 9px;
+  }
+
+  #searchresults-wrapper .card_text h6 {
+    display: inline-block;
+    padding-right: 10px;
+  }
+
+  #searchresults-wrapper .card_text button {
+    font-size: 9px;
+    padding: 5px;
+  }
+}
+
