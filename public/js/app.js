@@ -52920,6 +52920,25 @@ $(document).ready(function () {
     });
   };
 
+  citySearch();
+
+  var citySearch = function citySearch() {
+    var placesAutocomplete = places({
+      appId: 'pl0CZDFYINVV',
+      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+      container: document.querySelector('#form-city-info'),
+      templates: {
+        value: function value(suggestion) {
+          return suggestion.name;
+        }
+      }
+    }).configure({
+      // type: 'address'
+      type: 'city',
+      aroundLatLngViaIP: true
+    });
+  };
+
   citySearch(); // RICERCA con filtri
   // Endpoint in cui si trova il database
 
@@ -53098,8 +53117,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

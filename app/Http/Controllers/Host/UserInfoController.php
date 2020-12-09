@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Host;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
 
 use App\User;
 use App\UserInfo;
 use App\Mail\NewUser;
-use Illuminate\Support\Facades\Mail;
 
 class UserInfoController extends Controller
 {
@@ -33,10 +36,8 @@ class UserInfoController extends Controller
         $user_id = Auth::id();
 
         $user = User::find($user_id);
-     
-        return view('host.info.create', ['user_name'=> $user['name']] );
 
-        
+        return view('host.info.create', ['user_name' => $user['name']]);
     }
 
     /**
@@ -49,33 +50,54 @@ class UserInfoController extends Controller
     {
         $data = $request->all();
         $user_id = Auth::id();
-        // dd($data);
+
+        $request->validate([
+            "lastname" => "nullable|max:70",
+            "date_of_birth" => "nullable|date",
+            "gender" => "nullable",
+            "city" => "nullable|max:50",
+            "picture" => "nullable|image",
+        ]);
 
         $newUserInfo = new UserInfo;
         $newUserInfo->user_id = $user_id;
-        $newUserInfo->lastname = $data['lastname'];
-        
+
+        if (isset($data['lastname'])) {
+            $newUserInfo->lastname = $data['lastname'];
+        }
+
         if (isset($data['date_of_birth'])) {
             $newUserInfo->date_of_birth = $data['date_of_birth'];
         }
-        
+
         if (isset($data['gender'])) {
             $newUserInfo->gender = $data['gender'];
         }
 
+        if (isset($data['city'])) {
+            $newUserInfo->city = $data['city'];
+        }
+
+        if (isset($data['picture'])) {
+            $filename_original = $data['picture']->getClientOriginalName();
+
+            $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
+
+            $newUserInfo->picture = $pathCover;
+        }
+
         $newUserInfo->save();
+
         $dati = [
             "host_email" => $newUserInfo->user->email,
             "host_name" => $newUserInfo->user->name,
             "birth_date" => $data['date_of_birth'],
 
         ];
-       
 
         Mail::to('mail@mail.it')->send(new NewUser($dati));
 
         return redirect('/');
-
     }
 
     /**

@@ -7,9 +7,9 @@ var places = require('places.js');
 $(document).ready(function () {
 
   //// SPONSORIZZAZIONE ////
-    $("#host-sponsorship h5").on("click", function(){
-      $(this).siblings(".sponsorContent").toggleClass("d-none");
-    });
+  $("#host-sponsorship h5").on("click", function () {
+    $(this).siblings(".sponsorContent").toggleClass("d-none");
+  });
   //// FINE SPONSORIZZAZIONE ////
   //// BRAINTREE ////
   const form = document.getElementById('payment-form');
@@ -27,17 +27,18 @@ $(document).ready(function () {
       });
     });
   });
-/// FINE BRAINTREE ////
-/*Funzione che al click sull'hamburger fa apparire il menù */
+  /// FINE BRAINTREE ////
+
+  /*Funzione che al click sull'hamburger fa apparire il menù */
   $('.hamburger').click(function () {
     $(".hamburger-menu").toggle();
   });
 
   /* Funzione che controlla l'hamburger-menu al passaggio del mouse */
-  $(".hamburger-menu").mouseenter(function() {
+  $(".hamburger-menu").mouseenter(function () {
     $(".hamburger-menu").fadeIn('active');
   });
-  $("header").mouseleave(function() {
+  $("header").mouseleave(function () {
     $(".hamburger-menu").fadeOut('active');
   });
 
@@ -74,13 +75,31 @@ $(document).ready(function () {
   };
   citySearch();
 
+  var citySearch = function () {
+    var placesAutocomplete = places({
+      appId: 'pl0CZDFYINVV',
+      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
+      container: document.querySelector('#form-city-info'),
+      templates: {
+        value: function (suggestion) {
+          return suggestion.name;
+        }
+      }
+    }).configure({
+      // type: 'address'
+      type: 'city',
+      aroundLatLngViaIP: true,
+    });
+  };
+  citySearch();
+
 
   // RICERCA con filtri
   // Endpoint in cui si trova il database
   var endpoint = 'http://localhost:8000/api/getallhouses';
 
   // Prendiamo i dati dai filtri
-  $("#search-results-form").change(function(){
+  $("#search-results-form").change(function () {
 
     // Prendiamo latitudine e longitudine
     const queryString = window.location.href;
@@ -126,7 +145,7 @@ $(document).ready(function () {
     // Prendiamo il valore di price
     var price = $(this).find('input[name="price"]').val();
     var distance = $(this).find('input[name="distance"]').val();
-    if(services.length == 0) {
+    if (services.length == 0) {
       services = "";
     }
     callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance);
@@ -146,12 +165,12 @@ $(document).ready(function () {
         "price": price,
         "distance": distance
       },
-      "method": "GET", 
-      "success": function(data) {
+      "method": "GET",
+      "success": function (data) {
         console.log(data);
         printResults(data);
       },
-      "error": function(err) {
+      "error": function (err) {
         alert("Error");
       }
     });
