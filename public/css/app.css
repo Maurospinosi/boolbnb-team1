@@ -11030,7 +11030,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 99999;
   background-color: #fff;
   transition: box-shadow 1.5s;
   /* Logo */
