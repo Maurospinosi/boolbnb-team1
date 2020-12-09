@@ -38,7 +38,7 @@ class HouseTableSeeder extends Seeder
             $newHouse = new House;
             $newHouse->user_id = $randomUser->id;
             $newHouse->slug = $slug;
-            $newHouse->visible = rand(0, 1);
+            $newHouse->visible = rand(0,1);
 
             $newHouse->save();
         }

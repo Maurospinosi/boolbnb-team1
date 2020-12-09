@@ -21749,7 +21749,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Mauro\Desktop\boolean-github\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
 
 
 /***/ })

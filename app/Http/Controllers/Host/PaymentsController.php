@@ -72,6 +72,9 @@ class PaymentsController extends Controller
         // Prendiamo la casa con l'id passato da $data
         $house = House::where("id", $house_id)->first();
 
+        // Rendiamo la casa automaticamente visibile quando viene sponsorizzata
+        $house->visible == 1;
+
         // Prendiamo il valore della durata della sponsorizzazione
         $sponsorship = Sponsor::where("price", $amount)->first();
 

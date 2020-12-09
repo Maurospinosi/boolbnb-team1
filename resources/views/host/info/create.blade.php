@@ -81,6 +81,7 @@
         </form>
     </div>
     
+    <script src="{{asset('js/citysearchregister.js')}}"></script>
 @endsection
     
 

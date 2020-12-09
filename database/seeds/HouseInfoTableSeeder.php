@@ -96,6 +96,10 @@ class HouseInfoTableSeeder extends Seeder
         $house14 = new HouseObj("Via Etnea 502", "Sicilia", 95128, "Catania", "Italia", 37.5144, 15.0845);
         $houseArr[] = $house14;
 
+        // Savona
+        $house15 = new HouseObj("Via Cirano Bellotto 12", "Liguria", 17047, "Savona", "Italia", 44.283326, 8.427920);
+        $houseArr[] = $house15;
+        
 
         $houses = House::all();
 
@@ -120,7 +124,7 @@ class HouseInfoTableSeeder extends Seeder
             $newHouseInfo->lat = $houseArr[$i]->lat;
             $newHouseInfo->lon = $houseArr[$i]->lon;
             $newHouseInfo->price = $faker->numberBetween(50, 300);
-            $newHouseInfo->cover_image = "https://picsum.photos/700/500";
+            $newHouseInfo->cover_image = "https://loremflickr.com/320/240/house";
             $newHouseInfo->save();
             $i++;
         }
