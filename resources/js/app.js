@@ -42,10 +42,16 @@ $(document).ready(function () {
     $(".hamburger-menu").fadeOut('active');
   });
 
-  /*Funzione che al doppio click sul body fa sparire il menù */
-  /*$("body").dblclick(function(){
-      $(".hamburger-menu").fadeOut('active');
-    }); */
+
+  // Funzione che al click sul globo della lingua fa apparire il menù
+  // $('header .fa-globe').click(function () {
+  //   $("#header-lang").toggleClass("d-none");
+  // });
+
+  // $("#header-lang").mouseleave(function () {
+  //   $(this).addClass('d-none');
+  // });
+
 
   // ALGOLIA
   // Ricerca per città

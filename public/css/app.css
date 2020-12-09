@@ -10920,7 +10920,7 @@ a.text-dark:focus {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 781px) {
   header {
     justify-content: center;
     /* Logo */
@@ -10944,7 +10944,7 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 992px) {
+@media screen and (min-width: 782px) and (max-width: 992px) {
   header {
     justify-content: space-around;
     /* Menu login, 'Diventa un host', hamburger */
@@ -10953,7 +10953,6 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 200px;
-    height: 230px;
     font-size: 15px;
     right: 6%;
   }
@@ -10992,7 +10991,6 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 230px;
-    height: 250px;
     right: 8%;
   }
 
@@ -11002,7 +11000,6 @@ a.text-dark:focus {
 
   header li:last-child {
     padding: 12px;
-    margin-left: 5px;
   }
 
   header li:nth-last-child(2) {
@@ -11048,6 +11045,7 @@ header .hamburger-menu {
   border: 1px solid lightgrey;
   position: absolute;
   top: 100%;
+  right: 30px;
   display: none;
   box-shadow: 2px 5px 5px #ff385c;
   border-radius: 15px;
@@ -11071,6 +11069,10 @@ header .hamburger-menu .hamburger-list li a {
   padding: 10px;
 }
 
+header .hamburger-menu .hamburger-list li.logout-link {
+  margin-top: 15px;
+}
+
 header .hamburger-menu .hamburger-list li:hover a {
   color: white;
   background-color: #ff385c;
@@ -11090,8 +11092,7 @@ header li {
 }
 
 header li:last-child {
-  border: 1px solid #e9e9e9;
-  border-radius: 40%;
+  border-radius: 50%;
   cursor: pointer;
   position: relative;
 }
@@ -11106,10 +11107,20 @@ header li:last-child i:last-child {
   background-color: #828282;
   border-radius: 100%;
   padding: 6px;
-  margin-left: 10px;
+  margin-left: 3px;
 }
 
-header li:last-child:hover {
+header .hamburger {
+  border: none;
+}
+
+header .hamburger #header_user_img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+header .hamburger:hover {
   box-shadow: 2px 5px 5px #ff385c;
   border: 0, 5px solid #ff385c;
 }
@@ -11124,7 +11135,7 @@ header li:nth-last-child(2) i {
 
 header li:nth-last-child(2):hover {
   background-color: #ff385c;
-  border-radius: 100%;
+  border-radius: 25px;
 }
 
 header li:nth-last-child(2):hover i {
@@ -11203,6 +11214,42 @@ header a:hover {
 
 header input:focus {
   outline: none;
+}
+
+header .fa-globe {
+  cursor: pointer;
+}
+
+header #header-lang {
+  position: relative;
+  top: 15px;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+header #header-lang li {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+}
+
+header #header-lang li a {
+  color: #000;
+}
+
+header #header-lang li a:hover {
+  background-color: none;
+  color: lightblue;
+}
+
+header li#user_name {
+  font-weight: 600;
+}
+
+header li#user_name:hover {
+  background-color: #fff;
+  box-shadow: 2px 5px 5px #ff385c;
 }
 
 header:hover {

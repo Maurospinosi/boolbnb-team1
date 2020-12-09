@@ -22,6 +22,7 @@ class GuestHouseController extends Controller
      */
     public function index()
     {
+        
         // Prendiamo tutte le case e le sponsorizzazioni
         $houses = House::where("visible", 1)->inRandomOrder()->get();
         $sponsors = Sponsor::all();
@@ -87,9 +88,10 @@ class GuestHouseController extends Controller
      */
     public function show($slug)
     {
+
         // Richiamiamo la casa
         $house = House::where('slug', $slug)->first();
-
+        
         // Aggiungiamo una "view" perché la casa è stata visitata
         $newView = new View;
         $newView->house_id = $house->id;

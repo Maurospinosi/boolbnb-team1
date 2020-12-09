@@ -11,7 +11,7 @@
         @method('GET')
 
         <div class="search-container header-search">
-            <input type="text" id="form-city-address" placeholder="Search...">
+            <input type="text" id="form-city-address" placeholder="Cerca...">
             <input hidden type="text" class="form-control" id="form-city-address2" placeholder="Regione" name="region">
             <input hidden type="text" class="form-control" name="zipcode" id="form-city-zip" placeholder="CAP">
             <input hidden type="text" class="form-control" name="city" id="form-city-city" placeholder="Città">
@@ -27,7 +27,7 @@
     <ul>
         @guest
             <li class="header-login">
-                <a  href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a  href="{{ route('login') }}">Login</a>
             </li>
             @if (Route::has('register'))
                 <li class="header-host">
@@ -36,39 +36,51 @@
             @endif
 
             @else
-            <li >
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item logout-header" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
+            <li id="user_name">
+                {{ Auth::user()->name }}
             </li>
         @endguest
 
-        <li>
-            <i class="fas fa-globe"></i> 
-        </li>
+        {{-- <li>
+            <i class="fas fa-globe"></i>
+        </li> --}}
+        {{-- <ul id="header-lang" class="d-none">
+            <li><a href="{{route('guest/home', 'it')}}">IT</a></li>
+            <li><a href="{{route('guest/home', 'en')}}">EN</a></li>
+            <li><a href="{{route('guest/home', 'de')}}">DE</a></li>
+        </ul> --}}
         <li class="hamburger">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-user"></i>
+            @if (Route::has('register'))
+                <i class="fas fa-user"></i>
+            @else
+                @if (Auth::user()->user_info->picture != null)
+                    <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile photo">
+                @else
+                    <i class="fas fa-user"></i>
+                @endif
+            @endif
         </li>
     </ul>
-    <div class="hamburger-menu">
-        <ul class="hamburger-list">
-            <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
-            <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
-            <li><a href="{{route('host/house.create')}}">Inserisci una casa</a></li>
-            <li><a href="{{route('guest/home')}}">Torna alla Home</a></li>
-        </ul>         
-    </div>
+    @if (Auth::user())
+        <div class="hamburger-menu">
+            <ul class="hamburger-list">
+                <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
+                <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
+                <li><a href="{{route('host/house.create')}}">Aggiungi una casa</a></li>
+                @if (Route::currentRouteName() != 'guest/home')
+                    <li><a href="{{route('guest/home')}}">Torna alla home</a></li>
+                @endif
+                <li class="logout-link">
+                    <a class="dropdown-item logout-header" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                        @lang('auth.logout')
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            </ul>         
+        </div>
+    @endif
 </header>
