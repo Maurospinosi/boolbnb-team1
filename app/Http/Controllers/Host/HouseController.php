@@ -185,7 +185,8 @@ class HouseController extends Controller
             "address" => $newHouseInfo->address,
             "city" => $newHouseInfo->city,
             "cover_image" => $newHouseInfo->cover_image,
-            "mq" => $newHouseInfo->mq
+            "mq" => $newHouseInfo->mq,
+            "rooms" => $newHouseInfo->rooms,
         ];
 
         Mail::to($dati["user_email"])->send(new NewHouseAdded($dati));
