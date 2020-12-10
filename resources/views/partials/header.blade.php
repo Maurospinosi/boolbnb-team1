@@ -50,7 +50,7 @@
             <li><a href="{{route('guest/home', 'de')}}">DE</a></li>
         </ul> --}}
         <li class="hamburger">
-            @if(Auth::check())
+            @if(Auth::check() && (Route::currentRouteName() != 'host/info/create'))
                 @if (Auth::user()->user_info->picture != null)
                     <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile photo">
                 @else

@@ -278,11 +278,7 @@ header{
 
     li#user_name {
         font-weight: 600;
-
-        &:hover {
-            background-color: #fff;
-            box-shadow: 2px 5px 5px rgb(255, 56, 92);
-        }
+        background-color: transparent !important;
     }
 
 }
