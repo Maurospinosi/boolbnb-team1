@@ -8,72 +8,55 @@
 
    
     <div class="container guest-show-container"> 
-
-        <div  class="d-flex justify-content-end"> 
-            <a href="{{route('guest/home')}}" class="btn btn-info">Torna alla Home</a>
-            <a href="{{route('guest/search')}}" class="btn btn-info">Torna alla ricerca</a>
-        </div>
-        @if(Auth::id() == $house->user_id)
-            <div class="auth-buttons">
-                <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
-                <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
-                    @csrf
-                    @method("DELETE")
-                        <button class="btn btn-danger">Cancella</button>
-                </form>
-            </div>
-        @endif
-        
-        <div class="mt-10 titolo"> 
-            <h1 >{{$house->houseinfo->title}}</h1>
-        </div>
-        
-        <div class="sottotitolo">
-            <div class="d-inline-flex p-2 bd-highlight">
-                    <span>{{$house->houseinfo->price}}€ a notte</span>
-            </div>
-            <div class="d-inline-flex p-2 bd-highlight">
-                <h6>Tag: </h6>
-            </div>
-            <div class="d-inline-flex p-2 bd-highlight">
-                <ul class="list-inline">
-                    @foreach ($houseTags as $houseTag)
-                        <li class="list-inline-item">{{$houseTag}}</li>
-                    @endforeach
-                </ul>
-            </div>
-            
-            <div class="d-inline-flex p-2 bd-highlight">
-                <ul class="list-inline list-unstyled">
-                    <li class="list-inline-item">Città: {{$house->houseinfo->city}}</li>
-                    <li class="list-inline-item">Paese: {{$house->houseinfo->country}}</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="carouselExampleSlidesOnly" class="carousel slide cover-image" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                    <img class="d-block w-100" src="<?php echo "https://res.cloudinary.com/dofcj4o0y/image/upload/w_auto,c_scale,q_auto,f_auto/". str_replace("https://res.cloudinary.com/dofcj4o0y/image/upload/", "", "{$house->houseinfo->cover_image}") ?>" alt="random picture">
-                    @else
-                        <img class="d-block w-100" src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
-                     @endif
+        <div class="row">
+            <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
+                <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
+                    <h1 class="mt-10 titolo">{{$house->houseinfo->title}}</h1>
                 </div>
             </div>
-        </div>    
-  
-        <div class="row">
-            @foreach ($images as $image)
-            <div class="col-md-3">
-                @if (strpos($image->url, 'http') === 0)
-                     <img class="img-thumbnail gallery" src="{{$image->url}}" alt="random picture">
-                @else
-                    <img class="img-fluid gallery" src="{{asset('storage/'.$image->url)}}" alt="">
-                @endif
+            <div class="col-md-12 col-lg-12  bg-white">
+                <div class="d-flex p-2 align-content-start justify-content-end">
+             
+                <a href="{{route('host/house.index')}}" class="btn btn-info">Indietro</a>
             </div>
-            @endforeach
-        </div> 
+        </div>
+        
+        <div class="container">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        @if (strpos($house->houseinfo->cover_image, 'http') === 0)
+                            <img class="d-block w-100 h-75" src="<?php echo "https://res.cloudinary.com/dofcj4o0y/image/upload/w_auto,c_scale,q_auto,f_auto/". str_replace("https://res.cloudinary.com/dofcj4o0y/image/upload/", "", "{$house->houseinfo->cover_image}") ?>" alt="First slide">
+                        @else
+                            <img class="d-block w-100 h-75" src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
+                        @endif
+                    </div>
+                    
+                    @foreach ($images as $image)
+                    <div class="carousel-item">
+                        @if (strpos($image->url, 'http') === 0)
+                            <img class="d-block w-100 h-75" src="{{$image->url}}" alt="Second Slide">
+                        @else
+                            <img class="d-block w-100 h-75"  src="{{asset('storage/'.$image->url)}}" alt="">
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
 
         <div class="row">
             <div class="col">
@@ -111,7 +94,7 @@
         
 
         <div class="row ">
-            <div class="col-md-6">
+            <div class="col-md-6 col-lg-6">
                 <div class="form-box show-sticky">
                     <div class="card-body">
                         <h3>Contatta il proprietario</h3>
@@ -150,4 +133,5 @@
         </div>
 
     <script src="{{ asset('js/map.js') }}"></script>
+    <script src="{{ asset('js/carousel.js') }}"></script>
 @endsection

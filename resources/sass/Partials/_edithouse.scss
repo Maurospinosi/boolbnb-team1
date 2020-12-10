@@ -1,3 +1,20 @@
+.titolo-scheda {
+    border: 1px solid #00A6AB;
+    border-radius: 30px;
+    margin: 5px;
+
+
+    span {
+        font-size: 20px;
+        text-align:center;
+        color: $pink-airbnb;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding:15px;
+    }
+
+}
+
 .edit-house {
     .form-edit {
         display: flex;

@@ -1,46 +1,41 @@
-.create-house {
-.form-create {
-    display: flex;
-    justify-content: space-around;
-    .form-group{
-        label {
-            color:#00A6AB;
-            font-weight: bold;
-        }
-        h6 {
-            color:#00A6AB;
-        }
-    }
-  
-    .crea {
-        background-color: #ff5070 ;
-        border: none;
-    }
-  }
-}
-.host-nav-col {
-    margin-top: 20px;
-    height: 100vh;
+.titolo-scheda {
+    border: 1px solid #00A6AB;
+    border-radius: 30px;
+    margin: 5px;
 
-    .host-nav {
-       justify-content: start;
-    
-        li {
-            list-style:none;
-            font-size: 15px;
+
+    span {
+        font-size: 20px;
+        text-align:center;
+        color: $pink-airbnb;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding:15px;
+    }
+
+}
+
+.create-house {
+    .form-create {
+        display: flex;
+        justify-content: space-around;
+        .form-group{
+            label {
+                color:#00A6AB;
+                font-weight: bold;
+            }
+            h6 {
+                color:#00A6AB;
+            }
         }
     
-        a {
-            text-decoration: none;
-            color: $grey-airbnb;
-            font-size: 15px;
-        }
-    
-        i {
-            font-size: 20px;
-            padding-right: 20px;
+        .crea {
+            background-color: #ff5070 ;
+            border: none;
         }
     }
+
+
     #delete-button {
         background-color: transparent;
         border: none;

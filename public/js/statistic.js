@@ -48908,23 +48908,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< Updated upstream
-module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
-=======
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
-=======
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
-=======
-module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
->>>>>>> main
->>>>>>> main
-=======
 module.exports = __webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\js\statistic.js */"./resources/js/statistic.js");
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 
 /***/ })
