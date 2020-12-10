@@ -59,24 +59,24 @@ class HouseController extends Controller
         $data = $request->all();
 
         $request->validate([
-            "title"=> [
+            "title" => [
                 'unique:houses_info',
                 'required',
                 "max:100",
             ],
-            "rooms"=> "required",
-            "beds"=> "required",
-            "bathrooms"=> "required",
-            "mq"=> "required",
-            "address"=> "required|max:100",
-            "country"=> "required|max:60",
-            "region"=> "required|max:60",
-            "city"=> "required|max:60",
-            "zipcode"=> "required",
-            "lat"=> "required|max:20",
-            "lon"=> "required|max:20",
-            "price"=> "required",
-            "cover_image"=> "required|image",
+            "rooms" => "required",
+            "beds" => "required",
+            "bathrooms" => "required",
+            "mq" => "required",
+            "address" => "required|max:100",
+            "country" => "required|max:60",
+            "region" => "required|max:60",
+            "city" => "required|max:60",
+            "zipcode" => "required",
+            "lat" => "required|max:20",
+            "lon" => "required|max:20",
+            "price" => "required",
+            "cover_image" => "required|image",
         ]);
 
         // validazione delle immagini custom
@@ -98,18 +98,16 @@ class HouseController extends Controller
         }
 
         // Salvare l'immagine di copertina in public/storage
-        $filename_original = $data['cover_image']->getClientOriginalName();
-        $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
-        
-        // if ($data["cover_image"] == null) {
-        //     unset($data["cover_image"]);
-        // }
+        // $filename_original = $data['cover_image']->getClientOriginalName();
+        // $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
 
-        
+        $uploadedFileUrl = cloudinary()->upload($request->file('cover_image')->getRealPath())->getSecurePath();
+
+
         // Creare una nuova casa
         $newHouse = new House;
         $newHouse->user_id = Auth::id();
-        $newHouse->slug= Str::of($data["title"])->slug("-");
+        $newHouse->slug = Str::of($data["title"])->slug("-");
         if (in_array("visible", $data)) {
             $newHouse->visible = true;
         }
@@ -136,7 +134,7 @@ class HouseController extends Controller
                 $newHouse->tags()->sync($tags);
             }
         }
-        
+
 
         // Creare una nuova HouseInfo
         $newHouseInfo = new HouseInfo;
@@ -153,7 +151,7 @@ class HouseController extends Controller
         $newHouseInfo->city = $data['city'];
         $newHouseInfo->zipcode = $data['zipcode'];
         $newHouseInfo->price = $data['price'];
-        $newHouseInfo->cover_image = $pathCover;
+        $newHouseInfo->cover_image = $uploadedFileUrl;
         $newHouseInfo->lat = $data['lat'];
         $newHouseInfo->lon = $data['lon'];
         $newHouseInfo->save();
@@ -162,7 +160,7 @@ class HouseController extends Controller
         // Se sono presenti immagini aggiuntive, inserirle nella tabella images
         if (isset($data['url'])) {
 
-           foreach($data["url"] as $urlImage) {
+            foreach ($data["url"] as $urlImage) {
 
                 // Salvare le immagini in public/storage
                 $filename_original = $urlImage->getClientOriginalName();
@@ -211,13 +209,13 @@ class HouseController extends Controller
 
         $houseServices = [];
 
-        foreach($services as $service) {
+        foreach ($services as $service) {
             if ($house->services->contains($service->id)) {
                 $houseServices[] = $service->name;
             }
         }
 
-        if(Auth::id() != $house->user_id) {
+        if (Auth::id() != $house->user_id) {
             return redirect()->route('guest/house', $house->slug);
         } else {
             return view("host/house.show", compact("house", "images", "services"));
@@ -260,19 +258,19 @@ class HouseController extends Controller
                 "max:100",
                 Rule::unique('houses_info', 'title')->ignore($id)
             ],
-            "rooms"=> "required",
-            "beds"=> "required",
-            "bathrooms"=> "required",
-            "mq"=> "required",
-            "address"=> "required|max:100",
-            "country"=> "required|max:60",
-            "city"=> "required|max:60",
-            "zipcode"=> "required",
-            "lat"=> "required|max:20",
-            "lon"=> "required|max:20",
-            "price"=> "required",
-            "cover_image"=> "image",
-            ]);
+            "rooms" => "required",
+            "beds" => "required",
+            "bathrooms" => "required",
+            "mq" => "required",
+            "address" => "required|max:100",
+            "country" => "required|max:60",
+            "city" => "required|max:60",
+            "zipcode" => "required",
+            "lat" => "required|max:20",
+            "lon" => "required|max:20",
+            "price" => "required",
+            "cover_image" => "image",
+        ]);
 
         // Recupero la casa
         $house = House::findOrFail($id);

@@ -28,17 +28,26 @@ class HouseTableSeeder extends Seeder
             "appartamento-per-studenti",
             "casa-spaziosa",
             "villetta",
-            "letto in mansarda",
-            "enorme loft in centro"
+            "letto-in-mansarda",
+            "enorme-loft-in centro",
+            "Appartamento-centrale",
+            "Casa-vista-lago",
+            "Attico-soleggiato",
+            "Ad-un-passo-dal-centro",
+            "Palazzo-storico",
+            "Enorme-loft",
+            "Una perla in città",
+            "Un'oasi di pace",
+            "Grazioso-mini-appartamento"
         ];
 
-        foreach($slugs as $slug) {
+        foreach ($slugs as $slug) {
             $randomUser = User::inRandomOrder()->first();
 
             $newHouse = new House;
             $newHouse->user_id = $randomUser->id;
             $newHouse->slug = $slug;
-            $newHouse->visible = rand(0,1);
+            $newHouse->visible = 1;
 
             $newHouse->save();
         }
