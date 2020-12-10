@@ -79,8 +79,8 @@ class UserInfoController extends Controller
         }
 
         if (isset($data['picture'])) {
-            $filename_original = $data['picture']->getClientOriginalName();
 
+            $filename_original = $data['picture']->getClientOriginalName();
             $pathCover = Storage::disk('public')->putFileAs('images', $data['picture'], $filename_original);
 
             $newUserInfo->picture = $pathCover;

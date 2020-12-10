@@ -24,7 +24,7 @@
                 <ul>
                     <li>  
                          <label for="rooms">Stanze</label>
-                         <input name="rooms" id="rooms" type="number" min="0">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                         <input name="rooms" id="rooms" type="number" min="0">         
                     </li>
                     <li>
                         <label for="beds">Letti</label>
@@ -67,7 +67,7 @@
                     <span class="badge badge-secondary sponsorizzata">In evidenza</span>
                     <div class="card_img">
                         @if (strpos($sponsoredHouse->houseinfo->cover_image, 'http') === 0)
-                            <img class="card-img-left" src="{{$sponsoredHouse->houseinfo->cover_image}}" alt="cover picture">
+                        <img class="d-block w-100" src="<?php echo "https://res.cloudinary.com/dofcj4o0y/image/upload/w_300,h_200,c_thumb,q_100,f_auto/". str_replace("https://res.cloudinary.com/dofcj4o0y/image/upload/", "", "{$sponsoredHouse->houseinfo->cover_image}") ?>" alt="random picture">
                         @else
                             <img class="card-img-left" src="{{asset('storage/'.$sponsoredHouse->houseinfo->cover_image)}}" alt="cover picture">
                         @endif
