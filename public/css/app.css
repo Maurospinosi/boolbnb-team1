@@ -11245,11 +11245,7 @@ header #header-lang li a:hover {
 
 header li#user_name {
   font-weight: 600;
-}
-
-header li#user_name:hover {
-  background-color: #fff;
-  box-shadow: 2px 5px 5px #ff385c;
+  background-color: transparent !important;
 }
 
 header:hover {
