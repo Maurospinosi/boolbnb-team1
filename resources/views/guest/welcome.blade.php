@@ -23,7 +23,7 @@
     
                 <div class="card h-100">
                     @if (count($house->sponsors) > 0)
-                        <span class="btn-azzurro sponsorizzata rounded-top">In evidenza</span>
+                        <span class="bg-azzurro sponsorizzata rounded-top">In evidenza</span>
                     @endif
 
                     <div class="img-container">
