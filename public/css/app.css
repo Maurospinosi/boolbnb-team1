@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;
 
-400;500&display=swap);@charset "UTF-8";
+400;500&display=swap);@import url(https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #007bff;
@@ -10920,6 +10920,10 @@ a.text-dark:focus {
   display: none;
 }
 
+.btn-azzurro {
+  background-color: #53AE96;
+}
+
 @media screen and (max-width: 781px) {
   header {
     justify-content: center;
@@ -11262,7 +11266,6 @@ header:hover {
 }
 
 #host-index-title {
-  text-align: center;
   font-weight: 600;
   font-size: 35px;
   margin-bottom: 20px;
@@ -11405,6 +11408,35 @@ h4 {
   font-size: 14px;
   color: #fff;
   text-decoration: none;
+}
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron h2 {
+  font-size: 40px;
+  font-family: "Cabin", sans-serif;
+  margin-top: 270px;
+  color: #4e3249;
+  font-weight: 600;
+}
+
+#welcome-title {
+  color: #4e3249;
+  font-weight: 600;
+  margin: 20px 0 30px 0;
+  text-align: center;
+  font-size: 30px;
+}
+
+#welcome-container .sponsorizzata {
+  border-radius: none;
+  color: #fff;
+  text-align: right;
+  font-size: 13px;
+  padding-right: 10px;
 }
 
 .guest-show-container {
