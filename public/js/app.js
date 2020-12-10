@@ -52889,14 +52889,7 @@ $(document).ready(function () {
   });
   $("header").mouseleave(function () {
     $(".hamburger-menu").fadeOut('active');
-  }); // Funzione che al click sul globo della lingua fa apparire il menù
-  // $('header .fa-globe').click(function () {
-  //   $("#header-lang").toggleClass("d-none");
-  // });
-  // $("#header-lang").mouseleave(function () {
-  //   $(this).addClass('d-none');
-  // });
-  // ALGOLIA
+  }); // ALGOLIA
   // Ricerca per città
 
   var headerCitySearch = function headerCitySearch() {
@@ -52910,7 +52903,6 @@ $(document).ready(function () {
         }
       }
     }).configure({
-      // type: 'address'
       type: 'city',
       aroundLatLngViaIP: true
     });
@@ -53063,8 +53055,7 @@ $(document).ready(function () {
         }
       }
     } else {
-      $(".nrResults").text('Nessuna casa trovata'); // var noresults = $(".noresults-template h4").clone();
-      // $("#sponsored-houses-container").append(noresults);
+      $(".nrResults").text('Nessuna casa trovata');
     }
   }
 });
@@ -53134,8 +53125,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

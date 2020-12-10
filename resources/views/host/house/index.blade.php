@@ -16,13 +16,12 @@
 
                     <div class="card h-100">
                         @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                                <img class="card-img-top" src="{{$house->houseinfo->cover_image}}" alt="random picture">
+                        <img class="d-block w-100" src="<?php echo "https://res.cloudinary.com/dofcj4o0y/image/upload/w_300,h_200,c_thumb,q_100,f_auto/". str_replace("https://res.cloudinary.com/dofcj4o0y/image/upload/", "", "{$house->houseinfo->cover_image}") ?>" alt="random picture">
                             @else
                                 <img class="card-img-top" src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="random picture">
                         @endif
                         <div class="card-body">
                             <h4 class="card-title titolo">{{$house->houseinfo->title}}</h4>
-                            <h5 class="sottotitolo">{{$house->houseinfo->price}}</h5>
                         </div>
                         <div class="card-footer d-flex justify-content-center ">
                             <div class="btn-group" role="group" aria-label="Basic example">

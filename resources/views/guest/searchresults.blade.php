@@ -168,12 +168,6 @@
         <span class="badge badge-light">tag</span>
     </div>
 
-
-    {{-- Template del nessun risultato trovato --}}
-    <div class="noresults-template d-none">
-        <h4>Nessun risultato trovato</h4>
-    </div>
-
 </div>
 
 @endsection
