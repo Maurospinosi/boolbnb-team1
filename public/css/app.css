@@ -11425,6 +11425,213 @@ h3 {
   background-color: lightgrey;
 }
 
+.titolo-scheda {
+  border: 1px solid #00A6AB;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.titolo-scheda span {
+  font-size: 20px;
+  text-align: center;
+  color: #FF385C;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 15px;
+}
+
+.btn-payment {
+  background-color: #FF385C;
+  border-radius: 5px;
+  padding: 6px 12px;
+  border: none;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.create-house .form-create {
+  display: flex;
+  justify-content: space-around;
+}
+
+.create-house .form-create .form-group label {
+  color: #00A6AB;
+  font-weight: bold;
+}
+
+.create-house .form-create .form-group h6 {
+  color: #00A6AB;
+}
+
+.create-house .form-create .crea {
+  background-color: #ff5070;
+  border: none;
+}
+
+.host-nav-col {
+  margin-top: 20px;
+  height: 100vh;
+}
+
+.host-nav-col .host-nav {
+  justify-content: start;
+}
+
+.host-nav-col .host-nav li {
+  list-style: none;
+  font-size: 15px;
+}
+
+.host-nav-col .host-nav a {
+  text-decoration: none;
+  color: #222222;
+  font-size: 15px;
+}
+
+.host-nav-col .host-nav i {
+  font-size: 20px;
+  padding-right: 20px;
+}
+
+.host-nav-col #delete-button {
+  background-color: transparent;
+  border: none;
+}
+
+.host-nav-col #open-sponsor-menu {
+  cursor: pointer;
+}
+
+.host-nav-col #host-sponsorship form {
+  margin-left: 10px;
+}
+
+.host-nav-col #host-sponsorship form select {
+  font-size: 13px;
+  padding: 3px;
+}
+
+.host-nav-col #host-sponsorship form select option {
+  padding: 3px;
+}
+
+.host-nav-col #host-sponsorship form input[type=submit] {
+  font-size: 13px;
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  background-color: lightgrey;
+}
+
+@media screen and (max-width: 768px) {
+  .create-house .form-create {
+    display: block;
+  }
+}
+
+.edit-house .form-edit {
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-house .form-edit .form-group label {
+  color: #ff5070;
+  font-weight: bold;
+}
+
+.edit-house .form-edit .form-group h6 {
+  color: #ff5070;
+}
+
+.edit-house .form-edit .salva {
+  background-color: #00A6AB;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .edit-house .form-edit {
+    display: block;
+  }
+}
+
+.host-nav-col {
+  margin-top: 20px;
+  height: 100vh;
+}
+
+.host-nav-col .host-nav {
+  justify-content: start;
+}
+
+.host-nav-col .host-nav li {
+  list-style: none;
+  font-size: 15px;
+}
+
+.host-nav-col .host-nav a {
+  text-decoration: none;
+  color: #222222;
+  font-size: 15px;
+}
+
+.host-nav-col .host-nav i {
+  font-size: 20px;
+  padding-right: 20px;
+}
+
+.host-nav-col #delete-button {
+  background-color: transparent;
+  border: none;
+}
+
+.host-nav-col #open-sponsor-menu {
+  cursor: pointer;
+}
+
+.host-nav-col #host-sponsorship form {
+  margin-left: 10px;
+}
+
+.host-nav-col #host-sponsorship form select {
+  font-size: 13px;
+  padding: 3px;
+}
+
+.host-nav-col #host-sponsorship form select option {
+  padding: 3px;
+}
+
+.host-nav-col #host-sponsorship form input[type=submit] {
+  font-size: 13px;
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  background-color: lightgrey;
+}
+
+.bg-azzurro {
+  background-color: #00A6AB;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-pink {
+  background-color: #ff5070;
+  color: white;
+}
+
+.create-user h2 {
+  color: grey;
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.create-user .form-create-user label {
+  color: #00A6AB;
+}
+
 h4 {
   text-align: center;
 }
@@ -11479,249 +11686,6 @@ h4 {
   width: 280px;
   border: 3px solid #FF385C;
   z-index: 0;
-}
-
-@media screen and (max-width: 768px) {
-  footer img {
-    display: none;
-  }
-
-  footer .copyright {
-    justify-content: flex-start;
-  }
-
-  footer .copyright ul {
-    margin: 0 40px;
-    font-size: 25px;
-  }
-
-  footer .copyright ul i {
-    padding-left: 15px;
-  }
-}
-
-@media screen and (min-width: 769px) and (max-width: 992px) {
-  footer .copyright {
-    justify-content: flex-start;
-  }
-
-  footer img {
-    width: 130px;
-    height: 130px;
-    margin: 20px 20px;
-  }
-
-  footer .copyright ul {
-    margin: 0 35px;
-    font-size: 25px;
-  }
-
-  footer .copyright ul i {
-    padding-left: 13px;
-  }
-}
-
-@media screen and (min-width: 993px) {
-  footer .copyright {
-    justify-content: center;
-  }
-
-  footer img {
-    width: 150px;
-    height: auto;
-    margin: 20px 50px;
-  }
-
-  footer .copyright ul {
-    margin: 0 40px;
-    font-size: 25px;
-  }
-
-  footer .copyright ul i {
-    padding-left: 15px;
-  }
-}
-
-footer {
-  margin-top: 80px;
-  background-color: #fff;
-  transition: box-shadow 1.5s;
-  width: 100%;
-  padding-bottom: 25px;
-}
-
-footer .logo-footer img {
-  max-width: 100px;
-  height: 50px;
-}
-
-footer ul {
-  list-style: none;
-}
-
-footer ul li {
-  text-decoration: none;
-  font-weight: 400;
-  color: #222222;
-  padding: 10px;
-  margin-top: 5px;
-  font-size: 16px;
-  text-align: center;
-}
-
-footer ul li .col-heading {
-  display: block;
-  color: #304f50;
-  font-weight: 500;
-  margin: 1rem 0;
-  padding: 0.4rem 0px;
-  border-bottom: 1px solid #c7c7c7;
-  letter-spacing: 3px;
-}
-
-footer ul li i {
-  color: #222222;
-  font-size: 14px;
-}
-
-footer ul li a {
-  color: #222222;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 14px;
-}
-
-footer ul li i {
-  color: #222222;
-  text-align: center;
-}
-
-footer ul li:first-child {
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-footer ul li:nth-child(2):hover {
-  background-color: #ff385c;
-  border-radius: 25px;
-  color: white;
-  text-decoration: none;
-}
-
-footer ul li:nth-child(2):hover i {
-  color: white;
-}
-
-footer ul li:nth-child(2):hover a {
-  color: white;
-  text-decoration: none;
-  font-weight: 400;
-}
-
-footer ul li:last-child:hover {
-  background-color: #ff385c;
-  border-radius: 25px;
-}
-
-footer ul li:last-child:hover i {
-  color: white;
-}
-
-footer ul li:last-child:hover a {
-  color: white;
-  text-decoration: none;
-  font-weight: 400;
-}
-
-footer #bottom-footer {
-  background-color: #00A6AB;
-  color: white;
-  padding: 5px;
-}
-
-footer #bottom-footer i {
-  font-size: 25px;
-}
-
-footer #bottom-footer .text-footer {
-  font-size: 16px;
-  font-weight: 400;
-}
-
-footer:hover {
-  box-shadow: 0 1px 20px #ff385c;
-}
-
-.create-house .form-create {
-  display: flex;
-  justify-content: space-around;
-}
-
-.create-house .form-create .form-group label {
-  color: #00A6AB;
-  font-weight: bold;
-}
-
-.create-house .form-create .form-group h6 {
-  color: #00A6AB;
-}
-
-.create-house .form-create .crea {
-  background-color: #ff5070;
-  border: none;
-}
-
-@media screen and (max-width: 768px) {
-  .create-house .form-create {
-    display: block;
-  }
-}
-
-.edit-house .form-edit {
-  display: flex;
-  justify-content: space-around;
-}
-
-.edit-house .form-edit .form-group label {
-  color: #ff5070;
-  font-weight: bold;
-}
-
-.edit-house .form-edit .form-group h6 {
-  color: #ff5070;
-}
-
-.edit-house .form-edit .salva {
-  background-color: #00A6AB;
-  border: none;
-}
-
-@media screen and (max-width: 768px) {
-  .edit-house .form-edit {
-    display: block;
-  }
-}
-
-.bg-azzurro {
-  background-color: #00A6AB;
-  color: white;
-  font-weight: bold;
-}
-
-.btn-pink {
-  background-color: #ff5070;
-  color: white;
-}
-
-.create-user h2 {
-  color: grey;
-  font-size: 30px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.create-user .form-create-user label {
-  color: #00A6AB;
 }
 
 #searchresults-wrapper .sponsor-bg-color {
@@ -11863,5 +11827,175 @@ footer:hover {
     font-size: 9px;
     padding: 5px;
   }
+}
+
+@media screen and (max-width: 768px) {
+  footer img {
+    display: none;
+  }
+
+  footer .copyright {
+    justify-content: flex-start;
+  }
+
+  footer .copyright ul {
+    margin: 0 40px;
+    font-size: 25px;
+  }
+
+  footer .copyright ul i {
+    padding-left: 15px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  footer .copyright {
+    justify-content: flex-start;
+  }
+
+  footer img {
+    width: 130px;
+    height: 130px;
+    margin: 20px 20px;
+  }
+
+  footer .copyright ul {
+    margin: 0 35px;
+    font-size: 25px;
+  }
+
+  footer .copyright ul i {
+    padding-left: 13px;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  footer .copyright {
+    justify-content: center;
+  }
+
+  footer img {
+    width: 150px;
+    height: auto;
+    margin: 20px 50px;
+  }
+
+  footer .copyright ul {
+    margin: 0 40px;
+    font-size: 25px;
+  }
+
+  footer .copyright ul i {
+    padding-left: 15px;
+  }
+}
+
+footer {
+  margin-top: 80px;
+  background-color: #fff;
+  transition: box-shadow 1.5s;
+  width: 100%;
+}
+
+footer .logo-footer img {
+  max-width: 100px;
+  height: 50px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  text-decoration: none;
+  font-weight: 400;
+  color: #222222;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+footer ul li .col-heading {
+  display: block;
+  color: #304f50;
+  font-weight: 500;
+  margin: 1rem 0;
+  padding: 0.4rem 0px;
+  border-bottom: 1px solid #c7c7c7;
+  letter-spacing: 3px;
+}
+
+footer ul li i {
+  color: #222222;
+  font-size: 14px;
+}
+
+footer ul li a {
+  color: #222222;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+footer ul li i {
+  color: #222222;
+  text-align: center;
+}
+
+footer ul li:first-child {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+footer ul li:nth-child(2):hover {
+  background-color: #ff385c;
+  border-radius: 25px;
+  color: white;
+  text-decoration: none;
+}
+
+footer ul li:nth-child(2):hover i {
+  color: white;
+}
+
+footer ul li:nth-child(2):hover a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+footer ul li:last-child:hover {
+  background-color: #ff385c;
+  border-radius: 25px;
+}
+
+footer ul li:last-child:hover i {
+  color: white;
+}
+
+footer ul li:last-child:hover a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+footer #bottom-footer {
+  background-color: #00A6AB;
+  color: white;
+  padding: 5px;
+}
+
+footer #bottom-footer i {
+  font-size: 25px;
+}
+
+footer #bottom-footer .text-footer {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+footer:hover {
+  box-shadow: 0 1px 20px #ff385c;
 }
 

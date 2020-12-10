@@ -16,6 +16,8 @@ class PaymentsController extends Controller
     e restituisce la view dei pagamenti */
     
     public function index(Request $request) {
+
+
         // Prendiamo i dati e li salviamo in $data
         $data = $request->all();
 
