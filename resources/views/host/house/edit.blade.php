@@ -19,91 +19,18 @@ ul {
     list-style: none
 }
 </style>
-
-<div class="container-fluid">
-    <div class="row">
- {{-- Tasti di Modifica, Cancella e Sponsorizza --}}
-         @if(Auth::id() == $house->user_id)
-        <nav class="col-md-2 col-lg-2 d-flex flex-column d-md-block bg-light sidebar">
-            <div class="sidebar-sticky host-nav-col justify-content-start">
-                <div class="nav d-flex flex-column host-nav">
-                    <div class="nav-item d-inline-flex p-2 align-items-center ">
-                        <a class="nav-link active" href="#">
-                            <i class="fas fa-home"></i> Bacheca 
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="nav d-flex flex-column host-nav">
-                    <div class="nav-item d-inline-flex p-2 align-items-center ">
-                        <a class="nav-link" href="{{route("host/house.edit", $house->id)}}">
-                            <i class="far fa-edit"></i>
-                            <span>Modifica</span>
-                        </a>   
-                    </div>
-                </div>
-                <div class="nav d-flex flex-column host-nav">
-                    <div class="nav-item d-inline-flex p-2 align-items-center ">
-                        <a class="nav-link">
-                            <form action="{{route("host/house.destroy", $house->id)}}" method="post">
-                                @csrf
-                                @method("DELETE")
-                                <i class="far fa-trash-alt"></i>
-                                <input id="delete-button" type="submit" value="Cancella">
-                            </form>
-                        </a>   
-                    </div>
-                    @if (count($house->sponsors) == 0)
-                    <div class="nav d-flex flex-column host-nav">
-                        <div class="nav-item d-inline-flex p-2 align-items-center ">
-                        <!-- Nav Item - Utilities Collapse Menu -->
-                            <a class="nav-link"> 
-                                <i class="far fa-credit-card"></i>
-                                <span id="open-sponsor-menu">Sponsorizza</span>
-                            </a>
-                       
-                            <li id="host-sponsorship" class="d-none">
-                                <form action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
-                                    @csrf
-                                    @method("GET")
-                                    <select class="form-control" name="amount">
-                                        <option value="" selected>Seleziona</option>
-                                        <option value="2.99">2.99€ / 24h</option>
-                                        <option value="5.99">5.99€ / 72h</option>
-                                        <option value="9.99">9.99€ / 144h</option>
-                                    </select>
-                                    <input type="hidden" name="url" value="{{Request::url()}}">
-                                    <input type="hidden" name="house_id" value="{{$house->id}}">
-                                    <input class="form-control" type="submit" value="Vai">
-                                </form>
-                            </li>
-                        </div>
-                    </div>
-                    @endif
-                    <div class="nav d-flex flex-column host-nav">
-                        <div class="nav-item d-inline-flex p-2 align-items-center ">
-                            <a class="nav-link" href="{{route("host/house/statistic", $house->id)}}">
-                                <i class="fas fa-chart-line"></i>
-                                <span>Statistiche</span>
-                            </a>   
-                        </div>
-                    </div>
-                    <div class="nav d-flex flex-column host-nav">
-                        <div class="nav-item d-inline-flex p-2 align-items-center ">
-                            <a class="nav-link" href="{{route('host/message.index', $house->id)}}">
-                                <i class="fas fa-envelope-open-text"></i>
-                                <span>Leggi i messaggi</span>
-                            </a> 
-                        </div> 
-                    </div>
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
+                <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
+                    <span>Modifica la tua casa</span>
                 </div>
             </div>
-        </nav>
-        @endif
-
+        </div>
+    </div>
         <div class="container edit-house">
 
-            <h2 class="text-secondary font-weight-bold">Modifica la tua Casa</h2>
 
             <form class="w-100  form-edit shadow p-3 mb-5 mt-5 bg-white rounded" action="{{route('host/house.update', $house->id)}}" method="POST" enctype="multipart/form-data">
 
@@ -255,7 +182,7 @@ ul {
                 </div>
                 </form>
         </div>
-    </div>
+  
     <script id="image-template" type="text/x-handlebars-template">
         <input type="file" class="form-control" id="url" name="url" placeholder="Inserisci immagine" accept="image/*"  value="{{old("url")}}">
     </script>      

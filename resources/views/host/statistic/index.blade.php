@@ -19,8 +19,13 @@
                 <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
                     <span>Le Statistiche della tua Casa</span>
                 </div>
-                
-                <div data-stat="{{$id}}" id="statistic-container" class="container">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">    
+                <div data-stat="{{$id}}" id="statistic-container" class="container justify-content-start align-items-center">
                       
                     <canvas style="display: inline-block; max-width: 500px; max-height: 600px" id="myChart"></canvas>
                     <canvas style="display: inline-block; max-width: 500px; max-height: 600px" id="myChart2"></canvas>

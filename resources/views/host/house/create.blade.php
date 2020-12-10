@@ -20,10 +20,17 @@ Inserisci una nuova casa
     }
 </style>
 
-
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
+                <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
+                    <span>Inserisci la tua casa</span>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container create-house">
-
-        <h2 class="text-secondary font-weight-bold">Inserisci la tua casa</h2>
 
         <div class="error_message">
             @if (count($errors) > 0)

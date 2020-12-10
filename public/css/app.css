@@ -11544,6 +11544,21 @@ h3 {
   }
 }
 
+.titolo-scheda {
+  border: 1px solid #00A6AB;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.titolo-scheda span {
+  font-size: 20px;
+  text-align: center;
+  color: #FF385C;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 15px;
+}
+
 .edit-house .form-edit {
   display: flex;
   justify-content: space-around;
@@ -11722,7 +11737,6 @@ a .btn-scopri {
 }
 
 #map-example-container {
-  height: 280px;
   width: 280px;
   border: 3px solid #FF385C;
   z-index: 0;
