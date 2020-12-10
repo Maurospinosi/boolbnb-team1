@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('page-content')
-    <div class="container">
-        <form action="{{route('host/info/store')}}" method="POST" enctype="multipart/form-data">
+    <div class="container create-user">
+        <h2>Completa la registrazione con i tuoi dati</h2>
+        <form class="form-create-user mx-auto w-50 form-create shadow p-3 mb-5 mt-5 bg-white rounded" action="{{route('host/info/store')}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("POST")
     
-    
-                <div style="margin-top: 50px" class="form-group">
+                <div class="form-group">
                     <label for="name">Nome</label>
                     <input style="color: grey" type="text" readonly class="form-control-plaintext" name="name" id="name" value="{{$user_name}}">
                 </div>
@@ -77,10 +77,9 @@
                     @enderror
                 </div>
     
-                <button type="submit" class="btn btn-primary">Completa registrazione</button>
+                <button type="submit" class="btn btn-pink">Completa registrazione</button>
         </form>
     </div>
-    
     <script src="{{asset('js/citysearchregister.js')}}"></script>
 @endsection
     

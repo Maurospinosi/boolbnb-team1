@@ -24,23 +24,23 @@
                 <ul>
                     <li>  
                          <label for="rooms">Stanze</label>
-                         <input name="rooms" id="rooms" type="number">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                         <input name="rooms" id="rooms" type="number" min="0">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     </li>
                     <li>
                         <label for="beds">Letti</label>
-                        <input name="beds" id="beds" type="number">
+                        <input name="beds" id="beds" type="number" min="1">
                     </li>
                     <li>
                         <label for="bathrooms">Bagni</label>
-                        <input name="bathrooms" id="bathrooms" type="number">
+                        <input name="bathrooms" id="bathrooms" type="number" min="0">
                     </li>
                     <li>
                         <label for="mq">Metri quadri</label>
-                        <input name="mq" id="mq" type="number">
+                        <input name="mq" id="mq" type="number" min="10">
                     </li>
                     <li>
                         <label for="price">Prezzo</label>
-                        <input name="price" id="price" type="number">
+                        <input name="price" id="price" type="number" min="5">
                     </li>
                     <li>
                         <label for="distance">Distanza</label>                    

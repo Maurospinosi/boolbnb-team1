@@ -39,7 +39,7 @@ ul {
                 
                 <div class="form-group">
                     <label for="rooms">Numero di stanze</label>
-                    <input type="number" class="form-control" name="rooms" id="rooms" placeholder="Numero di stanze" value="{{$house->houseinfo->rooms}}">
+                    <input min="0" type="number" class="form-control" name="rooms" id="rooms" placeholder="Numero di stanze" value="{{$house->houseinfo->rooms}}">
                     @error('rooms')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -47,7 +47,7 @@ ul {
 
                 <div class="form-group">
                     <label for="beds">Numero di letti</label>
-                    <input type="number" class="form-control" name="beds" id="beds" placeholder="Numero di letti"  value="{{$house->houseinfo->beds}}">
+                    <input min="1" type="number" class="form-control" name="beds" id="beds" placeholder="Numero di letti"  value="{{$house->houseinfo->beds}}">
                     @error('beds')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -55,7 +55,7 @@ ul {
 
                 <div class="form-group">
                     <label for="bathrooms">Numero di bagni</label>
-                    <input type="number" class="form-control" name="bathrooms" id="bathrooms" placeholder="Numero di bagni"  value="{{$house->houseinfo->bathrooms}}">
+                    <input min="0" type="number" class="form-control" name="bathrooms" id="bathrooms" placeholder="Numero di bagni"  value="{{$house->houseinfo->bathrooms}}">
                     @error('bathrooms')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -63,7 +63,7 @@ ul {
 
                 <div class="form-group">
                     <label for="mq">Numero di mq</label>
-                    <input type="number" class="form-control" name="mq" id="mq" placeholder="Numero di mq"  value="{{$house->houseinfo->mq}}">
+                    <input min="10" type="number" class="form-control" name="mq" id="mq" placeholder="Numero di mq"  value="{{$house->houseinfo->mq}}">
                     @error('mq')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -78,7 +78,7 @@ ul {
                 </div>
                 <div class="form-group">
                     <label for="price">Prezzo</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" value="{{$house->houseinfo->price}}">
+                    <input min="5" type="number" class="form-control" name="price" id="price" placeholder="Inserisci il prezzo" value="{{$house->houseinfo->price}}">
                     @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

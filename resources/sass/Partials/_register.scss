@@ -1,0 +1,26 @@
+//register and login view
+    .bg-azzurro {
+        background-color: #00A6AB;
+        color: white;
+        font-weight: bold;
+    }
+    .btn-pink {
+        background-color: #ff5070;
+        color: white;
+    }
+
+//register user other details 
+.create-user {
+    h2 {
+        color: grey;
+        font-size: 30px;
+        font-weight: 500;
+        text-align: center;
+    }
+    .form-create-user {
+        label {
+            color: #00A6AB;
+        }
+    }
+}
+
