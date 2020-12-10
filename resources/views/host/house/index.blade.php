@@ -22,7 +22,6 @@
                         @endif
                         <div class="card-body">
                             <h4 class="card-title titolo">{{$house->houseinfo->title}}</h4>
-                            <h5 class="sottotitolo">{{$house->houseinfo->price}}</h5>
                         </div>
                         <div class="card-footer d-flex justify-content-center ">
                             <div class="btn-group" role="group" aria-label="Basic example">

@@ -46,15 +46,6 @@ $(document).ready(function () {
   });
 
 
-  // Funzione che al click sul globo della lingua fa apparire il menù
-  // $('header .fa-globe').click(function () {
-  //   $("#header-lang").toggleClass("d-none");
-  // });
-
-  // $("#header-lang").mouseleave(function () {
-  //   $(this).addClass('d-none');
-  // });
-
 
   // ALGOLIA
   // Ricerca per città
@@ -69,15 +60,10 @@ $(document).ready(function () {
         }
       }
     }).configure({
-      // type: 'address'
       type: 'city',
       aroundLatLngViaIP: true,
     });
     placesAutocomplete.on('change', function resultSelected(e) {
-      document.querySelector('#form-city-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city-city').value = e.suggestion.city || '';
-      document.querySelector('#form-city-country').value = e.suggestion.country || '';
-      document.querySelector('#form-city-zip').value = e.suggestion.postcode || '';
       document.querySelector('#form-city-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-city-lng').value = e.suggestion.latlng.lng || '';
     });
@@ -214,8 +200,6 @@ $(document).ready(function () {
       }
     } else {
       $(".nrResults").text('Nessuna casa trovata');
-      // var noresults = $(".noresults-template h4").clone();
-      // $("#sponsored-houses-container").append(noresults);
     }
   }
 

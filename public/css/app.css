@@ -11832,3 +11832,12 @@ footer:hover {
   }
 }
 
+#payment-form h3 {
+  font-size: 30px;
+}
+
+#payment-form h4 {
+  font-size: 25px;
+  text-align: left;
+}
+
