@@ -12,7 +12,7 @@
         margin: 20px;
     }
 </style>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             
             <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
