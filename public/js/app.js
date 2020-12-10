@@ -52853,8 +52853,8 @@ var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/inde
 
 $(document).ready(function () {
   //// SPONSORIZZAZIONE ////
-  $("#host-sponsorship h5").on("click", function () {
-    $(this).siblings(".sponsorContent").toggleClass("d-none");
+  $("#open-sponsor-menu").on("click", function () {
+    $("#host-sponsorship").toggleClass("d-none");
   }); //// FINE SPONSORIZZAZIONE ////
   //// BRAINTREE ////
 
@@ -52872,7 +52872,9 @@ $(document).ready(function () {
         form.submit();
       });
     });
-  }); /// FINE BRAINTREE ////
+  }); // Customizzazione Braintree
+
+  $(".braintree-sheet__text").text("Pagamento con carta"); /// FINE BRAINTREE ////
 
   /*Funzione che al click sull'hamburger fa apparire il menù */
 
