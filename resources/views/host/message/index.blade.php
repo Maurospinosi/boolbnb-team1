@@ -5,6 +5,8 @@
 @endsection
 
 @section('page-content')
+@if (count($messages) > 0)
+    
 <div class="container">
     <h1 class="text-center">I miei messaggi</h1>
     <div class="table-responsive">
@@ -21,8 +23,7 @@
         @foreach ($messages as $message)
         <tbody>
 
-            <tr>
-              
+            <tr> 
                 <td>{{$message->house->houseinfo->title}}</td>
                 <td>{{$message->guest_name}}</td>
                 <td>{{$message->email}}</td>
@@ -52,5 +53,9 @@
     </table>
 </div>
 </div>
-
+@else 
+<div class="container container-messaggi">
+    <h2>Non ci sono messaggi</h2>
+</div>
+@endif
 @endsection

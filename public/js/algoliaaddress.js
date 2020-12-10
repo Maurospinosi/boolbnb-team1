@@ -21749,7 +21749,23 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< Updated upstream
 module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
+=======
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
+=======
+<<<<<<< HEAD
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
+=======
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
+>>>>>>> main
+>>>>>>> main
+=======
+module.exports = __webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\js\algoliaaddress.js */"./resources/js/algoliaaddress.js");
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
 /***/ })

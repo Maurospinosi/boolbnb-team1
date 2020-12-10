@@ -46,7 +46,7 @@ class HouseInfoController extends Controller
      */
     public function show(HouseInfo $houseInfo)
     {
-        //
+        
     }
 
     /**
