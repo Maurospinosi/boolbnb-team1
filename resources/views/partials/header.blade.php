@@ -52,7 +52,11 @@
         <li class="hamburger">
             @if(Auth::check() && (Route::currentRouteName() != 'host/info/create'))
                 @if (Auth::user()->user_info->picture != null)
-                    <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile photo">
+                    @if (strpos(Auth::user()->user_info->picture, 'http') === 0)
+                        <img id="header_user_img" src="{{Auth::user()->user_info->picture}}" alt="random picture">
+                    @else
+                        <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile picture">
+                    @endif
                 @else
                     <i class="fas fa-user"></i>
                 @endif
@@ -64,8 +68,12 @@
     @if (Auth::user())
         <div class="hamburger-menu">
             <ul class="hamburger-list">
-                <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
-                <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
+                @if (count(Auth::user()->houses) > 0)
+                    <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
+                @endif
+                {{-- @if (count(Auth::user()->houses->messages) > 0) --}}
+                    <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
+                {{-- @endif --}}
                 <li><a href="{{route('host/house.create')}}">Aggiungi una casa</a></li>
                 @if (Route::currentRouteName() != 'guest/home')
                     <li><a href="{{route('guest/home')}}">Torna alla home</a></li>
