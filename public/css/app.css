@@ -11321,7 +11321,7 @@ header:hover {
 .titolo-scheda {
   border: 1px solid #00A6AB;
   border-radius: 30px;
-  margin: 10px;
+  margin: 5px;
 }
 
 .titolo-scheda span {
@@ -11464,6 +11464,21 @@ h3 {
   text-decoration: none;
 }
 
+.titolo-scheda {
+  border: 1px solid #00A6AB;
+  border-radius: 30px;
+  margin: 5px;
+}
+
+.titolo-scheda span {
+  font-size: 20px;
+  text-align: center;
+  color: #FF385C;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 15px;
+}
+
 .create-house .form-create {
   display: flex;
   justify-content: space-around;
@@ -11483,54 +11498,29 @@ h3 {
   border: none;
 }
 
-.host-nav-col {
-  margin-top: 20px;
-  height: 100vh;
-}
-
-.host-nav-col .host-nav {
-  justify-content: start;
-}
-
-.host-nav-col .host-nav li {
-  list-style: none;
-  font-size: 15px;
-}
-
-.host-nav-col .host-nav a {
-  text-decoration: none;
-  color: #222222;
-  font-size: 15px;
-}
-
-.host-nav-col .host-nav i {
-  font-size: 20px;
-  padding-right: 20px;
-}
-
-.host-nav-col #delete-button {
+.create-house #delete-button {
   background-color: transparent;
   border: none;
 }
 
-.host-nav-col #open-sponsor-menu {
+.create-house #open-sponsor-menu {
   cursor: pointer;
 }
 
-.host-nav-col #host-sponsorship form {
+.create-house #host-sponsorship form {
   margin-left: 10px;
 }
 
-.host-nav-col #host-sponsorship form select {
+.create-house #host-sponsorship form select {
   font-size: 13px;
   padding: 3px;
 }
 
-.host-nav-col #host-sponsorship form select option {
+.create-house #host-sponsorship form select option {
   padding: 3px;
 }
 
-.host-nav-col #host-sponsorship form input[type=submit] {
+.create-house #host-sponsorship form input[type=submit] {
   font-size: 13px;
   width: 50%;
   margin: auto;
@@ -11542,6 +11532,21 @@ h3 {
   .create-house .form-create {
     display: block;
   }
+}
+
+.titolo-scheda {
+  border: 1px solid #00A6AB;
+  border-radius: 30px;
+  margin: 5px;
+}
+
+.titolo-scheda span {
+  font-size: 20px;
+  text-align: center;
+  color: #FF385C;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 15px;
 }
 
 .edit-house .form-edit {
@@ -11722,7 +11727,6 @@ a .btn-scopri {
 }
 
 #map-example-container {
-  height: 280px;
   width: 280px;
   border: 3px solid #FF385C;
   z-index: 0;
