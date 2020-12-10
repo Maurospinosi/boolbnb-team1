@@ -1,3 +1,5 @@
+/* global require */
+
 require('./bootstrap');
 const $ = require("jquery");
 const Handlebars = require("handlebars");
@@ -74,10 +76,6 @@ $(document).ready(function () {
       aroundLatLngViaIP: true,
     });
     placesAutocomplete.on('change', function resultSelected(e) {
-      document.querySelector('#form-city-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city-city').value = e.suggestion.city || '';
-      document.querySelector('#form-city-country').value = e.suggestion.country || '';
-      document.querySelector('#form-city-zip').value = e.suggestion.postcode || '';
       document.querySelector('#form-city-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-city-lng').value = e.suggestion.latlng.lng || '';
     });
@@ -90,7 +88,7 @@ $(document).ready(function () {
   var endpoint = 'http://localhost:8000/api/getallhouses';
 
   // Prendiamo i dati dai filtri
-  $("#searchresults-form").change(function(){
+  $("#searchresults-form").change(function () {
 
     // Prendiamo latitudine e longitudine
     const queryString = window.location.href;
@@ -155,8 +153,8 @@ $(document).ready(function () {
         "price": price,
         "distance": distance
       },
-      "method": "GET", 
-      "success": function(data) {
+      "method": "GET",
+      "success": function (data) {
         printResults(data);
       },
       "error": function (err) {
@@ -169,6 +167,9 @@ $(document).ready(function () {
     $('#houses-container').html("");
     $('#sponsored-houses-container').html("");
     if (dataArray.length > 0) {
+      var nrResults = dataArray.length;
+      $(".nrResults").text('Case trovate: ' + nrResults);
+
       for (var i = 0; i < dataArray.length; i++) {
         // Cloniamo il template
         var template = $("#searchresults-wrapper .res-temp .card").clone();
@@ -182,17 +183,17 @@ $(document).ready(function () {
         template.find(".card_img img").attr("src", coverImage);
         template.find(".card-title").text(dataArray[i]['title']);
         template.find(".card_price").text(dataArray[i]['price']+"€");
-        template.find("button a").attr("href", "http://localhost:8000/host/house"+dataArray[i]['house_id']);
+        template.find("button a").attr("href", "http://localhost:8000/host/house/"+dataArray[i]['house_id']);
         // Ciclo per mettere i tag della singola casa in un array
         var tags = dataArray[i]['house']['tags'];
-        if(tags.length > 0) {
+        if (tags.length > 0) {
           var houseTags = [];
-          for(var t = 0; t < tags.length; t++) {
+          for (var t = 0; t < tags.length; t++) {
             houseTags.push(tags[t]['name']);
           }
           // Ciclo per appendere i tags in pagina
           var cardBadges = template.find(".card_badges");
-          for(var c = 0; c < houseTags.length; c++) {
+          for (var c = 0; c < houseTags.length; c++) {
             var tagTemplate = $(".badge-template .badge-light").clone();
             tagTemplate.text(houseTags[c]);
             tagTemplate.removeClass("d-none");
@@ -201,7 +202,7 @@ $(document).ready(function () {
         }
         // Se la casa è sponsorizzata, la appendo nel container delle sponsorizzate
         var sponsors = dataArray[i]['house']['sponsors'];
-        if(sponsors.length > 0) {
+        if (sponsors.length > 0) {
           template.addClass("sponsor-bg-color");
           template.find("span.sponsorizzata").removeClass("d-none");
           $("#sponsored-houses-container").append(template);
@@ -210,8 +211,9 @@ $(document).ready(function () {
         }
       }
     } else {
-      var noresults = $(".noresults-template h4").clone();
-      $("#sponsored-houses-container").append(noresults);
+      $(".nrResults").text('Nessuna casa trovata');
+      // var noresults = $(".noresults-template h4").clone();
+      // $("#sponsored-houses-container").append(noresults);
     }
   }
 

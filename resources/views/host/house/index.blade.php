@@ -8,8 +8,8 @@
 
     <div class="container">
         
-        
-        {{-- @dd($house->houseinfo->description); --}}
+    @if(count($houses) > 0)
+        <h2 id="host-index-title">Le mie case</h2>
         <div class="row">
             @foreach($houses as $house)
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -39,4 +39,7 @@
                 </div>
             @endforeach
         </div>
+    @else
+        <h2 class="host-index-no-houses">Non hai ancora aggiunto case</h2>
+    @endif
 @endsection

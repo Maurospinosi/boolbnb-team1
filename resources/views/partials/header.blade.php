@@ -12,10 +12,6 @@
 
         <div class="search-container header-search">
             <input type="text" id="form-city-address" placeholder="Cerca...">
-            <input hidden type="text" class="form-control" id="form-city-address2" placeholder="Regione" name="region">
-            <input hidden type="text" class="form-control" name="zipcode" id="form-city-zip" placeholder="CAP">
-            <input hidden type="text" class="form-control" name="city" id="form-city-city" placeholder="Città">
-            <input hidden type="text" class="form-control" name="country" id="form-city-country" placeholder="Nazione">
             <input hidden type="text" class="form-control" name="lat" id="form-city-lat"/>
             <input hidden type="text" class="form-control" name="lon" id="form-city-lng"/>
             <input hidden type="submit">
@@ -50,22 +46,26 @@
             <li><a href="{{route('guest/home', 'de')}}">DE</a></li>
         </ul> --}}
         <li class="hamburger">
-            @if (Route::has('register'))
-                <i class="fas fa-user"></i>
-            @else
+            @if(Auth::check() && (Route::currentRouteName() != 'host/info/create'))
                 @if (Auth::user()->user_info->picture != null)
-                    <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile photo">
+                    @if (strpos(Auth::user()->user_info->picture, 'http') === 0)
+                        <img id="header_user_img" src="{{Auth::user()->user_info->picture}}" alt="random picture">
+                    @else
+                        <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile picture">
+                    @endif
                 @else
                     <i class="fas fa-user"></i>
                 @endif
+            @else
+                <i class="fas fa-user"></i>
             @endif
         </li>
     </ul>
     @if (Auth::user())
         <div class="hamburger-menu">
             <ul class="hamburger-list">
-                <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
-                <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
+                    <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
+                    <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
                 <li><a href="{{route('host/house.create')}}">Aggiungi una casa</a></li>
                 @if (Route::currentRouteName() != 'guest/home')
                     <li><a href="{{route('guest/home')}}">Torna alla home</a></li>

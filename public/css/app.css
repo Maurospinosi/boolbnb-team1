@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300;
 
-400;500&display=swap);@charset "UTF-8";
+400;500&display=swap);@import url(https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap);@charset "UTF-8";
 
 :root {
   --blue: #007bff;
@@ -10920,6 +10920,10 @@ a.text-dark:focus {
   display: none;
 }
 
+.btn-azzurro {
+  background-color: #53AE96;
+}
+
 @media screen and (max-width: 781px) {
   header {
     justify-content: center;
@@ -11245,11 +11249,7 @@ header #header-lang li a:hover {
 
 header li#user_name {
   font-weight: 600;
-}
-
-header li#user_name:hover {
-  background-color: #fff;
-  box-shadow: 2px 5px 5px #ff385c;
+  background-color: transparent !important;
 }
 
 header:hover {
@@ -11263,6 +11263,18 @@ header:hover {
   background-repeat: no-repeat;
   background-size: cover;
   opacity: 0.7;
+}
+
+#host-index-title {
+  font-weight: 600;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.host-index-no-houses {
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .titolo {
@@ -11400,6 +11412,13 @@ h3 {
   border: none;
 }
 
+a .btn-scopri {
+  background-color: #FF385C;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
 .host-nav-col #open-sponsor-menu {
   cursor: pointer;
 }
