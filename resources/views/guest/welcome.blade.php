@@ -26,7 +26,7 @@
                         <span class="btn-azzurro sponsorizzata rounded-top">In evidenza</span>
                     @endif
                     @if (strpos($house->houseinfo->cover_image, 'http') === 0)
-                        <img class="card-img-top rounded-0" src="{{$house->houseinfo->cover_image}}" alt="random picture">
+                        <img class="d-block w-100" src="<?php echo "https://res.cloudinary.com/dofcj4o0y/image/upload/w_300,h_200,c_thumb,q_100,f_auto/". str_replace("https://res.cloudinary.com/dofcj4o0y/image/upload/", "", "{$house->houseinfo->cover_image}") ?>" alt="random picture">
                      @else
                         <img class="card-img-top rounded-top-0" src="{{asset('storage/'.$house->houseinfo->cover_image)}}" alt="">
                     @endif    

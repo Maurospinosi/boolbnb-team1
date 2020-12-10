@@ -126,32 +126,32 @@ class HouseInfoTableSeeder extends Seeder
 
 
         $imgArray = [
-            "https://a0.muscache.com/im/pictures/774f0e59-92c5-4707-bc75-779bcd0acd76.jpg",
-            "https://a0.muscache.com/im/pictures/9fe3d989-0825-475b-b1ef-8b0d176a9e6f.jpg",
-            "https://a0.muscache.com/im/pictures/3082129e-ba80-4f24-a1cf-9e8c77581cd8.jpg",
-            "https://a0.muscache.com/im/pictures/87a08fea-8ee7-4d0d-86e6-945c9a971b0f.jpg",
-            "https://a0.muscache.com/im/pictures/aaae6c30-8b7a-4e16-8888-d2b09e697bdd.jpg",
-            "https://a0.muscache.com/im/pictures/2f3e465a-b581-4eaa-b911-1e719ad06d83.jpg",
-            "https://a0.muscache.com/im/pictures/33af1d13-2aab-4a3c-8825-f6ed4feb7c48.jpg",
-            "https://a0.muscache.com/im/pictures/23da5b49-7f32-4270-a2d9-2cfbf28b9739.jpg",
-            "https://a0.muscache.com/im/pictures/ad7ed221-d133-436c-9da7-8619c3ea340b.jpg",
-            "https://a0.muscache.com/im/pictures/c3a24575-56f1-45c1-bdfa-bda8e6ad1e23.jpg",
-            "https://a0.muscache.com/im/pictures/86983639/ec0407b9_original.jpg",
-            "https://a0.muscache.com/im/pictures/86984586/be197de9_original.jpg",
-            "https://a0.muscache.com/im/pictures/ba1f2c3b-6378-46b4-8d70-cf2a87719d2b.jpg",
-            "https://a0.muscache.com/im/pictures/c3a24575-56f1-45c1-bdfa-bda8e6ad1e23.jpg",
-            "https://a0.muscache.com/im/pictures/17c14883-5108-4773-b649-744146113bf1.jpg",
-            "https://a0.muscache.com/im/pictures/4addd333-2e76-4103-8083-1dec61ce2814.jpg",
-            "https://a0.muscache.com/im/pictures/0c691e7e-b872-4088-b553-b6280e1776f3.jpg",
-            "https://a0.muscache.com/im/pictures/cdfa9dd7-0a87-467d-9606-c8842675faab.jpg",
-            "https://a0.muscache.com/im/pictures/b8e6a02c-5736-4b54-86d1-84a2bea32cab.jpg",
-            "https://a0.muscache.com/im/pictures/852eac02-1f54-46c0-95bd-04d6ac48f623.jpg",
-            "https://a0.muscache.com/im/pictures/5037a00f-0808-4724-bc8d-ad8ab852aae2.jpg",
-            "https://a0.muscache.com/im/pictures/b0eb2867-c3aa-4a5b-9984-3667d8112e23.jpg",
-            "https://a0.muscache.com/im/pictures/b772ce62-321c-4251-a997-3f380c57b44e.jpg",
-            "https://a0.muscache.com/im/pictures/607b3067-2e14-4329-9a6d-8cf816f591ea.jpg",
-            "https://a0.muscache.com/im/pictures/c41a4e04-0fea-4e45-ae68-f13f1b2af885.jpg",
-            "https://a0.muscache.com/im/pictures/0fb2ad55-974c-4245-aa0b-b082deb27ddf.jpg"
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613689/ad7ed221-d133-436c-9da7-8619c3ea340b_d7lbuv.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613679/23da5b49-7f32-4270-a2d9-2cfbf28b9739_jyjjyw.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613667/33af1d13-2aab-4a3c-8825-f6ed4feb7c48_o3w7ei.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613657/2f3e465a-b581-4eaa-b911-1e719ad06d83_nn5egv.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613643/aaae6c30-8b7a-4e16-8888-d2b09e697bdd_cjolyz.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613634/87a08fea-8ee7-4d0d-86e6-945c9a971b0f_csbdm2.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613622/3082129e-ba80-4f24-a1cf-9e8c77581cd8_zgdj3z.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613611/9fe3d989-0825-475b-b1ef-8b0d176a9e6f_dkakd8.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613592/774f0e59-92c5-4707-bc75-779bcd0acd76_zirswk.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614089/c41a4e04-0fea-4e45-ae68-f13f1b2af885_qtuutu.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614158/3385fff1-0b52-4072-9ee5-700f88386efd_nzeakn.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614190/2af953e8-ec22-436b-92f5-1d8500b0fbaa_bimsqo.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614230/442ba769-ff4e-4102-9331-9f79436136af_oornuk.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614306/f8340f0c-85d0-4550-bd06-a4e390db3b98_y8gwfo.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614345/02b9100f-faa1-4c93-94d6-eb67b04a358d_rrzjic.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614397/cd3d21b1-99e9-4ed6-b9ee-1aa2b914c2c1_kah80i.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614459/e2ccfa38-2daf-4887-998a-c6a1e5662719_xa91bz.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614495/ed85318f-79f5-4124-809d-5c460e38e472_ilf653.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614618/224c0485-3694-44ae-9eab-0596f9954007_sf727f.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614663/7fa46f5e-d967-4415-910e-aeed646e0191_yeu4xu.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614696/d0427a97-8a78-406a-8357-2dc507a4f2a7_xggqlg.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614750/0722002a-c300-4587-b7a4-02921de7e51a_otzvft.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614860/8609dc76-be43-4252-be34-ffb74ef82e0b_dce1hl.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607614916/55bbbcd2-2731-4786-ac10-a2bad7efeaae_zb9e6t.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607615027/c0627892-e1ba-4f45-8865-fab86b7de4bc_azlrkl.jpg",
+            "https://res.cloudinary.com/dofcj4o0y/image/upload/v1607613667/33af1d13-2aab-4a3c-8825-f6ed4feb7c48_o3w7ei.jpg"
         ];
 
 
@@ -178,6 +178,9 @@ class HouseInfoTableSeeder extends Seeder
             $newHouseInfo->lat = $houseArr[$i]->lat;
             $newHouseInfo->lon = $houseArr[$i]->lon;
             $newHouseInfo->price = $faker->numberBetween(50, 300);
+
+
+
             $newHouseInfo->cover_image = $imgArray[$i];
             $newHouseInfo->save();
 

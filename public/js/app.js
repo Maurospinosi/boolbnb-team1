@@ -53029,7 +53029,7 @@ $(document).ready(function () {
         template.find(".card_img img").attr("src", coverImage);
         template.find(".card-title").text(dataArray[i]['title']);
         template.find(".card_price").text(dataArray[i]['price'] + "€");
-        template.find("button a").attr("href", "http://localhost:8000/host/house" + dataArray[i]['house_id']); // Ciclo per mettere i tag della singola casa in un array
+        template.find("button a").attr("href", "http://localhost:8000/host/house/" + dataArray[i]['house_id']); // Ciclo per mettere i tag della singola casa in un array
 
         var tags = dataArray[i]['house']['tags'];
 
