@@ -11304,49 +11304,56 @@ header:hover {
   color: #fff;
 }
 
-#delete-button {
-  background-color: transparent;
-  border: none;
+.titolo-scheda {
+  border: 1px solid #00A6AB;
+  border-radius: 30px;
+  margin: 10px;
 }
 
-#open-sponsor-menu {
-  cursor: pointer;
+.titolo-scheda span {
+  font-size: 20px;
+  text-align: center;
+  color: #FF385C;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 15px;
 }
 
-#host-sponsorship form {
-  margin-left: 10px;
+.titolo-image {
+  border: 1px solid #00A6AB;
+  border-radius: 30px;
+  margin: 10px;
 }
 
-#host-sponsorship form select {
-  font-size: 13px;
-  padding: 3px;
+.titolo-image span {
+  font-size: 20px;
+  text-align: center;
+  color: #FF385C;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 15px;
 }
 
-#host-sponsorship form select option {
-  padding: 3px;
+.info {
+  color: #00A6AB;
 }
 
-#host-sponsorship form input[type=submit] {
-  font-size: 13px;
-  width: 50%;
-  margin: auto;
-  margin-top: 5px;
-  background-color: lightgrey;
-}
-
-.cards {
+.image {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  flex-direction: row;
-  max-height: 100vh;
+  padding: 0 4px;
 }
 
-.cards img {
-  margin: 10px;
-  border: 3px solid #000;
-  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.3);
-  max-width: 23vw;
+.column {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
 }
 
 h1 {
@@ -11364,28 +11371,58 @@ h3 {
 }
 
 .host-nav-col {
-  margin-top: 10px;
-  justify-content: center;
+  margin-top: 20px;
+  height: 100vh;
 }
 
 .host-nav-col .host-nav {
-  align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: start;
 }
 
 .host-nav-col .host-nav li {
-  padding: 5px;
+  list-style: none;
+  font-size: 15px;
 }
 
 .host-nav-col .host-nav a {
   text-decoration: none;
   color: #222222;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .host-nav-col .host-nav i {
   font-size: 20px;
-  padding: 5px;
+  padding-right: 20px;
+}
+
+.host-nav-col #delete-button {
+  background-color: transparent;
+  border: none;
+}
+
+.host-nav-col #open-sponsor-menu {
+  cursor: pointer;
+}
+
+.host-nav-col #host-sponsorship form {
+  margin-left: 10px;
+}
+
+.host-nav-col #host-sponsorship form select {
+  font-size: 13px;
+  padding: 3px;
+}
+
+.host-nav-col #host-sponsorship form select option {
+  padding: 3px;
+}
+
+.host-nav-col #host-sponsorship form input[type=submit] {
+  font-size: 13px;
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  background-color: lightgrey;
 }
 
 h4 {
@@ -11506,7 +11543,7 @@ h4 {
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 80px;
   background-color: #fff;
   transition: box-shadow 1.5s;
   width: 100%;
@@ -11597,7 +11634,7 @@ footer ul li:last-child:hover a {
 }
 
 footer #bottom-footer {
-  background-color: cadetblue;
+  background-color: #00A6AB;
   color: white;
   padding: 5px;
 }
