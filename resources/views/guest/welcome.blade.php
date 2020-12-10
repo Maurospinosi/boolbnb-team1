@@ -35,13 +35,12 @@
                         <h4 class="card-title titolo">{{$house->houseinfo->title}}</h4>
                     </div>
                     <div class="card-footer d-flex justify-content-center ">
-                        <button type="button" class="btn btn-scopri">
                             <a href="
                                 @if (Auth::id() == $house->user_id)
                                 {{route("host/house.show", $house->id)}}
                                 @else
                                 {{route("guest/house", $house->slug)}}
-                                @endif">Scopri</a></button>
+                                @endif"><button type="button" class="btn btn-scopri">Scopri</button></a>
                     </div>
                 </div>
             </div>

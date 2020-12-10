@@ -1,3 +1,5 @@
+/* global require */
+
 require('./bootstrap');
 const $ = require("jquery");
 const Handlebars = require("handlebars");
@@ -74,10 +76,6 @@ $(document).ready(function () {
       aroundLatLngViaIP: true,
     });
     placesAutocomplete.on('change', function resultSelected(e) {
-      document.querySelector('#form-city-address2').value = e.suggestion.administrative || '';
-      document.querySelector('#form-city-city').value = e.suggestion.city || '';
-      document.querySelector('#form-city-country').value = e.suggestion.country || '';
-      document.querySelector('#form-city-zip').value = e.suggestion.postcode || '';
       document.querySelector('#form-city-lat').value = e.suggestion.latlng.lat || '';
       document.querySelector('#form-city-lng').value = e.suggestion.latlng.lng || '';
     });

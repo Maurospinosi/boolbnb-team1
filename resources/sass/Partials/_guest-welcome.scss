@@ -1,13 +1,13 @@
 h4 {
-    text-align:center;
+    text-align: center;
 }
 
-.btn-scopri{
-    background-color: $pink-airbnb;
-    border-radius: 5px;
-    padding: 6px 12px;
+a {
+    .btn-scopri {
+        background-color: $pink-airbnb;
+        border-radius: 5px;
+        padding: 6px 12px;
 
-    a {
         font-size: 14px;
         color: #fff;
         text-decoration: none;
@@ -22,13 +22,13 @@ h4 {
         font-size: 40px;
         font-family: "Cabin", sans-serif;
         margin-top: 270px;
-        color:#4e3249;
+        color: #4e3249;
         font-weight: 600;
     }
 }
 
 #welcome-title {
-    color:#4e3249;
+    color: #4e3249;
     font-weight: 600;
     margin: 20px 0 30px 0;
     text-align: center;
@@ -36,7 +36,6 @@ h4 {
 }
 
 #welcome-container {
-
     .sponsorizzata {
         border-radius: none;
         color: #fff;
