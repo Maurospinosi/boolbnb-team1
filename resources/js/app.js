@@ -7,8 +7,8 @@ var places = require('places.js');
 $(document).ready(function () {
 
   //// SPONSORIZZAZIONE ////
-  $("#host-sponsorship h5").on("click", function () {
-    $(this).siblings(".sponsorContent").toggleClass("d-none");
+  $("#open-sponsor-menu").on("click", function () {
+    $("#host-sponsorship").toggleClass("d-none");
   });
   //// FINE SPONSORIZZAZIONE ////
   //// BRAINTREE ////
@@ -27,6 +27,9 @@ $(document).ready(function () {
       });
     });
   });
+
+  // Customizzazione Braintree
+  $(".braintree-sheet__text").text("Pagamento con carta");
   /// FINE BRAINTREE ////
 
   /*Funzione che al click sull'hamburger fa apparire il menù */

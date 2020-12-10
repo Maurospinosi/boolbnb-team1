@@ -11304,8 +11304,34 @@ header:hover {
   color: #fff;
 }
 
-#host-sponsorship input[type=submit] {
-  background-color: dark-grey;
+#delete-button {
+  background-color: transparent;
+  border: none;
+}
+
+#open-sponsor-menu {
+  cursor: pointer;
+}
+
+#host-sponsorship form {
+  margin-left: 10px;
+}
+
+#host-sponsorship form select {
+  font-size: 13px;
+  padding: 3px;
+}
+
+#host-sponsorship form select option {
+  padding: 3px;
+}
+
+#host-sponsorship form input[type=submit] {
+  font-size: 13px;
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  background-color: lightgrey;
 }
 
 .cards {
