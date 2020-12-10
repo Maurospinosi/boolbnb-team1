@@ -251,7 +251,7 @@ class HouseController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-
+        // dd($data);
         $request->validate([
             "title" => [
                 'required',
@@ -276,8 +276,13 @@ class HouseController extends Controller
         $house = House::findOrFail($id);
 
         $house->slug = Str::of($data["title"])->slug("-");
-        if (in_array("visible", $data)) {
-            $house->visible = true;
+
+        if(isset($data["visible"])) {
+            if ($data["visible"] == 0) {
+                $house->visible = false;
+            } else {
+                $house->visible = true;
+            }
         }
         $house->update();
 
@@ -327,14 +332,13 @@ class HouseController extends Controller
         $house->save();
         $house->services()->sync($data['services']);
 
-        return redirect()->route("host.house.show", $id)
-            ->withSuccess("Appartamento " . $data["title"] . " aggiornato correttamente");
-        $house->save();
-        $house->services()->sync($data['services']);
+        // return redirect()->route("host/house.show", $id)
+        //     ->withSuccess("Appartamento " . $data["title"] . " aggiornato correttamente");
+        // $house->save();
+        // $house->services()->sync($data['services']);
 
-        return redirect()->route("host.house.show", $id)
-            ->withSuccess("Appartamento " . $data["title"]
-                . " aggiornato correttamente");
+        return redirect()->route("host/house.show", $id)
+            ->withSuccess("Appartamento aggiornato correttamente");
     }
 
     /**

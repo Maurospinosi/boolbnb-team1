@@ -173,7 +173,7 @@ ul {
 
                     <div class="form-group">
                         <label for="form-address2">Regione</label>
-                        <input readonly type="text" class="form-control" id="form-address2" placeholder="Regione" value="{{$house->houseinfo->region}}">
+                        <input readonly type="text" class="form-control" id="form-address2" placeholder="Regione" name="region" value="{{$house->houseinfo->region}}">
                         @error('address')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -242,11 +242,17 @@ ul {
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="form-group">
-                        <label for="visible">Rendi visibile</label>
-                        <input type="checkbox" id="visible" name="visible" value="1">
-                    </div>
+                    @if ($house->visible == 1)
+                        <div class="form-group">
+                            <label for="invisible">Rendi non visibile</label>
+                            <input type="checkbox" id="invisible" name="visible" value="0">
+                        </div>
+                    @else
+                        <div class="form-group">
+                            <label for="visible">Rendi visibile</label>
+                            <input type="checkbox" id="visible" name="visible" value="1">
+                        </div>
+                    @endif
 
                     <input hidden type="text" class="form-control" id="form-lat" name="lat" value="{{$house->houseinfo->lat}}"/>
                     <input hidden type="text" class="form-control" id="form-lng" name="lon" value="{{$house->houseinfo->lon}}"/>

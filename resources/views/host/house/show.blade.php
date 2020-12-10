@@ -9,7 +9,21 @@
     {{-- Messsaggio di errore per sponsorizzazione senza € --}}
     @error('amount')
         <div class="alert alert-danger">{{ $message }}</div>
-    @enderror   
+    @enderror
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            @if(is_array(session('success')))
+                <ul>
+                    @foreach (session('success') as $message)
+                        <li>{{ $message }}</li>
+                    @endforeach
+                </ul>
+            @else
+                {{ session('success') }}
+            @endif
+        </div>
+        @endif
+
 
     <div class="container-fluid">
         <div class="row">
@@ -90,20 +104,6 @@
                     </div>
                 </div>
             </nav>
-            @endif
-            {{-- Messaggio di successo alla modifica della casa --}}
-            @if (session()->has('success'))
-            <div class="alert alert-success">
-                @if(is_array(session('success')))
-                    <ul>
-                        @foreach (session('success') as $message)
-                            <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
-                @else
-                    {{ session('success') }}
-                @endif
-            </div>
             @endif
         
             {{-- Print della casa --}}
