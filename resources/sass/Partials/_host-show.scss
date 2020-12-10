@@ -1,8 +1,33 @@
-#host-sponsorship {
+#delete-button {
+    background-color: transparent;
+    border: none;
+}
 
-    input[type="submit"] {
-        background-color: dark-grey;
+#open-sponsor-menu {
+    cursor: pointer;
+}
+
+#host-sponsorship {
+    
+    form {
+        margin-left: 10px;
         
+        select {
+            font-size: 13px;
+            padding: 3px;
+
+            option {
+                padding: 3px;
+            }
+        }
+    
+        input[type="submit"] {
+            font-size: 13px;
+            width: 50%;
+            margin: auto;
+            margin-top: 5px;
+            background-color: lightgrey;
+        }
     }
 }
 

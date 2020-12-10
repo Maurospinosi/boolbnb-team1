@@ -7,8 +7,8 @@ var places = require('places.js');
 $(document).ready(function () {
 
   //// SPONSORIZZAZIONE ////
-  $("#host-sponsorship h5").on("click", function () {
-    $(this).siblings(".sponsorContent").toggleClass("d-none");
+  $("#open-sponsor-menu").on("click", function () {
+    $("#host-sponsorship").toggleClass("d-none");
   });
   //// FINE SPONSORIZZAZIONE ////
   //// BRAINTREE ////
@@ -27,6 +27,9 @@ $(document).ready(function () {
       });
     });
   });
+
+  // Customizzazione Braintree
+  $(".braintree-sheet__text").text("Pagamento con carta");
   /// FINE BRAINTREE ////
 
   /*Funzione che al click sull'hamburger fa apparire il menù */
@@ -42,14 +45,20 @@ $(document).ready(function () {
     $(".hamburger-menu").fadeOut('active');
   });
 
-  /*Funzione che al doppio click sul body fa sparire il menù */
-  /*$("body").dblclick(function(){
-      $(".hamburger-menu").fadeOut('active');
-    }); */
+
+  // Funzione che al click sul globo della lingua fa apparire il menù
+  // $('header .fa-globe').click(function () {
+  //   $("#header-lang").toggleClass("d-none");
+  // });
+
+  // $("#header-lang").mouseleave(function () {
+  //   $(this).addClass('d-none');
+  // });
+
 
   // ALGOLIA
   // Ricerca per città
-  var citySearch = function () {
+  var headerCitySearch = function () {
     var placesAutocomplete = places({
       appId: 'pl0CZDFYINVV',
       apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
@@ -62,7 +71,7 @@ $(document).ready(function () {
     }).configure({
       // type: 'address'
       type: 'city',
-      aroundLatLngViaIP: false,
+      aroundLatLngViaIP: true,
     });
     placesAutocomplete.on('change', function resultSelected(e) {
       document.querySelector('#form-city-address2').value = e.suggestion.administrative || '';
@@ -73,25 +82,7 @@ $(document).ready(function () {
       document.querySelector('#form-city-lng').value = e.suggestion.latlng.lng || '';
     });
   };
-  citySearch();
-
-  var citySearch = function () {
-    var placesAutocomplete = places({
-      appId: 'pl0CZDFYINVV',
-      apiKey: 'eadbe4e7e17871155036ed85b3b8f8c5',
-      container: document.querySelector('#form-city-info'),
-      templates: {
-        value: function (suggestion) {
-          return suggestion.name;
-        }
-      }
-    }).configure({
-      // type: 'address'
-      type: 'city',
-      aroundLatLngViaIP: true,
-    });
-  };
-  citySearch();
+  headerCitySearch();
 
 
   // RICERCA con filtri
@@ -99,15 +90,14 @@ $(document).ready(function () {
   var endpoint = 'http://localhost:8000/api/getallhouses';
 
   // Prendiamo i dati dai filtri
-  $("#search-results-form").change(function () {
+  $("#searchresults-form").change(function(){
 
     // Prendiamo latitudine e longitudine
     const queryString = window.location.href;
     const urlParams = new URLSearchParams(queryString);
     const lat = urlParams.get('lat')
     const lon = urlParams.get('lon')
-    console.log(lat);
-    console.log(lon);
+
     // Servizi
     var services = [];
     // Prendiamo il valore di wi-fi
@@ -165,9 +155,8 @@ $(document).ready(function () {
         "price": price,
         "distance": distance
       },
-      "method": "GET",
-      "success": function (data) {
-        console.log(data);
+      "method": "GET", 
+      "success": function(data) {
         printResults(data);
       },
       "error": function (err) {
@@ -177,23 +166,52 @@ $(document).ready(function () {
   }
   // Funzione che stampa le case richieste da callDatabase
   function printResults(dataArray) {
-    $('#house-container').html("");
+    $('#houses-container').html("");
+    $('#sponsored-houses-container').html("");
     if (dataArray.length > 0) {
       for (var i = 0; i < dataArray.length; i++) {
-        var source = $("#house-template").html();
-        var template = Handlebars.compile(source);
-        var context = {
-          'title': dataArray[i]['title'],
-          'slug': dataArray[i]['house']['slug'],
-          'house_id': dataArray[i]['house']['house_id'],
-          'user_id': dataArray[i]['house']['user_id'],
-          'cover_image': dataArray[i]['cover_image'],
-        };
-        var html = template(context);
-        $('#house-container').append(html);
+        // Cloniamo il template
+        var template = $("#searchresults-wrapper .res-temp .card").clone();
+        //Riempiamo il template
+        // Il valore di "coverImage" dipende se inizia con "http"
+        if (dataArray[i]['cover_image'].startsWith("http")) {
+          var coverImage = dataArray[i]['cover_image'];
+        } else {
+          var coverImage = "{{asset('storage/" + dataArray[i]['cover_image'] + "')}}"
+        }
+        template.find(".card_img img").attr("src", coverImage);
+        template.find(".card-title").text(dataArray[i]['title']);
+        template.find(".card_price").text(dataArray[i]['price']+"€");
+        template.find("button a").attr("href", "http://localhost:8000/host/house"+dataArray[i]['house_id']);
+        // Ciclo per mettere i tag della singola casa in un array
+        var tags = dataArray[i]['house']['tags'];
+        if(tags.length > 0) {
+          var houseTags = [];
+          for(var t = 0; t < tags.length; t++) {
+            houseTags.push(tags[t]['name']);
+          }
+          // Ciclo per appendere i tags in pagina
+          var cardBadges = template.find(".card_badges");
+          for(var c = 0; c < houseTags.length; c++) {
+            var tagTemplate = $(".badge-template .badge-light").clone();
+            tagTemplate.text(houseTags[c]);
+            tagTemplate.removeClass("d-none");
+            cardBadges.append(tagTemplate);
+          }
+        }
+        // Se la casa è sponsorizzata, la appendo nel container delle sponsorizzate
+        var sponsors = dataArray[i]['house']['sponsors'];
+        if(sponsors.length > 0) {
+          template.addClass("sponsor-bg-color");
+          template.find("span.sponsorizzata").removeClass("d-none");
+          $("#sponsored-houses-container").append(template);
+        } else {
+          $('#houses-container').append(template);
+        }
       }
     } else {
-      $('#house-container').append("<h2>Nessun risultato trovato</h2>");
+      var noresults = $(".noresults-template h4").clone();
+      $("#sponsored-houses-container").append(noresults);
     }
   }
 

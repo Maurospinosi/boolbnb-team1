@@ -27,16 +27,22 @@ class SearchController extends Controller
         $lon = $data['lon'];
         $distance = 20;
         
-        $houses_info = HouseInfo::distance($lat, $lon)
+        $tempHouses_info = HouseInfo::distance($lat, $lon)
                                 ->having('distance', '<=', $distance)
                                 ->orderBy('distance', 'ASC')->get();
 
-       
+        $houses_info = [];
+        foreach($tempHouses_info as $house_info) {
+            if(($house_info->house->visible == 1) && count($house_info->house->sponsors) == 0) {
+                $houses_info[] = $house_info;
+            }
+        }
+
         $sponsors = Sponsor::all();
 
         $sponsoredHouses = [];
 
-        foreach($houses_info as $house_info) {
+        foreach($tempHouses_info as $house_info) {
             foreach($sponsors as $sponsor) {
                 if ($house_info->house->sponsors->contains($sponsor->id)) {
                     $sponsoredHouses[] = $house_info->house;

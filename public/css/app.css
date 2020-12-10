@@ -10920,7 +10920,7 @@ a.text-dark:focus {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 781px) {
   header {
     justify-content: center;
     /* Logo */
@@ -10944,7 +10944,7 @@ a.text-dark:focus {
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 992px) {
+@media screen and (min-width: 782px) and (max-width: 992px) {
   header {
     justify-content: space-around;
     /* Menu login, 'Diventa un host', hamburger */
@@ -10953,7 +10953,6 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 200px;
-    height: 230px;
     font-size: 15px;
     right: 6%;
   }
@@ -10992,7 +10991,6 @@ a.text-dark:focus {
 
   header .hamburger-menu {
     width: 230px;
-    height: 250px;
     right: 8%;
   }
 
@@ -11002,7 +11000,6 @@ a.text-dark:focus {
 
   header li:last-child {
     padding: 12px;
-    margin-left: 5px;
   }
 
   header li:nth-last-child(2) {
@@ -11030,7 +11027,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 99999;
   background-color: #fff;
   transition: box-shadow 1.5s;
   /* Logo */
@@ -11048,6 +11045,7 @@ header .hamburger-menu {
   border: 1px solid lightgrey;
   position: absolute;
   top: 100%;
+  right: 30px;
   display: none;
   box-shadow: 2px 5px 5px #ff385c;
   border-radius: 15px;
@@ -11071,6 +11069,10 @@ header .hamburger-menu .hamburger-list li a {
   padding: 10px;
 }
 
+header .hamburger-menu .hamburger-list li.logout-link {
+  margin-top: 15px;
+}
+
 header .hamburger-menu .hamburger-list li:hover a {
   color: white;
   background-color: #ff385c;
@@ -11090,8 +11092,7 @@ header li {
 }
 
 header li:last-child {
-  border: 1px solid #e9e9e9;
-  border-radius: 40%;
+  border-radius: 50%;
   cursor: pointer;
   position: relative;
 }
@@ -11106,10 +11107,20 @@ header li:last-child i:last-child {
   background-color: #828282;
   border-radius: 100%;
   padding: 6px;
-  margin-left: 10px;
+  margin-left: 3px;
 }
 
-header li:last-child:hover {
+header .hamburger {
+  border: none;
+}
+
+header .hamburger #header_user_img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+header .hamburger:hover {
   box-shadow: 2px 5px 5px #ff385c;
   border: 0, 5px solid #ff385c;
 }
@@ -11124,7 +11135,7 @@ header li:nth-last-child(2) i {
 
 header li:nth-last-child(2):hover {
   background-color: #ff385c;
-  border-radius: 100%;
+  border-radius: 25px;
 }
 
 header li:nth-last-child(2):hover i {
@@ -11205,6 +11216,42 @@ header input:focus {
   outline: none;
 }
 
+header .fa-globe {
+  cursor: pointer;
+}
+
+header #header-lang {
+  position: relative;
+  top: 15px;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+header #header-lang li {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: #fff;
+}
+
+header #header-lang li a {
+  color: #000;
+}
+
+header #header-lang li a:hover {
+  background-color: none;
+  color: lightblue;
+}
+
+header li#user_name {
+  font-weight: 600;
+}
+
+header li#user_name:hover {
+  background-color: #fff;
+  box-shadow: 2px 5px 5px #ff385c;
+}
+
 header:hover {
   box-shadow: 2px 5px 5px #ff385c;
 }
@@ -11257,8 +11304,34 @@ header:hover {
   color: #fff;
 }
 
-#host-sponsorship input[type=submit] {
-  background-color: dark-grey;
+#delete-button {
+  background-color: transparent;
+  border: none;
+}
+
+#open-sponsor-menu {
+  cursor: pointer;
+}
+
+#host-sponsorship form {
+  margin-left: 10px;
+}
+
+#host-sponsorship form select {
+  font-size: 13px;
+  padding: 3px;
+}
+
+#host-sponsorship form select option {
+  padding: 3px;
+}
+
+#host-sponsorship form input[type=submit] {
+  font-size: 13px;
+  width: 50%;
+  margin: auto;
+  margin-top: 5px;
+  background-color: lightgrey;
 }
 
 .cards {
@@ -11589,6 +11662,169 @@ footer:hover {
 @media screen and (max-width: 768px) {
   .edit-house .form-edit {
     display: block;
+  }
+}
+
+.bg-azzurro {
+  background-color: #00A6AB;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-pink {
+  background-color: #ff5070;
+  color: white;
+}
+
+.create-user h2 {
+  color: grey;
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.create-user .form-create-user label {
+  color: #00A6AB;
+}
+
+#searchresults-wrapper .sponsor-bg-color {
+  background-color: #ebf5f9;
+}
+
+#searchresults-wrapper #houses-container {
+  margin-top: 30px;
+}
+
+#searchresults-wrapper #searchresults-form {
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 30px;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+
+#searchresults-wrapper #searchresults-form #searchresults-title {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+#searchresults-wrapper #searchresults-form label {
+  font-size: 14px;
+}
+
+#searchresults-wrapper #searchresults-form ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#searchresults-wrapper #searchresults-form li {
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin: 0 10px;
+}
+
+#searchresults-wrapper #searchresults-form input::-webkit-outer-spin-button,
+#searchresults-wrapper #searchresults-form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#searchresults-wrapper #searchresults-form input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#searchresults-wrapper #searchresults-form #searchresults-tags input {
+  border-radius: 5px;
+  border: 1px solid grey;
+  max-width: 50px;
+  text-align: center;
+}
+
+#searchresults-wrapper .card {
+  width: 100%;
+}
+
+#searchresults-wrapper .card .card-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#searchresults-wrapper .card .card-body span.sponsorizzata {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#searchresults-wrapper .card .card-body .card_badges {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+#searchresults-wrapper .card .card-body .card_badges .fa-tags {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+#searchresults-wrapper .card .card-body .card_img {
+  width: 30%;
+  display: inline-block;
+  padding-right: 1.25rem;
+}
+
+#searchresults-wrapper .card .card-body .card_img img {
+  width: 100%;
+  height: 100%;
+}
+
+#searchresults-wrapper .card .card-body .card_text {
+  width: 70%;
+}
+
+#searchresults-wrapper .card .card-body .card_text h5 {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  #searchresults-wrapper .card_badges {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #searchresults-wrapper .card_text h5 {
+    font-size: 13px;
+  }
+
+  #searchresults-wrapper .card .card-body .card_img {
+    width: 50%;
+  }
+
+  #searchresults-wrapper .card .card-body .card_text {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #searchresults-wrapper span.sponsorizzata {
+    font-size: 9px;
+  }
+
+  #searchresults-wrapper .card_text h6 {
+    display: inline-block;
+    padding-right: 10px;
+  }
+
+  #searchresults-wrapper .card_text button {
+    font-size: 9px;
+    padding: 5px;
   }
 }
 

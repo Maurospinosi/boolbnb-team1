@@ -80,11 +80,13 @@
 
 <div class="container">
     <div class="row">
-        @foreach($sponsoredHouses as $house)
+        @foreach($housesToPrint as $house)
             <div class="col-lg-4 col-md-6 mb-4">
     
                 <div class="card h-100">
-                    <span class="badge badge-secondary sponsorizzata">In evidenza</span>
+                    @if (count($house->sponsors) > 0)
+                        <span class="badge badge-secondary sponsorizzata">In evidenza</span>
+                    @endif
                     @if (strpos($house->houseinfo->cover_image, 'http') === 0)
                         <img class="card-img-top" src="{{$house->houseinfo->cover_image}}" alt="random picture">
                      @else

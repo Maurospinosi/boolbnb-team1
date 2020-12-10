@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use App\House;
 use App\HouseInfo;
 use App\Message;
+use App\Tag;
 use App\View;
-
+use Response;
 use Malhal\Geographical\Geographical;
 
 class ApiController extends Controller
@@ -27,6 +28,7 @@ class ApiController extends Controller
         $mq = $_GET["mq"];
         $price = $_GET["price"];
         $distance = $_GET["distance"];
+
         $houses_info = HouseInfo::distance($lat, $lon)
             ->having('distance', '<=', $distance)
             ->orderBy('distance', 'ASC')
@@ -38,7 +40,8 @@ class ApiController extends Controller
                 ['price', '>=', $price]
             ])
             ->get();
-        $housesToPrint = [];
+
+        $tempHousesToPrint = [];
         foreach ($houses_info as $house_info) {
             // Se $services non è vuoto, ciclo sui services per ogni house_info
             if ($services != "") {
@@ -49,15 +52,29 @@ class ApiController extends Controller
                     }
                 }
                 if ($tempArray == $services) {
-                    $housesToPrint[] = $house_info;
+                    $tempHousesToPrint[] = $house_info;
                 }
             }
             // Se $services è vuoto, passo tutte le houses_info
             else {
                 $house_info->house;
+                $tempHousesToPrint[] = $house_info;
+            }
+        }
+
+
+        $housesToPrint = [];
+
+        // Controllo che la casa sia visibile
+        foreach($tempHousesToPrint as $house_info) {
+            if($house_info->house->visible == 1) {
+                // Infine aggiungo i tags attraverso la relazione pivot
+                $house_info->house->tags;
+                $house_info->house->sponsors;
                 $housesToPrint[] = $house_info;
             }
         }
+
         return $housesToPrint;
     }
 

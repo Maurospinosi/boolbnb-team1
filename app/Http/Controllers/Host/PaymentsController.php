@@ -24,7 +24,7 @@ class PaymentsController extends Controller
             "amount" => "required"
         ]);
         
-        // Salviamo i dati della pagina show da cui veniamo in una variabile
+        // Salviamo i dati in variabili
         $amount = $data["amount"];
         $url = $data["url"];
         $house_id = $data["house_id"];
@@ -71,6 +71,9 @@ class PaymentsController extends Controller
 
         // Prendiamo la casa con l'id passato da $data
         $house = House::where("id", $house_id)->first();
+
+        // Rendiamo la casa automaticamente visibile quando viene sponsorizzata
+        $house->visible == 1;
 
         // Prendiamo il valore della durata della sponsorizzazione
         $sponsorship = Sponsor::where("price", $amount)->first();

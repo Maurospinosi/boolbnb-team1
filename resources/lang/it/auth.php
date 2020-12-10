@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Queste credenziali non sono presenti nel nostro database.',
+    'throttle' => 'Troppi tentativi di login falliti. Riprova ancora fra :seconds secondi.',
 
     'login' => 'Login',
-    'register' => 'Register',
+    'register' => 'Registrati',
     'logout' => 'Logout',
 
 ];
