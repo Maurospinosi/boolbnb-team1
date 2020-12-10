@@ -31,7 +31,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link">
-                                
                                 <form action="{{route("host/house.destroy", $house->id)}}" method="post">
                                     @csrf
                                     @method("DELETE")
@@ -40,29 +39,30 @@
                                 </form>
                             </a>   
                         </li>
-                          <!-- Nav Item - Utilities Collapse Menu -->
-                        <li class="nav-item d-inline-flex justify-content-start">
-                            <a class="nav-link"> 
-                                <i class="far fa-credit-card"></i>
-                                <span id="open-sponsor-menu">Sponsorizza</span>
-                            </a>
-                        </li>
-                        <li id="host-sponsorship" class="d-none">
-                            <form action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
-                                @csrf
-                                @method("GET")
-                                <select class="form-control" name="amount">
-                                    <option value="" selected>Seleziona</option>
-                                    <option value="2.99">2.99€ / 24h</option>
-                                    <option value="5.99">5.99€ / 72h</option>
-                                    <option value="9.99">9.99€ / 144h</option>
-                                </select>
-                                <input type="hidden" name="url" value="{{Request::url()}}">
-                                <input type="hidden" name="house_id" value="{{$house->id}}">
-                                <input class="form-control" type="submit" value="Vai">
-                            </form>
-                        </li>
-                        
+                        @if (count($house->sponsors) == 0)
+                            <!-- Nav Item - Utilities Collapse Menu -->
+                            <li class="nav-item d-inline-flex justify-content-start">
+                                <a class="nav-link"> 
+                                    <i class="far fa-credit-card"></i>
+                                    <span id="open-sponsor-menu">Sponsorizza</span>
+                                </a>
+                            </li>
+                            <li id="host-sponsorship" class="d-none">
+                                <form action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
+                                    @csrf
+                                    @method("GET")
+                                    <select class="form-control" name="amount">
+                                        <option value="" selected>Seleziona</option>
+                                        <option value="2.99">2.99€ / 24h</option>
+                                        <option value="5.99">5.99€ / 72h</option>
+                                        <option value="9.99">9.99€ / 144h</option>
+                                    </select>
+                                    <input type="hidden" name="url" value="{{Request::url()}}">
+                                    <input type="hidden" name="house_id" value="{{$house->id}}">
+                                    <input class="form-control" type="submit" value="Vai">
+                                </form>
+                            </li>
+                        @endif
                         <li class="nav-item d-inline-flex justify-content-start">
                             <a class="nav-link" href="{{route("host/house/statistic", $house->id)}}">
                                 <i class="fas fa-chart-line"></i>

@@ -50,14 +50,14 @@
             <li><a href="{{route('guest/home', 'de')}}">DE</a></li>
         </ul> --}}
         <li class="hamburger">
-            @if (Route::has('register'))
-                <i class="fas fa-user"></i>
-            @else
+            @if(Auth::check())
                 @if (Auth::user()->user_info->picture != null)
                     <img id="header_user_img" src="{{asset('storage/'.Auth::user()->user_info->picture)}}" alt="user profile photo">
                 @else
                     <i class="fas fa-user"></i>
                 @endif
+            @else
+                <i class="fas fa-user"></i>
             @endif
         </li>
     </ul>

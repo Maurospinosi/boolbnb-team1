@@ -10,6 +10,7 @@
         
         
         {{-- @dd($house->houseinfo->description); --}}
+        <h2 id="host-index-title">Le mie case</h2>
         <div class="row">
             @foreach($houses as $house)
                 <div class="col-lg-4 col-md-6 mb-4">
