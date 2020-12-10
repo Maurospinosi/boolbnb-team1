@@ -167,6 +167,9 @@ $(document).ready(function () {
     $('#houses-container').html("");
     $('#sponsored-houses-container').html("");
     if (dataArray.length > 0) {
+      var nrResults = dataArray.length;
+      $(".nrResults").text('Case trovate: ' + nrResults);
+
       for (var i = 0; i < dataArray.length; i++) {
         // Cloniamo il template
         var template = $("#searchresults-wrapper .res-temp .card").clone();
@@ -179,8 +182,8 @@ $(document).ready(function () {
         }
         template.find(".card_img img").attr("src", coverImage);
         template.find(".card-title").text(dataArray[i]['title']);
-        template.find(".card_price").text(dataArray[i]['price'] + "€");
-        template.find("button a").attr("href", "http://localhost:8000/host/house/" + dataArray[i]['house_id']);
+        template.find(".card_price").text(dataArray[i]['price']+"€");
+        template.find("button a").attr("href", "http://localhost:8000/host/house/"+dataArray[i]['house_id']);
         // Ciclo per mettere i tag della singola casa in un array
         var tags = dataArray[i]['house']['tags'];
         if (tags.length > 0) {
@@ -208,8 +211,9 @@ $(document).ready(function () {
         }
       }
     } else {
-      var noresults = $(".noresults-template h4").clone();
-      $("#sponsored-houses-container").append(noresults);
+      $(".nrResults").text('Nessuna casa trovata');
+      // var noresults = $(".noresults-template h4").clone();
+      // $("#sponsored-houses-container").append(noresults);
     }
   }
 

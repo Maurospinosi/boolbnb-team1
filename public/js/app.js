@@ -53012,6 +53012,9 @@ $(document).ready(function () {
     $('#sponsored-houses-container').html("");
 
     if (dataArray.length > 0) {
+      var nrResults = dataArray.length;
+      $(".nrResults").text('Case trovate: ' + nrResults);
+
       for (var i = 0; i < dataArray.length; i++) {
         // Cloniamo il template
         var template = $("#searchresults-wrapper .res-temp .card").clone(); //Riempiamo il template
@@ -53060,8 +53063,8 @@ $(document).ready(function () {
         }
       }
     } else {
-      var noresults = $(".noresults-template h4").clone();
-      $("#sponsored-houses-container").append(noresults);
+      $(".nrResults").text('Nessuna casa trovata'); // var noresults = $(".noresults-template h4").clone();
+      // $("#sponsored-houses-container").append(noresults);
     }
   }
 });
@@ -53131,8 +53134,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> main
 
 
 /***/ }),

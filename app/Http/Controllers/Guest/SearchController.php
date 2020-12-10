@@ -53,9 +53,11 @@ class SearchController extends Controller
         $services = Service::all();
         // $services = $services->toJson();
         $tags = Tag::all();
+
+        $nrHouses = count($sponsoredHouses) + count($houses_info);
         
         
-        return view('guest.searchresults', compact('houses_info', 'sponsoredHouses', 'services', 'tags', 'lat', 'lon'));
+        return view('guest.searchresults', compact('houses_info', 'sponsoredHouses', 'nrHouses', 'services', 'tags', 'lat', 'lon'));
     }
 
     /**
