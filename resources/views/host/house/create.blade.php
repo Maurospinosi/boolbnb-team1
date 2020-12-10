@@ -20,16 +20,23 @@ Inserisci una nuova casa
     }
 </style>
 
-    <div class="container">
-        <div class="row">
-            
-            <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
-                <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
-                    <span>Inserisci la tua casa</span>
-                </div>
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
+            <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
+                <span>Inserisci la tua casa</span>
             </div>
+            
         </div>
+        <div class="col-md-12 col-lg-12  bg-white">
+            <div class="d-flex p-2 align-items-center justify-content-end">
+         
+            <a href="{{route('host/house.index')}}" class="btn btn-info">Indietro</a>
+        </div>
+        
     </div>
+</div>
     <div class="container create-house">
 
         <div class="error_message">
@@ -43,7 +50,7 @@ Inserisci una nuova casa
                 </div>
             @endif
         </div>
-        <form class="w-100 col-12 col-md-12 form-create shadow p-3 mb-5 mt-5 bg-white rounded" action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
+        <form class="w-100 col-12 col-md-12 form-create shadow p-3 mb-10 mt-3 bg-white rounded" action="{{route('host/house.store')}}" method="POST" enctype="multipart/form-data">
 
             @csrf
             @method("POST")

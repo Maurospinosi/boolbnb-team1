@@ -11,18 +11,8 @@
 
         <div  class="d-flex justify-content-end"> 
             <a href="{{route('guest/home')}}" class="btn btn-info">Torna alla Home</a>
-            <a href="{{route('guest/search')}}" class="btn btn-info">Torna alla ricerca</a>
         </div>
-        @if(Auth::id() == $house->user_id)
-            <div class="auth-buttons">
-                <a href="{{route("host/house.edit", $house->id)}}" class="btn btn-primary">Modifica</a>
-                <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
-                    @csrf
-                    @method("DELETE")
-                        <button class="btn btn-danger">Cancella</button>
-                </form>
-            </div>
-        @endif
+        
         
         <div class="mt-10 titolo"> 
             <h1 >{{$house->houseinfo->title}}</h1>

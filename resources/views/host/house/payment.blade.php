@@ -5,7 +5,7 @@
 @endsection
 
 @section('page-content')
-
+  
   <div class="container">
     <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
       <div class="d-sm-flex align-items-center justify-content-center mb-4  mx-auto titolo-scheda">
