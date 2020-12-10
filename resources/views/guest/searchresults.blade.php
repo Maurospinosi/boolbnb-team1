@@ -52,6 +52,13 @@
         </form>
     </div>
 
+    {{-- Nr case trovate --}}
+    @if($nrHouses == 0)
+        <h4 class="nrResults">Nessuna casa trovata</h4>
+    @else
+        <h4 class="nrResults">Case trovate: <span>{{$nrHouses}}</span></h4>
+    @endif
+
     {{-- Case sponsorizzate --}}
     <div class="row" id="sponsored-houses-container">
         @foreach ($sponsoredHouses as $sponsoredHouse)
@@ -160,6 +167,7 @@
     <div class="badge-template d-none">
         <span class="badge badge-light">tag</span>
     </div>
+
 
     {{-- Template del nessun risultato trovato --}}
     <div class="noresults-template d-none">

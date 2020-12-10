@@ -11271,6 +11271,12 @@ header:hover {
   margin-bottom: 20px;
 }
 
+.host-index-no-houses {
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
 .titolo {
   color: #222222;
   font-size: 18px;

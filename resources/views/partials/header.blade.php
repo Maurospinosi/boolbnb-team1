@@ -68,12 +68,8 @@
     @if (Auth::user())
         <div class="hamburger-menu">
             <ul class="hamburger-list">
-                @if (count(Auth::user()->houses) > 0)
                     <li><a href="{{route('host/house.index')}}">Le mie case</a></li>
-                @endif
-                {{-- @if (count(Auth::user()->houses->messages) > 0) --}}
                     <li><a href="{{route('host/message.index')}}">I miei messaggi</a></li>
-                {{-- @endif --}}
                 <li><a href="{{route('host/house.create')}}">Aggiungi una casa</a></li>
                 @if (Route::currentRouteName() != 'guest/home')
                     <li><a href="{{route('guest/home')}}">Torna alla home</a></li>
