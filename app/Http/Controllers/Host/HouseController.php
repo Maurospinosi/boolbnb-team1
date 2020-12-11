@@ -99,7 +99,7 @@ class HouseController extends Controller
 
         // // Salvare l'immagine di copertina in public/storage
         // $filename_original = $data['cover_image']->getClientOriginalName();
-        // $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
+        // $uploadedFileUrl = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
 
         $uploadedFileUrl = cloudinary()->upload($request->file('cover_image')->getRealPath())->getSecurePath();
 

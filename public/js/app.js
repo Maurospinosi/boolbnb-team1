@@ -53084,8 +53084,8 @@ $(document).ready(function () {
     minZoom: 1,
     maxZoom: 22
   });
-  var latURL = urlParams.get('lat') || parseFloat($(".card-body .latitudine").val());
-  var lonURL = urlParams.get('lon') || parseFloat($(".card-body .longitudine").val());
+  var latURL = urlParams.get('lat') || parseFloat($(".coordinate-container .latitudine").val());
+  var lonURL = urlParams.get('lon') || parseFloat($(".coordinate-container .longitudine").val());
   map.setView(new L.LatLng(latURL, lonURL), 11);
   map.addLayer(osmLayer);
   var markers = [];
@@ -53095,7 +53095,7 @@ $(document).ready(function () {
     markers.forEach(function (e) {
       return removeMarker(e);
     });
-    var cardBodyArr = $(".card-body"); // console.log(cardBodyArr);
+    var cardBodyArr = $(".coordinate-container"); // console.log(cardBodyArr);
 
     for (var index = 0; index < cardBodyArr.length; index++) {
       var element = cardBodyArr[index]; // console.log(element);

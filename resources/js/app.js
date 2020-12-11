@@ -240,8 +240,8 @@ $(document).ready(function () {
   }
   );
 
-  const latURL = urlParams.get('lat') || parseFloat($(".card-body .latitudine").val());
-  const lonURL = urlParams.get('lon') || parseFloat($(".card-body .longitudine").val());
+  const latURL = urlParams.get('lat') || parseFloat($(".coordinate-container .latitudine").val());
+  const lonURL = urlParams.get('lon') || parseFloat($(".coordinate-container .longitudine").val());
 
   map.setView(new L.LatLng(latURL, lonURL), 11);
   map.addLayer(osmLayer);
@@ -254,7 +254,7 @@ $(document).ready(function () {
 
     markers.forEach(e => removeMarker(e));
 
-    var cardBodyArr = $(".card-body");
+    var cardBodyArr = $(".coordinate-container");
     // console.log(cardBodyArr);
 
     for (let index = 0; index < cardBodyArr.length; index++) {

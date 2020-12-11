@@ -97,8 +97,10 @@
                             @endforeach
                         </div>
                     @endif
-                    <input class="latitudine" type="hidden"  value="{{$sponsoredHouse->houseinfo->lat}}">
-                    <input class="longitudine" type="hidden"   value="{{$sponsoredHouse->houseinfo->lon}}">
+                    <div class="coordinate-container">
+                        <input class="latitudine" type="hidden"  value="{{$sponsoredHouse->houseinfo->lat}}">
+                        <input class="longitudine" type="hidden"   value="{{$sponsoredHouse->houseinfo->lon}}">
+                    </div>  
                 </div>
             </div>
         @endforeach
@@ -128,8 +130,10 @@
                                 <button type="button" class="btn btn-scopri">Scopri</button>
                             </a>
                     </div>
-                    <input class="latitudine" type="hidden"  value=" {{$house_info->lat}}">
-                    <input class="longitudine" type="hidden"   value=" {{$house_info->lon}}">
+                    <div class="coordinate-container">
+                        <input class="latitudine" type="hidden"  value=" {{$house_info->lat}}">
+                        <input class="longitudine" type="hidden"   value=" {{$house_info->lon}}">
+                    </div>  
                     @if(count($house_info->house->tags) > 0)
                     <div class="card_badges">
                         <i class="fas fa-tags"></i>
@@ -160,8 +164,10 @@
                         <button type="button" class="btn btn-scopri">Scopri</button>
                     </a>
                 </div>
-                <input class="latitudine" type="hidden"  value="">
-                <input class="longitudine" type="hidden"   value="">
+                <div class="coordinate-container">
+                    <input class="latitudine" type="hidden"  value="">
+                    <input class="longitudine" type="hidden"   value="">
+                </div>  
                 {{-- Se ci sono tag --}}
                 <div class="card_badges">
                     <i class="fas fa-tags"></i>

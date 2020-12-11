@@ -81,7 +81,7 @@ class MessageController extends Controller
 
         Mail::to($host_email)->send(new NewMessage($dati));
 
-        return redirect()->back()->with('status', 'Messaggio inviato');
+        return redirect()->route('guest/house', $house->slug)->with('status', 'Messaggio inviato');
     }
 
     /**

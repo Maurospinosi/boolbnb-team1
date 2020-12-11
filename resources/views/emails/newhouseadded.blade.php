@@ -11,20 +11,23 @@
     <div class="title">
          <h2 id="title-house">"{{$dati["title"]}}"</h2>
     </div>
-    @if (strpos($dati['cover_image'], 'http') === 0)
-        <img class="item" style="width:100%" src="{{$dati['cover_image']}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
+    @if (strpos($dati['cover_image'], 'http') === 0) --}}
+        <img class="item" style="width:100%" src="{{$dati['cover_image']}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;"> --}}
     @else
         <img class="item" style="width:100%" src="{{asset('storage/'.$dati['cover_image'])}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
     @endif      
-    {{-- <img src="{{asset('storage/'.$dati['cover_image'])}}" alt="house_cover"> --}}
+    {{-- <img src="{{asset('storage/'.$dati['cover_image'])}}" alt="house_cover">
     <ul class="list-house">
         <li>Prezzo: {{$dati["price"]}}€</li>
         <li>Località: {{$dati["address"]}}, {{$dati["city"]}}</li>
         <li>Stanze: {{$dati["rooms"]}}</li>
         <li>Mq: {{$dati["mq"]}} </li>
         <li>...</li>
-    </ul>
-
+    </ul> --}}
+    Prezzo: {{$dati["price"]}}€
+    Località: {{$dati["address"]}}, {{$dati["city"]}}
+    Stanze: {{$dati["rooms"]}}
+    Mq: {{$dati["mq"]}} 
 </div>
 <div class="action">
 <a class="button button-primary " href="{{route('host/house.show', $dati['house_id'])}}">Visualizza maggiori dettagli</a>

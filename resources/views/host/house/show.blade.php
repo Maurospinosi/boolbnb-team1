@@ -186,8 +186,10 @@
                                         <div id="map-example-container"></div>
                                     </div>
                                 </div>
-                                <input class="latitudine" type="hidden" value="{{$house->houseinfo->lat}}">
-                                <input class="longitudine" type="hidden"   value="{{$house->houseinfo->lon}}">
+                                <div class="coordinate-container">
+                                    <input class="latitudine" type="hidden"  value="{{$house->houseinfo->lat}}">
+                                    <input class="longitudine" type="hidden"   value="{{$house->houseinfo->lon}}">
+                                </div>
                             </div>
                         </div>
                     </div>

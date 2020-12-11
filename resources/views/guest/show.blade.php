@@ -142,13 +142,15 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            <input class="latitudine" type="hidden"  value="{{$house->houseinfo->lat}}">
-                            <input class="longitudine" type="hidden"   value="{{$house->houseinfo->lon}}">    
+                            <div class="coordinate-container">
+                                <input class="latitudine" type="hidden"  value="{{$house->houseinfo->lat}}">
+                                <input class="longitudine" type="hidden"   value="{{$house->houseinfo->lon}}">
+                            </div>    
                         </div>
                     </div>
                 </div>
                 <div class=" col-lg-6 col-md-6">
-                    <div id="map-example-container"></div>
+                    <div id="map-example-container" style="min-height: 100%;"></div>
                         <input type="hidden" id="input-map" class="form-control"/>
                     </div>
                 </div>
