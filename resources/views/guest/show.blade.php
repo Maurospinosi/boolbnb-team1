@@ -17,7 +17,7 @@
             <div class="col-md-12 col-lg-12  bg-white">
                 <div class="d-flex p-2 align-content-start justify-content-end">
              
-                <a href="{{route('host/house.index')}}" class="btn btn-info">Indietro</a>
+                <a href="{{route('guest/home')}}" class="btn btn-info">Indietro</a>
             </div>
         </div>
 
@@ -142,20 +142,18 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
+                            <input class="latitudine" type="hidden"  value="{{$house->houseinfo->lat}}">
+                            <input class="longitudine" type="hidden"   value="{{$house->houseinfo->lon}}">    
                         </div>
                     </div>
                 </div>
                 <div class=" col-lg-6 col-md-6">
-                    <div id="map-example-container "></div>
-                        <input type="search" id="input-map" class="form-control"/>
-                        <input id="latitudine" type="hidden"  value=" {{$house->houseinfo->lat}}">
-                        <input id="longitudine" type="hidden"   value=" {{$house->houseinfo->lon}}">
-                        <input id="indirizzo" type="hidden"   value=" {{$house->houseinfo->address}}">
+                    <div id="map-example-container"></div>
+                        <input type="hidden" id="input-map" class="form-control"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/map.js') }}"></script>
 
 @endsection

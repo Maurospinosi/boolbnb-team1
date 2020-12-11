@@ -59,6 +59,9 @@
         <h4 class="nrResults">Case trovate: <span>{{$nrHouses}}</span></h4>
     @endif
 
+    {{-- Mappa --}}
+    <div class="big-map" id="map-example-container"></div>
+
     {{-- Case sponsorizzate --}}
     <div class="row" id="sponsored-houses-container">
         @foreach ($sponsoredHouses as $sponsoredHouse)
@@ -94,6 +97,8 @@
                             @endforeach
                         </div>
                     @endif
+                    <input class="latitudine" type="hidden"  value="{{$sponsoredHouse->houseinfo->lat}}">
+                    <input class="longitudine" type="hidden"   value="{{$sponsoredHouse->houseinfo->lon}}">
                 </div>
             </div>
         @endforeach
@@ -123,6 +128,8 @@
                                 <button type="button" class="btn btn-scopri">Scopri</button>
                             </a>
                     </div>
+                    <input class="latitudine" type="hidden"  value=" {{$house_info->lat}}">
+                    <input class="longitudine" type="hidden"   value=" {{$house_info->lon}}">
                     @if(count($house_info->house->tags) > 0)
                     <div class="card_badges">
                         <i class="fas fa-tags"></i>
@@ -153,6 +160,8 @@
                         <button type="button" class="btn btn-scopri">Scopri</button>
                     </a>
                 </div>
+                <input class="latitudine" type="hidden"  value="">
+                <input class="longitudine" type="hidden"   value="">
                 {{-- Se ci sono tag --}}
                 <div class="card_badges">
                     <i class="fas fa-tags"></i>

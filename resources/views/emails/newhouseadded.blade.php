@@ -10,8 +10,13 @@
 <div class="body-message">
     <div class="title">
          <h2 id="title-house">"{{$dati["title"]}}"</h2>
-    </div>      
-    <img src="{{asset('storage/'.$dati['cover_image'])}}" alt="house_cover">
+    </div>
+    @if (strpos($dati['cover_image'], 'http') === 0)
+        <img class="item" style="width:100%" src="{{$dati['cover_image']}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
+    @else
+        <img class="item" style="width:100%" src="{{asset('storage/'.$dati['cover_image'])}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
+    @endif      
+    {{-- <img src="{{asset('storage/'.$dati['cover_image'])}}" alt="house_cover"> --}}
     <ul class="list-house">
         <li>Prezzo: {{$dati["price"]}}€</li>
         <li>Località: {{$dati["address"]}}, {{$dati["city"]}}</li>

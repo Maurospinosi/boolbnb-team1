@@ -97,7 +97,7 @@ class HouseController extends Controller
             }
         }
 
-        // Salvare l'immagine di copertina in public/storage
+        // // Salvare l'immagine di copertina in public/storage
         // $filename_original = $data['cover_image']->getClientOriginalName();
         // $pathCover = Storage::disk('public')->putFileAs('images', $data['cover_image'], $filename_original);
 
@@ -108,9 +108,15 @@ class HouseController extends Controller
         $newHouse = new House;
         $newHouse->user_id = Auth::id();
         $newHouse->slug = Str::of($data["title"])->slug("-");
-        if (in_array("visible", $data)) {
-            $newHouse->visible = true;
+
+        if(isset($data["visible"])) {
+            if ($data["visible"] == 0) {
+                $newHouse->visible = false;
+            } else {
+                $newHouse->visible = true;
+            }
         }
+
         $newHouse->save();
 
         // Associazione servizi alla casa nella pivot

@@ -29,7 +29,7 @@
         <div class="row">
      {{-- Tasti di Modifica, Cancella e Sponsorizza --}}
              @if(Auth::id() == $house->user_id)
-            <nav class="col-md-2 col-lg-2 d-flex flex-column d-md-block bg-light sidebar">
+            <nav class="col-md-2 col-lg-2  bg-light sidebar">
                 <div class="sidebar-sticky host-nav-col justify-content-start">
                     <div class="nav d-flex flex-column host-nav">
                         <div class="nav-item d-inline-flex p-2 align-items-center ">
@@ -184,11 +184,10 @@
                                 <div class="row no-gutters justify-content-center">
                                     <div class="col  align-content-center">
                                         <div id="map-example-container"></div>
-                                        <input id="latitudine" type="hidden" value=" {{$house->houseinfo->lat}}">
-                                        <input id="longitudine" type="hidden"   value=" {{$house->houseinfo->lon}}">
-                                        <input id="indirizzo" type="hidden"   value=" {{$house->houseinfo->address}}">
                                     </div>
                                 </div>
+                                <input class="latitudine" type="hidden" value="{{$house->houseinfo->lat}}">
+                                <input class="longitudine" type="hidden"   value="{{$house->houseinfo->lon}}">
                             </div>
                         </div>
                     </div>
@@ -220,8 +219,6 @@
 
     </div>
  
-        <script src="{{ asset('js/map.js') }}"></script>
-
     </div>
 
 @endsection

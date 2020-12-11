@@ -52923,12 +52923,12 @@ $(document).ready(function () {
   headerCitySearch(); // RICERCA con filtri
   // Endpoint in cui si trova il database
 
-  var endpoint = 'http://localhost:8000/api/getallhouses'; // Prendiamo i dati dai filtri
+  var endpoint = 'http://localhost:8000/api/getallhouses';
+  var queryString = window.location.href;
+  var urlParams = new URLSearchParams(queryString); // Prendiamo i dati dai filtri
 
   $("#searchresults-form").change(function () {
     // Prendiamo latitudine e longitudine
-    var queryString = window.location.href;
-    var urlParams = new URLSearchParams(queryString);
     var lat = urlParams.get('lat');
     var lon = urlParams.get('lon'); // Servizi
 
@@ -53030,7 +53030,9 @@ $(document).ready(function () {
         template.find(".card_img img").attr("src", coverImage);
         template.find(".card-title").text(dataArray[i]['title']);
         template.find(".card_price").text(dataArray[i]['price'] + "€");
-        template.find("button a").attr("href", "http://localhost:8000/host/house/" + dataArray[i]['house_id']); // Ciclo per mettere i tag della singola casa in un array
+        template.find("button a").attr("href", "http://localhost:8000/host/house/" + dataArray[i]['house_id']);
+        template.find("input.latitudine").val(dataArray[i]['lat']);
+        template.find("input.longitudine").val(dataArray[i]['lon']); // Ciclo per mettere i tag della singola casa in un array
 
         var tags = dataArray[i]['house']['tags'];
 
@@ -53065,6 +53067,71 @@ $(document).ready(function () {
       }
     } else {
       $(".nrResults").text('Nessuna casa trovata');
+    }
+
+    pushMarker();
+  }
+  /*******************************************
+     *********** MAPPE ****************
+     ******************************************/
+
+
+  var map = L.map('map-example-container', {
+    scrollWheelZoom: true,
+    zoomControl: true
+  });
+  var osmLayer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    minZoom: 1,
+    maxZoom: 22
+  });
+  var latURL = urlParams.get('lat') || parseFloat($(".card-body .latitudine").val());
+  var lonURL = urlParams.get('lon') || parseFloat($(".card-body .longitudine").val());
+  map.setView(new L.LatLng(latURL, lonURL), 11);
+  map.addLayer(osmLayer);
+  var markers = [];
+  pushMarker();
+
+  function pushMarker() {
+    markers.forEach(function (e) {
+      return removeMarker(e);
+    });
+    var cardBodyArr = $(".card-body"); // console.log(cardBodyArr);
+
+    for (var index = 0; index < cardBodyArr.length; index++) {
+      var element = cardBodyArr[index]; // console.log(element);
+
+      console.log(element);
+      var lat = $(element).find('input.latitudine').val();
+      var lng = $(element).find('input.longitudine').val();
+      var latParse = parseFloat(lat);
+      var lngParse = parseFloat(lng);
+      console.log(lat);
+      var coordinate = {
+        lat: latParse,
+        lng: lngParse
+      };
+      addMarker(coordinate);
+    }
+
+    handleOnCursorchanged();
+
+    function handleOnCursorchanged() {
+      markers.forEach(function (marker) {
+        marker.setZIndexOffset(0);
+        marker.setOpacity(0.9);
+      });
+    }
+
+    function addMarker(coordinate) {
+      var marker = L.marker(coordinate, {
+        opacity: .9
+      });
+      marker.addTo(map);
+      markers.push(marker);
+    }
+
+    function removeMarker(marker) {
+      map.removeLayer(marker);
     }
   }
 });
@@ -53134,8 +53201,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\admin\Desktop\Corso\boolean\esercitazioni\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -88,12 +88,14 @@ $(document).ready(function () {
   // Endpoint in cui si trova il database
   var endpoint = 'http://localhost:8000/api/getallhouses';
 
+  const queryString = window.location.href;
+  const urlParams = new URLSearchParams(queryString);
+
+
   // Prendiamo i dati dai filtri
   $("#searchresults-form").change(function () {
 
     // Prendiamo latitudine e longitudine
-    const queryString = window.location.href;
-    const urlParams = new URLSearchParams(queryString);
     const lat = urlParams.get('lat')
     const lon = urlParams.get('lon')
 
@@ -187,6 +189,8 @@ $(document).ready(function () {
         template.find(".card-title").text(dataArray[i]['title']);
         template.find(".card_price").text(dataArray[i]['price']+"€");
         template.find("button a").attr("href", "http://localhost:8000/host/house/"+dataArray[i]['house_id']);
+        template.find("input.latitudine").val(dataArray[i]['lat']);
+        template.find("input.longitudine").val(dataArray[i]['lon']);
         // Ciclo per mettere i tag della singola casa in un array
         var tags = dataArray[i]['house']['tags'];
         if (tags.length > 0) {
@@ -216,6 +220,82 @@ $(document).ready(function () {
     } else {
       $(".nrResults").text('Nessuna casa trovata');
     }
+    pushMarker();
   }
+
+
+  
+/*******************************************
+   *********** MAPPE ****************
+   ******************************************/
+
+  var map = L.map('map-example-container', {
+    scrollWheelZoom: true,
+    zoomControl: true
+  });
+  var osmLayer = new L.TileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    minZoom: 1,
+    maxZoom: 22,
+  }
+  );
+
+  const latURL = urlParams.get('lat') || parseFloat($(".card-body .latitudine").val());
+  const lonURL = urlParams.get('lon') || parseFloat($(".card-body .longitudine").val());
+
+  map.setView(new L.LatLng(latURL, lonURL), 11);
+  map.addLayer(osmLayer);
+
+  var markers = [];
+
+  pushMarker();
+
+  function pushMarker() {
+
+    markers.forEach(e => removeMarker(e));
+
+    var cardBodyArr = $(".card-body");
+    // console.log(cardBodyArr);
+
+    for (let index = 0; index < cardBodyArr.length; index++) {
+
+      const element = cardBodyArr[index];
+      // console.log(element);
+      console.log(element);
+      var lat = $(element).find('input.latitudine').val();
+      var lng = $(element).find('input.longitudine').val();
+      var latParse = parseFloat(lat);
+      var lngParse = parseFloat(lng);
+      console.log(lat);
+      var coordinate = {
+        lat: latParse,
+        lng: lngParse
+      };
+
+      addMarker(coordinate);
+    }
+
+    handleOnCursorchanged();
+
+    function handleOnCursorchanged() {
+      markers.forEach(function (marker) {
+        marker.setZIndexOffset(0);
+        marker.setOpacity(0.9);
+      });
+    }
+    function addMarker(coordinate) {
+      var marker = L.marker(coordinate, { opacity: .9 });
+      marker.addTo(map);
+      markers.push(marker);
+    }
+
+    function removeMarker(marker) {
+      map.removeLayer(marker);
+    }
+
+  }
+
+
+
 
 });

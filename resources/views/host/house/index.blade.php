@@ -31,7 +31,8 @@
                                 <form action=" {{route("host/house.destroy", $house->id)}}" method="post">
                                     @csrf
                                     @method("DELETE")
-                                </form><button type="button" class="btn btn-delete">Cancella</button>
+                                    <button type="submit" class="btn btn-delete">Cancella</button>
+                                </form>
                             </div>
                         </div>
                     </div>
