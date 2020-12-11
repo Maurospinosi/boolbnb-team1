@@ -8,7 +8,7 @@
     
 {{-- Jumbotron --}}
 <div class="no-wrap">
-    <div class="jumbotron">
+    <div class="jumbotron ">
         <h2>Scegli la prossima meta delle tue vacanze...</h2>
     </div>
 </div>
@@ -43,7 +43,8 @@
                                 {{route("host/house.show", $house->id)}}
                                 @else
                                 {{route("guest/house", $house->slug)}}
-                                @endif"><button type="button" class="btn btn-scopri">Scopri</button></a>
+                                @endif"><button type="button" class="btn btn-scopri">Scopri</button>
+                            </a>
                     </div>
                 </div>
             </div>

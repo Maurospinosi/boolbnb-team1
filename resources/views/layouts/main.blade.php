@@ -4,24 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title') </title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     
-    @yield('style')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  
     <script src="https://js.braintreegateway.com/web/dropin/1.25.0/js/dropin.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
-  
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBawL8VbstJDdU5397SUX7pEt9DslAwWgQ"></script>
 
-    <style>
-      
-      </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBawL8VbstJDdU5397SUX7pEt9DslAwWgQ"></script>
     @yield('style')
     <script src="https://js.braintreegateway.com/web/dropin/1.25.0/js/dropin.min.js"></script>
+    <title>@yield('title') </title>
     <link rel="stylesheet" href="{{asset("css/app.css")}}">
+    
 </head>
 <body>
     

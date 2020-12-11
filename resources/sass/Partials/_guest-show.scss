@@ -22,12 +22,76 @@
         padding: 5px;
     }
 
-    .cover-image {
-        margin-bottom: 10px;
+
+    #carouselExampleIndicators {
+        width: 85%;
+    }
+    
+    .carousel-fade .carousel-item {
+        opacity: 0;
+        transition-duration: .6s;
+        transition-property: opacity;
+       }
+       
+       .carousel-fade  .carousel-item.active,
+       .carousel-fade  .carousel-item-next.carousel-item-left,
+       .carousel-fade  .carousel-item-prev.carousel-item-right {
+         opacity: 1;
+       }
+       
+       .carousel-fade .active.carousel-item-left,
+       .carousel-fade  .active.carousel-item-right {
+        opacity: 0;
+       }
+       
+       .carousel-fade  .carousel-item-next,
+       .carousel-fade .carousel-item-prev,
+       .carousel-fade .carousel-item.active,
+       .carousel-fade .active.carousel-item-left,
+       .carousel-fade  .active.carousel-item-prev {
+        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
+       }
+
+    .info-casa{
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        .list-info {
+            max-width: 325px;
+            margin: 0 auto;
+            font-size: 16px;
+            color: $grey-airbnb;
+            text-align: center;
+            padding: 20px;
+    
+    
+            i {
+                color: $pink-airbnb;
+                font-size: 50px;
+                padding-bottom: 10px;
+            }
+
+            h3 {
+                font-weight: 500;
+                font-size: 18px;
+                padding: 20px;
+            }
+            span {
+                font-weight: 400;
+            }
+        }
+    }
+    
+    .green {
+        color: #00a6aB;
+        padding-bottom: 10px;
     }
 
-    .gallery {
-        margin: 5px;
+    .text-form {
+        font-weight: 400;
+        font-size: 14px;
+        color: $grey-airbnb;
     }
 }
 
@@ -36,4 +100,4 @@
     height: 280px;
     border: 3px solid  #FF385C;
     z-index: 0;
-    }
+}
