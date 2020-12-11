@@ -66,24 +66,21 @@
                                     <i class="far fa-credit-card"></i>
                                     <span id="open-sponsor-menu">Sponsorizza</span>
                                 </a>
-                           
-                                <li id="host-sponsorship" class="d-none">
-                                    <form action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
-                                        @csrf
-                                        @method("GET")
-                                        <select class="form-control" name="amount">
-                                            <option value="" selected>Seleziona</option>
-                                            <option value="2.99">2.99€ / 24h</option>
-                                            <option value="5.99">5.99€ / 72h</option>
-                                            <option value="9.99">9.99€ / 144h</option>
-                                        </select>
-                                        <input type="hidden" name="url" value="{{Request::url()}}">
-                                        <input type="hidden" name="house_id" value="{{$house->id}}">
-                                        <input class="form-control" type="submit" value="Vai">
-                                    </form>
-                                </li>
                             </div>
                         </div>
+                        <form id="host-sponsorship" class="d-none" action="{{route("host/sponsorship", $house->user_id)}}" method="GET">
+                            @csrf
+                            @method("GET")
+                            <select class="form-control" name="amount">
+                                <option value="" selected>Seleziona</option>
+                                <option value="2.99">2.99€ / 24h</option>
+                                <option value="5.99">5.99€ / 72h</option>
+                                <option value="9.99">9.99€ / 144h</option>
+                            </select>
+                            <input type="hidden" name="url" value="{{Request::url()}}">
+                            <input type="hidden" name="house_id" value="{{$house->id}}">
+                            <input class="form-control" type="submit" value="Vai">
+                        </form>
                         @endif
                         <div class="nav d-flex flex-column host-nav">
                             <div class="nav-item d-inline-flex p-2 align-items-center ">

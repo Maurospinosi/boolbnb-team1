@@ -52990,6 +52990,7 @@ $(document).ready(function () {
       },
       "method": "GET",
       "success": function success(data) {
+        console.log(data);
         printResults(data);
       },
       "error": function error(err) {

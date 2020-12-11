@@ -14,6 +14,7 @@
                 </div>
             </div>
         </div>
+        @if (count($messages) > 0)
         <div class="row">
             <div class="table-responsive">
                 <table class="table">
@@ -62,5 +63,9 @@
         </div>
 
     </div>
-
+    @else 
+    <div class="container container-messaggi">
+        <h2>Non ci sono messaggi</h2>
+    </div>
+    @endif
 @endsection

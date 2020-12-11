@@ -28,6 +28,14 @@ class ApiController extends Controller
         $mq = $_GET["mq"];
         $price = $_GET["price"];
         $distance = $_GET["distance"];
+        
+        // $houses_info = HouseInfo::where('price', '<=', $price)->get();
+        // return $houses_info;
+        // $houses_info = HouseInfo::distance($lat, $lon)
+        //         ->having('distance', '<=', $distance)
+        //         ->orderBy('distance', 'ASC')
+        //         ->where('price', '<=', $price)
+        //         ->get();
 
         $houses_info = HouseInfo::distance($lat, $lon)
             ->having('distance', '<=', $distance)
@@ -37,9 +45,9 @@ class ApiController extends Controller
                 ['beds', '>=', $beds],
                 ['bathrooms', '>=', $bathrooms],
                 ['mq', '>=', $mq],
-                ['price', '>=', $price]
             ])
             ->get();
+        // $houses_info = HouseInfo::where('price', '<=', $price)->get();
 
         $tempHousesToPrint = [];
         foreach ($houses_info as $house_info) {

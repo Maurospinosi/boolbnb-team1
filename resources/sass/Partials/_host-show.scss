@@ -105,26 +105,24 @@ h3 {
     }
     
     #host-sponsorship {
-        
-        form {
-            margin-left: 10px;
-            
-            select {
-                font-size: 13px;
+        width: 70%;
+        margin: auto;
+               
+        select {
+            font-size: 13px;
+            padding: 3px;
+
+            option {
                 padding: 3px;
-    
-                option {
-                    padding: 3px;
-                }
             }
+        }
         
-            input[type="submit"] {
-                font-size: 13px;
-                width: 50%;
-                margin: auto;
-                margin-top: 5px;
-                background-color: lightgrey;
-            }
+        input[type="submit"] {
+            font-size: 13px;
+            width: 50%;
+            margin: auto;
+            margin-top: 5px;
+            background-color: lightgrey;
         }
     }
 }
