@@ -10926,6 +10926,15 @@ a.text-dark:focus {
   font-weight: bold;
 }
 
+.container-messaggi {
+  height: 500px;
+}
+
+.container-messaggi h2 {
+  font-weight: bold;
+  text-align: center;
+}
+
 @media screen and (max-width: 781px) {
   header {
     justify-content: center;
@@ -11728,8 +11737,8 @@ a .btn-scopri {
 }
 
 #map-example-container {
-  width: 280px;
-  height: 90%;
+  max-width: 100%;
+  height: 280px;
   border: 3px solid #FF385C;
   z-index: 0;
 }
