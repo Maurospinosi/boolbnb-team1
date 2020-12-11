@@ -50,11 +50,17 @@
                     <div class="nav d-flex flex-column host-nav">
                         <div class="nav-item d-inline-flex p-2 align-items-center ">
                             <a class="nav-link">
-                                <form action="{{route("host/house.destroy", $house->id)}}" method="post">
+                                <i class="far fa-trash-alt"></i>
+                                <button id="open-delete-menu" class="delete-button">Cancella</button>
+                                <form class="delete-menu d-none" action="{{route("host/house.destroy", $house->id)}}" method="post">
                                     @csrf
                                     @method("DELETE")
-                                    <i class="far fa-trash-alt"></i>
-                                    <input id="delete-button" type="submit" value="Cancella">
+                                    <h6>Cancellare la casa?</h6>
+                                    @if(count($house->sponsors) != 0)
+                                        <h6>Questa casa è sponsorizzata</h6>
+                                    @endif
+                                    <input type="submit" value="Conferma">
+                                    <h6 id="button-annulla">Annulla</h6>
                                 </form>
                             </a>   
                         </div>
@@ -201,14 +207,11 @@
                      @foreach ($images as $image)
                      <div class="column ">
                             @if (strpos($image->url, 'http') === 0)
-                                <a href="{{$image->url}}">
-                                    <img class="item" style="width:100%" src="{{$image->url}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
-                                </a>
+                                <img class="item" style="width:100%" src="{{$image->url}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
                             @else
                                 <img class="item" style="width:100%" src="{{asset('storage/'.$image->url)}}" alt="Thumbnail [100%x225]" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
                              @endif 
                         </div>
-
                     @endforeach
                     
                 </div>

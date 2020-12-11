@@ -95,7 +95,7 @@ h3 {
             padding-right: 20px;
         }
     }
-    #delete-button {
+    .delete-button {
         background-color: transparent;
         border: none;
     }
@@ -123,6 +123,39 @@ h3 {
             margin: auto;
             margin-top: 5px;
             background-color: lightgrey;
+        }
+    }
+
+    .delete-menu {
+        background-color: #fff;
+        border: 1px solid grey;
+        border-radius: 10px;
+        padding: 5px;
+        margin-top: 10px;
+        text-align: center;
+
+        h6 {
+            font-size: 13px;
+        }
+
+        input[type="submit"],
+        #button-annulla {
+            border: 1px solid grey;
+            border-radius: 5px;
+            padding: 3px 5px;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        input[type="submit"] {
+            background-color: red;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        #button-annulla {
+            padding: 5px;
         }
     }
 }

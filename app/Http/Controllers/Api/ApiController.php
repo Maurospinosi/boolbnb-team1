@@ -27,6 +27,9 @@ class ApiController extends Controller
         $bathrooms = $_GET["bathrooms"];
         $mq = $_GET["mq"];
         $price = $_GET["price"];
+        if ($price == "") {
+            $price = 2000;
+        }
         $distance = $_GET["distance"];
         
         // $houses_info = HouseInfo::where('price', '<=', $price)->get();
@@ -45,6 +48,7 @@ class ApiController extends Controller
                 ['beds', '>=', $beds],
                 ['bathrooms', '>=', $bathrooms],
                 ['mq', '>=', $mq],
+                ['price', '<=', $price],
             ])
             ->get();
         // $houses_info = HouseInfo::where('price', '<=', $price)->get();

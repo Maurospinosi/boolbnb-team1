@@ -25,7 +25,7 @@ class MessagesTableSeeder extends Seeder
                 $newMessage->guest_name = $faker->name(null);
                 $newMessage->email = $faker->freeEmail;
                 $newMessage->message = $faker->paragraph(2, true);
-                $newMessage->created_at = $faker->dateTimeBetween("-2 years", "now", null);
+                $newMessage->created_at = $faker->dateTimeBetween("-2 years", "now", 'Europe/Paris');
                 $newMessage->save();
             }
         }

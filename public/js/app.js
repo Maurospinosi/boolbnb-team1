@@ -52857,6 +52857,14 @@ $(document).ready(function () {
   $("#open-sponsor-menu").on("click", function () {
     $("#host-sponsorship").toggleClass("d-none");
   }); //// FINE SPONSORIZZAZIONE ////
+  //// CANCELLAZIONE CASA ////
+
+  $("#open-delete-menu").on("click", function () {
+    $(this).siblings("form").toggleClass("d-none");
+  });
+  $("#button-annulla").on("click", function () {
+    $(this).parent(".delete-menu").addClass("d-none");
+  }); //// FINE CANCELLAZIONE CASA ////
   //// BRAINTREE ////
 
   var form = document.getElementById('payment-form');

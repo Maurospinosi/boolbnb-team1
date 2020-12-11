@@ -44,7 +44,7 @@ class SearchController extends Controller
 
         foreach($tempHouses_info as $house_info) {
             foreach($sponsors as $sponsor) {
-                if ($house_info->house->sponsors->contains($sponsor->id)) {
+                if ($house_info->house->sponsors->contains($sponsor->id) && ($house_info->house->visible == 1)) {
                     $sponsoredHouses[] = $house_info->house;
                 }
             }

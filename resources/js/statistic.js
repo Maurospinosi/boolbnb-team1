@@ -39,7 +39,7 @@ function printResults(data) {
         data: {
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
             datasets: [{
-                label: '# of Visualizzazioni',
+                label: '# di visualizzazioni',
                 data: views,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -78,7 +78,7 @@ function printResults(data) {
         data: {
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
             datasets: [{
-                label: '# of Messaggi',
+                label: '# di messaggi',
                 data: messages,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -116,7 +116,7 @@ function printResults(data) {
         data: {
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
             datasets: [{
-                label: '# of Visualizzazioni',
+                label: '# di visualizzazioni',
                 data: views,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -155,7 +155,7 @@ function printResults(data) {
         data: {
             labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
             datasets: [{
-                label: '# of Messaggi',
+                label: '# di messaggi',
                 data: messages,
                 backgroundColor: [
                     'rgba(20, 99, 132, 0.2)',

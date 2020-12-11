@@ -47856,11 +47856,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\Users\mgarg\Desktop\Laura\Progetti-Boolean\Final-project\boolbnb-team1\resources\js\citysearchregister.js */"./resources/js/citysearchregister.js");
-=======
-module.exports = __webpack_require__(/*! C:\Users\FedePolly\Desktop\Boolean\Esercizi\boolbnb-team1\resources\js\citysearchregister.js */"./resources/js/citysearchregister.js");
->>>>>>> main
 
 
 /***/ })

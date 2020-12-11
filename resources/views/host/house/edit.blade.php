@@ -5,20 +5,7 @@ Modifica la tua casa
 @endsection
 
 @section('page-content')
-<style>
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-    input[type=number] {
-  -moz-appearance: textfield;
-}
 
-ul {
-    list-style: none
-}
-</style>
     <div class="container">
         <div class="row">
             
@@ -31,7 +18,7 @@ ul {
             <div class="col-md-12 col-lg-12  bg-white">
                 <div class="d-flex p-2 align-items-center justify-content-end">
              
-                <a href="{{route('host/house.index')}}" class="btn btn-info">Indietro</a>
+                <a href="{{route('host/house.show', $house->id)}}" class="btn btn-info">Indietro</a>
             </div>
             
         </div>

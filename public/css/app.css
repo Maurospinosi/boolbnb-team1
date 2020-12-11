@@ -11418,7 +11418,7 @@ h3 {
   padding-right: 20px;
 }
 
-.host-nav-col #delete-button {
+.host-nav-col .delete-button {
   background-color: transparent;
   border: none;
 }
@@ -11447,6 +11447,39 @@ h3 {
   margin: auto;
   margin-top: 5px;
   background-color: lightgrey;
+}
+
+.host-nav-col .delete-menu {
+  background-color: #fff;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.host-nav-col .delete-menu h6 {
+  font-size: 13px;
+}
+
+.host-nav-col .delete-menu input[type=submit],
+.host-nav-col .delete-menu #button-annulla {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.host-nav-col .delete-menu input[type=submit] {
+  background-color: red;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.host-nav-col .delete-menu #button-annulla {
+  padding: 5px;
 }
 
 .titolo-scheda {

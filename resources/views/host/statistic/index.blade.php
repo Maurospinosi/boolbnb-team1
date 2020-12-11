@@ -17,13 +17,13 @@
             
             <div class="col-md-12 col-lg-12 pt-3 px-4 bg-white">
                 <div class="d-sm-flex align-items-center justify-content-center mb-4 titolo-scheda">
-                    <span>Le Statistiche della tua Casa</span>
+                    <span>Le Statistiche della tua Casa nel 2020</span>
                 </div>
             </div>
             <div class="col-md-12 col-lg-12  bg-white">
                 <div class="d-flex p-2 align-items-center justify-content-end">
              
-                <a href="{{route('host/house.index')}}" class="btn btn-info">Indietro</a>
+                <a href="{{route('host/house.show', $id)}}" class="btn btn-info">Indietro</a>
             </div>
         </div>
     </div>
