@@ -11418,20 +11418,21 @@ h3 {
   cursor: pointer;
 }
 
-.host-nav-col #host-sponsorship form {
-  margin-left: 10px;
+.host-nav-col #host-sponsorship {
+  width: 70%;
+  margin: auto;
 }
 
-.host-nav-col #host-sponsorship form select {
+.host-nav-col #host-sponsorship select {
   font-size: 13px;
   padding: 3px;
 }
 
-.host-nav-col #host-sponsorship form select option {
+.host-nav-col #host-sponsorship select option {
   padding: 3px;
 }
 
-.host-nav-col #host-sponsorship form input[type=submit] {
+.host-nav-col #host-sponsorship input[type=submit] {
   font-size: 13px;
   width: 50%;
   margin: auto;
@@ -11728,8 +11729,14 @@ a .btn-scopri {
 
 #map-example-container {
   width: 280px;
+  height: 90%;
   border: 3px solid #FF385C;
   z-index: 0;
+}
+
+#searchresults-wrapper .nrResults {
+  text-align: left;
+  margin-bottom: 20px;
 }
 
 #searchresults-wrapper .sponsor-bg-color {

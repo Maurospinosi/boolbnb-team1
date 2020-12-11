@@ -39,8 +39,8 @@
                         <input name="mq" id="mq" type="number" min="10">
                     </li>
                     <li>
-                        <label for="price">Prezzo</label>
-                        <input name="price" id="price" type="number" min="5">
+                        <label for="price-searchresults">Prezzo</label>
+                        <input name="price" id="price-searchresults" type="number" min="5">
                     </li>
                     <li>
                         <label for="distance">Distanza</label>                    
@@ -75,15 +75,14 @@
                     <div class="card_text">
                         <h5 class="card-title">{{$sponsoredHouse->houseinfo->title}}</h5>
                         <h6>{{$sponsoredHouse->houseinfo->price}}€</h6>
-                        <button type="button" class="btn btn-scopri">
-                            <a href="
+                        <a href="
                                 @if (Auth::id() == $sponsoredHouse->user_id)
                                     {{route("host/house.show", $sponsoredHouse->id)}}
                                 @else
                                     {{route("guest/house", $sponsoredHouse->slug)}}
-                                @endif">Scopri
+                                @endif">
+                                <button type="button" class="btn btn-scopri">Scopri</button>
                             </a>
-                        </button>
                     </div>
                     @if(count($sponsoredHouse->tags) > 0)
                     <div class="card_badges">
@@ -115,15 +114,14 @@
                     <div class="card_text">
                         <h5 class="card-title">{{$house_info->title}}</h5>
                         <h6>{{$house_info->price}}€</h6>
-                        <button type="button" class="btn btn-scopri">
                             <a href="
                                 @if (Auth::id() == $house_info->house->user_id)
                                     {{route("host/house.show", $house_info->house->id)}}
                                 @else
                                     {{route("guest/house", $house_info->house->slug)}}
-                                @endif">Scopri
+                                @endif">
+                                <button type="button" class="btn btn-scopri">Scopri</button>
                             </a>
-                        </button>
                     </div>
                     @if(count($house_info->house->tags) > 0)
                     <div class="card_badges">
@@ -151,9 +149,9 @@
                 <div class="card_text">
                     <h5 class="card-title">titolo</h5>
                     <h6 class="card_price">price</h6>
-                    <button type="button" class="btn btn-scopri">
-                        <a href="http://localhost:8000/host/houseLINK">Scopri</a>
-                    </button>
+                    <a href="http://localhost:8000/host/houseLINK">
+                        <button type="button" class="btn btn-scopri">Scopri</button>
+                    </a>
                 </div>
                 {{-- Se ci sono tag --}}
                 <div class="card_badges">

@@ -13,7 +13,7 @@
     </div>      
     <img src="{{asset('storage/'.$dati['cover_image'])}}" alt="house_cover">
     <ul class="list-house">
-        <li>Prezzo: {{$dati["price"]}}</li>
+        <li>Prezzo: {{$dati["price"]}}€</li>
         <li>Località: {{$dati["address"]}}, {{$dati["city"]}}</li>
         <li>Stanze: {{$dati["rooms"]}}</li>
         <li>Mq: {{$dati["mq"]}} </li>

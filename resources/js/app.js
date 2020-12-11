@@ -126,6 +126,7 @@ $(document).ready(function () {
     if (services.length == 0) {
       services = "";
     }
+    
     callDatabase(lat, lon, services, rooms, beds, bathrooms, mq, price, distance);
   });
   // Chiamata ajax che prende i dati dai filtri
@@ -145,6 +146,7 @@ $(document).ready(function () {
       },
       "method": "GET",
       "success": function (data) {
+        console.log(data);
         printResults(data);
       },
       "error": function (err) {
